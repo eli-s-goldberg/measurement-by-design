@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Welcome | Data Matters</title>
+<title>Introduction | Measurement By Design</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
 <link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
@@ -10,9 +10,19 @@
 <link rel="modulepreload" href="./_observablehq/client.js">
 <link rel="modulepreload" href="./_observablehq/runtime.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.js">
+<link rel="modulepreload" href="./_import/components/styles.5938bdd2.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
 <script type="module">
 
-import "./_observablehq/client.js";
+import {define} from "./_observablehq/client.js";
+
+define({id: "edc3f164", inputs: ["html"], outputs: ["defaultStyles","styleElement"], body: async (html) => {
+const {defaultStyles} = await import("./_import/components/styles.5938bdd2.js");
+// import some CSS to keep things well styled
+const styleElement = html`<style>${defaultStyles}</style>`;
+document.head.appendChild(styleElement);
+return {defaultStyles,styleElement};
+}});
 
 </script>
 <input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
@@ -20,59 +30,26 @@ import "./_observablehq/client.js";
 <nav id="observablehq-sidebar">
   <ol>
     <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
-    <li class="observablehq-link observablehq-link-active"><a href="./">Data Matters</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Measurement By Design</a></li>
   </ol>
   <ol>
     <li class="observablehq-link observablehq-link-active"><a href="./">Introduction</a></li>
   </ol>
   <section>
-    <summary>Experimental Design</summary>
+    <summary>Demo</summary>
     <ol>
-    <li class="observablehq-link"><a href="./experimental-design">Experimental Design </a></li>
-    <li class="observablehq-link"><a href="./parallel-arm-designs">Individual Randomized Parallel Designs</a></li>
-    <li class="observablehq-link"><a href="./cluster-randomized-designs">Individual Randomized Cluster Designs</a></li>
+    <li class="observablehq-link"><a href="./random-forest">Intervention Demo</a></li>
     </ol>
   </section>
   <section>
-    <summary>Data Science Experiments</summary>
+    <summary>Working Folder</summary>
     <ol>
-    <li class="observablehq-link"><a href="./random-forest">Random Forests</a></li>
-    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
-    <li class="observablehq-link"><a href="./live-table-data">Live Tables</a></li>
-    <li class="observablehq-link"><a href="./distp-demo">Distribution Modeling</a></li>
-    </ol>
-  </section>
-  <section>
-    <summary>Transport Modeling</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./pbpk">Drug Elimination</a></li>
-    </ol>
-  </section>
-  <section>
-    <summary>Ukelele Modeling</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./ukulele">Chord Maker</a></li>
-    <li class="observablehq-link"><a href="./ukutabs/blackbird">Blackbird - The Beatles</a></li>
-    </ol>
-  </section>
-  <section>
-    <summary>Miscellaneous Visualizations</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./happy-city">Is Minneapolis &#x27;happier&#x27; than Boston?</a></li>
-    <li class="observablehq-link"><a href="./diddy-did-he">Diddy didn&#x27;t, did he?</a></li>
-    <li class="observablehq-link"><a href="./fema-votes">FEMA Votes</a></li>
-    </ol>
-  </section>
-  <section>
-    <summary>Healthcare Diatribes</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./stars-hedis-insanity">What are stars?</a></li>
-    </ol>
-  </section>
-  <section>
-    <summary>Self Aggrandizing</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./podcasts">Podcasts &amp; Presentations</a></li>
+    <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
+    <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
+    <li class="observablehq-link"><a href="./live-table-data">Live Table</a></li>
+    <li class="observablehq-link"><a href="./distp-demo">Distribution Demo</a></li>
+    <li class="observablehq-link"><a href="./funnel-chart">Funnel Chart</a></li>
+    <li class="observablehq-link"><a href="./intervention-design">Intervention Design</a></li>
     </ol>
   </section>
 </nav>
@@ -81,72 +58,24 @@ import "./_observablehq/client.js";
 <nav>
 <div>Contents</div>
 <ol>
-<li class="observablehq-secondary-link"><a href="#who-am-i%3F">Who am I?</a></li>
-<li class="observablehq-secondary-link"><a href="#why-should-you-care%3F">Why should you care?</a></li>
+<li class="observablehq-secondary-link"><a href="#purpose">Purpose</a></li>
+<li class="observablehq-secondary-link"><a href="#why-you-should-care">Why you should care</a></li>
 <li class="observablehq-secondary-link"><a href="#organization">Organization</a></li>
 </ol>
 </nav>
 </aside>
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<style>
-
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: var(--sans-serif);
-  margin: 4rem 0 8rem;
-  text-wrap: balance;
-  text-align: center;
-}
-
-.hero h1 {
-  margin: 2rem 0;
-  max-width: none;
-  font-size: 14vw;
-  font-weight: 900;
-  line-height: 1;
-  background: linear-gradient(30deg, var(--theme-foreground-focus), currentColor);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero h2 {
-  margin: 0;
-  max-width: 34em;
-  font-size: 20px;
-  font-style: initial;
-  font-weight: 500;
-  line-height: 1.5;
-  color: var(--theme-foreground-muted);
-}
-
-@media (min-width: 640px) {
-  .hero h1 {
-    font-size: 90px;
-  }
-}
-
-</style>
-<h1 id="data-matters" tabindex="-1"><a class="observablehq-header-anchor" href="#data-matters">Data Matters</a></h1>
-<div class="warning">
-N.b., these are my opinions and not representative of those of my employer. This (these) posts are simply to memorialize some of the things that I’ve learned in an informative manner (for my own uses/devices). While I hope you find them useful, they’re not official statements of any kind.
-<p>This 'book' is my personal blog, of sorts, and is dedicated to working through some technical thoughts, musings, etc. Nothing fancy here, just good 'ole fashioned prose and math.</p>
-</div>
-<h2 id="who-am-i%3F" tabindex="-1"><a class="observablehq-header-anchor" href="#who-am-i%3F">Who am I?</a></h2>
-<p>As a data scientist and entrepreneur, I have a proven track record of transforming new ideas into real world innovations. Which is cool, I guess, but I'm really more interested prosing out some technical thoughts and ideas for my own personal amusement/recollection.</p>
-<p>If you're really interested in seeing a review of me, check my <a href="https://www.linkedin.com/in/eli-goldberg/" target="_blank" rel="noopener noreferrer">linkedin</a>.</p>
-<h2 id="why-should-you-care%3F" tabindex="-1"><a class="observablehq-header-anchor" href="#why-should-you-care%3F">Why should you care?</a></h2>
-<p>Great question. You shouldn't, <em>probably</em>. However, some of the things I discuss/explore here may be of use/interest to you in your career (or just for fun).</p>
-<p>This "book" just a little observable framework project to host some of my thoughts in an interactive and fun way. Also, my <em>lingua franca</em> is NOT javascript in its many forms. So this is also a way for me to expand and practice an additional langauge.</p>
+<div id="cell-edc3f164" class="observablehq observablehq--block"></div>
+<h1 id="measurement-by-design" tabindex="-1"><a class="observablehq-header-anchor" href="#measurement-by-design">Measurement by design</a></h1>
+<p>Of the subset of things that providers, payers, and people <em>should</em> do to help their members and patients and selves, one can only afford to do a smaller subset... <em>always</em>. In order to make this bet, you need to understand how to go from an idea to an intervention design to a business case estimate of the incremental clinical and financial impact to marketing material that will drive behavior change to understanding the degree to which that intervention <em>credibly</em> moves the needle on cost and health.</p>
+<h2 id="purpose" tabindex="-1"><a class="observablehq-header-anchor" href="#purpose">Purpose</a></h2>
+<p>The purpose of this demo is to clearly articulate and provide an example of how to create, size, sell, optimize, and understand the impact of an intervention on your book.</p>
+<h2 id="why-you-should-care" tabindex="-1"><a class="observablehq-header-anchor" href="#why-you-should-care">Why you should care</a></h2>
 <h2 id="organization" tabindex="-1"><a class="observablehq-header-anchor" href="#organization">Organization</a></h2>
-<p>Organizing my thoughts is a pain. It's already pulling teeth to get them into a format that other folks can understand. Thus, I want to keep the organization simple. I'll do my best to create some meta-organization of my posts, but there's no guarantee. However, on the left hand side I'll try to organize my musings into 'buckets' that lump together similar-type 'stuff'... no promises though.</p>
-<p>I have a bunch of thoughts on experimental design, data science, engineering, and other things. I'll do my best to document things in an appropriate and utilitarian manner. Not for you, but for me.</p>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="next" href="./experimental-design"><span>Experimental Design </span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-17T16:41:47">Nov 17, 2024</a>.</div>
+<nav><a rel="next" href="./random-forest"><span>Intervention Demo</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-23T16:36:31">Nov 23, 2024</a>.</div>
 </footer>
 </div>

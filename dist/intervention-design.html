@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Generic &#x60;BusinessModelBuilder&#x60; | Measurement By Design</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
+<link rel="modulepreload" href="./_observablehq/client.js">
+<link rel="modulepreload" href="./_observablehq/runtime.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.js">
+<link rel="modulepreload" href="./_import/components/LiveTable.f224e53d.js">
+<link rel="modulepreload" href="./_import/components/FunnelChart.0f5c685d.js">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/d3@7/+esm">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.js">
+<link rel="modulepreload" href="./_import/components/styles.5938bdd2.js">
+<link rel="modulepreload" href="./_import/components/BusinessModelBuilder.8f7b1542.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/_esm.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/_esm.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.js";
+
+define({id: "0413996b", inputs: ["html"], outputs: ["TableInput","TableInputTypes","EVENTS","LiveTable","LiveTableData","FunnelChart","d3","require","jStat","math","genericInterventionStyle","styleElement"], body: async (html) => {
+const [{TableInput, TableInputTypes, EVENTS, LiveTable, LiveTableData}, {FunnelChart}, d3, {require}, {genericInterventionStyle}] = await Promise.all([import("./_import/components/LiveTable.f224e53d.js"), import("./_import/components/FunnelChart.0f5c685d.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.js"), import("./_import/components/styles.5938bdd2.js")]);
+// imports
+
+
+
+const jStat = await require("jstat@1.9.4");
+const math = await require("mathjs@9.4.2");
+
+// it's 'noisy' when we have so much CSS in the page
+const styleElement = html`<style>${genericInterventionStyle}</style>`;
+document.head.appendChild(styleElement);
+return {TableInput,TableInputTypes,EVENTS,LiveTable,LiveTableData,FunnelChart,d3,require,jStat,math,genericInterventionStyle,styleElement};
+}});
+
+define({id: "5aa9872a", inputs: ["TableInputTypes","LiveTable","html","view"], outputs: ["distributionOptions","initialData","columns","tableWithCustomStats"], body: (TableInputTypes,LiveTable,html,view) => {
+// Define distribution options
+const distributionOptions = [
+  { value: "normal", label: "Normal" },
+  { value: "uniform", label: "Uniform" },
+  { value: "exponential", label: "Exponential" },
+  { value: "poisson", label: "Poisson" },
+  { value: "binomial", label: "Binomial" },
+  { value: "beta", label: "Beta" },
+  { value: "gamma", label: "Gamma" },
+  { value: "chisquare", label: "Chi-Square" },
+  { value: "bernoulli", label: "Bernoulli" },
+  { value: "geometric", label: "Geometric" },
+  { value: "pareto", label: "Pareto" },
+  { value: "lognormal", label: "Log-Normal" },
+  { value: "weibull", label: "Weibull" },
+  { value: "cauchy", label: "Cauchy" },
+  { value: "multinomial", label: "Multinomial" },
+];
+
+// Updated initial data
+const initialData = [
+  {
+    Parameter: "pop",
+    Value: 156000,
+    Units: "#",
+    Distribution: "lognormal",
+    Parameters: '{"sigma": 0.5, "scale": 150}',
+  },
+  {
+    Parameter: "target_rate",
+    Value: 25,
+    Units: "%",
+    Distribution: "lognormal",
+    Parameters: '{"sigma": 0.7, "scale": 2500}',
+  },
+  {
+    Parameter: "event_prevalence",
+    Value: 7.74,
+    Units: "%",
+    Distribution: "normal",
+    Parameters: '{"mean": 0.6, "std": 1200}',
+  },
+  {
+    Parameter: "average_event_cost",
+    Value: 30000,
+    Units: "$",
+    Distribution: "lognormal",
+    Parameters: '{"sigma": 0.8, "scale": 800}',
+  },
+  {
+    Parameter: "engagement_rate",
+    Value: 35,
+    Units: "%",
+    Distribution: "lognormal",
+    Parameters: '{"mean": 0.03, "shape": 0.29}',
+  },
+  {
+    Parameter: "intervention_fee",
+    Value: 130,
+    Units: "$",
+    Distribution: "uniform",
+    Parameters: '{"min": 130, "max": 130}',
+  },
+  {
+    Parameter: "treatments_per_year",
+    Value: 6,
+    Units: "#",
+    Distribution: "beta",
+    Parameters: '{"alpha": 75.4, "beta": 3.8}',
+  },
+  {
+    Parameter: "incremental_effect",
+    Value: 3,
+    Units: "%",
+    Distribution: "lognormal",
+    Parameters: '{"mean": 0.3, "shape": 0.29}',
+  },
+];
+
+// Updated columns
+const columns = [
+  TableInputTypes.dropdown({
+    width: 200,
+    key: "Parameter",
+    label: "Parameter",
+    options: [
+      { value: "pop", label: "Population" },
+      { value: "target_rate", label: "Target Rate" },
+      { value: "event_prevalence", label: "Event Prevalence" },
+      { value: "average_event_cost", label: "Average Event Cost" },
+      { value: "engagement_rate", label: "Engagement Rate" },
+      { value: "intervention_fee", label: "Intervention Fee" },
+      { value: "treatments_per_year", label: "Treatments/Year" },
+      { value: "incremental_effect", label: "Incremental Effect" },
+    ],
+    defaultValue: "pop",
+  }),
+  TableInputTypes.float({
+    width: 75,
+    key: "Value",
+    label: "Value",
+    min: 0,
+    step: 0.01,
+  }),
+  TableInputTypes.dropdown({
+    width: 75,
+    key: "Units",
+    label: "Units",
+    options: [
+      { value: "#", label: "#" },
+      { value: "%", label: "%" },
+      { value: "$", label: "$" },
+    ],
+    defaultValue: "#",
+  }),
+  TableInputTypes.dropdown({
+    width: 100,
+    key: "Distribution",
+    label: "Distribution",
+    options: distributionOptions,
+    defaultValue: "lognormal",
+  }),
+  TableInputTypes.text({
+    width: 160,
+    key: "Parameters",
+    label: "Parameters",
+    parser: (value) => {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value;
+      }
+    },
+    placeholder: "Enter as JSON",
+    defaultValue: '{"sigma": 1, "scale": 1}',
+  }),
+];
+
+// Updated LiveTable
+const tableWithCustomStats = LiveTable(html, {
+  columns,
+  initialData,
+  width: 700,
+  description: "Enter parameter data for analysis",
+  title: "Table: Parameter Inputs",
+  updateStats: (data, container, html) => {
+    const { parsed } = data;
+
+    const totalValue = parsed.reduce((sum, row) => sum + parseFloat(row.Value || 0), 0);
+
+    container.innerHTML = "";
+    // container.appendChild(
+    //   html`
+    //     <div style="margin-top: 20px; padding: 15px; background: #f8fafc;">
+    //       <h3 style="color: #2563eb; margin: 0 0 10px 0;">Summary Stats</h3>
+    //       <div style="font-size: 1.5em; font-weight: bold;">
+    //         Total Value: ${totalValue.toLocaleString()}
+    //       </div>
+    //     </div>
+    //   `
+    // );
+  },
+});
+
+view(tableWithCustomStats);
+return {distributionOptions,initialData,columns,tableWithCustomStats};
+}});
+
+define({id: "895eb1cf", inputs: ["LiveTableData","tableWithCustomStats"], outputs: ["livetabledata"], body: (LiveTableData,tableWithCustomStats) => {
+const livetabledata = LiveTableData(tableWithCustomStats)
+return {livetabledata};
+}});
+
+define({id: "d6eec384", outputs: ["BusinessModelBuilder"], body: async () => {
+const {BusinessModelBuilder} = await import("./_import/components/BusinessModelBuilder.8f7b1542.js");
+
+return {BusinessModelBuilder};
+}});
+
+define({id: "dc415654", inputs: ["BusinessModelBuilder","livetabledata","html","view"], outputs: ["visualizationGeneric","visualizationGenericD"], body: (BusinessModelBuilder,livetabledata,html,view) => {
+function visualizationGeneric(currentData, html) {
+  const builder = new BusinessModelBuilder(currentData, html);
+  
+  // Extract parameters and calculate derived values (same as before)
+  const pop = builder.getParameterInfo("pop");
+  const targetRate = builder.getParameterInfo("target_rate");
+  const engagementRate = builder.getParameterInfo("engagement_rate");
+  const feePerTarget = builder.getParameterInfo("intervention_fee");
+  const treatmentsPerYear = builder.getParameterInfo("treatments_per_year");
+  const incrementalEffect = builder.getParameterInfo("incremental_effect");
+  const eventPrevalence = builder.getParameterInfo("event_prevalence");
+  const averageEventCost = builder.getParameterInfo("average_event_cost");
+
+  // Calculate derived values
+  const engagedPopulation = pop.value * targetRate.value/100 * engagementRate.value/100;
+  const incrementalEvents = engagedPopulation * incrementalEffect.value/100;
+  const incrementalBenefit = incrementalEvents * averageEventCost.value;
+  const cost = engagedPopulation * feePerTarget.value * treatmentsPerYear.value;
+  const roi = ((incrementalBenefit - cost) / cost) || 0;
+
+  return builder
+    .addFormulaSection({
+      title: "Derived Business Model Parameters",
+      formulas: [
+        // Top row: ROI formula
+        {
+          topRow: true,
+          result: {
+            label: "ROI",
+            value: roi,
+            unit: "x",
+            highlighted: true
+          },
+          operators: ["-", "/"],
+          components: [
+            {
+              label: "Incr Ben",
+              value: incrementalBenefit,
+              unit: "$",
+              highlighted: true
+            },
+            {
+              label: "Cost",
+              value: cost,
+              unit: "$",
+              highlighted: true
+            },
+            {
+              label: "Cost",
+              value: cost,
+              unit: "$",
+              highlighted: true
+            }
+          ]
+        },
+        // Bottom rows in order: Engd Pop, Inc Evnt, Inc Ben, Cost
+        {
+          gridPosition: [0, 0], // Bottom left
+          result: {
+            label: "Engd Pop",
+            value: engagedPopulation,
+            unit: "#",
+            highlighted: true
+          },
+          operators: ["×", "×"],
+          components: [
+            {
+              label: "Pop",
+              value: pop.value,
+              unit: pop.unit,
+              highlighted: false
+            },
+            {
+              label: "Tgt Rate",
+              value: targetRate.value,
+              unit: targetRate.unit,
+              highlighted: false
+            },
+            {
+              label: "Eng Rate",
+              value: engagementRate.value,
+              unit: engagementRate.unit,
+              highlighted: false
+            }
+          ]
+        },
+        {
+          gridPosition: [1, 0],
+          result: {
+            label: "Incr Evnt",
+            value: incrementalEvents,
+            unit: "#",
+            highlighted: true
+          },
+          operators: ["×"],
+          components: [
+            {
+              label: "Engd Pop",
+              value: engagedPopulation,
+              unit: "#",
+              highlighted: true
+            },
+            {
+              label: "Incr Eff",
+              value: incrementalEffect.value,
+              unit: incrementalEffect.unit,
+              highlighted: false
+            }
+          ]
+        },
+        {
+          gridPosition: [2, 0],
+          result: {
+            label: "Incr Ben",
+            value: incrementalBenefit,
+            unit: "$",
+            highlighted: true
+          },
+          operators: ["×"],
+          components: [
+            {
+              label: "Incr Evnt",
+              value: incrementalEvents,
+              unit: "#",
+              highlighted: true
+            },
+            {
+              label: "Avg Cost",
+              value: averageEventCost.value,
+              unit: averageEventCost.unit,
+              highlighted: false
+            }
+          ]
+        },
+        {
+          gridPosition: [3, 0],
+          result: {
+            label: "Cost",
+            value: cost,
+            unit: "$",
+            highlighted: true
+          },
+          operators: ["×", "×"],
+          components: [
+            {
+              label: "Tgt Pop",
+              value: pop.value,
+              unit: pop.unit,
+              highlighted: true
+            },
+            {
+              label: "Fee/Tgt",
+              value: feePerTarget.value,
+              unit: feePerTarget.unit,
+              highlighted: false
+            },
+            {
+              label: "Trtmt/yr",
+              value: treatmentsPerYear.value,
+              unit: treatmentsPerYear.unit,
+              highlighted: false
+            }
+          ]
+        }
+      ]
+    })
+    .addParametersSection({
+      title: "Fundamental Internal Distribution Parameters",
+      parameters: [
+        { label: "Eng Rate", parameter: "engagement_rate" },
+        { label: "Fee/Tgt", parameter: "intervention_fee" },
+        { label: "Trtmt/yr", parameter: "treatments_per_year" },
+        { label: "Incr Eff", parameter: "incremental_effect" }
+      ]
+    })
+    .addParametersSection({
+      title: "Fundamental External Distribution Parameters",
+      parameters: [
+        { label: "Pop", parameter: "pop" },
+        { label: "Tgt Rate", parameter: "target_rate" },
+        { label: "Evt Prev", parameter: "event_prevalence" },
+        { label: "Avg Cost", parameter: "average_event_cost" }
+      ]
+    })
+    .build();
+}
+
+const visualizationGenericD = visualizationGeneric(livetabledata, html)
+view(visualizationGenericD)
+return {visualizationGeneric,visualizationGenericD};
+}});
+
+define({id: "fc1a1f98", inputs: ["TableInputTypes","distributionOptions","LiveTable","html","view"], outputs: ["salesPipelineData","salesPipelineColumns","salesPipelineTable"], body: (TableInputTypes,distributionOptions,LiveTable,html,view) => {
+// Sales Pipeline Table Data
+const salesPipelineData = [
+  {
+    Parameter: "monthly_leads",
+    Value: 1000,
+    Units: "#",
+    Distribution: "normal",
+    Parameters: '{"mean": 1000, "std": 100}',
+  },
+  {
+    Parameter: "conversion_rate",
+    Value: 15,
+    Units: "%",
+    Distribution: "beta",
+    Parameters: '{"alpha": 2, "beta": 8}',
+  },
+  {
+    Parameter: "avg_deal_size",
+    Value: 5000,
+    Units: "$",
+    Distribution: "lognormal",
+    Parameters: '{"sigma": 0.5, "scale": 5000}',
+  },
+  {
+    Parameter: "sales_cycle",
+    Value: 30,
+    Units: "#",
+    Distribution: "gamma",
+    Parameters: '{"shape": 3, "scale": 10}',
+  },
+  {
+    Parameter: "cost_per_lead",
+    Value: 50,
+    Units: "$",
+    Distribution: "uniform",
+    Parameters: '{"min": 40, "max": 60}',
+  },
+  {
+    Parameter: "sales_salary",
+    Value: 5000,
+    Units: "$",
+    Distribution: "normal",
+    Parameters: '{"mean": 5000, "std": 500}',
+  },
+  {
+    Parameter: "commission_rate",
+    Value: 10,
+    Units: "%",
+    Distribution: "uniform",
+    Parameters: '{"min": 8, "max": 12}',
+  },
+  {
+    Parameter: "overhead_costs",
+    Value: 2000,
+    Units: "$",
+    Distribution: "normal",
+    Parameters: '{"mean": 2000, "std": 200}',
+  },
+];
+
+const salesPipelineColumns = [
+  TableInputTypes.dropdown({
+    width: 200,
+    key: "Parameter",
+    label: "Parameter",
+    options: [
+      { value: "monthly_leads", label: "Monthly Leads" },
+      { value: "conversion_rate", label: "Conversion Rate" },
+      { value: "avg_deal_size", label: "Average Deal Size" },
+      { value: "sales_cycle", label: "Sales Cycle Days" },
+      { value: "cost_per_lead", label: "Cost per Lead" },
+      { value: "sales_salary", label: "Sales Salary" },
+      { value: "commission_rate", label: "Commission Rate" },
+      { value: "overhead_costs", label: "Overhead Costs" },
+    ],
+    defaultValue: "monthly_leads",
+  }),
+  // Rest of columns same as original
+  TableInputTypes.float({
+    width: 75,
+    key: "Value",
+    label: "Value",
+    min: 0,
+    step: 0.01,
+  }),
+  TableInputTypes.dropdown({
+    width: 75,
+    key: "Units",
+    label: "Units",
+    options: [
+      { value: "#", label: "#" },
+      { value: "%", label: "%" },
+      { value: "$", label: "$" },
+    ],
+    defaultValue: "#",
+  }),
+  TableInputTypes.dropdown({
+    width: 100,
+    key: "Distribution",
+    label: "Distribution",
+    options: distributionOptions,
+    defaultValue: "normal",
+  }),
+  TableInputTypes.text({
+    width: 160,
+    key: "Parameters",
+    label: "Parameters",
+    parser: (value) => {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value;
+      }
+    },
+    placeholder: "Enter as JSON",
+    defaultValue: '{"mean": 0, "std": 1}',
+  }),
+];
+
+const salesPipelineTable = LiveTable(html, {
+  columns: salesPipelineColumns,
+  initialData: salesPipelineData,
+  width: 700,
+  description: "Enter sales pipeline parameters",
+  title: "Table: Sales Pipeline Inputs",
+  updateStats: (data, container, html) => {
+    const { parsed } = data;
+    container.innerHTML = "";
+  },
+});
+
+view(salesPipelineTable)
+return {salesPipelineData,salesPipelineColumns,salesPipelineTable};
+}});
+
+define({id: "708df49f", inputs: ["LiveTableData","salesPipelineTable"], outputs: ["salesPipelineTableData"], body: (LiveTableData,salesPipelineTable) => {
+const salesPipelineTableData = LiveTableData(salesPipelineTable);
+
+return {salesPipelineTableData};
+}});
+
+define({id: "591e72a0", inputs: ["BusinessModelBuilder","salesPipelineTableData","html","view"], outputs: ["visualizationSalesPipeline","visualizationSalesPipelineD"], body: (BusinessModelBuilder,salesPipelineTableData,html,view) => {
+function visualizationSalesPipeline(currentData, html) {
+  const builder = new BusinessModelBuilder(currentData, html);
+  
+  // Extract parameters
+  const leads = builder.getParameterInfo("monthly_leads");
+  const conversionRate = builder.getParameterInfo("conversion_rate");
+  const avgDealSize = builder.getParameterInfo("avg_deal_size");
+  const salesCycle = builder.getParameterInfo("sales_cycle");
+  const costPerLead = builder.getParameterInfo("cost_per_lead");
+  const salesSalary = builder.getParameterInfo("sales_salary");
+  const commissionRate = builder.getParameterInfo("commission_rate");
+  const overhead = builder.getParameterInfo("overhead_costs");
+
+  // Calculate derived values
+  const monthlyDeals = leads.value * conversionRate.value/100;
+  const monthlyRevenue = monthlyDeals * avgDealSize.value;
+  const acquisitionCosts = leads.value * costPerLead.value;
+  const commissionCosts = monthlyRevenue * commissionRate.value/100;
+  const totalCosts = acquisitionCosts + salesSalary.value + commissionCosts + overhead.value;
+  const profit = monthlyRevenue - totalCosts;
+  const roi = ((monthlyRevenue - totalCosts) / totalCosts) || 0;
+
+  return builder
+    .addFormulaSection({
+      title: "Sales Pipeline Performance Metrics",
+      formulas: [
+        // Top row: ROI formula
+        {
+          topRow: true,
+          result: {
+            label: "ROI",
+            value: roi,
+            unit: "x",
+            highlighted: true
+          },
+          operators: ["-", "/"],
+          components: [
+            {
+              label: "Revenue",
+              value: monthlyRevenue,
+              unit: "$",
+              highlighted: true
+            },
+            {
+              label: "Costs",
+              value: totalCosts,
+              unit: "$",
+              highlighted: true
+            },
+            {
+              label: "Costs",
+              value: totalCosts,
+              unit: "$",
+              highlighted: true
+            }
+          ]
+        },
+        // Bottom rows showing pipeline flow
+        {
+          gridPosition: [0, 0],
+          result: {
+            label: "Deals",
+            value: monthlyDeals,
+            unit: "#",
+            highlighted: true
+          },
+          operators: ["×"],
+          components: [
+            {
+              label: "Leads",
+              value: leads.value,
+              unit: leads.unit,
+              highlighted: false
+            },
+            {
+              label: "Conv Rate",
+              value: conversionRate.value,
+              unit: conversionRate.unit,
+              highlighted: false
+            }
+          ]
+        },
+        {
+          gridPosition: [1, 0],
+          result: {
+            label: "Revenue",
+            value: monthlyRevenue,
+            unit: "$",
+            highlighted: true
+          },
+          operators: ["×"],
+          components: [
+            {
+              label: "Deals",
+              value: monthlyDeals,
+              unit: "#",
+              highlighted: true
+            },
+            {
+              label: "Deal Size",
+              value: avgDealSize.value,
+              unit: avgDealSize.unit,
+              highlighted: false
+            }
+          ]
+        },
+        {
+          gridPosition: [2, 0],
+          result: {
+            label: "Acq Cost",
+            value: acquisitionCosts,
+            unit: "$",
+            highlighted: true
+          },
+          operators: ["×"],
+          components: [
+            {
+              label: "Leads",
+              value: leads.value,
+              unit: leads.unit,
+              highlighted: false
+            },
+            {
+              label: "Cost/Lead",
+              value: costPerLead.value,
+              unit: costPerLead.unit,
+              highlighted: false
+            }
+          ]
+        },
+        {
+          gridPosition: [3, 0],
+          result: {
+            label: "Commission",
+            value: commissionCosts,
+            unit: "$",
+            highlighted: true
+          },
+          operators: ["×"],
+          components: [
+            {
+              label: "Revenue",
+              value: monthlyRevenue,
+              unit: "$",
+              highlighted: true
+            },
+            {
+              label: "Comm Rate",
+              value: commissionRate.value,
+              unit: commissionRate.unit,
+              highlighted: false
+            }
+          ]
+        }
+      ]
+    })
+    .addParametersSection({
+      title: "Sales Process Parameters",
+      parameters: [
+        { label: "Conv Rate", parameter: "conversion_rate" },
+        { label: "Deal Size", parameter: "avg_deal_size" },
+        { label: "Sale Cycle", parameter: "sales_cycle" },
+        { label: "Comm Rate", parameter: "commission_rate" }
+      ]
+    })
+    .addParametersSection({
+      title: "Cost Structure Parameters",
+      parameters: [
+        { label: "Lead Cost", parameter: "cost_per_lead" },
+        { label: "Salary", parameter: "sales_salary" },
+        { label: "Overhead", parameter: "overhead_costs" },
+        { label: "Leads", parameter: "monthly_leads" }
+      ]
+    })
+    .build();
+}
+
+const visualizationSalesPipelineD = visualizationSalesPipeline(salesPipelineTableData, html);
+view(visualizationSalesPipelineD);
+return {visualizationSalesPipeline,visualizationSalesPipelineD};
+}});
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Measurement By Design</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./">Introduction</a></li>
+  </ol>
+  <section>
+    <summary>Demo</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./random-forest">Intervention Demo</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Working Folder</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
+    <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
+    <li class="observablehq-link"><a href="./live-table-data">Live Table</a></li>
+    <li class="observablehq-link"><a href="./distp-demo">Distribution Demo</a></li>
+    <li class="observablehq-link"><a href="./funnel-chart">Funnel Chart</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./intervention-design">Intervention Design</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#step-1%3A-create-parameter-table">Step 1: Create Parameter Table</a></li>
+<li class="observablehq-secondary-link"><a href="#step-2%3A-create-business-model-visualization">Step 2: Create Business Model Visualization</a></li>
+<li class="observablehq-secondary-link"><a href="#step-3%3A-implement-the-visualization">Step 3: Implement the Visualization</a></li>
+<li class="observablehq-secondary-link"><a href="#key-components%3A">Key Components:</a></li>
+<li class="observablehq-secondary-link"><a href="#example-use-cases%3A">Example Use Cases:</a></li>
+</ol>
+</nav>
+</aside>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div id="cell-0413996b" class="observablehq observablehq--block"></div>
+<h1 id="generic-businessmodelbuilder-introduction" tabindex="-1"><a class="observablehq-header-anchor" href="#generic-businessmodelbuilder-introduction">Generic <code>BusinessModelBuilder</code> Introduction</a></h1>
+<p>This framework provides a structured way to create interactive business model visualizations that show relationships between parameters and derived metrics. It consists of two main components: a parameter input table and a visualization builder.</p>
+<p>The system allows you to:</p>
+<ol>
+<li>Define input parameters with units and distributions</li>
+<li>Create formulas showing relationships between parameters</li>
+<li>Calculate derived metrics</li>
+<li>Visualize the business model in a structured format</li>
+<li>Update visualizations reactively as parameters change</li>
+</ol>
+<h2 id="step-1%3A-create-parameter-table" tabindex="-1"><a class="observablehq-header-anchor" href="#step-1%3A-create-parameter-table">Step 1: Create Parameter Table</a></h2>
+<p>First, define your parameters, their units, and distributions:</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-comment">// Define your parameters data</span>
+<span class="hljs-keyword">const</span> parameterData = [
+  {
+    <span class="hljs-title class_">Parameter</span>: <span class="hljs-string">"monthly_leads"</span>,    <span class="hljs-comment">// Unique identifier</span>
+    <span class="hljs-title class_">Value</span>: <span class="hljs-number">1000</span>,                  <span class="hljs-comment">// Default value</span>
+    <span class="hljs-title class_">Units</span>: <span class="hljs-string">"#"</span>,                   <span class="hljs-comment">// Unit type (#, %, $)</span>
+    <span class="hljs-title class_">Distribution</span>: <span class="hljs-string">"normal"</span>,       <span class="hljs-comment">// Statistical distribution</span>
+    <span class="hljs-title class_">Parameters</span>: <span class="hljs-string">'{"mean": 1000, "std": 100}'</span>,  <span class="hljs-comment">// Distribution parameters</span>
+  },
+  <span class="hljs-comment">// Add more parameters...</span>
+];
+
+<span class="hljs-comment">// Create column definitions</span>
+<span class="hljs-keyword">const</span> parameterColumns = [
+  <span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">dropdown</span>({
+    <span class="hljs-attr">width</span>: <span class="hljs-number">200</span>,
+    <span class="hljs-attr">key</span>: <span class="hljs-string">"Parameter"</span>,
+    <span class="hljs-attr">label</span>: <span class="hljs-string">"Parameter"</span>,
+    <span class="hljs-attr">options</span>: [
+      { <span class="hljs-attr">value</span>: <span class="hljs-string">"monthly_leads"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Monthly Leads"</span> },
+      <span class="hljs-comment">// Add more parameter options...</span>
+    ],
+    <span class="hljs-attr">defaultValue</span>: <span class="hljs-string">"monthly_leads"</span>,
+  }),
+  <span class="hljs-comment">// Standard columns for value, units, distribution</span>
+  <span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">float</span>({
+    <span class="hljs-attr">width</span>: <span class="hljs-number">75</span>,
+    <span class="hljs-attr">key</span>: <span class="hljs-string">"Value"</span>,
+    <span class="hljs-attr">label</span>: <span class="hljs-string">"Value"</span>,
+    <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">step</span>: <span class="hljs-number">0.01</span>,
+  }),
+  <span class="hljs-comment">// ... other standard columns</span>
+];
+
+<span class="hljs-comment">// Create the LiveTable</span>
+<span class="hljs-keyword">const</span> parameterTable = <span class="hljs-title class_">LiveTable</span>(html, {
+  <span class="hljs-attr">columns</span>: parameterColumns,
+  <span class="hljs-attr">initialData</span>: parameterData,
+  <span class="hljs-attr">width</span>: <span class="hljs-number">700</span>,
+  <span class="hljs-attr">description</span>: <span class="hljs-string">"Enter model parameters"</span>,
+  <span class="hljs-attr">title</span>: <span class="hljs-string">"Table: Model Inputs"</span>,
+});
+
+<span class="hljs-comment">// Create reactive data stream</span>
+<span class="hljs-keyword">const</span> parameterTableData = <span class="hljs-title class_">LiveTableData</span>(parameterTable);
+</code></pre>
+<h2 id="step-2%3A-create-business-model-visualization" tabindex="-1"><a class="observablehq-header-anchor" href="#step-2%3A-create-business-model-visualization">Step 2: Create Business Model Visualization</a></h2>
+<p>Define your business model structure and calculations:</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">visualizationModel</span>(<span class="hljs-params">currentData, html</span>) {
+  <span class="hljs-keyword">const</span> builder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BusinessModelBuilder</span>(currentData, html);
+  
+  <span class="hljs-comment">// Extract parameters</span>
+  <span class="hljs-keyword">const</span> param1 = builder.<span class="hljs-title function_">getParameterInfo</span>(<span class="hljs-string">"parameter_name"</span>);
+  
+  <span class="hljs-comment">// Calculate derived values</span>
+  <span class="hljs-keyword">const</span> derivedValue = param1.<span class="hljs-property">value</span> * someCalculation;
+  
+  <span class="hljs-keyword">return</span> builder
+    .<span class="hljs-title function_">addFormulaSection</span>({
+      <span class="hljs-attr">title</span>: <span class="hljs-string">"Main Metrics"</span>,
+      <span class="hljs-attr">formulas</span>: [
+        <span class="hljs-comment">// Top formula (usually ROI or main metric)</span>
+        {
+          <span class="hljs-attr">topRow</span>: <span class="hljs-literal">true</span>,
+          <span class="hljs-attr">result</span>: {
+            <span class="hljs-attr">label</span>: <span class="hljs-string">"Main Metric"</span>,
+            <span class="hljs-attr">value</span>: mainValue,
+            <span class="hljs-attr">unit</span>: <span class="hljs-string">"x"</span>,
+            <span class="hljs-attr">highlighted</span>: <span class="hljs-literal">true</span>
+          },
+          <span class="hljs-attr">operators</span>: [<span class="hljs-string">"×"</span>],
+          <span class="hljs-attr">components</span>: [
+            {
+              <span class="hljs-attr">label</span>: <span class="hljs-string">"Component 1"</span>,
+              <span class="hljs-attr">value</span>: comp1Value,
+              <span class="hljs-attr">unit</span>: <span class="hljs-string">"$"</span>,
+              <span class="hljs-attr">highlighted</span>: <span class="hljs-literal">true</span>
+            },
+            <span class="hljs-comment">// More components...</span>
+          ]
+        },
+        <span class="hljs-comment">// Supporting formulas</span>
+        {
+          <span class="hljs-attr">gridPosition</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],  <span class="hljs-comment">// Position in grid</span>
+          <span class="hljs-attr">result</span>: {
+            <span class="hljs-attr">label</span>: <span class="hljs-string">"Derived 1"</span>,
+            <span class="hljs-attr">value</span>: derived1,
+            <span class="hljs-attr">unit</span>: <span class="hljs-string">"#"</span>,
+            <span class="hljs-attr">highlighted</span>: <span class="hljs-literal">true</span>
+          },
+          <span class="hljs-attr">operators</span>: [<span class="hljs-string">"×"</span>],
+          <span class="hljs-attr">components</span>: [<span class="hljs-comment">/* ... */</span>]
+        },
+        <span class="hljs-comment">// More formulas...</span>
+      ]
+    })
+    .<span class="hljs-title function_">addParametersSection</span>({
+      <span class="hljs-attr">title</span>: <span class="hljs-string">"Parameter Group 1"</span>,
+      <span class="hljs-attr">parameters</span>: [
+        { <span class="hljs-attr">label</span>: <span class="hljs-string">"Param 1"</span>, <span class="hljs-attr">parameter</span>: <span class="hljs-string">"parameter_name"</span> },
+        <span class="hljs-comment">// More parameters...</span>
+      ]
+    })
+    .<span class="hljs-title function_">build</span>();
+}
+</code></pre>
+<h2 id="step-3%3A-implement-the-visualization" tabindex="-1"><a class="observablehq-header-anchor" href="#step-3%3A-implement-the-visualization">Step 3: Implement the Visualization</a></h2>
+<p>Connect everything together:</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-comment">// Create and view the table</span>
+<span class="hljs-title function_">view</span>(parameterTable);
+
+<span class="hljs-comment">// Create and view the visualization</span>
+<span class="hljs-keyword">const</span> visualizationOutput = <span class="hljs-title function_">visualizationModel</span>(parameterTableData, html);
+<span class="hljs-title function_">view</span>(visualizationOutput);
+</code></pre>
+<h2 id="key-components%3A" tabindex="-1"><a class="observablehq-header-anchor" href="#key-components%3A">Key Components:</a></h2>
+<h3 id="formula-structure" tabindex="-1"><a class="observablehq-header-anchor" href="#formula-structure">Formula Structure</a></h3>
+<ul>
+<li><strong>Top Row Formula</strong>: Usually shows the main metric (ROI, profit, etc.)</li>
+<li><strong>Grid Formulas</strong>: Show supporting calculations in a logical flow</li>
+<li>Each formula has:
+<ul>
+<li>Result (output)</li>
+<li>Operators (×, -, /, etc.)</li>
+<li>Components (inputs)</li>
+<li>Highlighting (pink for derived, gray for inputs)</li>
+</ul>
+</li>
+</ul>
+<h3 id="parameter-sections" tabindex="-1"><a class="observablehq-header-anchor" href="#parameter-sections">Parameter Sections</a></h3>
+<ul>
+<li>Group related parameters together</li>
+<li>Show current values with units</li>
+<li>Update automatically with table changes</li>
+</ul>
+<h3 id="best-practices%3A" tabindex="-1"><a class="observablehq-header-anchor" href="#best-practices%3A">Best Practices:</a></h3>
+<ol>
+<li>Use clear, unique parameter names</li>
+<li>Group related formulas and parameters logically</li>
+<li>Maintain consistent units throughout calculations</li>
+<li>Use highlighting to show value flow</li>
+<li>Position formulas to show clear relationships</li>
+</ol>
+<h2 id="example-use-cases%3A" tabindex="-1"><a class="observablehq-header-anchor" href="#example-use-cases%3A">Example Use Cases:</a></h2>
+<h3 id="example-1%3A-belle-cares" tabindex="-1"><a class="observablehq-header-anchor" href="#example-1%3A-belle-cares">Example 1: Belle Cares</a></h3>
+<div id="cell-5aa9872a" class="observablehq observablehq--block"></div>
+<div id="cell-895eb1cf" class="observablehq observablehq--block"></div>
+<div id="cell-d6eec384" class="observablehq observablehq--block"></div>
+<div id="cell-dc415654" class="observablehq observablehq--block"></div>
+<h3 id="example-2%3A-a-sales-pipeline" tabindex="-1"><a class="observablehq-header-anchor" href="#example-2%3A-a-sales-pipeline">Example 2: A sales Pipeline</a></h3>
+<div id="cell-fc1a1f98" class="observablehq observablehq--block"></div>
+<div id="cell-708df49f" class="observablehq observablehq--block"></div>
+<div id="cell-591e72a0" class="observablehq observablehq--block"></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./funnel-chart"><span>Funnel Chart</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-23T16:36:31">Nov 23, 2024</a>.</div>
+</footer>
+</div>

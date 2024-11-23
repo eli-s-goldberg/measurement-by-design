@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Home-grown In-Browser ML -- Building a Random Forest Classifier in JavaScript | Data Matters</title>
+<title>Home-grown In-Browser ML -- Building a Random Forest Classifier in JavaScript | Measurement By Design</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
 <link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
@@ -59,7 +59,7 @@
 import {define} from "./_observablehq/client.js";
 import {registerFile} from "./_observablehq/stdlib.js";
 
-registerFile("./data/decision-tree.jpg", {"name":"./data/decision-tree.jpg","mimeType":"image/jpeg","path":"./_file/data/decision-tree.f4ccab42.jpg","lastModified":1729394651920});
+registerFile("./data/decision-tree.jpg", {"name":"./data/decision-tree.jpg","mimeType":"image/jpeg","path":"./data/decision-tree.jpg"});
 
 define({id: "abdbd3b2", outputs: ["RandomForestClassifier","generateDonutHoleData"], body: async () => {
 const [{RandomForestClassifier}, {generateDonutHoleData}] = await Promise.all([import("./_import/components/RandomForestClassifier.1e680409.js"), import("./_import/components/DonutData.24ea9019.js")]);
@@ -459,59 +459,26 @@ view(rocPlot);
 <nav id="observablehq-sidebar">
   <ol>
     <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
-    <li class="observablehq-link"><a href="./">Data Matters</a></li>
+    <li class="observablehq-link"><a href="./">Measurement By Design</a></li>
   </ol>
   <ol>
     <li class="observablehq-link"><a href="./">Introduction</a></li>
   </ol>
-  <section>
-    <summary>Experimental Design</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./experimental-design">Experimental Design </a></li>
-    <li class="observablehq-link"><a href="./parallel-arm-designs">Individual Randomized Parallel Designs</a></li>
-    <li class="observablehq-link"><a href="./cluster-randomized-designs">Individual Randomized Cluster Designs</a></li>
-    </ol>
-  </section>
   <section class="observablehq-section-active">
-    <summary>Data Science Experiments</summary>
+    <summary>Demo</summary>
     <ol>
-    <li class="observablehq-link observablehq-link-active"><a href="./random-forest">Random Forests</a></li>
-    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
-    <li class="observablehq-link"><a href="./live-table-data">Live Tables</a></li>
-    <li class="observablehq-link"><a href="./distp-demo">Distribution Modeling</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./random-forest">Intervention Demo</a></li>
     </ol>
   </section>
   <section>
-    <summary>Transport Modeling</summary>
+    <summary>Working Folder</summary>
     <ol>
-    <li class="observablehq-link"><a href="./pbpk">Drug Elimination</a></li>
-    </ol>
-  </section>
-  <section>
-    <summary>Ukelele Modeling</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./ukulele">Chord Maker</a></li>
-    <li class="observablehq-link"><a href="./ukutabs/blackbird">Blackbird - The Beatles</a></li>
-    </ol>
-  </section>
-  <section>
-    <summary>Miscellaneous Visualizations</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./happy-city">Is Minneapolis &#x27;happier&#x27; than Boston?</a></li>
-    <li class="observablehq-link"><a href="./diddy-did-he">Diddy didn&#x27;t, did he?</a></li>
-    <li class="observablehq-link"><a href="./fema-votes">FEMA Votes</a></li>
-    </ol>
-  </section>
-  <section>
-    <summary>Healthcare Diatribes</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./stars-hedis-insanity">What are stars?</a></li>
-    </ol>
-  </section>
-  <section>
-    <summary>Self Aggrandizing</summary>
-    <ol>
-    <li class="observablehq-link"><a href="./podcasts">Podcasts &amp; Presentations</a></li>
+    <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
+    <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
+    <li class="observablehq-link"><a href="./live-table-data">Live Table</a></li>
+    <li class="observablehq-link"><a href="./distp-demo">Distribution Demo</a></li>
+    <li class="observablehq-link"><a href="./funnel-chart">Funnel Chart</a></li>
+    <li class="observablehq-link"><a href="./intervention-design">Intervention Design</a></li>
     </ol>
   </section>
 </nav>
@@ -1159,7 +1126,7 @@ view(rocPlot);
 <p>I could implement a boosting approach, but I think I'll dip my toes into some neural networks. Besides, the recursive insanity with decision trees has given me an insane headache.</p>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./cluster-randomized-designs"><span>Individual Randomized Cluster Designs</span></a><a rel="next" href="./mass-balance-business-models"><span>Mass Balance Business Models</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-17T16:41:47">Nov 17, 2024</a>.</div>
+<nav><a rel="prev" href="./"><span>Measurement By Design</span></a><a rel="next" href="./state-level-mapping"><span>BRFSS State Level Mapping</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-23T16:36:31">Nov 23, 2024</a>.</div>
 </footer>
 </div>
