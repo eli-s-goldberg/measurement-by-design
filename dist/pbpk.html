@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Let&#x27;s do some PBPK Modeling | Data Matters</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
+<link rel="modulepreload" href="./_observablehq/client.js">
+<link rel="modulepreload" href="./_observablehq/runtime.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.js">
+<link rel="modulepreload" href="https://unpkg.com/numeric/numeric-1.2.6.min.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/_esm.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/_esm.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.js";
+
+define({id: "e9f9a2f0", outputs: ["numeric"], body: async () => {
+const numeric = await import("https://unpkg.com/numeric/numeric-1.2.6.min.js");
+
+return {numeric};
+}});
+
+define({id: "10c7d5d4", outputs: ["metabolites"], body: () => {
+const metabolites = [
+  { name: "THC", CLint: 0.2356 },
+  { name: "CBD", CLint: 0.15 },
+  { name: "CBN", CLint: 0.18 },
+];
+return {metabolites};
+}});
+
+define({id: "59137a97", inputs: ["view","Inputs","metabolites"], outputs: ["selectedMetabolite"], body: (view,Inputs,metabolites) => {
+// Slider for selecting CLint of the chosen metabolite
+const selectedMetabolite = view(
+  Inputs.select(metabolites, {
+    label: "Select Metabolite",
+    format: (m) => m.name,
+  })
+);
+return {selectedMetabolite};
+}});
+
+define({id: "1b95cf21", inputs: ["view","Inputs","selectedMetabolite"], outputs: ["clintSlider","inflowRate"], body: (view,Inputs,selectedMetabolite) => {
+const clintSlider = view(
+  Inputs.range([0.1, 0.3], {
+    label: `Intrinsic Clearance (CLint) for ${selectedMetabolite.name} in mg/day`,
+    step: 0.01,
+    value: selectedMetabolite.CLint,
+    disabled: true,
+  })
+);
+
+// Range selectors for inflow rate and initial concentration
+const inflowRate = view(
+  Inputs.range([0, 20], {
+    label: `Inflow Rate for ${selectedMetabolite.name} (mg/day)`,
+    step: 0.00001,
+    value: 5,
+  })
+);
+return {clintSlider,inflowRate};
+}});
+
+define({id: "4fedb05c", inputs: ["view","Inputs"], outputs: ["accumulationTime","degredationTime","dt"], body: (view,Inputs) => {
+const accumulationTime = view(
+  Inputs.range([0, 365 * 3], {
+    label: "Accumulation Time (days)",
+    value: 365, // Default value
+    step: 1,
+  })
+);
+
+const degredationTime = view(
+  Inputs.range([0, 365 * 3], {
+    label: "Degredation Time (days)",
+    value: 30, // Default value
+    step: 1,
+  })
+);
+
+const dt = 0.1;
+return {accumulationTime,degredationTime,dt};
+}});
+
+define({id: "a0b3919c", outputs: ["linspace"], body: () => {
+function linspace(start, end, num) {
+  const arr = new Array(num);
+  const step = (end - start) / (num - 1);
+  for (let i = 0; i < num; i++) {
+    arr[i] = start + step * i;
+  }
+  return arr;
+}
+return {linspace};
+}});
+
+define({id: "422cce55", inputs: ["linspace"], outputs: ["solveODEEuler"], body: (linspace) => {
+function solveODEEuler(CLint, IC, totalTime, dt, inflowRate) {
+  const k = CLint; // Use CLint directly
+  let C = IC; // Start with the initial concentration
+
+  const f = function (t, y) {
+    return inflowRate - k * y; // Modified to use CLint directly
+  };
+
+  const times = linspace(0, totalTime, totalTime / dt + 1);
+  const results = [C]; // Array to store concentration values, starting with the initial concentration
+
+  for (let i = 0; i < times.length - 1; i++) {
+    const t = times[i];
+    const y = results[i];
+    const y_next = y + dt * f(t, y); // Euler method step
+    results.push(y_next);
+  }
+
+  return times.map((time, index) => ({
+    time: time,
+    concentration: results[index],
+  }));
+}
+return {solveODEEuler};
+}});
+
+define({id: "28497f1f", inputs: ["solveODEEuler","selectedMetabolite","accumulationTime","dt","inflowRate"], outputs: ["accumulation_results"], body: (solveODEEuler,selectedMetabolite,accumulationTime,dt,inflowRate) => {
+const accumulation_results = solveODEEuler(
+  selectedMetabolite.CLint,
+  0,
+  accumulationTime,
+  dt,
+  inflowRate
+);
+return {accumulation_results};
+}});
+
+define({id: "008451e6", inputs: ["accumulation_results"], outputs: ["accumulation_data"], body: (accumulation_results) => {
+const accumulation_data = accumulation_results.map((item) => ({
+  time: item.time,
+  concentration: item.concentration,
+}));
+return {accumulation_data};
+}});
+
+define({id: "57865196", inputs: ["Plot","accumulation_data"], outputs: ["accumPlot"], body: (Plot,accumulation_data) => {
+const accumPlot = Plot.plot({
+  title: "Metabolite Concentration Over Time",
+  x: {
+    label: "Time (days)",
+  },
+  y: {
+    label: "Concentration (mg)",
+  },
+  marks: [
+    Plot.line(accumulation_data, { x: "time", y: "concentration" }),
+    Plot.gridY({
+      strokeDasharray: "0.75,2", // dashed
+      strokeOpacity: 1, // opaque
+    }),
+  ],
+});
+return {accumPlot};
+}});
+
+define({id: "b8cdb064", inputs: ["accumulation_data"], outputs: ["lastElement","initialConcentrationForNextPhase"], body: (accumulation_data) => {
+const lastElement = accumulation_data[accumulation_data.length - 1];
+const initialConcentrationForNextPhase = lastElement.concentration;
+return {lastElement,initialConcentrationForNextPhase};
+}});
+
+define({id: "abd7ab4f", inputs: ["solveODEEuler","selectedMetabolite","lastElement","degredationTime","dt"], outputs: ["degresults"], body: (solveODEEuler,selectedMetabolite,lastElement,degredationTime,dt) => {
+const degresults = solveODEEuler(
+  selectedMetabolite.CLint,
+  lastElement.concentration,
+  degredationTime,
+  dt,
+  0
+);
+return {degresults};
+}});
+
+define({id: "09de473c", inputs: ["Plot","degresults"], outputs: ["degradPlot"], body: (Plot,degresults) => {
+const degradPlot = Plot.plot({
+  title: "Metabolite Concentration Over Time",
+  x: {
+    label: "Time (days)",
+  },
+  y: {
+    label: "Concentration (mg)",
+  },
+  marks: [
+    Plot.line(degresults, { x: "time", y: "concentration" }),
+
+    Plot.gridY({
+      strokeDasharray: "0.75,2", // dashed
+      strokeOpacity: 1, // opaque
+    }),
+  ],
+});
+return {degradPlot};
+}});
+
+define({id: "f84e6f43", inputs: ["accumulation_data","degresults"], outputs: ["lastAccumulationTime","adjustedDegradationData","combinedData"], body: (accumulation_data,degresults) => {
+// Adjusting time values for degradation data
+const lastAccumulationTime =
+  accumulation_data[accumulation_data.length - 1].time;
+const adjustedDegradationData = degresults.map((item) => ({
+  time: item.time + lastAccumulationTime,
+  concentration: item.concentration,
+}));
+
+// Concatenating both datasets
+const combinedData = accumulation_data.concat(adjustedDegradationData);
+return {lastAccumulationTime,adjustedDegradationData,combinedData};
+}});
+
+define({id: "a2a70752", inputs: ["Plot","combinedData"], outputs: ["combinedPlot"], body: (Plot,combinedData) => {
+const combinedPlot = Plot.plot({
+  title: "Metabolite Concentration Over Time",
+  x: {
+    label: "Time (days)",
+  },
+  y: {
+    label: "Concentration (mg)",
+  },
+  marks: [
+    Plot.line(combinedData, { x: "time", y: "concentration" }),
+    Plot.gridY({
+      strokeDasharray: "0.75,2", // dashed
+      strokeOpacity: 1, // opaque
+    }),
+  ],
+});
+return {combinedPlot};
+}});
+
+define({id: "abe50736", inline: true, inputs: ["combinedPlot","display"], body: async (combinedPlot,display) => {
+display(await(
+combinedPlot
+))
+}});
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Data Matters</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./">Introduction</a></li>
+  </ol>
+  <section>
+    <summary>Experimental Design</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./experimental-design">Experimental Design </a></li>
+    <li class="observablehq-link"><a href="./parallel-arm-designs">Individual Randomized Parallel Designs</a></li>
+    <li class="observablehq-link"><a href="./cluster-randomized-designs">Individual Randomized Cluster Designs</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Data Science Experiments</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./random-forest">Random Forests</a></li>
+    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link"><a href="./live-table-data">Live Tables</a></li>
+    <li class="observablehq-link"><a href="./distp-demo">Distribution Modeling</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Transport Modeling</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./pbpk">Drug Elimination</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Ukelele Modeling</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./ukulele">Chord Maker</a></li>
+    <li class="observablehq-link"><a href="./ukutabs/blackbird">Blackbird - The Beatles</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Miscellaneous Visualizations</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./happy-city">Is Minneapolis &#x27;happier&#x27; than Boston?</a></li>
+    <li class="observablehq-link"><a href="./diddy-did-he">Diddy didn&#x27;t, did he?</a></li>
+    <li class="observablehq-link"><a href="./fema-votes">FEMA Votes</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Healthcare Diatribes</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./stars-hedis-insanity">What are stars?</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Self Aggrandizing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./podcasts">Podcasts &amp; Presentations</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div id="cell-e9f9a2f0" class="observablehq observablehq--block"></div>
+<h1 id="let's-do-some-pbpk-modeling" tabindex="-1"><a class="observablehq-header-anchor" href="#let's-do-some-pbpk-modeling">Let's do some PBPK Modeling</a></h1>
+<p>Quantifying Hepatic Enzyme Kinetics of (-)-∆9-Tetrahydrocannabinol (THC) and Its Psychoactive Metabolite, 11-OH-THC... <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6556521/" target="_blank" rel="noopener noreferrer">Patiliea-Vrana and Unadkat, 2019</a></p>
+<div id="cell-10c7d5d4" class="observablehq observablehq--block"></div>
+<div id="cell-59137a97" class="observablehq observablehq--block"></div>
+<!-- // const selectedMetabolite_ = Generators.input(selectedMetabolite); -->
+<div id="cell-1b95cf21" class="observablehq observablehq--block"></div>
+<div id="cell-4fedb05c" class="observablehq observablehq--block"></div>
+<div id="cell-a0b3919c" class="observablehq observablehq--block"></div>
+<div id="cell-422cce55" class="observablehq observablehq--block"></div>
+<div id="cell-28497f1f" class="observablehq observablehq--block"></div>
+<div id="cell-008451e6" class="observablehq observablehq--block"></div>
+<div id="cell-57865196" class="observablehq observablehq--block"></div>
+<div id="cell-b8cdb064" class="observablehq observablehq--block"></div>
+<div id="cell-abd7ab4f" class="observablehq observablehq--block"></div>
+<div id="cell-09de473c" class="observablehq observablehq--block"></div>
+<div id="cell-f84e6f43" class="observablehq observablehq--block"></div>
+<div id="cell-a2a70752" class="observablehq observablehq--block"></div>
+<p><span id="cell-abe50736"><span class="observablehq-loading"></span></span></p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./distp-demo"><span>Distribution Modeling</span></a><a rel="next" href="./ukulele"><span>Chord Maker</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-17T16:41:47">Nov 17, 2024</a>.</div>
+</footer>
+</div>

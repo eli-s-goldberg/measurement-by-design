@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Individual Parallel Randomized Designs | Data Matters</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
+<link rel="preload" as="style" href="./_npm/katex@0.16.10/dist/katex.min.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
+<link rel="stylesheet" type="text/css" href="./_npm/katex@0.16.10/dist/katex.min.css">
+<link rel="modulepreload" href="./_observablehq/client.js">
+<link rel="modulepreload" href="./_observablehq/runtime.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.js">
+<link rel="modulepreload" href="./_import/components/parallelmethods.8f1a55e7.js">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/d3@7/+esm">
+<link rel="modulepreload" href="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/tex.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
+<link rel="modulepreload" href="./_npm/katex@0.16.10/_esm.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.js";
+
+define({id: "59b5fcea", outputs: ["calculateSampleSizeForMeans","calculateSampleSizeForProportions","calculateVarianceFormulaIndividualRandomized","calculateVarianceFormulaClusterRandomized","generateVarianceData","generateUnifiedVarianceData"], body: async () => {
+const {calculateSampleSizeForMeans, calculateSampleSizeForProportions, calculateVarianceFormulaIndividualRandomized, calculateVarianceFormulaClusterRandomized, generateVarianceData, generateUnifiedVarianceData} = await import("./_import/components/parallelmethods.8f1a55e7.js");
+
+return {calculateSampleSizeForMeans,calculateSampleSizeForProportions,calculateVarianceFormulaIndividualRandomized,calculateVarianceFormulaClusterRandomized,generateVarianceData,generateUnifiedVarianceData};
+}});
+
+define({id: "18a325c3", outputs: ["d3","numeric","require","jStat"], body: async () => {
+const [d3, numeric, {require}] = await Promise.all([import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"), import("./_node/d3-require@1.3.0/index.js")]);
+const jStat = await require("jstat@1.9.4")
+return {d3,numeric,require,jStat};
+}});
+
+define({id: "691ff5e5", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+display(await(
+tex`\sigma^2`
+))
+}});
+
+define({id: "41bcbc02", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+display(await(
+tex`p_1`
+))
+}});
+
+define({id: "88b2f222", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+display(await(
+tex`\beta`
+))
+}});
+
+define({id: "5b1efde6", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+display(await(
+tex`(1- P_{type-II}`
+))
+}});
+
+define({id: "00d37d2c", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+display(await(
+tex`\alpha`
+))
+}});
+
+define({id: "2bf6a8b2", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+display(await(
+tex`\mu_1 = \mu_2`
+))
+}});
+
+define({id: "ac1f9d7b", inputs: ["tex","view"], outputs: ["equation_1"], body: (tex,view) => {
+const equation_1 = tex.block` \begin{equation}  n = \frac{(z_{1-\alpha/2} + z_{\beta})^2 2\sigma^2}{(\mu_1 - \mu_2)^2} \end{equation}`
+
+view(equation_1)
+return {equation_1};
+}});
+
+define({id: "d831c8df", inputs: ["Inputs","tex","Generators"], outputs: ["z_alpha_2_means","z_beta_means","sigma_means","mu1_means","mu2_means","z_alpha_2_means_selection","z_beta_means_selection","sigma_means_selection","mu1_means_selection","mu2_means_selection"], body: (Inputs,tex,Generators) => {
+const z_alpha_2_means = Inputs.range([0, 5], {
+  value: 1.96,
+  step: 0.01,
+  label: tex`Z_{1-\alpha/2}`,
+})
+const z_beta_means = Inputs.range([0, 1], {
+  value: 0.84,
+  step: 0.01,
+  label: tex`Z_\beta`,
+})
+const sigma_means = Inputs.range([0, 100], {
+  value: 30,
+  step: 0.01,
+  label: tex`\sigma`,
+})
+const mu1_means = Inputs.range([0, 1e6], {
+  value: 50,
+  step: 0.1,
+  label: tex`\mu_1`,
+})
+const mu2_means = Inputs.range([0, 100], {
+  value: 51,
+  step: 0.1,
+  label: tex`\mu_2`,
+})
+
+const z_alpha_2_means_selection = Generators.input(z_alpha_2_means)
+const z_beta_means_selection = Generators.input(z_beta_means)
+const sigma_means_selection = Generators.input(sigma_means)
+const mu1_means_selection = Generators.input(mu1_means)
+const mu2_means_selection = Generators.input(mu2_means)
+return {z_alpha_2_means,z_beta_means,sigma_means,mu1_means,mu2_means,z_alpha_2_means_selection,z_beta_means_selection,sigma_means_selection,mu1_means_selection,mu2_means_selection};
+}});
+
+define({id: "3497f8dc", inputs: ["view","Inputs","z_alpha_2_means","z_beta_means","sigma_means","mu1_means","mu2_means"], body: (view,Inputs,z_alpha_2_means,z_beta_means,sigma_means,mu1_means,mu2_means) => {
+view(
+  Inputs.form([
+    z_alpha_2_means,
+    z_beta_means,
+    sigma_means,
+    mu1_means,
+    mu2_means,
+  ])
+)
+
+// view(z_alpha_2_means);
+// view(z_beta_means);
+// view(sigma_means);
+// view(mu1_means);
+// view(mu2_means);
+}});
+
+define({id: "5cb749e3", inputs: ["calculateSampleSizeForMeans","z_alpha_2_means_selection","z_beta_means_selection","sigma_means_selection","mu1_means_selection","mu2_means_selection"], outputs: ["n_means"], body: (calculateSampleSizeForMeans,z_alpha_2_means_selection,z_beta_means_selection,sigma_means_selection,mu1_means_selection,mu2_means_selection) => {
+const n_means = calculateSampleSizeForMeans(
+  z_alpha_2_means_selection,
+  z_beta_means_selection,
+  sigma_means_selection,
+  mu1_means_selection,
+  mu2_means_selection
+)
+return {n_means};
+}});
+
+define({id: "30dfc0f7", inline: true, inputs: ["view","n_means"], body: (view,n_means) => {
+view(n_means)
+}});
+
+define({id: "3e505a07", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+display(await(
+tex`p_1 = p_2`
+))
+}});
+
+define({id: "b8b59a1a", inputs: ["tex","view"], outputs: ["equation_2"], body: (tex,view) => {
+const equation_2 = tex.block` \begin{equation} n = \frac{(z_{1-\alpha/2} + z_{\beta})^2 [p_1 (1 - p_1) + p_2 (1 - p_2)]}{(p_1 - p_2)^2} \end{equation}`
+
+view(equation_2)
+return {equation_2};
+}});
+
+define({id: "04934017", inputs: ["Inputs","tex","Generators"], outputs: ["z_alpha_2_proportions","z_beta_proportions","sigma_proportions","p1_proportions","p2_proportions","z_alpha_2_proportions_selection","z_beta_proportions_selection","p1_proportions_selection","p2_proportions_selection"], body: (Inputs,tex,Generators) => {
+const z_alpha_2_proportions = Inputs.range([0, 5], {
+  value: 1.96,
+  step: 0.01,
+  label: tex`Z_{1-\alpha/2}`,
+})
+const z_beta_proportions = Inputs.range([0, 5], {
+  value: 0.84,
+  step: 0.01,
+  label: tex`Z_\beta`,
+})
+const sigma_proportions = Inputs.range([0, 10], {
+  value: 30,
+  step: 0.01,
+  label: tex`\sigma`,
+})
+const p1_proportions = Inputs.range([0, 1], {
+  value: 0.5,
+  step: 0.01,
+  label: tex`p_1`,
+})
+const p2_proportions = Inputs.range([0, 1], {
+  value: 0.55,
+  step: 0.01,
+  label: tex`p_2`,
+})
+
+const z_alpha_2_proportions_selection = Generators.input(z_alpha_2_proportions)
+const z_beta_proportions_selection = Generators.input(z_beta_proportions)
+
+const p1_proportions_selection = Generators.input(p1_proportions)
+const p2_proportions_selection = Generators.input(p2_proportions)
+return {z_alpha_2_proportions,z_beta_proportions,sigma_proportions,p1_proportions,p2_proportions,z_alpha_2_proportions_selection,z_beta_proportions_selection,p1_proportions_selection,p2_proportions_selection};
+}});
+
+define({id: "7066cadf", inputs: ["view","z_alpha_2_proportions","z_beta_proportions","p1_proportions","p2_proportions"], body: (view,z_alpha_2_proportions,z_beta_proportions,p1_proportions,p2_proportions) => {
+view(z_alpha_2_proportions)
+view(z_beta_proportions)
+view(p1_proportions)
+view(p2_proportions)
+}});
+
+define({id: "80bb1516", inputs: ["calculateSampleSizeForProportions","z_alpha_2_proportions_selection","z_beta_proportions_selection","p1_proportions_selection","p2_proportions_selection"], outputs: ["n_proportions"], body: (calculateSampleSizeForProportions,z_alpha_2_proportions_selection,z_beta_proportions_selection,p1_proportions_selection,p2_proportions_selection) => {
+const n_proportions = calculateSampleSizeForProportions(
+  z_alpha_2_proportions_selection,
+  z_beta_proportions_selection,
+  p1_proportions_selection,
+  p2_proportions_selection
+)
+return {n_proportions};
+}});
+
+define({id: "c691d519", inline: true, inputs: ["view","n_proportions"], body: (view,n_proportions) => {
+view(n_proportions)
+}});
+
+define({id: "152be11a", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+display(await(
+tex`R_{enrollment}`
+))
+}});
+
+define({id: "152be11a-1", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+display(await(
+tex`R_{enrollment}`
+))
+}});
+
+define({id: "b763ffbc", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+display(await(
+tex.block`R_{enrollment} = \frac{n_{enrolled}}{n_{mailed}}`
+))
+}});
+
+define({id: "e71a885d", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+display(await(
+tex`R_{wand, relative~increase}=0.3`
+))
+}});
+
+define({id: "a3938d4f", inputs: ["tex","view"], outputs: ["equation_enrollment"], body: (tex,view) => {
+const equation_enrollment = tex.block`R_{enrollment, wand} = \frac{n_{enrolled}}{n_{mailed}}\cdot (1+R_{wand, relative~increase})`
+
+view(equation_enrollment)
+return {equation_enrollment};
+}});
+
+define({id: "da286ef6", inputs: ["view","equation_2"], body: (view,equation_2) => {
+view(equation_2)
+}});
+
+define({id: "2a3ce1c1", inputs: ["Inputs","tex","view"], outputs: ["Example1Form"], body: (Inputs,tex,view) => {
+const Example1Form = Inputs.form({
+  z_alpha_2_proportions: Inputs.range([0, 5], {
+    value: 1.96,
+    step: 0.01,
+    label: tex`Z_{1-\alpha/2}`,
+  }),
+  z_beta_proportions: Inputs.range([0, 5], {
+    value: 0.84,
+    step: 0.01,
+    label: tex`Z_\beta`,
+  }),
+  p1_proportions: Inputs.range([0, 1], {
+    value: 0.5,
+    step: 0.01,
+    label: tex`p_1`,
+  }),
+
+  relative_increase: Inputs.range([0, 1], {
+    value: 0.3,
+    step: 0.01,
+    label: tex`R_{wand, relative~increase}`,
+  }),
+})
+view(Example1Form)
+return {Example1Form};
+}});
+
+define({id: "b8d10679", inputs: ["Example1Form_Selections","Inputs","tex","view"], outputs: ["relative_p2_calc","p2_proportions_r"], body: (Example1Form_Selections,Inputs,tex,view) => {
+const relative_p2_calc =
+  Example1Form_Selections.p1_proportions *
+  (1 + Example1Form_Selections.relative_increase)
+const p2_proportions_r = Inputs.range([0, 1], {
+  value: relative_p2_calc,
+  step: 0.01,
+  label: tex`p_2`,
+  disabled: true,
+})
+view(p2_proportions_r)
+return {relative_p2_calc,p2_proportions_r};
+}});
+
+define({id: "23f4e9f8", inputs: ["Generators","Example1Form"], outputs: ["Example1Form_Selections"], body: (Generators,Example1Form) => {
+const Example1Form_Selections = Generators.input(Example1Form)
+return {Example1Form_Selections};
+}});
+
+define({id: "011e8b6b", inputs: ["calculateSampleSizeForProportions","Example1Form_Selections","relative_p2_calc"], outputs: ["n_proportions_wand"], body: (calculateSampleSizeForProportions,Example1Form_Selections,relative_p2_calc) => {
+const n_proportions_wand = calculateSampleSizeForProportions(
+  Example1Form_Selections.z_alpha_2_proportions,
+  Example1Form_Selections.z_beta_proportions,
+  Example1Form_Selections.p1_proportions,
+  relative_p2_calc
+)
+return {n_proportions_wand};
+}});
+
+define({id: "185a128e", inline: true, inputs: ["n_proportions_wand","display"], body: async (n_proportions_wand,display) => {
+display(await(
+n_proportions_wand
+))
+}});
+
+define({id: "89b04fc9", inline: true, inputs: ["Example1Form_Selections","display"], body: async (Example1Form_Selections,display) => {
+display(await(
+Example1Form_Selections.relative_increase*100
+))
+}});
+
+define({id: "8e62d642", inline: true, inputs: ["Example1Form_Selections","display"], body: async (Example1Form_Selections,display) => {
+display(await(
+Example1Form_Selections.p1_proportions
+))
+}});
+
+define({id: "fbe793c1", inline: true, inputs: ["relative_p2_calc","display"], body: async (relative_p2_calc,display) => {
+display(await(
+relative_p2_calc
+))
+}});
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Data Matters</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./">Introduction</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>Experimental Design</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./experimental-design">Experimental Design </a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./parallel-arm-designs">Individual Randomized Parallel Designs</a></li>
+    <li class="observablehq-link"><a href="./cluster-randomized-designs">Individual Randomized Cluster Designs</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Data Science Experiments</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./random-forest">Random Forests</a></li>
+    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link"><a href="./live-table-data">Live Tables</a></li>
+    <li class="observablehq-link"><a href="./distp-demo">Distribution Modeling</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Transport Modeling</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./pbpk">Drug Elimination</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Ukelele Modeling</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./ukulele">Chord Maker</a></li>
+    <li class="observablehq-link"><a href="./ukutabs/blackbird">Blackbird - The Beatles</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Miscellaneous Visualizations</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./happy-city">Is Minneapolis &#x27;happier&#x27; than Boston?</a></li>
+    <li class="observablehq-link"><a href="./diddy-did-he">Diddy didn&#x27;t, did he?</a></li>
+    <li class="observablehq-link"><a href="./fema-votes">FEMA Votes</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Healthcare Diatribes</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./stars-hedis-insanity">What are stars?</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Self Aggrandizing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./podcasts">Podcasts &amp; Presentations</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#notes">Notes</a></li>
+<li class="observablehq-secondary-link"><a href="#1.0-parallel-arm-cluster-randomization-(no-repeated-measures)">1.0 Parallel arm cluster randomization (no repeated measures)</a></li>
+<li class="observablehq-secondary-link"><a href="#2.0-examples">2.0 Examples</a></li>
+</ol>
+</nav>
+</aside>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div id="cell-59b5fcea" class="observablehq observablehq--block"></div>
+<div id="cell-18a325c3" class="observablehq observablehq--block"></div>
+<style>
+      body {
+      font: 13.5px/1.5 var(--serif);
+      margin: 0;
+      max-width: 90%;
+      }
+
+      table {
+          border-collapse: collapse;
+          table-layout:fixed;
+          width: 100%;
+          height: 20%;
+          font: 13.5px/1.5 var(--serif);
+
+      }
+      th {
+          font: 13.5px/1.5 var(--serif);
+          font-weight: bold;
+          border-top: 1px solid black;
+          border-bottom: 1px solid black;
+    }
+    tr:last-child td {
+        /* font-weight: bold; */
+        border-bottom: 1px solid black;
+        /* background-color: lightyellow; */
+    }
+    /* tr:nth-last-child(2) {
+        border-bottom: 1px dashed black;
+    } */
+    td, th {
+        text-align: left;
+        border-collapse: collapse;
+        padding:2px;
+        font-size:0.8em;
+    }
+
+    .horizontal-line {
+    border-top: 0.5px solid #d3d3d3; /* Creates a thin gray line */
+    width: 100%; /* Spans the width of the container/page */
+    margin-top:10px;
+    margin-bottom:10px
+    }
+
+    .katex { font-size: 1em; }
+
+      p { max-width: 90% }
+
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.2/math.min.js"> </script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js"> </script> -->
+<h1 id="parallel-random-designs" tabindex="-1"><a class="observablehq-header-anchor" href="#parallel-random-designs">Parallel Random Designs</a></h1>
+<p>Derived from this video <a href="https://www.youtube.com/watch?v=JOtwZyaJZpk" target="_blank" rel="noopener noreferrer">S4b Sample size and power for cluster randomised trial</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JOtwZyaJZpk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<div class="horizontal-line"></div>
+<h2 id="notes" tabindex="-1"><a class="observablehq-header-anchor" href="#notes">Notes</a></h2>
+<p>4.b Parallel arm cluster randomization (no repeated measure)
+4.c Loongitudinal cluster randomization (repeated measure)</p>
+<h2 id="1.0-parallel-arm-cluster-randomization-(no-repeated-measures)" tabindex="-1"><a class="observablehq-header-anchor" href="#1.0-parallel-arm-cluster-randomization-(no-repeated-measures)">1.0 Parallel arm cluster randomization (no repeated measures)</a></h2>
+<div class="tip" label="DEFINITIONS">
+<ol>
+<li>
+<p>Target difference or "effect size"</p>
+</li>
+<li>
+<p>Measure of variation:</p>
+<ul>
+<li>Standard deviation if continuous outcome (<span id="cell-691ff5e5"><span class="observablehq-loading"></span></span>)</li>
+<li>Control arm proportion if dichotomous outcome (proportion: <span id="cell-41bcbc02"><span class="observablehq-loading"></span></span>)</li>
+</ul>
+</li>
+<li>
+<p>Desired statistical power (1- <span id="cell-88b2f222"><span class="observablehq-loading"></span></span>)</p>
+<ul>
+<li><span id="cell-5b1efde6"><span class="observablehq-loading"></span></span> or 1 - probabiility of a type-II error.</li>
+<li>Type II error = failing to delcare a significant difference when it does exist.</li>
+<li>Generally try to achieve power of +80%.</li>
+</ul>
+</li>
+<li>
+<p>Desired level of significance (<span id="cell-00d37d2c"><span class="observablehq-loading"></span></span>)</p>
+<ul>
+<li>Probability of Type-I error</li>
+<li>Type-1 Error: Declaring significant difference when one doesn't exist.</li>
+<li>Generally try to keep error rate &lt; 5%.</li>
+</ul>
+</li>
+</ol>
+</div>
+<h3 id="1.1-mean-testing%3A-null-hypothesis%3A-h0%3A" tabindex="-1"><a class="observablehq-header-anchor" href="#1.1-mean-testing%3A-null-hypothesis%3A-h0%3A">1.1 Mean Testing: Null Hypothesis: H0: <span id="cell-2bf6a8b2"><span class="observablehq-loading"></span></span></a></h3>
+<div class="warning" label="RESTRICTIONS">
+<ul>
+<li>2 treatment conditions: intervention &amp; control</li>
+<li>Superior design (is the intervention superior than control?)</li>
+<li>Equal allocation (1:1 randomization t:c)</li>
+<li>Consider continuous &amp; dichotomous</li>
+</ul>
+</div>
+<p>Note, that these are for an <em>individually</em> not <em>cluster</em> randomized designs.</p>
+<div id="cell-ac1f9d7b" class="observablehq observablehq--block"></div>
+<p>Calculated Size:</p>
+<div id="cell-d831c8df" class="observablehq observablehq--block"></div>
+<div id="cell-3497f8dc" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
+<div id="cell-5cb749e3" class="observablehq observablehq--block"></div>
+<p>Observations needed per arm <b><span id="cell-30dfc0f7"><span class="observablehq-loading"></span></span></b>.</p>
+<h3 id="1.2-proportion-testing%3A-null-hypothesis%3A-h0%3A" tabindex="-1"><a class="observablehq-header-anchor" href="#1.2-proportion-testing%3A-null-hypothesis%3A-h0%3A">1.2 Proportion testing: Null Hypothesis: H0: <span id="cell-3e505a07"><span class="observablehq-loading"></span></span></a></h3>
+<div class="warning" label="RESTRICTIONS">
+<ul>
+<li>2 treatment conditions: intervention &amp; control</li>
+<li>Superior design (is the intervention superior than control?)</li>
+<li>Equal allocation (1:1 randomization t:c)</li>
+<li>Consider continuous &amp; dichotomous</li>
+</ul>
+</div>
+<p>Note, that these are for an <em>individually</em> not <em>cluster</em> randomized designs.</p>
+<div id="cell-b8b59a1a" class="observablehq observablehq--block"></div>
+<div id="cell-04934017" class="observablehq observablehq--block"></div>
+<div id="cell-7066cadf" class="observablehq observablehq--block"></div>
+<div id="cell-80bb1516" class="observablehq observablehq--block"></div>
+<p>Observations needed per arm <b><span id="cell-c691d519"><span class="observablehq-loading"></span></span></b>.</p>
+<h2 id="2.0-examples" tabindex="-1"><a class="observablehq-header-anchor" href="#2.0-examples">2.0 Examples</a></h2>
+<div class="note" label="Example 1: Enrollment Rate Magic Wand">
+Let's assume that we want to incrementally increase our enrollment rate, <span id="cell-152be11a"><span class="observablehq-loading"></span></span>.
+<p><span id="cell-152be11a-1"><span class="observablehq-loading"></span></span> is currently set to be:</p>
+<p><span id="cell-b763ffbc"><span class="observablehq-loading"></span></span></p>
+<p>Let's say we have a magic wand that incrementally increases the relative enrollment rate by 30%, i.e., <span id="cell-e71a885d"><span class="observablehq-loading"></span></span>.</p>
+<div id="cell-a3938d4f" class="observablehq observablehq--block"></div>
+<p><strong>Question:</strong> How many people would we need to observe this relative increase in enrollment rate with a given statistical certainty?</p>
+<p><strong>Answer:</strong></p>
+<p>Let's use this equation to calculate:</p>
+<div id="cell-da286ef6" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
+<div id="cell-2a3ce1c1" class="observablehq observablehq--block"></div>
+<div id="cell-b8d10679" class="observablehq observablehq--block"></div>
+<div id="cell-23f4e9f8" class="observablehq observablehq--block"></div>
+<div id="cell-011e8b6b" class="observablehq observablehq--block"></div>
+<!-- prettier-ignore -->
+<p>You would need: <span id="cell-185a128e"><span class="observablehq-loading"></span></span> participants in each arm to observe a relative shift of <b><span id="cell-89b04fc9"><span class="observablehq-loading"></span></span>%</b> in enrollment rate (i.e., a p1 of <span id="cell-8e62d642"><span class="observablehq-loading"></span></span> and a p2 of <span id="cell-fbe793c1"><span class="observablehq-loading"></span></span>). Note that the relative increase is a common framing, but one that is somewhat mathematically confusing.</p>
+</div></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./experimental-design"><span>Experimental Design </span></a><a rel="next" href="./cluster-randomized-designs"><span>Individual Randomized Cluster Designs</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-17T16:41:47">Nov 17, 2024</a>.</div>
+</footer>
+</div>

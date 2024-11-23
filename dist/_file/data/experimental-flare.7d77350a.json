@@ -1,0 +1,117 @@
+{
+  "name": "",
+  "children": [
+    {
+      "name": "Reversible outcome",
+      "children": [
+        {
+          "name": "Rapid response",
+          "children": [
+            {
+              "name": "",
+              "children": [
+                {
+                  "name": "Minimise time on placebo",
+                  "children": [
+                    {
+                      "name": "Active treatment at the end",
+                      "children": [{ "name": "DS, RPP, SW" }]
+                    },
+                    {
+                      "name": "No active treatment at the end",
+                      "children": [{ "name": "RW, EE, 3S, AR" }]
+                    }
+                  ]
+                },
+                {
+                  "name": "Time on placebo not minimised",
+                  "children": [
+                    {
+                      "name": "Intra-patient controls",
+                      "children": [{ "name": "CO, LS, N1" }]
+                    },
+                    {
+                      "name": "Inter-patient controls",
+                      "children": [{ "name": "PG, F" }]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Slow response",
+          "children": [
+            {
+              "name": "Minimise time on placebo",
+              "children": [
+                {
+                  "name": "Active treatment at the end",
+                  "children": [{ "name": "DS, RPP, SW" }]
+                },
+                {
+                  "name": "No active treatment at the end",
+                  "children": [{ "name": "RW" }]
+                }
+              ]
+            },
+            {
+              "name": "Time on placebo not minimised",
+              "children": [{ "name": "PG, F" }]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Non-reversible outcome",
+      "children": [
+        {
+          "name": "",
+          "children": [
+            {
+              "name": "Rapid response",
+              "children": [
+                {
+                  "name": "Minimise time on placebo",
+                  "children": [
+                    {
+                      "name": "Active treatment at the end",
+                      "children": [{ "name": "RPP, SW" }]
+                    }
+                  ]
+                },
+                {
+                  "name": "Time on placebo not minimised",
+                  "children": [{ "name": "PG, F" }]
+                }
+              ]
+            },
+            {
+              "name": "Slow response",
+              "children": [
+                {
+                  "name": "Minimise time on placebo",
+                  "children": [{ "name": "RPP, SW" }]
+                },
+                {
+                  "name": "Time on placebo not minimised",
+                  "children": [{ "name": "PG, F" }]
+                }
+              ]
+            },
+            {
+              "name": "Active treatment at the end",
+              "children": [{ "name": "RPP, SW" }]
+            },
+            {
+              "name": "No active treatment at the end",
+              "children": [{ "name": "AR" }]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

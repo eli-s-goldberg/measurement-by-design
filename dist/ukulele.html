@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Ukulele | Data Matters</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
+<link rel="modulepreload" href="./_observablehq/client.js">
+<link rel="modulepreload" href="./_observablehq/runtime.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.js">
+<link rel="modulepreload" href="./_import/components/ukuleleChordMethods.aaa0d639.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/_esm.js">
+<link rel="modulepreload" href="./_node/lit-html@3.1.4/index.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/_esm.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.js";
+
+define({id: "cbcfceaa", outputs: ["chordData","parseLyrics","ukuchord","strings","frets"], body: async () => {
+const {chordData, parseLyrics, ukuchord, strings, frets} = await import("./_import/components/ukuleleChordMethods.aaa0d639.js");
+// Define the chord data
+
+return {chordData,parseLyrics,ukuchord,strings,frets};
+}});
+
+define({id: "a0a95a55", inputs: ["view","Inputs"], outputs: ["text"], body: (view,Inputs) => {
+const text = view(
+  Inputs.textarea({
+    value: `<<Fm>>Steve walks warily down the street, <<Bbm>>with the brim pulled way down low
+<<Fm>>Ain't no sound but the sound of his feet, <<Bbm>>Machine guns ready to go
+<<Db>>Are you ready, <<Ab>>Are you ready for this
+<<Db>>Are you hanging on the <<Ab>>edge of your seat
+<<Db>>Out of the door<<Ab>>way the bullets rip, <<Bbm>>to the sound of the <<C>>beat
+`,
+  })
+);
+return {text};
+}});
+
+define({id: "c4c80171", inputs: ["view","text","renderLyricsWithChords"], body: (view,text,renderLyricsWithChords) => {
+view(text);
+view(renderLyricsWithChords(text));
+}});
+
+define({id: "0afbfe44", inputs: ["parseLyrics","html","ukuchord"], outputs: ["renderLyricsWithChords"], body: (parseLyrics,html,ukuchord) => {
+function renderLyricsWithChords(lyrics) {
+  const parsedLines = parseLyrics(lyrics);
+  return html`${parsedLines.map(
+    (lineParts) => html`
+      <div
+        style="display: flex; flex-direction: column; align-items: flex-start;"
+      >
+        <div style="display: flex;">
+          ${lineParts.map(
+            (part) =>
+              html`<div style="margin: 0 2px; text-align: center;">
+                ${part.text.replace(/<<[^>]+>>/g, "")}
+              </div>`
+          )}
+        </div>
+        <div style="display: flex;">
+          ${lineParts.map(
+            (part) =>
+              html`<div style="margin: 0 4px; text-align: center;">
+                ${part.chord ? ukuchord(part.chord) : ""}
+              </div>`
+          )}
+        </div>
+      </div>
+    `
+  )}`;
+}
+return {renderLyricsWithChords};
+}});
+
+define({id: "11345edf", inputs: ["view","renderLyricsWithChords"], body: (view,renderLyricsWithChords) => {
+view(renderLyricsWithChords("<<Am>>"));
+}});
+
+define({id: "c8cd0c20", inputs: ["view","renderLyricsWithChords"], outputs: ["chord_chart"], body: (view,renderLyricsWithChords) => {
+const chord_chart = `
+<<C>> <<C7>> <<Cm>> <<Cm7>> <<Cdim>> <<Caug>> <<C6>> <<Cmaj7>> <<C9>>
+<<Db>> <<Db7>> <<Dbm>> <<Dbm7>> <<Dbdim>> <<Dbaug>> <<Db6>> <<Dbmaj7>> <<Db9>>
+<<D>> <<D7>> <<Dm>> <<Dm7>> <<Ddim>> <<Daug>> <<D6>> <<Dmaj7>> <<D9>>
+<<Eb>> <<Eb7>> <<Ebm>> <<Ebm7>> <<Ebdim>> <<Ebaug>> <<Eb6>> <<Ebmaj7>> <<Eb9>>
+<<E>> <<E7>> <<Em>> <<Em7>> <<Edim>> <<Eaug>> <<E6>> <<Emaj7>> <<E9>>
+<<F>> <<F7>> <<Fm>> <<Fm7>> <<Fdim>> <<Faug>> <<F6>> <<Fmaj7>> <<F9>>
+<<Gb>> <<Gb7>> <<Gbm>> <<Gbm7>> <<Gbdim>> <<Gbaug>> <<Gb6>> <<Gbmaj7>> <<Gb9>>
+<<G>> <<G7>> <<Gm>> <<Gm7>> <<Gdim>> <<Gaug>> <<G6>> <<Gmaj7>> <<G9>>
+<<Ab>> <<Ab7>> <<Abm>> <<Abm7>> <<Abdim>> <<Abaug>> <<Ab6>> <<Abmaj7>> <<Ab9>>
+<<A>> <<A7>> <<Am>> <<Am7>> <<Adim>> <<Aaug>> <<A6>> <<Amaj7>> <<A9>>
+<<Bb>> <<Bb7>> <<Bbm>> <<Bbm7>> <<Bbdim>> <<Bbaug>> <<Bb6>> <<Bbmaj7>> <<Bb9>>
+<<B>> <<B7>> <<Bm>> <<Bm7>> <<Bdim>> <<Baug>> <<B6>> <<Bmaj7>> <<B9>>
+`;
+
+view(renderLyricsWithChords(chord_chart));
+return {chord_chart};
+}});
+
+define({id: "a4652fb1", inputs: ["view","renderLyricsWithChords"], outputs: ["lyrics"], body: (view,renderLyricsWithChords) => {
+const lyrics = `
+<<Am>> I was scared of <<G>> dentists and the <<C>> dark \n
+<<Am>> I was scared of <<G>> pretty girls and <<C>> starting conversations
+<<Am>> Oh, all my <<G>> friends are turning <<C>> green
+<<Am>> You're the <<G>> magicians assistant in <<C>> their dreams
+`;
+
+view(renderLyricsWithChords(lyrics));
+return {lyrics};
+}});
+
+define({id: "7c078808", inputs: ["view","renderLyricsWithChords"], body: (view,renderLyricsWithChords) => {
+view(
+  renderLyricsWithChords(`
+<<C>> Wise <<Em>> men <<Am>> say, <<F>> only <<C>> fools <<G>> ruuuush in
+<<F>> But <<G>> I <<Am>> can't <<F>> help <<C>> falling <<G>> in <<C>> loooove with you
+<<C>> Shall <<Em>> I <<Am>> stay, <<F>> would <<C>> it <<G>> beeee aaaaa sin
+<<F>> If <<G>> I <<Am>> can't <<F>> help <<C>> falling <<G>> in <<C>> loooove wiiiith you
+
+Bridge:
+<<Em>> Like a <<B7>> river <<Em>> flooows, <<B7>> surely <<Em>> to the <<B7>> sea
+<<Em>> Darling <<B7>> so it <<Em>> goeeees, <<A7>> some things <<Dm>> are meant to <<G>> be
+
+<<C>> Take <<Em>> my <<Am>> hand, <<F>> take <<C>> my <<G>> whooole life too
+<<F>> For <<G>> I <<Am>> can't <<F>> help <<C>> faaalling <<G>> in <<C>> love with you
+
+REPEAT BRIDGE
+
+<<C>> Take <<Em>> my <<Am>> hand, <<F>> take <<C>> my <<G>> whooole life too
+<<F>> For <<G>> I <<Am>> can't <<F>> help <<C>> faaalling <<G>> in <<C>> love with you
+<<F>> For <<G>> I <<Am>> can't <<F>> help <<C>> faaalling <<G>> in <<C>> love with you
+`)
+);
+}});
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Data Matters</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./">Introduction</a></li>
+  </ol>
+  <section>
+    <summary>Experimental Design</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./experimental-design">Experimental Design </a></li>
+    <li class="observablehq-link"><a href="./parallel-arm-designs">Individual Randomized Parallel Designs</a></li>
+    <li class="observablehq-link"><a href="./cluster-randomized-designs">Individual Randomized Cluster Designs</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Data Science Experiments</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./random-forest">Random Forests</a></li>
+    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link"><a href="./live-table-data">Live Tables</a></li>
+    <li class="observablehq-link"><a href="./distp-demo">Distribution Modeling</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Transport Modeling</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./pbpk">Drug Elimination</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Ukelele Modeling</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./ukulele">Chord Maker</a></li>
+    <li class="observablehq-link"><a href="./ukutabs/blackbird">Blackbird - The Beatles</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Miscellaneous Visualizations</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./happy-city">Is Minneapolis &#x27;happier&#x27; than Boston?</a></li>
+    <li class="observablehq-link"><a href="./diddy-did-he">Diddy didn&#x27;t, did he?</a></li>
+    <li class="observablehq-link"><a href="./fema-votes">FEMA Votes</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Healthcare Diatribes</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./stars-hedis-insanity">What are stars?</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Self Aggrandizing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./podcasts">Podcasts &amp; Presentations</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#make-your-own">Make your own</a></li>
+<li class="observablehq-secondary-link"><a href="#setting-up">Setting up</a></li>
+<li class="observablehq-secondary-link"><a href="#individual-chords">Individual chords</a></li>
+<li class="observablehq-secondary-link"><a href="#rendering-a-chord-chart">Rendering a chord chart</a></li>
+<li class="observablehq-secondary-link"><a href="#rendering-a-song">Rendering a song</a></li>
+<li class="observablehq-secondary-link"><a href="#another-example">Another example</a></li>
+</ol>
+</nav>
+</aside>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div id="cell-cbcfceaa" class="observablehq observablehq--block"></div>
+<h1 id="ukulele" tabindex="-1"><a class="observablehq-header-anchor" href="#ukulele">Ukulele</a></h1>
+<p>I love playing the ukulele. I hate the tab sites out there. I love observable framework js. I think I can make chord plots in observable js.</p>
+<h2 id="make-your-own" tabindex="-1"><a class="observablehq-header-anchor" href="#make-your-own">Make your own</a></h2>
+<p>Let's start by letting you copy and paste in any chords you want. Just surround them by &lt;&lt;&gt;&gt; and you'll be good to go e.g., <code>&lt;&lt;Am&gt;&gt;</code>.</p>
+<div id="cell-a0a95a55" class="observablehq observablehq--block"></div>
+<div id="cell-c4c80171" class="observablehq observablehq--block"></div>
+<h2 id="setting-up" tabindex="-1"><a class="observablehq-header-anchor" href="#setting-up">Setting up</a></h2>
+<p>First, import the methods:</p>
+<pre data-language="md"><code class="language-md"><span class="hljs-code">```js
+// Define the chord data
+import {
+  chordData,
+  parseLyrics,
+  ukuchord,
+  strings,
+  frets,
+} from "./components/ukuleleChordMethods.js";
+```</span>
+</code></pre>
+<p>Then create the following function in your markdown file.</p>
+<div id="cell-0afbfe44" class="observablehq observablehq--block"></div>
+<p>Note: I've updated this function for slightly better formatting.</p>
+<pre data-language="md"><code class="language-md"><span class="hljs-code">```js
+function renderLyricsWithChords(lyrics) {
+  const parsedLines = parseLyrics(lyrics);
+  return html`${parsedLines.map(
+    (lineParts) =&gt; html`
+      &lt;div
+        style="display: flex; flex-direction: column; align-items: flex-start;"
+      &gt;
+        &lt;div style="display: flex;"&gt;
+          ${lineParts.map(
+            (part) =&gt;
+              html`&lt;div style="margin: 0 10px; text-align: center;"&gt;
+                ${part.text.replace(/&lt;&lt;[^&gt;]+&gt;&gt;/g, "")}
+              &lt;/div&gt;`
+          )}
+        &lt;/div&gt;
+        &lt;div style="display: flex;"&gt;
+          ${lineParts.map(
+            (part) =&gt;
+              html`&lt;div style="margin: 0 10px; text-align: center;"&gt;
+                ${part.chord ? ukuchord(part.chord) : ""}
+              &lt;/div&gt;`
+          )}
+        &lt;/div&gt;
+      &lt;/div&gt;
+    `
+  )}`;
+}
+```</span>
+</code></pre>
+<h2 id="individual-chords" tabindex="-1"><a class="observablehq-header-anchor" href="#individual-chords">Individual chords</a></h2>
+<p>You can render invidivual chords with ease.</p>
+<p>Simply put in the following:</p>
+<pre data-language="md"><code class="language-md">view(renderLyricsWithChords("&lt;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Am</span>&gt;</span></span>&gt;"))
+</code></pre>
+<div id="cell-11345edf" class="observablehq observablehq--block"></div>
+<h2 id="rendering-a-chord-chart" tabindex="-1"><a class="observablehq-header-anchor" href="#rendering-a-chord-chart">Rendering a chord chart</a></h2>
+<p>Here are the chords. I <em>think</em> these are pretty close, but there may be some mistakes in them.</p>
+<p>With the package I've developed, here's what you would run to get a chord chart:</p>
+<pre data-language="md"><code class="language-md"><span class="hljs-code">```js
+const chord_chart = `
+&lt;&lt;C&gt;&gt; &lt;&lt;C7&gt;&gt; &lt;&lt;Cm&gt;&gt; &lt;&lt;Cm7&gt;&gt; &lt;&lt;Cdim&gt;&gt; &lt;&lt;Caug&gt;&gt; &lt;&lt;C6&gt;&gt; &lt;&lt;Cmaj7&gt;&gt; &lt;&lt;C9&gt;&gt;
+&lt;&lt;Db&gt;&gt; &lt;&lt;Db7&gt;&gt; &lt;&lt;Dbm&gt;&gt; &lt;&lt;Dbm7&gt;&gt; &lt;&lt;Dbdim&gt;&gt; &lt;&lt;Dbaug&gt;&gt; &lt;&lt;Db6&gt;&gt; &lt;&lt;Dbmaj7&gt;&gt; &lt;&lt;Db9&gt;&gt;
+&lt;&lt;D&gt;&gt; &lt;&lt;D7&gt;&gt; &lt;&lt;Dm&gt;&gt; &lt;&lt;Dm7&gt;&gt; &lt;&lt;Ddim&gt;&gt; &lt;&lt;Daug&gt;&gt; &lt;&lt;D6&gt;&gt; &lt;&lt;Dmaj7&gt;&gt; &lt;&lt;D9&gt;&gt;
+&lt;&lt;Eb&gt;&gt; &lt;&lt;Eb7&gt;&gt; &lt;&lt;Ebm&gt;&gt; &lt;&lt;Ebm7&gt;&gt; &lt;&lt;Ebdim&gt;&gt; &lt;&lt;Ebaug&gt;&gt; &lt;&lt;Eb6&gt;&gt; &lt;&lt;Ebmaj7&gt;&gt; &lt;&lt;Eb9&gt;&gt;
+&lt;&lt;E&gt;&gt; &lt;&lt;E7&gt;&gt; &lt;&lt;Em&gt;&gt; &lt;&lt;Em7&gt;&gt; &lt;&lt;Edim&gt;&gt; &lt;&lt;Eaug&gt;&gt; &lt;&lt;E6&gt;&gt; &lt;&lt;Emaj7&gt;&gt; &lt;&lt;E9&gt;&gt;
+&lt;&lt;F&gt;&gt; &lt;&lt;F7&gt;&gt; &lt;&lt;Fm&gt;&gt; &lt;&lt;Fm7&gt;&gt; &lt;&lt;Fdim&gt;&gt; &lt;&lt;Faug&gt;&gt; &lt;&lt;F6&gt;&gt; &lt;&lt;Fmaj7&gt;&gt; &lt;&lt;F9&gt;&gt;
+&lt;&lt;Gb&gt;&gt; &lt;&lt;Gb7&gt;&gt; &lt;&lt;Gbm&gt;&gt; &lt;&lt;Gbm7&gt;&gt; &lt;&lt;Gbdim&gt;&gt; &lt;&lt;Gbaug&gt;&gt; &lt;&lt;Gb6&gt;&gt; &lt;&lt;Gbmaj7&gt;&gt; &lt;&lt;Gb9&gt;&gt;
+&lt;&lt;G&gt;&gt; &lt;&lt;G7&gt;&gt; &lt;&lt;Gm&gt;&gt; &lt;&lt;Gm7&gt;&gt; &lt;&lt;Gdim&gt;&gt; &lt;&lt;Gaug&gt;&gt; &lt;&lt;G6&gt;&gt; &lt;&lt;Gmaj7&gt;&gt; &lt;&lt;G9&gt;&gt;
+&lt;&lt;Ab&gt;&gt; &lt;&lt;Ab7&gt;&gt; &lt;&lt;Abm&gt;&gt; &lt;&lt;Abm7&gt;&gt; &lt;&lt;Abdim&gt;&gt; &lt;&lt;Abaug&gt;&gt; &lt;&lt;Ab6&gt;&gt; &lt;&lt;Abmaj7&gt;&gt; &lt;&lt;Ab9&gt;&gt;
+&lt;&lt;A&gt;&gt; &lt;&lt;A7&gt;&gt; &lt;&lt;Am&gt;&gt; &lt;&lt;Am7&gt;&gt; &lt;&lt;Adim&gt;&gt; &lt;&lt;Aaug&gt;&gt; &lt;&lt;A6&gt;&gt; &lt;&lt;Amaj7&gt;&gt; &lt;&lt;A9&gt;&gt;
+&lt;&lt;Bb&gt;&gt; &lt;&lt;Bb7&gt;&gt; &lt;&lt;Bbm&gt;&gt; &lt;&lt;Bbm7&gt;&gt; &lt;&lt;Bbdim&gt;&gt; &lt;&lt;Bbaug&gt;&gt; &lt;&lt;Bb6&gt;&gt; &lt;&lt;Bbmaj7&gt;&gt; &lt;&lt;Bb9&gt;&gt;
+&lt;&lt;B&gt;&gt; &lt;&lt;B7&gt;&gt; &lt;&lt;Bm&gt;&gt; &lt;&lt;Bm7&gt;&gt; &lt;&lt;Bdim&gt;&gt; &lt;&lt;Baug&gt;&gt; &lt;&lt;B6&gt;&gt; &lt;&lt;Bmaj7&gt;&gt; &lt;&lt;B9&gt;&gt;
+`;
+
+view(renderLyricsWithChords(chord_chart));
+```</span>
+</code></pre>
+<p>That would display the following:</p>
+<div id="cell-c8cd0c20" class="observablehq observablehq--block"></div>
+<h2 id="rendering-a-song" tabindex="-1"><a class="observablehq-header-anchor" href="#rendering-a-song">Rendering a song</a></h2>
+<p>Now let's render a simple song. How about "Riptide" by Vance Joy.</p>
+<p>To do this, you need to write the lyrics in the following manner:</p>
+<pre data-language="verbatim"><code class="language-verbatim">&lt;&lt;Am&gt;&gt; I was scared of &lt;&lt;G&gt;&gt; dentists and the &lt;&lt;C&gt;&gt; dark
+&lt;&lt;Am&gt;&gt; I was scared of &lt;&lt;G&gt;&gt; pretty girls and &lt;&lt;C&gt;&gt; starting conversations
+&lt;&lt;Am&gt;&gt; Oh, all my &lt;&lt;G&gt;&gt; friends are turning &lt;&lt;C&gt;&gt; green
+&lt;&lt;Am&gt;&gt; You're the &lt;&lt;G&gt;&gt; magicians assistant in &lt;&lt;C&gt;&gt; their dreams
+</code></pre>
+<p>Then put them into a constant</p>
+<pre data-language="md"><code class="language-md"><span class="hljs-code">```js
+const lyrics = `
+&lt;&lt;Am&gt;&gt; I was scared of &lt;&lt;G&gt;&gt; dentists and the &lt;&lt;C&gt;&gt; dark
+&lt;&lt;Am&gt;&gt; I was scared of &lt;&lt;G&gt;&gt; pretty girls and &lt;&lt;C&gt;&gt; starting conversations
+&lt;&lt;Am&gt;&gt; Oh, all my &lt;&lt;G&gt;&gt; friends are turning &lt;&lt;C&gt;&gt; green
+&lt;&lt;Am&gt;&gt; You're the &lt;&lt;G&gt;&gt; magicians assistant in &lt;&lt;C&gt;&gt; their dreams`;
+```</span>
+</code></pre>
+<div id="cell-a4652fb1" class="observablehq observablehq--block"></div>
+<h2 id="another-example" tabindex="-1"><a class="observablehq-header-anchor" href="#another-example">Another example</a></h2>
+<style>
+  .shrink-wrapper {
+      transform: scale(0.5); /* Adjust the scale value to shrink */
+      transform-origin: top left; /* Keep the content aligned */
+  }
+</style>
+<div id="cell-7c078808" class="observablehq observablehq--block"></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./pbpk"><span>Drug Elimination</span></a><a rel="next" href="./ukutabs/blackbird"><span>Blackbird - The Beatles</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-17T16:41:47">Nov 17, 2024</a>.</div>
+</footer>
+</div>

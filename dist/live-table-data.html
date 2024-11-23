@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Table Input Experiment | Data Matters</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
+<link rel="modulepreload" href="./_observablehq/client.js">
+<link rel="modulepreload" href="./_observablehq/runtime.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.js">
+<link rel="modulepreload" href="./_import/components/LiveTable.814de9cb.js">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/d3@7/+esm">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.js">
+<link rel="modulepreload" href="./_import/components/styles.7c3389b1.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.js";
+
+define({id: "538fdf74", inputs: ["html"], outputs: ["TableInput","TableInputTypes","EVENTS","LiveTable","LiveTableData","d3","require","jStat","math","defaultStyles","styleElement"], body: async (html) => {
+const [{TableInput, TableInputTypes, EVENTS, LiveTable, LiveTableData}, d3, {require}, {defaultStyles}] = await Promise.all([import("./_import/components/LiveTable.814de9cb.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.js"), import("./_import/components/styles.7c3389b1.js")]);
+// imports
+
+const jStat = await require("jstat@1.9.4");
+const math = await require("mathjs@9.4.2");
+
+// it's 'noisy' when we have so much CSS in the page
+const styleElement = html`<style>${defaultStyles}</style>`;
+document.head.appendChild(styleElement);
+return {TableInput,TableInputTypes,EVENTS,LiveTable,LiveTableData,d3,require,jStat,math,defaultStyles,styleElement};
+}});
+
+define({id: "b5fa47df", inputs: ["view","tableWithCustomStats"], body: (view,tableWithCustomStats) => {
+view(tableWithCustomStats)
+}});
+
+define({id: "1aea6ab4", inputs: ["view","livetabledata"], body: (view,livetabledata) => {
+view(livetabledata)
+}});
+
+define({id: "03790140", inputs: ["TableInputTypes","LiveTable","html","view"], outputs: ["careSiteOptions","distributionOptions","initialData","columns","tableWithCustomStats"], body: (TableInputTypes,LiveTable,html,view) => {
+// Define care site options
+const careSiteOptions = [
+  { value: "ABL", label: "Ambulance" },
+  { value: "ASC", label: "Ambulatory Surgical Center" },
+  { value: "CCF", label: "Custodial Care Facility" },
+  { value: "ETF", label: "ESRD Treatment Facility" },
+  { value: "EMR", label: "Emergency Room" },
+  { value: "HOM", label: "Home" },
+  { value: "HOS", label: "Hospice" },
+  { value: "ILB", label: "Independent Laboratory" },
+  { value: "IPH", label: "Inpatient Hospital" },
+  { value: "IPF", label: "Inpatient Psychiatric Facility" },
+  { value: "NUF", label: "Nursing Facility" },
+  { value: "OFF", label: "Office" },
+  { value: "OTH", label: "Other" },
+  { value: "OPH", label: "Outpatient Hospital" },
+  { value: "RHC", label: "Public/Rural Health Clinic" },
+  { value: "SNF", label: "Skilled Nursing Facility" },
+  { value: "UCF", label: "Urgent Care Facility" }
+];
+
+// Define distribution options
+const distributionOptions = [
+  { value: "normal", label: "Normal" },
+  { value: "uniform", label: "Uniform" },
+  { value: "exponential", label: "Exponential" },
+  { value: "poisson", label: "Poisson" },
+  { value: "binomial", label: "Binomial" },
+  { value: "beta", label: "Beta" },
+  { value: "gamma", label: "Gamma" },
+  { value: "chisquare", label: "Chi-Square" },
+  { value: "bernoulli", label: "Bernoulli" },
+  { value: "geometric", label: "Geometric" },
+  { value: "pareto", label: "Pareto" },
+  { value: "lognormal", label: "Log-Normal" },
+  { value: "weibull", label: "Weibull" },
+  { value: "cauchy", label: "Cauchy" },
+  { value: "multinomial", label: "Multinomial" }
+];
+
+
+// Define initial data
+const initialData = [
+  {
+    siteOfCare: 'UCF',
+    totalNumber: '1000',
+    averageCost: '150.00',
+    distribution: 'lognormal',
+    parameters: '{"sigma": 0.5, "scale": 150}',
+    immoveableFraction: '20'
+  },
+  {
+    siteOfCare: 'ASC',
+    totalNumber: '500',
+    averageCost: '2500.00',
+    distribution: 'lognormal',
+    parameters: '{"sigma": 0.7, "scale": 2500}',
+    immoveableFraction: '80'
+  },
+  {
+    siteOfCare: 'CCF',
+    totalNumber: '750',
+    averageCost: '1200.00',
+    distribution: 'normal',
+    parameters: '{"mean": 0.6, "std": 1200}',
+    immoveableFraction: '50'
+  },
+  {
+    siteOfCare: 'CCF',
+    totalNumber: '250',
+    averageCost: '800.00',
+    distribution: 'lognormal',
+    parameters: '{"sigma": 0.8, "scale": 800}',
+    immoveableFraction: '90'
+  }
+];
+
+// Define columns
+const columns = [
+  TableInputTypes.dropdown({
+    width: 200,
+    key: 'siteOfCare',
+    label: 'Site of Care',
+    options: careSiteOptions,
+    defaultValue: 'OFF'
+  }),
+  TableInputTypes.integer({
+    width: 75,
+    key: 'totalNumber',
+    label: 'Total Number (#)',
+    min: 0
+  }),
+  TableInputTypes.float({
+    width: 75,
+    key: 'averageCost',
+    label: 'Average Cost ($)',
+    min: 0,
+    step: 0.01
+  }),
+  TableInputTypes.dropdown({
+    width: 100,
+    key: 'distribution',
+    label: 'Distribution',
+    options: distributionOptions,
+    defaultValue: 'lognormal'
+  }),
+  TableInputTypes.text({
+    width: 150,
+    key: 'parameters',
+    label: 'Parameters',
+    parser: (value) => {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value;
+      }
+    },
+    placeholder: 'Enter as JSON',
+    defaultValue: '{"sigma": 1, "scale": 1}'
+  }),
+  TableInputTypes.percentage({
+    width: 75,
+    key: 'immoveableFraction',
+    label: 'Immoveable (%)',
+    defaultValue: '0'
+  })
+];
+
+const tableWithCustomStats = LiveTable(html, {
+  columns,
+  initialData,
+  width: 600,
+  description: "Enter cost information for each site of care",
+  title: 'Title: hello table', 
+  updateStats: (data, container, html) => {
+    const { parsed } = data;
+    const totalCost = parsed.reduce((sum, row) => 
+      sum + (parseFloat(row.totalNumber) * parseFloat(row.averageCost)), 0);
+    const totalNumber = parsed.reduce((sum, row) => 
+      sum + (parseFloat(row.totalNumber) ), 0);
+
+    const averageCostPerEvent = totalCost/totalNumber
+    
+    container.innerHTML = '';
+    container.appendChild(html`
+      <div style="margin-top: 20px; padding: 15px; background: #f8fafc;">
+        <h3 style="color: #2563eb; margin: 0 0 10px 0;">Quick Stats</h3>
+        <div style="font-size: 1.5em; font-weight: bold;">
+          Total Cost: $${totalCost.toLocaleString()} <br>
+          Total Events: ${totalNumber.toFixed(0)} <br>
+          Average Cost Per Event: $${averageCostPerEvent.toLocaleString()}
+        </div>
+      </div>
+    `);
+  }
+})
+
+view(tableWithCustomStats)
+return {careSiteOptions,distributionOptions,initialData,columns,tableWithCustomStats};
+}});
+
+define({id: "895eb1cf", inputs: ["LiveTableData","tableWithCustomStats"], outputs: ["livetabledata"], body: (LiveTableData,tableWithCustomStats) => {
+const livetabledata = LiveTableData(tableWithCustomStats)
+return {livetabledata};
+}});
+
+define({id: "1aea6ab4-1", inputs: ["view","livetabledata"], body: (view,livetabledata) => {
+view(livetabledata)
+}});
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Data Matters</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./">Introduction</a></li>
+  </ol>
+  <section>
+    <summary>Experimental Design</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./experimental-design">Experimental Design </a></li>
+    <li class="observablehq-link"><a href="./parallel-arm-designs">Individual Randomized Parallel Designs</a></li>
+    <li class="observablehq-link"><a href="./cluster-randomized-designs">Individual Randomized Cluster Designs</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Data Science Experiments</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./random-forest">Random Forests</a></li>
+    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./live-table-data">Live Tables</a></li>
+    <li class="observablehq-link"><a href="./distp-demo">Distribution Modeling</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Transport Modeling</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./pbpk">Drug Elimination</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Ukelele Modeling</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./ukulele">Chord Maker</a></li>
+    <li class="observablehq-link"><a href="./ukutabs/blackbird">Blackbird - The Beatles</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Miscellaneous Visualizations</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./happy-city">Is Minneapolis &#x27;happier&#x27; than Boston?</a></li>
+    <li class="observablehq-link"><a href="./diddy-did-he">Diddy didn&#x27;t, did he?</a></li>
+    <li class="observablehq-link"><a href="./fema-votes">FEMA Votes</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Healthcare Diatribes</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./stars-hedis-insanity">What are stars?</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Self Aggrandizing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./podcasts">Podcasts &amp; Presentations</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#livetable">LiveTable</a></li>
+<li class="observablehq-secondary-link"><a href="#tableinputtypes">TableInputTypes</a></li>
+<li class="observablehq-secondary-link"><a href="#livetabledata">LiveTableData</a></li>
+<li class="observablehq-secondary-link"><a href="#an-example">An example</a></li>
+</ol>
+</nav>
+</aside>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div id="cell-538fdf74" class="observablehq observablehq--block"></div>
+<h1 id="introducing-livetable.-a-live%2C-editible%2C-observable-table." tabindex="-1"><a class="observablehq-header-anchor" href="#introducing-livetable.-a-live%2C-editible%2C-observable-table.">Introducing <code>LiveTable</code>. A live, editible, observable table.</a></h1>
+<p>I've decided to do a bit of enhancement to observables default tables to make them live, responsive, and editable. I've also tried to do in an an 'observable~ish' manner, making things useful and generic and making the actual calls pretty simple. I did this because I didn't like the way I originally implemented my mass balance business model tables. It looked all weird like.</p>
+<p>Let's start out seeing what the table and output looks like.</p>
+<div id="cell-b5fa47df" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
+<p>Here's the object. Watch! If you change the table, it'll change this object.</p>
+<div id="cell-1aea6ab4" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
+<h2 id="livetable" tabindex="-1"><a class="observablehq-header-anchor" href="#livetable"><code>LiveTable</code></a></h2>
+<p>There are three components to making live, responsive, and editable tables:</p>
+<ol>
+<li><code>LiveTable</code>, the function to create the table.</li>
+<li><code>TableInputTypes</code>, which are primatives that can be used to create entry types by column.</li>
+<li><code>LiveTableData</code>, which is how you use the data in the table downstream.
+The table itself consists of a few components. Note that <code>html</code> is passed as an argument.</li>
+</ol>
+<p>The <code>LiveTable</code> function takes a few arguments:</p>
+<ul>
+<li><code>columns</code>: an array of primatives that describe the column entries.</li>
+<li><code>initialData</code>: an array of dictionaries that set the initial value of the table.</li>
+<li><code>description</code>: a string that describes the table in small italics below the table.</li>
+<li><code>title</code>: a string that descrtibes the title.</li>
+<li><code>updateStats</code>: a generic function that can return some convenient aggregations with styling.</li>
+<li><code>width</code>: provide the width of the table.</li>
+</ul>
+<p>Here's an example.</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-keyword">const</span> table = <span class="hljs-title class_">LiveTable</span>(html, {
+  columns,
+  initialData,
+  <span class="hljs-attr">description</span>: <span class="hljs-string">"Enter cost information for each site of care"</span>,
+  <span class="hljs-attr">title</span>: <span class="hljs-string">'Title: hello table'</span>, 
+  <span class="hljs-attr">updateStats</span>: <span class="hljs-function">(<span class="hljs-params">data, container, html</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> { parsed } = data;
+    <span class="hljs-keyword">const</span> totalCost = parsed.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">sum, row</span>) =&gt;</span> 
+      sum + (<span class="hljs-built_in">parseFloat</span>(row.<span class="hljs-property">totalNumber</span>) * <span class="hljs-built_in">parseFloat</span>(row.<span class="hljs-property">averageCost</span>)), <span class="hljs-number">0</span>);
+    
+    container.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">''</span>;
+    container.<span class="hljs-title function_">appendChild</span>(html`<span class="language-xml">
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"margin-top: 20px; padding: 15px; background: #f8fafc;"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"color: #2563eb; margin: 0 0 10px 0;"</span>&gt;</span>Quick Stats<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"font-size: 1.5em; font-weight: bold;"</span>&gt;</span>
+          Total Cost: $</span><span class="hljs-subst">${totalCost.toLocaleString()}</span><span class="language-xml">
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    `</span>);
+  }
+})
+
+<span class="hljs-title function_">view</span>(table)
+</code></pre>
+<p>Cool. This will make a bit more sense when we put all the things together, but let's keep going.</p>
+<h2 id="tableinputtypes" tabindex="-1"><a class="observablehq-header-anchor" href="#tableinputtypes"><code>TableInputTypes</code></a></h2>
+<p>There are a few input type primitives that I've coded. They are as follows.</p>
+<ol>
+<li><a href="#integer-input-type">Integer Input Type</a></li>
+<li><a href="#float-input-type">Float Input Type</a></li>
+<li><a href="#dropdown-input-type">Dropdown Input Type</a></li>
+<li><a href="#text-input-type">Text Input Type</a></li>
+<li><a href="#function-input-type">Function Input Type</a></li>
+<li><a href="#percentage-input-type">Percentage Input Type</a></li>
+</ol>
+<h3 id="integer-input-type" tabindex="-1"><a class="observablehq-header-anchor" href="#integer-input-type">Integer Input Type</a></h3>
+<p>The <code>integer</code> input type lets you create a table column that accepts ... check this out... <em>integers</em>. Perfect for when you need to count sheep, votes, or the number of times you've regretted your life choices.</p>
+<p>Here's how you include the <code>integer</code> input type in your column definitions:</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">integer</span>({
+  <span class="hljs-attr">width</span>: <span class="hljs-number">50</span>,
+  <span class="hljs-attr">key</span>: <span class="hljs-string">'count'</span>,
+  <span class="hljs-attr">label</span>: <span class="hljs-string">'Count'</span>,
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">100</span>,
+  <span class="hljs-attr">defaultValue</span>: <span class="hljs-number">10</span>
+})
+</code></pre>
+<ul>
+<li><strong>width</strong>: <em>(Number)</em> The pixel width of the column. Because size <em>does</em> matter.</li>
+<li><strong>key</strong>: <em>(String)</em> The unique identifier for this column. Think of it as the column's social security number.</li>
+<li><strong>label</strong>: <em>(String)</em> The display name for the column header. Make it human readable.</li>
+<li><strong>min</strong>: <em>(Number, optional)</em> The minimum acceptable value.</li>
+<li><strong>max</strong>: <em>(Number, optional)</em> The maximum acceptable value.</li>
+<li><strong>defaultValue</strong>: <em>(Number, optional)</em> The default value when a new row is added. Defaults to an empty string if you can't make up your mind.</li>
+</ul>
+<hr>
+<h3 id="float-input-type" tabindex="-1"><a class="observablehq-header-anchor" href="#float-input-type">Float Input Type</a></h3>
+<p>For those moments when integers are just too...integer-ish. The <code>float</code> input type allows for decimal numbers, giving you the precision you never knew you wanted.</p>
+<p>Include the <code>float</code> input type like so:</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">float</span>({
+  <span class="hljs-attr">width</span>: <span class="hljs-number">60</span>,
+  <span class="hljs-attr">key</span>: <span class="hljs-string">'value'</span>,
+  <span class="hljs-attr">label</span>: <span class="hljs-string">'Value'</span>,
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0.0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">100.0</span>,
+  <span class="hljs-attr">step</span>: <span class="hljs-number">0.5</span>,
+  <span class="hljs-attr">defaultValue</span>: <span class="hljs-number">0.0</span>
+})
+</code></pre>
+<ul>
+<li><strong>width</strong>: <em>(Number)</em> Column width in pixels. Again, because aesthetics.</li>
+<li><strong>key</strong>: <em>(String)</em> Unique identifier for the column.</li>
+<li><strong>label</strong>: <em>(String)</em> What shows up in the header. Make it sound important.</li>
+<li><strong>min</strong>: <em>(Number, optional)</em> Minimum value allowed. Floor's the limit.</li>
+<li><strong>max</strong>: <em>(Number, optional)</em> Maximum value allowed. Sky's the limit, or like, whatever number you set.</li>
+<li><strong>step</strong>: <em>(Number, optional)</em> The interval between valid values.</li>
+<li><strong>defaultValue</strong>: <em>(Number, optional)</em> Default value for new rows. Defaults to an empty string.</li>
+</ul>
+<hr>
+<h3 id="dropdown-input-type" tabindex="-1"><a class="observablehq-header-anchor" href="#dropdown-input-type">Dropdown Input Type</a></h3>
+<p>Choices, choices. The <code>dropdown</code> input type lets you restrict input to predefined options. It's like democracy, except you can pick good candidates and it works. Oh no, I've just made myself sad.</p>
+<p>Here's how you set up a dropdown:</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">dropdown</span>({
+  <span class="hljs-attr">width</span>: <span class="hljs-number">80</span>,
+  <span class="hljs-attr">key</span>: <span class="hljs-string">'type'</span>,
+  <span class="hljs-attr">label</span>: <span class="hljs-string">'Type'</span>,
+  <span class="hljs-attr">options</span>: [
+    { <span class="hljs-attr">value</span>: <span class="hljs-string">'a'</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'Type A'</span> },
+    { <span class="hljs-attr">value</span>: <span class="hljs-string">'b'</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'Type B'</span> },
+    { <span class="hljs-attr">value</span>: <span class="hljs-string">'c'</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'Type C'</span> }
+  ],
+  <span class="hljs-attr">defaultValue</span>: <span class="hljs-string">'a'</span>
+})
+</code></pre>
+<ul>
+<li><strong>width</strong>: <em>(Number)</em> Width in pixels.</li>
+<li><strong>key</strong>: <em>(String)</em> The unique key for the column. The 'type' of your 'type', if you will.</li>
+<li><strong>label</strong>: <em>(String)</em> Column header label. Make it count.</li>
+<li><strong>options</strong>: <em>(Array of Objects)</em> The choices you're allowing. Each object should have:
+<ul>
+<li><strong>value</strong>: <em>(String)</em> The actual value behind the option.</li>
+<li><strong>label</strong>: <em>(String)</em> What the user sees. Smoke and mirrors.</li>
+</ul>
+</li>
+<li><strong>defaultValue</strong>: <em>(String, optional)</em> The default selected value. Defaults to an empty string, leaving users in suspense.</li>
+</ul>
+<hr>
+<h3 id="text-input-type" tabindex="-1"><a class="observablehq-header-anchor" href="#text-input-type">Text Input Type</a></h3>
+<p>For when you want to let users type whatever they want. Risky move, but sometimes necessary. The <code>text</code> input type accepts any string, including those emoji-filled responses from more expressive users.</p>
+<p>Include a text input like this:</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">text</span>({
+  <span class="hljs-attr">width</span>: <span class="hljs-number">150</span>,
+  <span class="hljs-attr">key</span>: <span class="hljs-string">'description'</span>,
+  <span class="hljs-attr">label</span>: <span class="hljs-string">'Description'</span>,
+  <span class="hljs-attr">placeholder</span>: <span class="hljs-string">'Enter details here...'</span>,
+  <span class="hljs-attr">defaultValue</span>: <span class="hljs-string">''</span>,
+  <span class="hljs-attr">parser</span>: <span class="hljs-literal">null</span>
+})
+</code></pre>
+<ul>
+<li><strong>width</strong>: <em>(Number)</em> Width in pixels. Because words can be long and I haven't implemented text wrapping, yet.</li>
+<li><strong>key</strong>: <em>(String)</em> Unique identifier. Name it wisely.</li>
+<li><strong>label</strong>: <em>(String)</em> Header label. Make it alluring.</li>
+<li><strong>placeholder</strong>: <em>(String, optional)</em> The greyed-out hint text. Because users need guidance.</li>
+<li><strong>defaultValue</strong>: <em>(String, optional)</em> Default text for new rows. Defaults to an empty string, encouraging creativity.</li>
+<li><strong>parser</strong>: <em>(Function, optional)</em> A function to parse the input value. Use it when you don't trust user input (always).</li>
+</ul>
+<hr>
+<h3 id="function-input-type" tabindex="-1"><a class="observablehq-header-anchor" href="#function-input-type">Function Input Type</a></h3>
+<p>Let users input function names. Because letting users execute code indirectly is totally safe and not at all terrifying.</p>
+<p>Here's how you set up a function input:</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-keyword">function</span>(<span class="hljs-params">{
+  width: <span class="hljs-number">100</span>,
+  key: <span class="hljs-string">'callback'</span>,
+  label: <span class="hljs-string">'Callback Function'</span>,
+  validator: (funcName) =&gt; {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-variable language_">window</span>[funcName] !== <span class="hljs-string">'function'</span>) {
+      alert(<span class="hljs-string">'Function does not exist!'</span>);
+    }
+  }
+}</span>)
+</code></pre>
+<ul>
+<li><strong>width</strong>: <em>(Number)</em> Width in pixels. Keep it tight; function names shouldn't be essays.</li>
+<li><strong>key</strong>: <em>(String)</em> Unique key for the column. 'callback' sounds professional.</li>
+<li><strong>label</strong>: <em>(String)</em> What the users see. Keep them intrigued.</li>
+<li><strong>validator</strong>: <em>(Function, optional)</em> A function to validate the input. Because we can't have users running amok.</li>
+</ul>
+<hr>
+<h3 id="percentage-input-type" tabindex="-1"><a class="observablehq-header-anchor" href="#percentage-input-type">Percentage Input Type</a></h3>
+<p>When you need numbers between 0 and 100. Perfect for grades, battery levels, or the chance of you understanding this code with Claude or GPT mommy.</p>
+<p>Include a percentage input like so:</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">percentage</span>({
+  <span class="hljs-attr">width</span>: <span class="hljs-number">70</span>,
+  <span class="hljs-attr">key</span>: <span class="hljs-string">'completion'</span>,
+  <span class="hljs-attr">label</span>: <span class="hljs-string">'Completion (%)'</span>,
+  <span class="hljs-attr">defaultValue</span>: <span class="hljs-string">'0'</span>
+})
+</code></pre>
+<ul>
+<li><strong>width</strong>: <em>(Number)</em> Column width in pixels.</li>
+<li><strong>key</strong>: <em>(String)</em> The unique identifier. 'completion' has a nice ring to it.</li>
+<li><strong>label</strong>: <em>(String)</em> Column header label.</li>
+<li><strong>defaultValue</strong>: <em>(String, optional)</em> Default value for new rows. Defaults to '0' because that's the responsible thing to do.</li>
+</ul>
+<hr>
+<h3 id="bonus%3A-custom-parsers" tabindex="-1"><a class="observablehq-header-anchor" href="#bonus%3A-custom-parsers">Bonus: Custom Parsers</a></h3>
+<p>Wait, there's more! You can add a <code>parser</code> function to any input type if you feel like being fancy. Useful for when users input JSON strings, and you want to parse them into objects because dealing with strings is so last year. This is good if you want to input dictionaries with parameters. Those parameters in that dict will then be parsed correctly in the <code>parsedData()</code> output.</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">text</span>({
+  <span class="hljs-attr">width</span>: <span class="hljs-number">200</span>,
+  <span class="hljs-attr">key</span>: <span class="hljs-string">'parameters'</span>,
+  <span class="hljs-attr">label</span>: <span class="hljs-string">'Parameters'</span>,
+  <span class="hljs-attr">parser</span>: <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(value);
+    } <span class="hljs-keyword">catch</span> {
+      <span class="hljs-keyword">return</span> value;
+    }
+  }
+})
+</code></pre>
+<ul>
+<li><strong>parser</strong>: <em>(Function, optional)</em> A function that takes the input value and returns the parsed value. Perfect for turning that stringified JSON into an actual object.</li>
+</ul>
+<h2 id="livetabledata" tabindex="-1"><a class="observablehq-header-anchor" href="#livetabledata"><code>LiveTableData</code></a></h2>
+<p>Due to how reactivity works in observable or javascript (I'm not exactly sure), getting objects to update requires <code>generator</code> functions. Admittidly, I have <em>no</em> idea really how these things are supposed to work and I only mamaged to stumble through it with a lot of LLM assistance.</p>
+<p>However, you don't have to worry about it, because I've buried it all in the code. Note that in framework, you need to seperate the generate from the viewing to make it work properly.</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-keyword">const</span> data = <span class="hljs-title class_">LiveTableData</span>(table)
+</code></pre>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">view</span>(data)
+</code></pre>
+<h2 id="an-example" tabindex="-1"><a class="observablehq-header-anchor" href="#an-example">An example</a></h2>
+<p>You've made it this far. Awesome sauce. Here's an example pulled directly from the mass balance business case page.</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-comment">// Define care site options</span>
+<span class="hljs-keyword">const</span> careSiteOptions = [
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"ABL"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Ambulance"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"ASC"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Ambulatory Surgical Center"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"CCF"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Custodial Care Facility"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"ETF"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"ESRD Treatment Facility"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"EMR"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Emergency Room"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"HOM"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Home"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"HOS"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Hospice"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"ILB"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Independent Laboratory"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"IPH"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Inpatient Hospital"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"IPF"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Inpatient Psychiatric Facility"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"NUF"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Nursing Facility"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"OFF"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Office"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"OTH"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Other"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"OPH"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Outpatient Hospital"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"RHC"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Public/Rural Health Clinic"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"SNF"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Skilled Nursing Facility"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"UCF"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Urgent Care Facility"</span> }
+];
+
+<span class="hljs-comment">// Define distribution options</span>
+<span class="hljs-keyword">const</span> distributionOptions = [
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"uniform"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Uniform"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"exponential"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Exponential"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"poisson"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Poisson"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"binomial"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Binomial"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"beta"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Beta"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"gamma"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Gamma"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"chisquare"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Chi-Square"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"bernoulli"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Bernoulli"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"geometric"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Geometric"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"pareto"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Pareto"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"lognormal"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Log-Normal"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"weibull"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Weibull"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"cauchy"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Cauchy"</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">"multinomial"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Multinomial"</span> }
+];
+
+<span class="hljs-comment">// Define initial data</span>
+<span class="hljs-keyword">const</span> initialData = [
+  {
+    <span class="hljs-attr">siteOfCare</span>: <span class="hljs-string">'asd'</span>,
+    <span class="hljs-attr">totalNumber</span>: <span class="hljs-string">'1000'</span>,
+    <span class="hljs-attr">averageCost</span>: <span class="hljs-string">'150.00'</span>,
+    <span class="hljs-attr">distribution</span>: <span class="hljs-string">'lognormal'</span>,
+    <span class="hljs-attr">parameters</span>: <span class="hljs-string">'{"sigma": 0.5, "scale": 150}'</span>,
+    <span class="hljs-attr">immoveableFraction</span>: <span class="hljs-string">'20'</span>
+  },
+  {
+    <span class="hljs-attr">siteOfCare</span>: <span class="hljs-string">'IPH'</span>,
+    <span class="hljs-attr">totalNumber</span>: <span class="hljs-string">'500'</span>,
+    <span class="hljs-attr">averageCost</span>: <span class="hljs-string">'2500.00'</span>,
+    <span class="hljs-attr">distribution</span>: <span class="hljs-string">'lognormal'</span>,
+    <span class="hljs-attr">parameters</span>: <span class="hljs-string">'{"sigma": 0.7, "scale": 2500}'</span>,
+    <span class="hljs-attr">immoveableFraction</span>: <span class="hljs-string">'80'</span>
+  },
+  {
+    <span class="hljs-attr">siteOfCare</span>: <span class="hljs-string">'ASC'</span>,
+    <span class="hljs-attr">totalNumber</span>: <span class="hljs-string">'750'</span>,
+    <span class="hljs-attr">averageCost</span>: <span class="hljs-string">'1200.00'</span>,
+    <span class="hljs-attr">distribution</span>: <span class="hljs-string">'lognormal'</span>,
+    <span class="hljs-attr">parameters</span>: <span class="hljs-string">'{"sigma": 0.6, "scale": 1200}'</span>,
+    <span class="hljs-attr">immoveableFraction</span>: <span class="hljs-string">'50'</span>
+  },
+  {
+    <span class="hljs-attr">siteOfCare</span>: <span class="hljs-string">'EMR'</span>,
+    <span class="hljs-attr">totalNumber</span>: <span class="hljs-string">'250'</span>,
+    <span class="hljs-attr">averageCost</span>: <span class="hljs-string">'800.00'</span>,
+    <span class="hljs-attr">distribution</span>: <span class="hljs-string">'lognormal'</span>,
+    <span class="hljs-attr">parameters</span>: <span class="hljs-string">'{"sigma": 0.8, "scale": 800}'</span>,
+    <span class="hljs-attr">immoveableFraction</span>: <span class="hljs-string">'90'</span>
+  }
+];
+
+<span class="hljs-comment">// Define columns</span>
+<span class="hljs-keyword">const</span> columns = [
+  <span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">dropdown</span>({
+    <span class="hljs-attr">width</span>: <span class="hljs-number">200</span>,
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'siteOfCare'</span>,
+    <span class="hljs-attr">label</span>: <span class="hljs-string">'Site of Care'</span>,
+    <span class="hljs-attr">options</span>: careSiteOptions,
+    <span class="hljs-attr">defaultValue</span>: <span class="hljs-string">'OFF'</span>
+  }),
+  <span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">integer</span>({
+    <span class="hljs-attr">width</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'totalNumber'</span>,
+    <span class="hljs-attr">label</span>: <span class="hljs-string">'Total Number (#)'</span>,
+    <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>
+  }),
+  <span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">float</span>({
+    <span class="hljs-attr">width</span>: <span class="hljs-number">120</span>,
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'averageCost'</span>,
+    <span class="hljs-attr">label</span>: <span class="hljs-string">'Average Cost ($)'</span>,
+    <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">step</span>: <span class="hljs-number">0.01</span>
+  }),
+  <span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">dropdown</span>({
+    <span class="hljs-attr">width</span>: <span class="hljs-number">150</span>,
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'distribution'</span>,
+    <span class="hljs-attr">label</span>: <span class="hljs-string">'Distribution'</span>,
+    <span class="hljs-attr">options</span>: [
+      { <span class="hljs-attr">value</span>: <span class="hljs-string">"lognormal"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Log-Normal"</span> },
+      { <span class="hljs-attr">value</span>: <span class="hljs-string">"gamma"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Gamma"</span> },
+      { <span class="hljs-attr">value</span>: <span class="hljs-string">"uniform"</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">"Uniform"</span> }
+    ],
+    <span class="hljs-attr">defaultValue</span>: <span class="hljs-string">'lognormal'</span>
+  }),
+  <span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">text</span>({
+    <span class="hljs-attr">width</span>: <span class="hljs-number">200</span>,
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'parameters'</span>,
+    <span class="hljs-attr">label</span>: <span class="hljs-string">'Parameters'</span>,
+    <span class="hljs-attr">parser</span>: <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(value);
+      } <span class="hljs-keyword">catch</span> {
+        <span class="hljs-keyword">return</span> value;
+      }
+    },
+    <span class="hljs-attr">placeholder</span>: <span class="hljs-string">'Enter as JSON'</span>,
+    <span class="hljs-attr">defaultValue</span>: <span class="hljs-string">'{"sigma": 1, "scale": 1}'</span>
+  }),
+  <span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">percentage</span>({
+    <span class="hljs-attr">width</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'immoveableFraction'</span>,
+    <span class="hljs-attr">label</span>: <span class="hljs-string">'Immoveable (%)'</span>,
+    <span class="hljs-attr">defaultValue</span>: <span class="hljs-string">'0'</span>
+  })
+];
+</code></pre>
+<p>Let's instantiate the table.</p>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-keyword">const</span> tableWithCustomStats = <span class="hljs-title class_">LiveTable</span>(html, {
+  columns,
+  initialData,
+  <span class="hljs-attr">description</span>: <span class="hljs-string">"Enter cost information for each site of care"</span>,
+  <span class="hljs-attr">title</span>: <span class="hljs-string">'Title: hello table'</span>, 
+  <span class="hljs-attr">updateStats</span>: <span class="hljs-function">(<span class="hljs-params">data, container, html</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> { parsed } = data;
+    <span class="hljs-keyword">const</span> totalCost = parsed.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">sum, row</span>) =&gt;</span> 
+      sum + (<span class="hljs-built_in">parseFloat</span>(row.<span class="hljs-property">totalNumber</span>) * <span class="hljs-built_in">parseFloat</span>(row.<span class="hljs-property">averageCost</span>)), <span class="hljs-number">0</span>);
+    
+    container.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">''</span>;
+    container.<span class="hljs-title function_">appendChild</span>(html`<span class="language-xml">
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"margin-top: 20px; padding: 15px; background: #f8fafc;"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"color: #2563eb; margin: 0 0 10px 0;"</span>&gt;</span>Quick Stats<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"font-size: 1.5em; font-weight: bold;"</span>&gt;</span>
+          Total Cost: $</span><span class="hljs-subst">${totalCost.toLocaleString()}</span><span class="language-xml">
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    `</span>);
+  }
+})
+
+<span class="hljs-title function_">view</span>(tableWithCustomStats)
+</code></pre>
+<p>And now let's view the live data. Edit the table. See! See!!! It CHANGES OMG THIS TOOK FOREVER TO FIGURE OUT OMG.</p>
+<pre data-language="javascript"><code class="language-javascript">
+<span class="hljs-keyword">const</span> livetabledata = <span class="hljs-title class_">LiveTableData</span>(tableWithCustomStats)
+</code></pre>
+<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">view</span>(livetabledata)
+</code></pre>
+<hr>
+<div id="cell-03790140" class="observablehq observablehq--block"></div>
+<div id="cell-895eb1cf" class="observablehq observablehq--block"></div>
+<div id="cell-1aea6ab4-1" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./mass-balance-business-models"><span>Mass Balance Business Models</span></a><a rel="next" href="./distp-demo"><span>Distribution Modeling</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-17T16:41:47">Nov 17, 2024</a>.</div>
+</footer>
+</div>
