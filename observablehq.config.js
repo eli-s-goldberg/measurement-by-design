@@ -17,12 +17,12 @@ export default {
       pages: [
         {
           name: "Intervention Demo",
-          path: "/random-forest",
+          path: "/intervention-demo",
         },
       ],
     },
     {
-      name: "Working Folder",
+      name: "Primitive Assets",
       pages: [
         {
           name: "BRFSS State Level Mapping",
@@ -48,6 +48,22 @@ export default {
           name: "Intervention Design",
           path: "/intervention-design",
         },
+        {
+          name: "In Browser Random Forests",
+          path: "/random-forest",
+        },
+        {
+          name: "Mass Balance Business Models",
+          path: "/mass-balance-business-models",
+        },
+        {
+          name: "Simple Experimental Design",
+          path: "/experimental-design",
+        },
+        {
+          name: "Microsite Demo",
+          path: "/microsite",
+        },
       ],
     },
    
@@ -61,5 +77,5 @@ export default {
   // pager: true, // whether to show previous & next links in the footer
   // root: "docs", // path to the source root for preview
   // output: "dist", // path to the output root for build
-  // search: true, // activate search
+  // search: true, // activate search 
 };
