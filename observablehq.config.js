@@ -64,6 +64,10 @@ export default {
           name: "Microsite Demo",
           path: "/microsite",
         },
+        {
+          name: "Collapsible Cell",
+          path: "/collapsible-cell",
+        },
       ],
     },
    

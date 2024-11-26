@@ -474,13 +474,13 @@ function createBostonMap() {
 <!-- <section class="map-section"> -->
 <div class="hero-content">
 <h2>Find Affordable COPD Imaging Near You</h2>
-<!-- 
+
 ```js
 view(html`
 ${mapContainer}
 ${createBostonMap()}
 `);
-``` -->
+```
 
 
 <div class="cost-grid">
@@ -542,9 +542,10 @@ ${createBostonMap()}
 </footer>
 </div>
 
+
 ## Generic Microsite Builder
 
-
+<!-- 
 ```js
 const micrositeConfig = {
   defaultZip: '02114',
@@ -651,4 +652,4 @@ const micrositeConfig = {
 ```js
 view(containerDD)
 ```
-</div>
+</div> -->
