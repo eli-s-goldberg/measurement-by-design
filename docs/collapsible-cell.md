@@ -1,6 +1,6 @@
 ---
 toc: true
-title: Intervention Demo
+title: Collapsible Cell
 ---
 <!-- ```js
 // import some CSS to keep things well styled
@@ -15,8 +15,6 @@ import { styles } from "./components/collapsible.js"
 const styleElement = html`<style>${styles}</style>`;
 document.head.appendChild(styleElement);
 ```
-
-
 
 ```js
 // Create the HTML elements

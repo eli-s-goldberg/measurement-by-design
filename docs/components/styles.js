@@ -1,10 +1,20 @@
 // styles.js
 
 export const defaultStyles = `
+
+  .variable {
+    background-color: #f0f0f0; /* Light gray shade */
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    display: inline-block;
+    margin: 2px 0;
+  }
+    
   body {
     font: 13.5px/1.5 var(--serif);
     margin: 0;
-    max-width: 90%;
+    max-width: 93%;
   }
 
   .grid-container {
@@ -125,8 +135,10 @@ export const defaultStyles = `
   }
 
   figure {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 10px;
+    max-width: 100%;
+    background-color: #f9f9f9;
   }
 
   figcaption {
@@ -136,6 +148,17 @@ export const defaultStyles = `
     font-family: 'Arial', sans-serif;
     line-height: 1.4;
   }
+
+  .note {
+    max-width: 90%;
+    margin: 0 auto; /* Centers the element */
+    padding: 10px; /* Optional: Add padding for spacing */
+    background-color: #f9f9f9; /* Optional: Set a background color */
+    border: 1px solid #ddd; /* Optional: Add a subtle border */
+    border-radius: 4px; /* Optional: Round the corners */
+    font-family: Arial, sans-serif; /* Match the body font */
+    line-height: 1.5; /* Match the body line height */
+}
 `;
 
 export const interventionStyles = `
@@ -286,6 +309,33 @@ export const interventionStyles = `
     margin-bottom: 16px;
     font-weight: bold;
   }
+
+  .collapsible {
+      cursor: pointer;
+      padding: 10px;
+      border: none;
+      outline: none;
+      background-color: #f1f1f1;
+      text-align: left;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .collapsible.active {
+      background-color: #ddd;
+    }
+
+    .content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background-color: #f9f9f9;
+      padding: 0 10px;
+    }
+
+    .content p {
+      margin: 10px 0;
+    }
 
   .formula-table {
     display: grid;
