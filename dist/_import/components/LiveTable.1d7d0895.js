@@ -711,7 +711,7 @@ export function LiveTable(html, {
 }
 
 // Import Generators from Observable standard library
-import {Generators} from "../../_observablehq/stdlib.js";
+import {Generators} from "../../_observablehq/stdlib.63ee1033.js";
 
 /**
  * Function to create a live data generator from a LiveTable component

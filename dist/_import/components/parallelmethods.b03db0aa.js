@@ -1,6 +1,6 @@
 // Import
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-import { require } from "../../_node/d3-require@1.3.0/index.js";
+import { require } from "../../_node/d3-require@1.3.0/index.45152b81.js";
 const jStat = await require("jstat@1.9.4");
 const math = await require("mathjs@9.4.2");
 

@@ -1,68 +1,70 @@
 <!DOCTYPE html>
+<html>
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.0">
 <title>State Level Mapping | Measurement By Design</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
-<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
-<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
-<link rel="modulepreload" href="./_observablehq/client.js">
-<link rel="modulepreload" href="./_observablehq/runtime.js">
-<link rel="modulepreload" href="./_observablehq/stdlib.js">
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/d3@7/+esm">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="./_observablehq/client.bdfce3d3.js">
+<link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.63ee1033.js">
 <link rel="modulepreload" href="./_import/components/map-utilities.d0ce8f24.js">
-<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
-<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/_esm.js">
-<link rel="modulepreload" href="./_npm/topojson-client@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
-<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
-<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/_esm.js">
-<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
-<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.625bbd4c.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/118fc3ce.js">
+<link rel="modulepreload" href="./_npm/topojson-client@3.1.0/44d97fcb.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e95f898e.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/d44feff9.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/5830b12a.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/626bedc4.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/b22c5864.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e1ff060.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/5851d7ef.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/dcd02767.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/567840a0.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/cf9b720b.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/5dcd62f4.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/f8e03c56.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/5bc129e1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/19c92b44.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/8debb4ba.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/4b0cc581.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
 <script type="module">
 
-import {define} from "./_observablehq/client.js";
-import {registerFile} from "./_observablehq/stdlib.js";
+import {define} from "./_observablehq/client.bdfce3d3.js";
+import {registerFile} from "./_observablehq/stdlib.63ee1033.js";
 
-registerFile("./data/BRFSS__Table_of_Overweight_and_Obesity__BMI__20241118.csv", {"name":"./data/BRFSS__Table_of_Overweight_and_Obesity__BMI__20241118.csv","mimeType":"text/csv","path":"./_file/data/BRFSS__Table_of_Overweight_and_Obesity__BMI__20241118.74bcf5f9.csv","lastModified":1732311158047});
-registerFile("./data/state-centers.csv", {"name":"./data/state-centers.csv","mimeType":"text/csv","path":"./_file/data/state-centers.b52454af.csv","lastModified":1732311153687});
-registerFile("./data/us-counties-10m.json", {"name":"./data/us-counties-10m.json","mimeType":"application/json","path":"./_file/data/us-counties-10m.145aaf5d.json","lastModified":1732311287187});
+registerFile("./data/BRFSS__Table_of_Overweight_and_Obesity__BMI__20241118.csv", {"name":"./data/BRFSS__Table_of_Overweight_and_Obesity__BMI__20241118.csv","mimeType":"text/csv","path":"./_file/data/BRFSS__Table_of_Overweight_and_Obesity__BMI__20241118.74bcf5f9.csv","lastModified":1732311158047,"size":27513298});
+registerFile("./data/state-centers.csv", {"name":"./data/state-centers.csv","mimeType":"text/csv","path":"./_file/data/state-centers.b52454af.csv","lastModified":1732311153687,"size":1845});
+registerFile("./data/us-counties-10m.json", {"name":"./data/us-counties-10m.json","mimeType":"application/json","path":"./_file/data/us-counties-10m.145aaf5d.json","lastModified":1732311287187,"size":842143});
 
 define({id: "f99fedc0", outputs: ["d3","calculateCentroid"], body: async () => {
 const [d3, {calculateCentroid}] = await Promise.all([import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_import/components/map-utilities.d0ce8f24.js")]);
@@ -792,6 +794,8 @@ return {getJurisdictionFromOption,getSelectedJurisdictions,plotData,getLegendLab
 }});
 
 </script>
+</head>
+<body>
 <input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
 <label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
 <nav id="observablehq-sidebar">
@@ -805,11 +809,11 @@ return {getJurisdictionFromOption,getSelectedJurisdictions,plotData,getLegendLab
   <section>
     <summary>Demo</summary>
     <ol>
-    <li class="observablehq-link"><a href="./random-forest">Intervention Demo</a></li>
+    <li class="observablehq-link"><a href="./intervention-demo">Intervention Demo</a></li>
     </ol>
   </section>
-  <section class="observablehq-section-active">
-    <summary>Working Folder</summary>
+  <details open class="observablehq-section-active">
+    <summary>Primitive Assets</summary>
     <ol>
     <li class="observablehq-link observablehq-link-active"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
     <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
@@ -817,10 +821,16 @@ return {getJurisdictionFromOption,getSelectedJurisdictions,plotData,getLegendLab
     <li class="observablehq-link"><a href="./distp-demo">Distribution Demo</a></li>
     <li class="observablehq-link"><a href="./funnel-chart">Funnel Chart</a></li>
     <li class="observablehq-link"><a href="./intervention-design">Intervention Design</a></li>
+    <li class="observablehq-link"><a href="./random-forest">In Browser Random Forests</a></li>
+    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link"><a href="./experimental-design">Simple Experimental Design</a></li>
+    <li class="observablehq-link"><a href="./microsite">Microsite Demo</a></li>
+    <li class="observablehq-link"><a href="./collapsible-cell">Collapsible Cell</a></li>
     </ol>
-  </section>
+  </details>
 </nav>
-<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
 <div>Contents</div>
@@ -829,32 +839,31 @@ return {getJurisdictionFromOption,getSelectedJurisdictions,plotData,getLegendLab
 </ol>
 </nav>
 </aside>
-<div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
 <h1 id="chronic-disease-in-america" tabindex="-1"><a class="observablehq-header-anchor" href="#chronic-disease-in-america">Chronic Disease in America</a></h1>
 <p>Chronic disease in America is fairly well tracked by the CDC and the BRFSS. Let's make a little live plot to demonstrate.</p>
-<div id="cell-f99fedc0" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:f99fedc0:--></div>
 <p>Steps:</p>
 <ol>
 <li>Pull in geojson data</li>
 </ol>
-<div id="cell-1eca00a8" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:1eca00a8:--></div>
 <ol start="2">
 <li>Split it up into states and nations to control visibility for both.</li>
 </ol>
-<div id="cell-9bbbbb7d" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:9bbbbb7d:--></div>
 <ol start="3">
 <li>Find the <a href="https://developers.google.com/public-data/docs/canonical/states_csv" target="_blank" rel="noopener noreferrer">centroids for each state</a>. This is common, so google has helped us out a bit.</li>
 </ol>
-<div id="cell-fd9054f5" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:fd9054f5:--></div>
 <ol start="3">
 <li>Bring in the BRFSS Data.</li>
 </ol>
-<div id="cell-a442ec5f" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:a442ec5f:--></div>
 <ol start="4">
 <li>Create unique list of breakouts categories, breakouts and years.</li>
 </ol>
-<div id="cell-dde4d4cf" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:dde4d4cf:--></div>
 <ol start="5">
 <li>
 <p>Create selection views to solicit selection of breakout category, breakout, and year to visualize. These will be visualized ensemble with other selections, but calculated here.</p>
@@ -863,31 +872,33 @@ return {getJurisdictionFromOption,getSelectedJurisdictions,plotData,getLegendLab
 <p>Based on the selection, dynamically return the responses. Then select response to be visualized.</p>
 </li>
 </ol>
-<div id="cell-108f824b" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:108f824b:--></div>
 <ol start="7">
 <li>Filter the data to <em>just</em> what's needed to visualize. Map and prep data for plotting with conditional selections. Create color scale for choropleth.</li>
 </ol>
-<div id="cell-4f4acdfe" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:4f4acdfe:--></div>
 <ol start="8">
 <li>Force simulate to prevent overlaps with some constraints. This isn't strictly neccessary, but is a nice touch. Do it once and you've got a nice template to do it in the future.</li>
 </ol>
-<div id="cell-493b5700" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:493b5700:--></div>
 <ol start="9">
 <li>View selections.</li>
 </ol>
-<div id="cell-bf2dcbcd" class="observablehq observablehq--block"></div>
-<div id="cell-a9c50de7" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:bf2dcbcd:--></div>
+<div class="observablehq observablehq--block"><!--:a9c50de7:--></div>
 <ol start="10">
 <li>Plot!</li>
 </ol>
-<div id="cell-fd741a75" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:fd741a75:--></div>
 <h2 id="time-series-view" tabindex="-1"><a class="observablehq-header-anchor" href="#time-series-view">Time series view</a></h2>
-<div id="cell-a8f3e61e" class="observablehq observablehq--block"></div>
-<div id="cell-4bf7698d" class="observablehq observablehq--block"></div>
-<div id="cell-70ff166a" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:a8f3e61e:--></div>
+<div class="observablehq observablehq--block"><!--:4bf7698d:--></div>
+<div class="observablehq observablehq--block"><!--:70ff166a:--></div>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./random-forest"><span>Intervention Demo</span></a><a rel="next" href="./exp-design-figures"><span>Experimental Design Figures</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-23T16:36:31">Nov 23, 2024</a>.</div>
+<nav><a rel="prev" href="./intervention-demo"><span>Intervention Demo</span></a><a rel="next" href="./exp-design-figures"><span>Experimental Design Figures</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-03T02:01:16">Dec 3, 2024</a>.</div>
 </footer>
 </div>
+</body>
+</html>

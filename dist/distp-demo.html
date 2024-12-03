@@ -1,66 +1,68 @@
 <!DOCTYPE html>
+<html>
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.0">
 <title>Distribution Business Case Demo | Measurement By Design</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
-<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
-<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
-<link rel="modulepreload" href="./_observablehq/client.js">
-<link rel="modulepreload" href="./_observablehq/runtime.js">
-<link rel="modulepreload" href="./_observablehq/stdlib.js">
-<link rel="modulepreload" href="./_import/components/DistP.53f5d4a3.js">
-<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/_esm.js">
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/d3@7/+esm">
-<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.js">
-<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
-<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
-<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
-<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/_esm.js">
-<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
-<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="./_observablehq/client.bdfce3d3.js">
+<link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.63ee1033.js">
+<link rel="modulepreload" href="./_import/components/DistP.fb4ccc78.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.625bbd4c.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/118fc3ce.js">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e95f898e.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/d44feff9.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/5830b12a.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/626bedc4.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/b22c5864.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e1ff060.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/5851d7ef.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/dcd02767.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/567840a0.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/cf9b720b.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/5dcd62f4.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/f8e03c56.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/5bc129e1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/19c92b44.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/8debb4ba.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/4b0cc581.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
 <script type="module">
 
-import {define} from "./_observablehq/client.js";
+import {define} from "./_observablehq/client.bdfce3d3.js";
 
 define({id: "6dfb8953", outputs: ["DistP","distributions"], body: async () => {
-const {DistP, distributions} = await import("./_import/components/DistP.53f5d4a3.js");
+const {DistP, distributions} = await import("./_import/components/DistP.fb4ccc78.js");
 
 return {DistP,distributions};
 }});
@@ -223,6 +225,8 @@ return {divResult};
 }});
 
 </script>
+</head>
+<body>
 <input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
 <label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
 <nav id="observablehq-sidebar">
@@ -236,11 +240,11 @@ return {divResult};
   <section>
     <summary>Demo</summary>
     <ol>
-    <li class="observablehq-link"><a href="./random-forest">Intervention Demo</a></li>
+    <li class="observablehq-link"><a href="./intervention-demo">Intervention Demo</a></li>
     </ol>
   </section>
-  <section class="observablehq-section-active">
-    <summary>Working Folder</summary>
+  <details open class="observablehq-section-active">
+    <summary>Primitive Assets</summary>
     <ol>
     <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
     <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
@@ -248,23 +252,28 @@ return {divResult};
     <li class="observablehq-link observablehq-link-active"><a href="./distp-demo">Distribution Demo</a></li>
     <li class="observablehq-link"><a href="./funnel-chart">Funnel Chart</a></li>
     <li class="observablehq-link"><a href="./intervention-design">Intervention Design</a></li>
+    <li class="observablehq-link"><a href="./random-forest">In Browser Random Forests</a></li>
+    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link"><a href="./experimental-design">Simple Experimental Design</a></li>
+    <li class="observablehq-link"><a href="./microsite">Microsite Demo</a></li>
+    <li class="observablehq-link"><a href="./collapsible-cell">Collapsible Cell</a></li>
     </ol>
-  </section>
+  </details>
 </nav>
-<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
 <div>Contents</div>
 <ol>
 <li class="observablehq-secondary-link"><a href="#instantiating-and-plotting-distributions">Instantiating and plotting distributions</a></li>
 <li class="observablehq-secondary-link"><a href="#operations-on-distributions-for-business-cases">Operations on distributions for business cases</a></li>
-<li class="observablehq-secondary-link"><a href="#let&#x27;s-explore-chaining">Let&#x27;s explore chaining</a></li>
+<li class="observablehq-secondary-link"><a href="#lets-explore-chaining">Let&#x27;s explore chaining</a></li>
 </ol>
 </nav>
 </aside>
-<div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div id="cell-6dfb8953" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:6dfb8953:--></div>
 <h1 id="distributions" tabindex="-1"><a class="observablehq-header-anchor" href="#distributions">Distributions</a></h1>
 <p>There are rarely truly static parameters in life. In business, either. Creating distribution-based business cases is pretty easy to do and a powerful way to model and add probability to your estimates.</p>
 <p>Let's create the fundamental primatives for working with distributions. Then let's introduce some math to manipulate them.</p>
@@ -284,22 +293,22 @@ return {divResult};
 </ol>
 <p>N.b., that the idea behind the <code>custom</code> distribution is actually to use <em>real data</em>. in other words, why fit a distribution if you have actual data? This is implemented in the python version of this package, but not yet in javascript.</p>
 <h3 id="normal-distribution" tabindex="-1"><a class="observablehq-header-anchor" href="#normal-distribution">Normal distribution</a></h3>
-<div id="cell-587ed566" class="observablehq observablehq--block"></div>
-<div id="cell-ae457847" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:587ed566:--></div>
+<div class="observablehq observablehq--block"><!--:ae457847:--></div>
 <h3 id="lognormal-distribution" tabindex="-1"><a class="observablehq-header-anchor" href="#lognormal-distribution">Lognormal distribution</a></h3>
-<div id="cell-edb90f45" class="observablehq observablehq--block"></div>
-<div id="cell-20c6309b" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:edb90f45:--></div>
+<div class="observablehq observablehq--block"><!--:20c6309b:--></div>
 <h3 id="beta-distribution" tabindex="-1"><a class="observablehq-header-anchor" href="#beta-distribution">Beta distribution</a></h3>
 <p>Beta distributions are super flexible. They can be uniform, or resemble lognormal skewed left or right. Play around.</p>
-<div id="cell-03fba68e" class="observablehq observablehq--block"></div>
-<div id="cell-dd578002" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:03fba68e:--></div>
+<div class="observablehq observablehq--block"><!--:dd578002:--></div>
 <h2 id="operations-on-distributions-for-business-cases" tabindex="-1"><a class="observablehq-header-anchor" href="#operations-on-distributions-for-business-cases">Operations on distributions for business cases</a></h2>
 <p>I'm convinced that almmost everyone builds <em>terrible</em> business cases. Every parameter in a business case is actually a distribution. Thus, distributions as an object or entity are important to be able to use, and on which we're able to do some quick math.</p>
 <p>Let's say that the prevalence of a disease across counties varies in an approximatly lognormal manner, centered about ~20% prevalence. Let's say it's actually a beta distribution.</p>
 <p>Let's create that distribution and visualize it.</p>
-<div id="cell-91a92b80" class="observablehq observablehq--block"></div>
-<h2 id="let's-explore-chaining" tabindex="-1"><a class="observablehq-header-anchor" href="#let's-explore-chaining">Let's explore chaining</a></h2>
-<div id="cell-77300cec" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:91a92b80:--></div>
+<h2 id="lets-explore-chaining" tabindex="-1"><a class="observablehq-header-anchor" href="#lets-explore-chaining">Let's explore chaining</a></h2>
+<div class="observablehq observablehq--block"><!--:77300cec:--></div>
 <p>Let's add two distributions together.</p>
 <pre data-language="javascript"><code class="language-javascript"><span class="hljs-comment">// Chain operations</span>
 <span class="hljs-keyword">const</span> addResult = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DistP</span>({
@@ -309,7 +318,7 @@ return {divResult};
 }).<span class="hljs-title function_">chainAdd</span>(uniformDist);
 <span class="hljs-title function_">view</span>(addResult.<span class="hljs-title function_">plot</span>())
 </code></pre>
-<div id="cell-8031f6ed" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:8031f6ed:--></div>
 <p>Let's multiply two distributions together.</p>
 <pre data-language="javascript"><code class="language-javascript"><span class="hljs-comment">// Chain operations</span>
 <span class="hljs-keyword">const</span> multResult = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DistP</span>({
@@ -321,7 +330,7 @@ return {divResult};
 <span class="hljs-comment">//plot it</span>
 <span class="hljs-title function_">view</span>(multResult.<span class="hljs-title function_">plot</span>())
 </code></pre>
-<div id="cell-a4a54ee6" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:a4a54ee6:--></div>
 <p>Let's divide two distributions.</p>
 <pre data-language="javascript"><code class="language-javascript"><span class="hljs-keyword">const</span> divResult = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DistP</span>({
     <span class="hljs-attr">name</span>: <span class="hljs-string">"Normal ÷ Uniform"</span>,
@@ -332,10 +341,12 @@ return {divResult};
 <span class="hljs-comment">//plot it</span>
 <span class="hljs-title function_">view</span>(multResult.<span class="hljs-title function_">plot</span>())
 </code></pre>
-<div id="cell-47e5da48" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:47e5da48:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./live-table-data"><span>Live Table</span></a><a rel="next" href="./funnel-chart"><span>Funnel Chart</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-23T16:36:31">Nov 23, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-03T02:01:16">Dec 3, 2024</a>.</div>
 </footer>
 </div>
+</body>
+</html>

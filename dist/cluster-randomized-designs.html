@@ -1,77 +1,79 @@
 <!DOCTYPE html>
+<html>
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.0">
 <title>Cluster Randomized Designs | Measurement By Design</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_observablehq/theme-air.css">
-<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air.aad62322.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
 <link rel="preload" as="style" href="./_npm/katex@0.16.10/dist/katex.min.css">
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air.css">
-<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air.aad62322.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
 <link rel="stylesheet" type="text/css" href="./_npm/katex@0.16.10/dist/katex.min.css">
-<link rel="modulepreload" href="./_observablehq/client.js">
-<link rel="modulepreload" href="./_observablehq/runtime.js">
-<link rel="modulepreload" href="./_observablehq/stdlib.js">
-<link rel="modulepreload" href="./_import/components/parallelmethods.8f1a55e7.js">
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/d3@7/+esm">
+<link rel="modulepreload" href="./_observablehq/client.bdfce3d3.js">
+<link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.63ee1033.js">
+<link rel="modulepreload" href="./_import/components/parallelmethods.b03db0aa.js">
 <link rel="modulepreload" href="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js">
-<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.js">
-<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
-<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/_esm.js">
-<link rel="modulepreload" href="./_observablehq/stdlib/tex.js">
-<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
-<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
-<link rel="modulepreload" href="./_npm/katex@0.16.10/_esm.js">
-<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
-<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/_esm.js">
-<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
-<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.625bbd4c.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/118fc3ce.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/tex.05d83e1d.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_npm/katex@0.16.10/6324e2c4.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e95f898e.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/d44feff9.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/5830b12a.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/626bedc4.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/b22c5864.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e1ff060.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/5851d7ef.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/dcd02767.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/567840a0.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/cf9b720b.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/5dcd62f4.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/f8e03c56.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/5bc129e1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/19c92b44.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/8debb4ba.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/4b0cc581.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
 <script type="module">
 
-import {define} from "./_observablehq/client.js";
+import {define} from "./_observablehq/client.bdfce3d3.js";
 
 define({id: "59b5fcea", outputs: ["calculateSampleSizeForMeans","calculateSampleSizeForProportions","calculateVarianceFormulaIndividualRandomized","calculateVarianceFormulaClusterRandomized","generateVarianceData","generateUnifiedVarianceData"], body: async () => {
-const {calculateSampleSizeForMeans, calculateSampleSizeForProportions, calculateVarianceFormulaIndividualRandomized, calculateVarianceFormulaClusterRandomized, generateVarianceData, generateUnifiedVarianceData} = await import("./_import/components/parallelmethods.8f1a55e7.js");
+const {calculateSampleSizeForMeans, calculateSampleSizeForProportions, calculateVarianceFormulaIndividualRandomized, calculateVarianceFormulaClusterRandomized, generateVarianceData, generateUnifiedVarianceData} = await import("./_import/components/parallelmethods.b03db0aa.js");
 
 return {calculateSampleSizeForMeans,calculateSampleSizeForProportions,calculateVarianceFormulaIndividualRandomized,calculateVarianceFormulaClusterRandomized,generateVarianceData,generateUnifiedVarianceData};
 }});
 
 define({id: "18a325c3", outputs: ["d3","numeric","require","jStat"], body: async () => {
-const [d3, numeric, {require}] = await Promise.all([import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"), import("./_node/d3-require@1.3.0/index.js")]);
+const [d3, numeric, {require}] = await Promise.all([import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"), import("./_node/d3-require@1.3.0/index.45152b81.js")]);
 const jStat = await require("jstat@1.9.4")
 return {d3,numeric,require,jStat};
 }});
@@ -86,13 +88,13 @@ define({id: "74486fa9", inputs: ["view","equation_3"], body: (view,equation_3) =
 view(equation_3)
 }});
 
-define({id: "691ff5e5", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "691ff5e5", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\sigma^2`
 ))
 }});
 
-define({id: "092e3ae4", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "092e3ae4", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`n`
 ))
@@ -102,31 +104,31 @@ define({id: "ffd9b282", inputs: ["view","equation_4"], body: (view,equation_4) =
 view(equation_4)
 }});
 
-define({id: "691ff5e5-1", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "691ff5e5-1", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\sigma^2`
 ))
 }});
 
-define({id: "7fac2155", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "7fac2155", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`m`
 ))
 }});
 
-define({id: "815f512a", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "815f512a", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\rho`
 ))
 }});
 
-define({id: "cf546aab", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "cf546aab", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`K`
 ))
 }});
 
-define({id: "83c41166", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "83c41166", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\left[ 1 + (m - 1) \rho \right]`
 ))
@@ -179,7 +181,7 @@ const rho_var_selection = Generators.input(rho_var)
 return {sigma_var_selection,n_var_selection,k_var_selection,m_var_selection,rho_var_selection};
 }});
 
-define({id: "e8f4c107", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "e8f4c107", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`n=k \cdot m`
 ))
@@ -199,25 +201,25 @@ const variance2 = calculateVarianceFormulaClusterRandomized(
 return {variance1,variance2};
 }});
 
-define({id: "2718efb5", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "2718efb5", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\text{Var}_\text{Individual}=` 
 ))
 }});
 
-define({id: "490e9731", inline: true, inputs: ["variance1","display"], body: async (variance1,display) => {
+define({id: "490e9731", mode: "inline", inputs: ["variance1","display"], body: async (variance1,display) => {
 display(await(
 variance1.toFixed(3)
 ))
 }});
 
-define({id: "1166f951", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "1166f951", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\text{Var}_\text{cluster}=` 
 ))
 }});
 
-define({id: "25bacbbc", inline: true, inputs: ["variance2","display"], body: async (variance2,display) => {
+define({id: "25bacbbc", mode: "inline", inputs: ["variance2","display"], body: async (variance2,display) => {
 display(await(
 variance2.toFixed(3)
 ))
@@ -282,7 +284,7 @@ view(variance_comparison)
 return {variance_comparison};
 }});
 
-define({id: "815f512a-1", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "815f512a-1", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\rho`
 ))
@@ -297,13 +299,13 @@ view(equation_icc)
 return {equation_icc};
 }});
 
-define({id: "fa9abff5", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "fa9abff5", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\sigma_b^2`
 ))
 }});
 
-define({id: "fa9abff5-1", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "fa9abff5-1", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\sigma_b^2`
 ))
@@ -333,13 +335,13 @@ view(equation_km)
 return {equation_km};
 }});
 
-define({id: "7fac2155-1", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "7fac2155-1", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`m`
 ))
 }});
 
-define({id: "643c39c0", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "643c39c0", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`k`
 ))
@@ -354,19 +356,19 @@ view(equation_k)
 return {equation_k};
 }});
 
-define({id: "092e3ae4-1", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "092e3ae4-1", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`n`
 ))
 }});
 
-define({id: "092e3ae4-2", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "092e3ae4-2", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`n`
 ))
 }});
 
-define({id: "c691d519", inline: true, inputs: ["view","n_proportions"], body: (view,n_proportions) => {
+define({id: "c691d519", mode: "inline", inputs: ["view","n_proportions"], body: (view,n_proportions) => {
 view(n_proportions)
 }});
 
@@ -377,13 +379,13 @@ view(p1_proportions)
 view(p2_proportions)
 }});
 
-define({id: "32debcc8", inline: true, inputs: ["des_eff","display"], body: async (des_eff,display) => {
+define({id: "32debcc8", mode: "inline", inputs: ["des_eff","display"], body: async (des_eff,display) => {
 display(await(
 des_eff.toFixed(3)
 ))
 }});
 
-define({id: "dfa022ea", inline: true, inputs: ["total_subjects","des_eff","n_proportions","display"], body: async (total_subjects,des_eff,n_proportions,display) => {
+define({id: "dfa022ea", mode: "inline", inputs: ["total_subjects","des_eff","n_proportions","display"], body: async (total_subjects,des_eff,n_proportions,display) => {
 display(await(
 total_subjects(des_eff,n_proportions).toFixed(3)
 ))
@@ -432,19 +434,19 @@ define({id: "01ba4719", body: () => {
 
 }});
 
-define({id: "7fac2155-2", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "7fac2155-2", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`m`
 ))
 }});
 
-define({id: "643c39c0-1", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "643c39c0-1", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`k`
 ))
 }});
 
-define({id: "338248ff", inline: true, inputs: ["clusters_per_arm","total_subjects","des_eff","n_proportions","m_var_size","display"], body: async (clusters_per_arm,total_subjects,des_eff,n_proportions,m_var_size,display) => {
+define({id: "338248ff", mode: "inline", inputs: ["clusters_per_arm","total_subjects","des_eff","n_proportions","m_var_size","display"], body: async (clusters_per_arm,total_subjects,des_eff,n_proportions,m_var_size,display) => {
 display(await(
 clusters_per_arm(total_subjects(des_eff,n_proportions), m_var_size).toFixed(3)
 ))
@@ -495,25 +497,25 @@ const n_proportions = calculateSampleSizeForProportions(
 return {n_proportions};
 }});
 
-define({id: "643c39c0-2", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "643c39c0-2", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`k`
 ))
 }});
 
-define({id: "55f0f5df", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "55f0f5df", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\le`
 ))
 }});
 
-define({id: "815f512a-2", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "815f512a-2", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\rho`
 ))
 }});
 
-define({id: "65626f6c", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "65626f6c", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`2k-2`
 ))
@@ -526,19 +528,21 @@ const equation_ccv = tex.block`\begin{equation}
 return {equation_ccv};
 }});
 
-define({id: "598b833e", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "598b833e", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\mu`
 ))
 }});
 
-define({id: "2e2cf06c", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "2e2cf06c", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`\sigma_{b}^2`
 ))
 }});
 
 </script>
+</head>
+<body>
 <input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
 <label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
 <nav id="observablehq-sidebar">
@@ -552,11 +556,11 @@ tex`\sigma_{b}^2`
   <section>
     <summary>Demo</summary>
     <ol>
-    <li class="observablehq-link"><a href="./random-forest">Intervention Demo</a></li>
+    <li class="observablehq-link"><a href="./intervention-demo">Intervention Demo</a></li>
     </ol>
   </section>
-  <section>
-    <summary>Working Folder</summary>
+  <details open>
+    <summary>Primitive Assets</summary>
     <ol>
     <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
     <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
@@ -564,25 +568,30 @@ tex`\sigma_{b}^2`
     <li class="observablehq-link"><a href="./distp-demo">Distribution Demo</a></li>
     <li class="observablehq-link"><a href="./funnel-chart">Funnel Chart</a></li>
     <li class="observablehq-link"><a href="./intervention-design">Intervention Design</a></li>
+    <li class="observablehq-link"><a href="./random-forest">In Browser Random Forests</a></li>
+    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link"><a href="./experimental-design">Simple Experimental Design</a></li>
+    <li class="observablehq-link"><a href="./microsite">Microsite Demo</a></li>
+    <li class="observablehq-link"><a href="./collapsible-cell">Collapsible Cell</a></li>
     </ol>
-  </section>
+  </details>
 </nav>
-<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
 <div>Contents</div>
 <ol>
 <li class="observablehq-secondary-link"><a href="#cluster-randomized">Cluster Randomized</a></li>
 <li class="observablehq-secondary-link"><a href="#quantifying-the-effect-of-clustering">Quantifying the effect of clustering</a></li>
-<li class="observablehq-secondary-link"><a href="#how-do-you-estimate-the-icc%3F">How do you estimate the ICC?</a></li>
+<li class="observablehq-secondary-link"><a href="#how-do-you-estimate-the-icc">How do you estimate the ICC?</a></li>
 <li class="observablehq-secondary-link"><a href="#caveats-for-rcts-with-a-small-number-of-clusters">Caveats for RCTs with a small number of clusters</a></li>
 </ol>
 </nav>
 </aside>
-<div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div id="cell-59b5fcea" class="observablehq observablehq--block"></div>
-<div id="cell-18a325c3" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:59b5fcea:--></div>
+<div class="observablehq observablehq--block"><!--:18a325c3:--></div>
 <style>
       body {
       font: 13.5px/1.5 var(--serif);
@@ -640,61 +649,61 @@ tex`\sigma_{b}^2`
 <div class="horizontal-line"></div>
 <h1 id="cluster-randomized" tabindex="-1"><a class="observablehq-header-anchor" href="#cluster-randomized">Cluster Randomized</a></h1>
 <p><strong>Question:</strong> why do the formula's change when using a cluster randomized trial (CRT) design from this:</p>
-<div id="cell-608bb43c" class="observablehq observablehq--block"></div>
-<div id="cell-74486fa9" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
-<p>Where <span id="cell-691ff5e5"><span class="observablehq-loading"></span></span>is the variance of the outcome variable, and <span id="cell-092e3ae4"><span class="observablehq-loading"></span></span>: is the total number of individuals.</p>
+<div class="observablehq observablehq--block"><!--:608bb43c:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:74486fa9:--></div>
+<p>Where <observablehq-loading></observablehq-loading><!--:691ff5e5:-->is the variance of the outcome variable, and <observablehq-loading></observablehq-loading><!--:092e3ae4:-->: is the total number of individuals.</p>
 <p>To this?</p>
-<div id="cell-ffd9b282" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
-<p>Where <span id="cell-691ff5e5-1"><span class="observablehq-loading"></span></span> is the variance of the outcome variable, <span id="cell-7fac2155"><span class="observablehq-loading"></span></span> is the average cluster size (number of individuals per cluster), <span id="cell-815f512a"><span class="observablehq-loading"></span></span> is the intracluster correlation coefficient (ICC), and <span id="cell-cf546aab"><span class="observablehq-loading"></span></span> is the total number of clusters per arm.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:ffd9b282:--></div>
+<p>Where <observablehq-loading></observablehq-loading><!--:691ff5e5-1:--> is the variance of the outcome variable, <observablehq-loading></observablehq-loading><!--:7fac2155:--> is the average cluster size (number of individuals per cluster), <observablehq-loading></observablehq-loading><!--:815f512a:--> is the intracluster correlation coefficient (ICC), and <observablehq-loading></observablehq-loading><!--:cf546aab:--> is the total number of clusters per arm.</p>
 <p><strong>Answer:</strong> Subjects within the same cluster may be more similar to each other than to subjects in other clusters. This correlation leads to an increase in the variance compared to simple random sampling.</p>
-<p>This: <span id="cell-83c41166"><span class="observablehq-loading"></span></span> is known as the <strong>inflation effect</strong> or <strong>design effect</strong></p>
+<p>This: <observablehq-loading></observablehq-loading><!--:83c41166:--> is known as the <strong>inflation effect</strong> or <strong>design effect</strong></p>
 <p>What is the difference? Does this matter?</p>
-<div id="cell-8580bd89" class="observablehq observablehq--block"></div>
-<div id="cell-7ff07e47" class="observablehq observablehq--block"></div>
-<p>For equivalence, set <span id="cell-e8f4c107"><span class="observablehq-loading"></span></span></p>
-<div id="cell-14731080" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:8580bd89:--></div>
+<div class="observablehq observablehq--block"><!--:7ff07e47:--></div>
+<p>For equivalence, set <observablehq-loading></observablehq-loading><!--:e8f4c107:--></p>
+<div class="observablehq observablehq--block"><!--:14731080:--></div>
 <p>^ ICC: intra-cluster correlation coefficient.
-<span id="cell-2718efb5"><span class="observablehq-loading"></span></span> <span id="cell-490e9731"><span class="observablehq-loading"></span></span>
-<span id="cell-1166f951"><span class="observablehq-loading"></span></span> <span id="cell-25bacbbc"><span class="observablehq-loading"></span></span></p>
-<div id="cell-c5745454" class="observablehq observablehq--block"></div>
-<div id="cell-172cb070" class="observablehq observablehq--block"></div>
-<div id="cell-c6831c06" class="observablehq observablehq--block"></div>
+<observablehq-loading></observablehq-loading><!--:2718efb5:--> <observablehq-loading></observablehq-loading><!--:490e9731:-->
+<observablehq-loading></observablehq-loading><!--:1166f951:--> <observablehq-loading></observablehq-loading><!--:25bacbbc:--></p>
+<div class="observablehq observablehq--block"><!--:c5745454:--></div>
+<div class="observablehq observablehq--block"><!--:172cb070:--></div>
+<div class="observablehq observablehq--block"><!--:c6831c06:--></div>
 <h2 id="quantifying-the-effect-of-clustering" tabindex="-1"><a class="observablehq-header-anchor" href="#quantifying-the-effect-of-clustering">Quantifying the effect of clustering</a></h2>
-<p>The ICC, or <span id="cell-815f512a-1"><span class="observablehq-loading"></span></span> quantifies the effect of clustering. It's a quantity between 0--1.</p>
-<div id="cell-a56d80cc" class="observablehq observablehq--block"></div>
-<p>Where <span id="cell-fa9abff5"><span class="observablehq-loading"></span></span> is the <em>between</em> cluster variance and <span id="cell-fa9abff5-1"><span class="observablehq-loading"></span></span> is the <em>within</em> cluster variance.</p>
+<p>The ICC, or <observablehq-loading></observablehq-loading><!--:815f512a-1:--> quantifies the effect of clustering. It's a quantity between 0--1.</p>
+<div class="observablehq observablehq--block"><!--:a56d80cc:--></div>
+<p>Where <observablehq-loading></observablehq-loading><!--:fa9abff5:--> is the <em>between</em> cluster variance and <observablehq-loading></observablehq-loading><!--:fa9abff5-1:--> is the <em>within</em> cluster variance.</p>
 <p>The total variance is equal to the sum of the between and within cluster variance:</p>
-<div id="cell-b6f5160f" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:b6f5160f:--></div>
 <p>So when we're trying to determine the sample size in a cluster randomized trial, the required number of subjects in each arm is inflated by the design effect.</p>
-<div id="cell-6a2e0559" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:6a2e0559:--></div>
 <p>Becomes:</p>
-<div id="cell-24fdd8b6" class="observablehq observablehq--block"></div>
-<p>Where we then divide by <span id="cell-7fac2155-1"><span class="observablehq-loading"></span></span> to get the number of clusters per arm, <span id="cell-643c39c0"><span class="observablehq-loading"></span></span> for a CRT testing two proportions.</p>
-<div id="cell-1b2a05d2" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:24fdd8b6:--></div>
+<p>Where we then divide by <observablehq-loading></observablehq-loading><!--:7fac2155-1:--> to get the number of clusters per arm, <observablehq-loading></observablehq-loading><!--:643c39c0:--> for a CRT testing two proportions.</p>
+<div class="observablehq observablehq--block"><!--:1b2a05d2:--></div>
 <div class="note" label="Example: 4 steps to size a cluster randomized trial, with a lot of caveats">
 <p>For the case of a binary outcome for superiority, let's walk through the 3 steps needed to size this study.</p>
 <ol>
-<li>Calculate <span id="cell-092e3ae4-1"><span class="observablehq-loading"></span></span> needed in non-randomized design. In this case, a CRT testing two proportions. Observations needed per arm, <b> <span id="cell-092e3ae4-2"><span class="observablehq-loading"></span></span> = <span id="cell-c691d519"><span class="observablehq-loading"></span></span></b></li>
+<li>Calculate <observablehq-loading></observablehq-loading><!--:092e3ae4-1:--> needed in non-randomized design. In this case, a CRT testing two proportions. Observations needed per arm, <b> <observablehq-loading></observablehq-loading><!--:092e3ae4-2:--> = <observablehq-loading></observablehq-loading><!--:c691d519:--></b></li>
 </ol>
-<div id="cell-7066cadf" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:7066cadf:--></div>
 <ol start="2">
-<li>Inflate by the design effect, <b><span id="cell-32debcc8"><span class="observablehq-loading"></span></span> </b>. Total number of subjects needed, <b> <span id="cell-dfa022ea"><span class="observablehq-loading"></span></span></b>.</li>
+<li>Inflate by the design effect, <b><observablehq-loading></observablehq-loading><!--:32debcc8:--> </b>. Total number of subjects needed, <b> <observablehq-loading></observablehq-loading><!--:dfa022ea:--></b>.</li>
 </ol>
-<div id="cell-6374b712" class="observablehq observablehq--block"></div>
-<div id="cell-f4bc311b" class="observablehq observablehq--block"></div>
-<div id="cell-4920aa9b" class="observablehq observablehq--block"></div>
-<div id="cell-01ba4719" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:6374b712:--></div>
+<div class="observablehq observablehq--block"><!--:f4bc311b:--></div>
+<div class="observablehq observablehq--block"><!--:4920aa9b:--></div>
+<div class="observablehq observablehq--block"><!--:01ba4719:--></div>
 <ol start="3">
-<li>Estimate number of clusters needed by didviding by <span id="cell-7fac2155-2"><span class="observablehq-loading"></span></span>: <b><span id="cell-643c39c0-1"><span class="observablehq-loading"></span></span> = <span id="cell-338248ff"><span class="observablehq-loading"></span></span></b>.</li>
+<li>Estimate number of clusters needed by didviding by <observablehq-loading></observablehq-loading><!--:7fac2155-2:-->: <b><observablehq-loading></observablehq-loading><!--:643c39c0-1:--> = <observablehq-loading></observablehq-loading><!--:338248ff:--></b>.</li>
 </ol>
-<div id="cell-04934017" class="observablehq observablehq--block"></div>
-<div id="cell-80bb1516" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:04934017:--></div>
+<div class="observablehq observablehq--block"><!--:80bb1516:--></div>
 <ol start="4">
-<li>If <span id="cell-643c39c0-2"><span class="observablehq-loading"></span></span> is <span id="cell-55f0f5df"><span class="observablehq-loading"></span></span> 10--15, add an addition cluster per arm.</li>
+<li>If <observablehq-loading></observablehq-loading><!--:643c39c0-2:--> is <observablehq-loading></observablehq-loading><!--:55f0f5df:--> 10--15, add an addition cluster per arm.</li>
 </ol>
 </div>
-<h2 id="how-do-you-estimate-the-icc%3F" tabindex="-1"><a class="observablehq-header-anchor" href="#how-do-you-estimate-the-icc%3F">How do you estimate the ICC?</a></h2>
-<p>The ICC <span id="cell-815f512a-2"><span class="observablehq-loading"></span></span> is assumed or estimated. When historical data is available, you can obtain an estimate by fitting a mixed model to the data. However, the uncertainty associated with any estimated correlations (particular for small n studies) may be large, rendering these estimates to be more or less uninformative.</p>
+<h2 id="how-do-you-estimate-the-icc" tabindex="-1"><a class="observablehq-header-anchor" href="#how-do-you-estimate-the-icc">How do you estimate the ICC?</a></h2>
+<p>The ICC <observablehq-loading></observablehq-loading><!--:815f512a-2:--> is assumed or estimated. When historical data is available, you can obtain an estimate by fitting a mixed model to the data. However, the uncertainty associated with any estimated correlations (particular for small n studies) may be large, rendering these estimates to be more or less uninformative.</p>
 <p>When the endpoints are binary, the ICC's put into these calculations need to be put in the proportion scale. (fitted by linear mixed models, not logistic models, to estimate the ICC's).</p>
 <p>When there's no information, not all is lost. However, as the ICC is a measure of correlation within the same cluster, it really only make sense to use an ICC value from other similar trials or studies will be appropriate when:</p>
 <ol>
@@ -708,17 +717,19 @@ tex`\sigma_{b}^2`
 <p>These formulas are generally derived/applied to large cluster studies.</p>
 <ol>
 <li>For parallel arm analysis, use critical values from the t-distribution, rather than the normal (z) distribution</li>
-<li>Set the number of degrees of freedom to: <span id="cell-65626f6c"><span class="observablehq-loading"></span></span></li>
+<li>Set the number of degrees of freedom to: <observablehq-loading></observablehq-loading><!--:65626f6c:--></li>
 <li>If needed at the sample-size design stage, add one cluster per arm (or two, if you're feeling extra conservative).</li>
 </ol>
 <div class="note">
 <p>Qunatifying the ICC is typically done by measuring the degree of clustering. However, an alternative is to use the Coefficient of Cluster Variation (CCV):</p>
-<div id="cell-3a91ff80" class="observablehq observablehq--block"></div>
-<p>where <span id="cell-598b833e"><span class="observablehq-loading"></span></span> is the true (unknown) cluster mean, proportion, or rate; and <span id="cell-2e2cf06c"><span class="observablehq-loading"></span></span> is the between-cluster variance.</p>
+<div class="observablehq observablehq--block"><!--:3a91ff80:--></div>
+<p>where <observablehq-loading></observablehq-loading><!--:598b833e:--> is the true (unknown) cluster mean, proportion, or rate; and <observablehq-loading></observablehq-loading><!--:2e2cf06c:--> is the between-cluster variance.</p>
 <p>This can be a useful metric when only cluster-level means are available from any data being used to estimate correlations, or when the outcome is a count or rate rather than a continuous or binary outcome (e.g., gap closure).</p>
 </div>
 </main>
 <footer id="observablehq-footer">
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-23T16:36:31">Nov 23, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-03T02:01:16">Dec 3, 2024</a>.</div>
 </footer>
 </div>
+</body>
+</html>

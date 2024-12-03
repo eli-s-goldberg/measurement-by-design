@@ -1,81 +1,70 @@
 <!DOCTYPE html>
+<html>
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.0">
 <title>Home-grown In-Browser ML -- Building a Random Forest Classifier in JavaScript | Measurement By Design</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
-<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
-<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
-<link rel="modulepreload" href="./_observablehq/client.js">
-<link rel="modulepreload" href="./_observablehq/runtime.js">
-<link rel="modulepreload" href="./_observablehq/stdlib.js">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="./_observablehq/client.bdfce3d3.js">
+<link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.63ee1033.js">
 <link rel="modulepreload" href="./_import/components/RandomForestClassifier.1e680409.js">
 <link rel="modulepreload" href="./_import/components/DonutData.24ea9019.js">
-<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
-<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
-<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/_esm.js">
-<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
-<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/_esm.js">
-<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
-<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.625bbd4c.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/118fc3ce.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e95f898e.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/d44feff9.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/5830b12a.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/626bedc4.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/b22c5864.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e1ff060.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/5851d7ef.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/dcd02767.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/567840a0.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/cf9b720b.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/5dcd62f4.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/f8e03c56.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/5bc129e1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/19c92b44.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/8debb4ba.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/4b0cc581.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
 <script type="module">
 
-import {define} from "./_observablehq/client.js";
-import {registerFile} from "./_observablehq/stdlib.js";
-
-registerFile("./data/decision-tree.jpg", {"name":"./data/decision-tree.jpg","mimeType":"image/jpeg","path":"./data/decision-tree.jpg"});
+import {define} from "./_observablehq/client.bdfce3d3.js";
 
 define({id: "abdbd3b2", outputs: ["RandomForestClassifier","generateDonutHoleData"], body: async () => {
 const [{RandomForestClassifier}, {generateDonutHoleData}] = await Promise.all([import("./_import/components/RandomForestClassifier.1e680409.js"), import("./_import/components/DonutData.24ea9019.js")]);
 
 return {RandomForestClassifier,generateDonutHoleData};
-}});
-
-define({id: "f091c2cf", inputs: ["FileAttachment","view"], outputs: ["trees"], body: async (FileAttachment,view) => {
-      const trees = await FileAttachment("./data/decision-tree.jpg").image({
-        style: "width: 100vw; height: 150px; object-fit: cover; box-shadow: 8px 8px 8px;",
-        title: "Trees",
-        alt: "https://unsplash.com/@sebastian_unrau?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-      });
-
-      view(trees);
-return {trees};
 }});
 
 define({id: "c0af19bd", inputs: ["Inputs","html","view","Generators"], outputs: ["donutParamsForm","donutParamsForm_Selections"], body: (Inputs,html,view,Generators) => {
@@ -431,19 +420,19 @@ view(confusionPlot)
 
 }});
 
-define({id: "5879092f", inline: true, inputs: ["accuracy","display"], body: async (accuracy,display) => {
+define({id: "5879092f", mode: "inline", inputs: ["accuracy","display"], body: async (accuracy,display) => {
 display(await(
 accuracy
 ))
 }});
 
-define({id: "2ed6b4c1", inline: true, inputs: ["recall","display"], body: async (recall,display) => {
+define({id: "2ed6b4c1", mode: "inline", inputs: ["recall","display"], body: async (recall,display) => {
 display(await(
 recall
 ))
 }});
 
-define({id: "68c2f9ee", inline: true, inputs: ["precision","display"], body: async (precision,display) => {
+define({id: "68c2f9ee", mode: "inline", inputs: ["precision","display"], body: async (precision,display) => {
 display(await(
 precision
 ))
@@ -454,6 +443,8 @@ view(rocPlot);
 }});
 
 </script>
+</head>
+<body>
 <input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
 <label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
 <nav id="observablehq-sidebar">
@@ -464,14 +455,14 @@ view(rocPlot);
   <ol>
     <li class="observablehq-link"><a href="./">Introduction</a></li>
   </ol>
-  <section class="observablehq-section-active">
+  <section>
     <summary>Demo</summary>
     <ol>
-    <li class="observablehq-link observablehq-link-active"><a href="./random-forest">Intervention Demo</a></li>
+    <li class="observablehq-link"><a href="./intervention-demo">Intervention Demo</a></li>
     </ol>
   </section>
-  <section>
-    <summary>Working Folder</summary>
+  <details open class="observablehq-section-active">
+    <summary>Primitive Assets</summary>
     <ol>
     <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
     <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
@@ -479,21 +470,20 @@ view(rocPlot);
     <li class="observablehq-link"><a href="./distp-demo">Distribution Demo</a></li>
     <li class="observablehq-link"><a href="./funnel-chart">Funnel Chart</a></li>
     <li class="observablehq-link"><a href="./intervention-design">Intervention Design</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./random-forest">In Browser Random Forests</a></li>
+    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link"><a href="./experimental-design">Simple Experimental Design</a></li>
+    <li class="observablehq-link"><a href="./microsite">Microsite Demo</a></li>
+    <li class="observablehq-link"><a href="./collapsible-cell">Collapsible Cell</a></li>
     </ol>
-  </section>
+  </details>
 </nav>
-<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
-<div>Contents</div>
-<ol>
-<li class="observablehq-secondary-link"><a href="#1.-let&#x27;s-just-get-to-the-neato-visuals">1. Let&#x27;s just get to the neato visuals</a></li>
-<li class="observablehq-secondary-link"><a href="#2.-how-does-each-part-of-this-function-work%3F">2. How Does Each Part of This Function Work?</a></li>
-<li class="observablehq-secondary-link"><a href="#3.-what&#x27;s-next%3F">3. What&#x27;s Next?</a></li>
-</ol>
 </nav>
 </aside>
-<div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
 <style>
   body {
@@ -562,571 +552,39 @@ view(rocPlot);
   }
 
 </style>
-<div id="cell-abdbd3b2" class="observablehq observablehq--block"></div>
-<h1 id="in-browser-machine-learning%3A-building-a-random-forest-classifier-in-javascript" tabindex="-1"><a class="observablehq-header-anchor" href="#in-browser-machine-learning%3A-building-a-random-forest-classifier-in-javascript">In-Browser Machine Learning: Building a Random Forest Classifier in JavaScript</a></h1>
-<p>I had an afternoon to myself while my wife and child attended yet another birthday party (seriously, how many friends does a five-year-old need?). With no distractions, I decided to embark on a six-hour coding marathon.</p>
-<p>In hindsight, this project was supe fun learning experience in understanding the inner workings of Random Forests and the delightful quirks of <strong>PURE</strong> JavaScript (<strong>COUGH</strong> <em>NOT MY MOST EXPERIENCED LANGUAGE AND ITS ECCENTRICITIES DRIVE ME UP A WALL</em>). To be brutally honest, this would not have been possible without the tireless patience of ChatGPT, arguably the world's most competent rubber duck.</p>
-<figure>
-  <div style="width: 55vw; margin: 0 auto;">
-<div id="cell-f091c2cf" class="observablehq observablehq--block"></div>
-  </div>
-  <figcaption style="text-align: center;">
-    Photo by <a href="https://unsplash.com/@madebyjens?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash" target="_blank" rel="noopener noreferrer">Jens Lelie</a> on 
-    <a href="https://unsplash.com/photos/two-roads-between-trees-u0vgcIOQG08?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash" target="_blank" rel="noopener noreferrer">Unsplash</a>
-  </figcaption>
-</figure>
-<p><strong>Why Did I Choose to Rewrite a Random Forest in JavaScript? Am I Some Kind of Masochist?</strong></p>
-<p>Firstly, I'm extremely stressed out. When stress hits, I find solace in tackling complex problems; nothing says relaxation like reinventing the wheel (see <a href="https://www.npmjs.com/package/ml-random-forest" target="_blank" rel="noopener noreferrer">ml-random-forest js</a>) in a language that tests my patience.</p>
-<p>Secondly, I wanted a challenge. Python is my go-to language for data science, thanks to its rich ecosystem of libraries like scikit-learn, pandas, and numpy. JavaScript, on the other hand, doesn't quite measure up in that department. Sure, it has libraries, but let's be real... they're not the same, are they? Despite this, I love the convenience of JavaScript and Observable for bringing beautiful, interactive content to the web.</p>
-<p>Third(ly?), in my data science career, I've noticed that most tasks require simple solutions, and simple models are largely sufficient (#MaintainROI). Running machine learning models directly in the browser without server-side dependencies might not have massive practical applications, unless you're into flashy demos and educational tools. I'd love to be proven wrong!</p>
-<h2 id="1.-let's-just-get-to-the-neato-visuals" tabindex="-1"><a class="observablehq-header-anchor" href="#1.-let's-just-get-to-the-neato-visuals">1. Let's just get to the neato visuals</a></h2>
-<p>To test the classifier, I introduced a donut hole classification example... because I was totally eating and drinking me some 'dunks when I decided to embark on this. The goal is to classify points inside a circle (the hole) differently from those in the surrounding donut-shaped area.</p>
-<h3 id="1.1-data-generation" tabindex="-1"><a class="observablehq-header-anchor" href="#1.1-data-generation">1.1 Data Generation</a></h3>
-<p>Let's generate some synthetic data. Because I <em>just</em> got Dunkin', let's make this some kind of donut-hole classification. And thank you ChatGPT for whipping this one up in its entirety...</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">generateDonutHoleData</span>(<span class="hljs-params">nOuter, nInner, innerRadius, outerRadius</span>) {
-    <span class="hljs-keyword">const</span> X = [];
-    <span class="hljs-keyword">const</span> y = [];
-
-    <span class="hljs-keyword">function</span> <span class="hljs-title function_">randomPointInCircle</span>(<span class="hljs-params">radiusMin, radiusMax</span>) {
-        <span class="hljs-keyword">const</span> angle = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">2</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-property">PI</span>;
-        <span class="hljs-keyword">const</span> radius = radiusMin + <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (radiusMax - radiusMin);
-        <span class="hljs-keyword">const</span> x = radius * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">cos</span>(angle);
-        <span class="hljs-keyword">const</span> y = radius * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(angle);
-        <span class="hljs-keyword">return</span> [x, y];
-    }
-
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nOuter; i++) {
-        <span class="hljs-keyword">const</span> [x, yVal] = <span class="hljs-title function_">randomPointInCircle</span>(innerRadius, outerRadius);
-        X.<span class="hljs-title function_">push</span>([x, yVal]);
-        y.<span class="hljs-title function_">push</span>(<span class="hljs-number">0</span>);
-    }
-
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nInner; i++) {
-        <span class="hljs-keyword">const</span> [x, yVal] = <span class="hljs-title function_">randomPointInCircle</span>(<span class="hljs-number">0</span>, innerRadius);
-        X.<span class="hljs-title function_">push</span>([x, yVal]);
-        y.<span class="hljs-title function_">push</span>(<span class="hljs-number">1</span>);
-    }
-
-    <span class="hljs-keyword">return</span> { X, y };
-}
-</code></pre>
-<p>This function creates a challenging dataset for the classifier to learn non-linear boundaries.</p>
-<h3 id="1.2-training-and-visualization" tabindex="-1"><a class="observablehq-header-anchor" href="#1.2-training-and-visualization">1.2 Training and Visualization</a></h3>
+<div class="observablehq observablehq--block"><!--:abdbd3b2:--></div>
+<h1 id="in-browser-machine-learning-building-a-random-forest-classifier-in-java-script" tabindex="-1"><a class="observablehq-header-anchor" href="#in-browser-machine-learning-building-a-random-forest-classifier-in-java-script">In-Browser Machine Learning: Building a Random Forest Classifier in JavaScript</a></h1>
+<h2 id="training-and-visualization" tabindex="-1"><a class="observablehq-header-anchor" href="#training-and-visualization">Training and Visualization</a></h2>
 <p>Donut-hole Parameters:</p>
-<div id="cell-c0af19bd" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:c0af19bd:--></div>
 <p>Random forest classifier parameters:</p>
-<div id="cell-f70bca2b" class="observablehq observablehq--block"></div>
-<div id="cell-8988d116" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:f70bca2b:--></div>
+<div class="observablehq observablehq--block"><!--:8988d116:--></div>
 <p>Ok cool. Now let's project the decision boundary over the 'donut-data' to visualize our trained model.</p>
-<div id="cell-18667d62" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:18667d62:--></div>
 <p>Here's the trained forest object.</p>
-<div id="cell-b2d26022" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:b2d26022:--></div>
 <p>Neat. Now, let's visualize it. Note that trees here are connected to the terminal node. I don't want to mess with that visual (for now), so just like, get over it or whatever and stare at my beatiful FOREST.</p>
-<div id="cell-59892206" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:59892206:--></div>
 <p>Ok. Now let's make some predictions and check the performance.</p>
-<div id="cell-a049f78d" class="observablehq observablehq--block"></div>
-<div id="cell-65d8c314" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:a049f78d:--></div>
+<div class="observablehq observablehq--block"><!--:65d8c314:--></div>
 <p>Should we make an AUC chart? I guess.</p>
-<div id="cell-9369a6d4" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:9369a6d4:--></div>
 <div class="grid grid-cols-2">
   <div>
-<div id="cell-a2e9c13f" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
-<p>The accuracy <span id="cell-5879092f"><span class="observablehq-loading"></span></span>, recall <span id="cell-2ed6b4c1"><span class="observablehq-loading"></span></span>, and precision <span id="cell-68c2f9ee"><span class="observablehq-loading"></span></span>.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:a2e9c13f:--></div>
+<p>The accuracy <observablehq-loading></observablehq-loading><!--:5879092f:-->, recall <observablehq-loading></observablehq-loading><!--:2ed6b4c1:-->, and precision <observablehq-loading></observablehq-loading><!--:68c2f9ee:-->.</p>
   </div>
   <div>
-<div id="cell-9e2dce0b" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:9e2dce0b:--></div>
  </div>
 </div>
-<h2 id="2.-how-does-each-part-of-this-function-work%3F" tabindex="-1"><a class="observablehq-header-anchor" href="#2.-how-does-each-part-of-this-function-work%3F">2. How Does Each Part of This Function Work?</a></h2>
-<p>Let's dive into the <code>RandomForestClassifier</code> class. I'll walk you through its methods in the order they are executed during training and prediction, explaining how they fit together, and sprinkle in some commentary to keep things interesting.</p>
-<h3 id="2.1-constructor" tabindex="-1"><a class="observablehq-header-anchor" href="#2.1-constructor">2.1 Constructor</a></h3>
-<p>The journey begins with initializing the Random Forest classifier. The constructor sets up the model with user-defined parameters, controlling the complexity and randomness of the forest. This setup allows us to balance the bias-variance trade-off, eventually finding the sweet spot between underfitting and overfitting.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">constructor</span>(<span class="hljs-params">{ nEstimators = <span class="hljs-number">10</span>, maxDepth = <span class="hljs-number">5</span>, minSize = <span class="hljs-number">1</span>, sampleSize = <span class="hljs-number">1.0</span>, 
-  maxFeatures = <span class="hljs-literal">null</span>, decimalPrecision = <span class="hljs-number">2</span> } = {}</span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">nEstimators</span> = nEstimators;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxDepth</span> = maxDepth;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">minSize</span> = minSize;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">sampleSize</span> = sampleSize;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxFeatures</span> = maxFeatures;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">decimalPrecision</span> = decimalPrecision;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">trees</span> = [];
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">classLabels</span> = []; <span class="hljs-comment">// Keep track of all class labels</span>
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>nEstimators</code>: Number of trees in the forest. Because more trees equal more fun, right?</li>
-<li><code>maxDepth</code>: Maximum depth of each tree. Let's not grow infinitely tall trees; we're not building skyscrapers.</li>
-<li><code>minSize</code>: Minimum number of samples required to split an internal node. Sometimes, you just have to know when to stop splitting hairs.</li>
-<li><code>sampleSize</code>: Proportion of the dataset to use for each tree (with replacement). Variety is the spice of life (and machine learning).</li>
-<li><code>maxFeatures</code>: Number of features to consider when looking for the best split. If <code>null</code>, it defaults to the square root of the number of features, because that seems entirely not a made up thing to becuase one guy/girl did it once and it worked.</li>
-<li><code>decimalPrecision</code>: Precision for rounding numerical values. Because floating-point errors are the stuff of nightmares.</li>
-</ul>
-<p>These settings are crucial for controlling overfitting and ensuring that each tree in the forest is sufficiently unique.</p>
-<h3 id="2.2-fitting-the-model" tabindex="-1"><a class="observablehq-header-anchor" href="#2.2-fitting-the-model">2.2 Fitting the Model</a></h3>
-<p>Training the Random Forest involves building multiple decision trees. The <code>fit</code> method is the entry point for this process.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">fit</span>(<span class="hljs-params">X, y</span>) {
-    <span class="hljs-keyword">const</span> dataset = X.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">row, idx</span>) =&gt;</span> [...row, y[idx]]);
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">classLabels</span> = [...<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(y.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">label</span> =&gt;</span> <span class="hljs-title class_">String</span>(label)))]; <span class="hljs-comment">// Store class labels as strings</span>
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">nEstimators</span>; i++) {
-        <span class="hljs-keyword">const</span> sample = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">subsample</span>(dataset, <span class="hljs-variable language_">this</span>.<span class="hljs-property">sampleSize</span>);
-        <span class="hljs-keyword">const</span> tree = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">buildTree</span>(sample, <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxDepth</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">minSize</span>);
-        <span class="hljs-variable language_">this</span>.<span class="hljs-property">trees</span>.<span class="hljs-title function_">push</span>(tree);
-    }
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>X</code>: Feature matrix, an array of input vectors.</li>
-<li><code>y</code>: Target values corresponding to each input vector in <code>X</code>.</li>
-</ul>
-<p>First, it combines the features <code>X</code> and labels <code>y</code> into a single dataset. Each data point becomes an array of features followed by its label. Then, it stores all unique class labels (as strings) in <code>this.classLabels</code> for later use. For each tree, it generates a bootstrap sample using the <code>subsample</code> method. This sample is used to build a tree via the <code>buildTree</code> method, and the resulting tree is added to the forest.</p>
-<h4 id="2.2.1-subsample(dataset%2C-ratio)" tabindex="-1"><a class="observablehq-header-anchor" href="#2.2.1-subsample(dataset%2C-ratio)">2.2.1 <code>subsample(dataset, ratio)</code></a></h4>
-<p>Generates a bootstrap sample of the dataset with replacement. Each tree is trained on a random subset of the data, which helps create diverse trees and reduces overfitting.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">subsample</span>(<span class="hljs-params">dataset, ratio</span>) {
-    <span class="hljs-keyword">const</span> nSample = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(dataset.<span class="hljs-property">length</span> * ratio);
-    <span class="hljs-keyword">const</span> sample = [];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nSample; i++) {
-        <span class="hljs-keyword">const</span> index = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * dataset.<span class="hljs-property">length</span>);
-        sample.<span class="hljs-title function_">push</span>(dataset[index]);
-    }
-    <span class="hljs-keyword">return</span> sample;
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>dataset</code>: The original dataset from which to sample.</li>
-<li><code>ratio</code>: The proportion of the dataset to include in the sample.</li>
-</ul>
-<p>This method randomly selects data points from the dataset to create a sample of a specified size (<code>ratio</code> of the original dataset). Because it samples with replacement, some data points may appear multiple times, while others may be omitted. This randomness is key to building uncorrelated trees in the forest.</p>
-<h3 id="2.3-building-trees" tabindex="-1"><a class="observablehq-header-anchor" href="#2.3-building-trees">2.3 Building Trees</a></h3>
-<p>The <code>buildTree</code> method initiates the construction of a decision tree. It starts by finding the best split for the root node and then recursively splits child nodes.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">buildTree</span>(<span class="hljs-params">train, maxDepth, minSize</span>) {
-    <span class="hljs-keyword">const</span> root = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getSplit</span>(train);
-    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">split</span>(root, maxDepth, minSize, <span class="hljs-number">1</span>);
-    <span class="hljs-keyword">return</span> root;
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>train</code>: The training dataset to build the tree.</li>
-<li><code>maxDepth</code>: Maximum depth of the tree.</li>
-<li><code>minSize</code>: Minimum number of samples required to split a node.</li>
-</ul>
-<p>It uses the <code>getSplit</code> method to determine the optimal feature and value to split the data at the root node. Then, it calls the <code>split</code> method to recursively build the tree from there.</p>
-<h3 id="2.4-finding-the-best-split" tabindex="-1"><a class="observablehq-header-anchor" href="#2.4-finding-the-best-split">2.4 Finding the Best Split</a></h3>
-<p>The <code>getSplit</code> method determines the best feature and value to split the dataset to minimize Gini impurity.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">getSplit</span>(<span class="hljs-params">dataset</span>) {
-    <span class="hljs-keyword">const</span> classValues = [...<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(dataset.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">row</span> =&gt;</span> row[row.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>]))];
-    <span class="hljs-keyword">let</span> bestIndex, bestValue, bestScore = <span class="hljs-title class_">Infinity</span>, bestGroups;
-
-    <span class="hljs-keyword">const</span> nFeatures = dataset[<span class="hljs-number">0</span>].<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">const</span> features = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getRandomFeatures</span>(nFeatures);
-
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> index <span class="hljs-keyword">of</span> features) {
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> row <span class="hljs-keyword">of</span> dataset) {
-            <span class="hljs-keyword">const</span> groups = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">testSplit</span>(index, row[index], dataset);
-            <span class="hljs-keyword">const</span> gini = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">giniImpurity</span>(groups, classValues);
-            <span class="hljs-keyword">if</span> (gini &lt; bestScore) {
-                bestIndex = index;
-                bestValue = row[index];
-                bestScore = gini;
-                bestGroups = groups;
-            }
-        }
-    }
-
-    <span class="hljs-keyword">if</span> (bestGroups === <span class="hljs-literal">undefined</span>) {
-        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">toTerminal</span>(dataset);
-    }
-
-    <span class="hljs-keyword">return</span> {
-        <span class="hljs-attr">index</span>: bestIndex,
-        <span class="hljs-attr">value</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">round</span>(bestValue),
-        <span class="hljs-attr">gini</span>: bestScore,
-        <span class="hljs-attr">groups</span>: bestGroups
-    };
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>dataset</code>: The dataset to find the best split for.</li>
-</ul>
-<p>By considering a random subset of features (thanks to <code>getRandomFeatures</code>), it ensures each tree is a unique snowflake. The goal is to find the most "pure" split, reducing the impurity like a water filter for your data. It iterates over possible splits, using <code>testSplit</code> to divide the dataset and <code>giniImpurity</code> to evaluate the quality of each split. Like some sort of dystopian future I fear we're headed towards, this function tracks and returns the split with the lowest Gini impurity (which is traditionally called 'best', but that's not really the right way to think about it... IS IT?).</p>
-<h4 id="2.4.1-getrandomfeatures(nfeatures)" tabindex="-1"><a class="observablehq-header-anchor" href="#2.4.1-getrandomfeatures(nfeatures)">2.4.1 <code>getRandomFeatures(nFeatures)</code></a></h4>
-<p>Selects a random subset of features to consider at each split.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">getRandomFeatures</span>(<span class="hljs-params">nFeatures</span>) {
-    <span class="hljs-keyword">let</span> maxFeatures = <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxFeatures</span>;
-    <span class="hljs-keyword">if</span> (!maxFeatures) {
-        maxFeatures = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(<span class="hljs-number">1</span>, <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(nFeatures)));
-    }
-    maxFeatures = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(maxFeatures, nFeatures); <span class="hljs-comment">// Ensure we don't select more features than available</span>
-    <span class="hljs-keyword">const</span> features = [];
-    <span class="hljs-keyword">while</span> (features.<span class="hljs-property">length</span> &lt; maxFeatures) {
-        <span class="hljs-keyword">const</span> index = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * nFeatures);
-        <span class="hljs-keyword">if</span> (!features.<span class="hljs-title function_">includes</span>(index)) {
-            features.<span class="hljs-title function_">push</span>(index);
-        }
-    }
-    <span class="hljs-keyword">return</span> features;
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>nFeatures</code>: Total number of features in the dataset.</li>
-</ul>
-<p>This introduces randomness into the model, which is crucial for the diversity of the trees in the forest. It helps reduce correlation among trees, thereby improving overall performance. Think of it as diversifying your investment portfolio but with data features.</p>
-<h4 id="2.4.2-testsplit(index%2C-value%2C-dataset)" tabindex="-1"><a class="observablehq-header-anchor" href="#2.4.2-testsplit(index%2C-value%2C-dataset)">2.4.2 <code>testSplit(index, value, dataset)</code></a></h4>
-<p>Splits the dataset into two groups based on the specified feature index and value.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">testSplit</span>(<span class="hljs-params">index, value, dataset</span>) {
-    <span class="hljs-keyword">const</span> left = [], right = [];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> row <span class="hljs-keyword">of</span> dataset) {
-        <span class="hljs-keyword">if</span> (row[index] &lt; value) {
-            left.<span class="hljs-title function_">push</span>(row);
-        } <span class="hljs-keyword">else</span> {
-            right.<span class="hljs-title function_">push</span>(row);
-        }
-    }
-    <span class="hljs-keyword">return</span> [left, right];
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>index</code>: The index of the feature to split on.</li>
-<li><code>value</code>: The value of the feature to split at.</li>
-<li><code>dataset</code>: The dataset to split.</li>
-</ul>
-<p>This function divides the dataset into two groups: those that meet the split condition and those that don't. It's like dividing your Halloween candy stash into piles to maximize happiness...except with data and probably less eventual diabetes.</p>
-<h4 id="2.4.3-giniimpurity(groups%2C-classes)" tabindex="-1"><a class="observablehq-header-anchor" href="#2.4.3-giniimpurity(groups%2C-classes)">2.4.3 <code>giniImpurity(groups, classes)</code></a></h4>
-<p>Computes the Gini impurity for a split, measuring how often a randomly chosen element would be incorrectly labeled.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">giniImpurity</span>(<span class="hljs-params">groups, classes</span>) {
-    <span class="hljs-keyword">const</span> nInstances = groups.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">sum, group</span>) =&gt;</span> sum + group.<span class="hljs-property">length</span>, <span class="hljs-number">0</span>);
-    <span class="hljs-keyword">let</span> gini = <span class="hljs-number">0.0</span>;
-
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> group <span class="hljs-keyword">of</span> groups) {
-        <span class="hljs-keyword">const</span> size = group.<span class="hljs-property">length</span>;
-        <span class="hljs-keyword">if</span> (size === <span class="hljs-number">0</span>) <span class="hljs-keyword">continue</span>; <span class="hljs-comment">// Avoid dividing by zero.</span>
-        <span class="hljs-keyword">const</span> classCounts = {};
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> row <span class="hljs-keyword">of</span> group) {
-            <span class="hljs-keyword">const</span> classVal = row[row.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>];
-            classCounts[classVal] = (classCounts[classVal] || <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>;
-        }
-        <span class="hljs-keyword">let</span> score = <span class="hljs-number">0.0</span>;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> classVal <span class="hljs-keyword">of</span> classes) {
-            <span class="hljs-keyword">const</span> proportion = (classCounts[classVal] || <span class="hljs-number">0</span>) / size;
-            score += proportion * proportion;
-        }
-        gini += (<span class="hljs-number">1.0</span> - score) * (size / nInstances);
-    }
-    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">round</span>(gini);
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>groups</code>: An array containing the left and right groups after a split.</li>
-<li><code>classes</code>: A list of unique class values in the dataset.</li>
-</ul>
-<p>This method calculates the impurity of the groups created by a split. A lower Gini impurity indicates a better split. In other words, we're trying to make each node as "pure" as possible, much like trying to keep toddlers from sticking their fingers in their mouths, getting sick, destroying everyone's ability to rest and recover, only to <em>eventually recover</em> and do the same thing again <strong>literally</strong> the next day. Futile.</p>
-<h3 id="2.5-recursive-splitting" tabindex="-1"><a class="observablehq-header-anchor" href="#2.5-recursive-splitting">2.5 Recursive Splitting</a></h3>
-<p>The <code>split</code> method recursively divides the dataset into smaller subsets, building the tree structure. Think of it as a Russian nesting doll, but it maxes out at the depth provided in the constructor to prevent infinite recursion.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">split</span>(<span class="hljs-params">node, maxDepth, minSize, depth</span>) {
-    <span class="hljs-keyword">if</span> (node.<span class="hljs-property">isTerminal</span>) {
-        <span class="hljs-keyword">return</span>; <span class="hljs-comment">// We've reached a leaf node.</span>
-    }
-
-    <span class="hljs-keyword">const</span> [left, right] = node.<span class="hljs-property">groups</span>;
-    <span class="hljs-keyword">delete</span> node.<span class="hljs-property">groups</span>; <span class="hljs-comment">// Remove groups to free up memory.</span>
-
-    <span class="hljs-comment">// Check for a no-split condition</span>
-    <span class="hljs-keyword">if</span> (!left.<span class="hljs-property">length</span> || !right.<span class="hljs-property">length</span>) {
-        node.<span class="hljs-property">left</span> = node.<span class="hljs-property">right</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">toTerminal</span>(left.<span class="hljs-title function_">concat</span>(right));
-        <span class="hljs-keyword">return</span>;
-    }
-
-    <span class="hljs-comment">// Max depth reached</span>
-    <span class="hljs-keyword">if</span> (depth &gt;= maxDepth) {
-        node.<span class="hljs-property">left</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">toTerminal</span>(left);
-        node.<span class="hljs-property">right</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">toTerminal</span>(right);
-        <span class="hljs-keyword">return</span>;
-    }
-
-    <span class="hljs-comment">// Left child</span>
-    <span class="hljs-keyword">if</span> (left.<span class="hljs-property">length</span> &lt;= minSize) {
-        node.<span class="hljs-property">left</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">toTerminal</span>(left);
-    } <span class="hljs-keyword">else</span> {
-        node.<span class="hljs-property">left</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getSplit</span>(left);
-        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">split</span>(node.<span class="hljs-property">left</span>, maxDepth, minSize, depth + <span class="hljs-number">1</span>);
-    }
-
-    <span class="hljs-comment">// Right child</span>
-    <span class="hljs-keyword">if</span> (right.<span class="hljs-property">length</span> &lt;= minSize) {
-        node.<span class="hljs-property">right</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">toTerminal</span>(right);
-    } <span class="hljs-keyword">else</span> {
-        node.<span class="hljs-property">right</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getSplit</span>(right);
-        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">split</span>(node.<span class="hljs-property">right</span>, maxDepth, minSize, depth + <span class="hljs-number">1</span>);
-    }
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>node</code>: The current node to split.</li>
-<li><code>maxDepth</code>: Maximum depth of the tree.</li>
-<li><code>minSize</code>: Minimum number of samples required to split a node.</li>
-<li><code>depth</code>: Current depth of the tree.</li>
-</ul>
-<p>This method ensures that the tree doesn't grow indefinitely. Each recursive call increases the <code>depth</code> by one, and when it reaches <code>maxDepth</code>, the recursion stops. Additionally, if a node has fewer samples than <code>minSize</code>, it becomes a terminal node. This helps prevent overfitting and keeps the tree manageable. It's like deciding that further debate is pointless and settling on an answer, Dad.</p>
-<h4 id="2.5.1-toterminal(group)" tabindex="-1"><a class="observablehq-header-anchor" href="#2.5.1-toterminal(group)">2.5.1 <code>toTerminal(group)</code></a></h4>
-<p>Creates a terminal node (leaf) by assigning the most common class in the group.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">toTerminal</span>(<span class="hljs-params">group</span>) {
-    <span class="hljs-keyword">const</span> outcomes = group.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">row</span> =&gt;</span> row[row.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>]);
-    <span class="hljs-keyword">const</span> counts = {};
-    <span class="hljs-keyword">let</span> maxCount = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">let</span> prediction;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> outcomes) {
-        counts[value] = (counts[value] || <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>;
-        <span class="hljs-keyword">if</span> (counts[value] &gt; maxCount) {
-            maxCount = counts[value];
-            prediction = value;
-        }
-    }
-    <span class="hljs-keyword">return</span> { <span class="hljs-attr">isTerminal</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">value</span>: prediction };
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>group</code>: The dataset at the current node.</li>
-</ul>
-<p>This method determines the class that appears most frequently in the group and creates a terminal node with that prediction.</p>
-<h3 id="2.6-making-predictions" tabindex="-1"><a class="observablehq-header-anchor" href="#2.6-making-predictions">2.6 Making Predictions</a></h3>
-<p>After training, we use the model to make predictions on new data. The <code>predict</code> method aggregates predictions from all trees.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">predict</span>(<span class="hljs-params">X, plotPath = <span class="hljs-literal">false</span></span>) {
-    <span class="hljs-keyword">return</span> X.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">row</span> =&gt;</span> {
-        <span class="hljs-keyword">const</span> predictions = <span class="hljs-variable language_">this</span>.<span class="hljs-property">trees</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">tree</span> =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">predictTree</span>(tree, row, plotPath));
-        <span class="hljs-keyword">const</span> counts = {};
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> pred <span class="hljs-keyword">of</span> predictions) {
-            counts[pred] = (counts[pred] || <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>;
-        }
-        <span class="hljs-keyword">let</span> maxCount = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">let</span> majorityClass = <span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [key, count] <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(counts)) {
-            <span class="hljs-keyword">if</span> (count &gt; maxCount) {
-                maxCount = count;
-                majorityClass = key;
-            }
-        }
-        <span class="hljs-keyword">return</span> majorityClass;
-    });
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>X</code>: Feature matrix of input data to predict.</li>
-<li><code>plotPath</code> (optional): If <code>true</code>, logs the path taken through the tree for each prediction.</li>
-</ul>
-<p>For each data point, it collects predictions from all trees using the <code>predictTree</code> method. It then determines the most common prediction among the aboreal majority voting to decide the final prediction.</p>
-<h4 id="2.6.1-predicttree(node%2C-row%2C-plotpath-%3D-false%2C-depth-%3D-0)" tabindex="-1"><a class="observablehq-header-anchor" href="#2.6.1-predicttree(node%2C-row%2C-plotpath-%3D-false%2C-depth-%3D-0)">2.6.1 <code>predictTree(node, row, plotPath = false, depth = 0)</code></a></h4>
-<p>Traverses a single tree to make a prediction for a given data point.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">predictTree</span>(<span class="hljs-params">node, row, plotPath = <span class="hljs-literal">false</span>, depth = <span class="hljs-number">0</span></span>) {
-    <span class="hljs-keyword">if</span> (node.<span class="hljs-property">isTerminal</span>) {
-        <span class="hljs-keyword">if</span> (plotPath) <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-string">'|  '</span>.repeat(depth)}</span>Leaf: Predict <span class="hljs-subst">${node.value}</span>`</span>);
-        <span class="hljs-keyword">return</span> node.<span class="hljs-property">value</span>;
-    }
-
-    <span class="hljs-keyword">if</span> (plotPath) {
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-string">'|  '</span>.repeat(depth)}</span>Node: X<span class="hljs-subst">${node.index}</span> &lt; <span class="hljs-subst">${node.value}</span> (Gini: <span class="hljs-subst">${node.gini}</span>)`</span>);
-    }
-
-    <span class="hljs-keyword">if</span> (row[node.<span class="hljs-property">index</span>] &lt; node.<span class="hljs-property">value</span>) {
-        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">predictTree</span>(node.<span class="hljs-property">left</span>, row, plotPath, depth + <span class="hljs-number">1</span>);
-    } <span class="hljs-keyword">else</span> {
-        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">predictTree</span>(node.<span class="hljs-property">right</span>, row, plotPath, depth + <span class="hljs-number">1</span>);
-    }
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>node</code>: The current node in the tree.</li>
-<li><code>row</code>: The data point to predict.</li>
-<li><code>plotPath</code> (optional): If <code>true</code>, logs the path taken through the tree.</li>
-<li><code>depth</code>: Current depth in the tree (used for logging purposes).</li>
-</ul>
-<p>This function starts at the root and moves left or right based on the feature value until it reaches a leaf node. If <code>plotPath</code> is true, it logs the path taken through the tree.</p>
-<h3 id="2.7-predicting-probabilities" tabindex="-1"><a class="observablehq-header-anchor" href="#2.7-predicting-probabilities">2.7 Predicting Probabilities</a></h3>
-<p>To compute metrics like the ROC curve and AUC, we need probability estimates. The <code>predictProba</code> method provides class probability estimates based on the proportion of trees predicting each class.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">predictProba</span>(<span class="hljs-params">X</span>) {
-    <span class="hljs-keyword">return</span> X.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">row</span> =&gt;</span> {
-        <span class="hljs-keyword">const</span> predictions = <span class="hljs-variable language_">this</span>.<span class="hljs-property">trees</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">tree</span> =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">predictTree</span>(tree, row));
-        <span class="hljs-keyword">const</span> counts = {};
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> pred <span class="hljs-keyword">of</span> predictions) {
-            <span class="hljs-keyword">const</span> classLabel = <span class="hljs-title class_">String</span>(pred); <span class="hljs-comment">// Ensure the label is a string</span>
-            counts[classLabel] = (counts[classLabel] || <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>;
-        }
-        <span class="hljs-keyword">const</span> total = <span class="hljs-variable language_">this</span>.<span class="hljs-property">trees</span>.<span class="hljs-property">length</span>;
-        <span class="hljs-keyword">const</span> probabilities = {};
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> classLabel <span class="hljs-keyword">of</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">classLabels</span>) {
-            probabilities[classLabel] = counts[classLabel] ? counts[classLabel] / total : <span class="hljs-number">0</span>;
-        }
-        <span class="hljs-keyword">return</span> probabilities;
-    });
-}
-</code></pre>
-<p>This method ensures that all possible class labels are included in the probability output, even if their probability is zero.</p>
-<h3 id="2.8-helper-methods" tabindex="-1"><a class="observablehq-header-anchor" href="#2.8-helper-methods">2.8 Helper Methods</a></h3>
-<h4 id="2.8.1-round(value)" tabindex="-1"><a class="observablehq-header-anchor" href="#2.8.1-round(value)">2.8.1 <code>round(value)</code></a></h4>
-<p>Rounds a number to the specified decimal precision. Ensures consistency and readability in numerical outputs.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">round</span>(<span class="hljs-params">value</span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">parseFloat</span>(value.<span class="hljs-title function_">toFixed</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">decimalPrecision</span>));
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>value</code>: The numerical value to round.</li>
-</ul>
-<p>This method helps prevent floating-point errors and keeps numerical values neat and tidy. Also, it helps prevent the infamous JavaScript floating-point shenanigans that can turn your elegant algorithm into a dumpster fire.</p>
-<h3 id="2.9-model-persistence" tabindex="-1"><a class="observablehq-header-anchor" href="#2.9-model-persistence">2.9 Model Persistence</a></h3>
-<h4 id="2.9.1-savemodel()" tabindex="-1"><a class="observablehq-header-anchor" href="#2.9.1-savemodel()">2.9.1 <code>saveModel()</code></a></h4>
-<p>Serializes the model to a JSON string for saving.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">saveModel</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>({
-        <span class="hljs-attr">nEstimators</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">nEstimators</span>,
-        <span class="hljs-attr">maxDepth</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxDepth</span>,
-        <span class="hljs-attr">minSize</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">minSize</span>,
-        <span class="hljs-attr">sampleSize</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">sampleSize</span>,
-        <span class="hljs-attr">decimalPrecision</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">decimalPrecision</span>,
-        <span class="hljs-attr">maxFeatures</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxFeatures</span>,
-        <span class="hljs-attr">trees</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">trees</span>
-    });
-}
-</code></pre>
-<p>This allows the trained model to be saved and reloaded later without retraining.</p>
-<h4 id="2.9.2-loadmodel(modeljson)" tabindex="-1"><a class="observablehq-header-anchor" href="#2.9.2-loadmodel(modeljson)">2.9.2 <code>loadModel(modelJson)</code></a></h4>
-<p>Loads the model from a JSON string.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">loadModel</span>(<span class="hljs-params">modelJson</span>) {
-    <span class="hljs-keyword">const</span> model = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(modelJson);
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">nEstimators</span> = model.<span class="hljs-property">nEstimators</span>;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxDepth</span> = model.<span class="hljs-property">maxDepth</span>;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">minSize</span> = model.<span class="hljs-property">minSize</span>;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">sampleSize</span> = model.<span class="hljs-property">sampleSize</span>;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">decimalPrecision</span> = model.<span class="hljs-property">decimalPrecision</span>;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxFeatures</span> = model.<span class="hljs-property">maxFeatures</span>;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">trees</span> = model.<span class="hljs-property">trees</span>;
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>modelJson</code>: A JSON string representing the saved model.</li>
-</ul>
-<p>Restores the model state, making it ready for predictions without retraining.</p>
-<h3 id="2.10-visualization-and-debugging-methods" tabindex="-1"><a class="observablehq-header-anchor" href="#2.10-visualization-and-debugging-methods">2.10 Visualization and Debugging Methods</a></h3>
-<h4 id="2.10.1-printtree(node%2C-depth-%3D-0)" tabindex="-1"><a class="observablehq-header-anchor" href="#2.10.1-printtree(node%2C-depth-%3D-0)">2.10.1 <code>printTree(node, depth = 0)</code></a></h4>
-<p>Prints the structure of a tree.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">printTree</span>(<span class="hljs-params">node, depth = <span class="hljs-number">0</span></span>) {
-    <span class="hljs-keyword">if</span> (node.<span class="hljs-property">isTerminal</span>) {
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-string">'|  '</span>.repeat(depth)}</span>[Leaf] Predict: <span class="hljs-subst">${node.value}</span>`</span>);
-    } <span class="hljs-keyword">else</span> {
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-string">'|  '</span>.repeat(depth)}</span>[X<span class="hljs-subst">${node.index}</span> &lt; <span class="hljs-subst">${node.value}</span>]`</span>);
-        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">printTree</span>(node.<span class="hljs-property">left</span>, depth + <span class="hljs-number">1</span>);
-        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">printTree</span>(node.<span class="hljs-property">right</span>, depth + <span class="hljs-number">1</span>);
-    }
-}
-</code></pre>
-<p>Useful for understanding how the tree makes decisions and for debugging purposes.</p>
-<h4 id="2.10.2-converttohierarchy(node%2C-depth-%3D-0)" tabindex="-1"><a class="observablehq-header-anchor" href="#2.10.2-converttohierarchy(node%2C-depth-%3D-0)">2.10.2 <code>convertToHierarchy(node, depth = 0)</code></a></h4>
-<p>Converts a tree into a hierarchical structure for visualization.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">convertToHierarchy</span>(<span class="hljs-params">node, depth = <span class="hljs-number">0</span></span>) {
-    <span class="hljs-keyword">if</span> (node.<span class="hljs-property">isTerminal</span>) {
-        <span class="hljs-keyword">return</span> { <span class="hljs-attr">name</span>: <span class="hljs-string">`Leaf: <span class="hljs-subst">${node.value}</span>`</span> };
-    }
-
-    <span class="hljs-keyword">return</span> {
-        <span class="hljs-attr">name</span>: <span class="hljs-string">`X<span class="hljs-subst">${node.index}</span> &lt; <span class="hljs-subst">${node.value}</span>`</span>,
-        <span class="hljs-attr">children</span>: [
-            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">convertToHierarchy</span>(node.<span class="hljs-property">left</span>, depth + <span class="hljs-number">1</span>),
-            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">convertToHierarchy</span>(node.<span class="hljs-property">right</span>, depth + <span class="hljs-number">1</span>)
-        ]
-    };
-}
-</code></pre>
-<p>This can be used with visualization libraries to create tree diagrams.</p>
-<h4 id="2.10.3-convertforesttohierarchy()" tabindex="-1"><a class="observablehq-header-anchor" href="#2.10.3-convertforesttohierarchy()">2.10.3 <code>convertForestToHierarchy()</code></a></h4>
-<p>Converts the entire forest into a hierarchical structure.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">convertForestToHierarchy</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">trees</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">tree, index</span>) =&gt;</span> ({
-        <span class="hljs-attr">name</span>: <span class="hljs-string">`Tree <span class="hljs-subst">${index + <span class="hljs-number">1</span>}</span>`</span>,
-        <span class="hljs-attr">children</span>: [<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">convertToHierarchy</span>(tree)]
-    }));
-}
-</code></pre>
-<p>Allows visualization of all trees in the forest, helping to bring order to the complexity.</p>
-<h4 id="2.10.4-getpaths(node%2C-path-%3D-%22%22)" tabindex="-1"><a class="observablehq-header-anchor" href="#2.10.4-getpaths(node%2C-path-%3D-%22%22)">2.10.4 <code>getPaths(node, path = "")</code></a></h4>
-<p>Retrieves all decision paths in a tree.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">getPaths</span>(<span class="hljs-params">node, path = <span class="hljs-string">""</span></span>) {
-    <span class="hljs-keyword">if</span> (node.<span class="hljs-property">isTerminal</span>) {
-        <span class="hljs-keyword">return</span> [<span class="hljs-string">`<span class="hljs-subst">${path}</span>/Leaf: <span class="hljs-subst">${node.value}</span>`</span>];
-    }
-
-    <span class="hljs-keyword">const</span> leftPaths = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getPaths</span>(node.<span class="hljs-property">left</span>, <span class="hljs-string">`<span class="hljs-subst">${path}</span>/X<span class="hljs-subst">${node.index}</span> &lt; <span class="hljs-subst">${node.value}</span>`</span>);
-    <span class="hljs-keyword">const</span> rightPaths = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getPaths</span>(node.<span class="hljs-property">right</span>, <span class="hljs-string">`<span class="hljs-subst">${path}</span>/X<span class="hljs-subst">${node.index}</span> &gt;= <span class="hljs-subst">${node.value}</span>`</span>);
-
-    <span class="hljs-keyword">return</span> [...leftPaths, ...rightPaths];
-}
-</code></pre>
-<p>Provides a detailed view of all possible paths through the tree.</p>
-<h4 id="2.10.5-convertforesttopaths()" tabindex="-1"><a class="observablehq-header-anchor" href="#2.10.5-convertforesttopaths()">2.10.5 <code>convertForestToPaths()</code></a></h4>
-<p>Retrieves decision paths from all trees in the forest.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">convertForestToPaths</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">let</span> paths = [];
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">trees</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">tree, index</span>) =&gt;</span> {
-        <span class="hljs-keyword">const</span> treePaths = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getPaths</span>(tree, <span class="hljs-string">`Tree <span class="hljs-subst">${index + <span class="hljs-number">1</span>}</span>`</span>);
-        paths = [...paths, ...treePaths];
-    });
-    <span class="hljs-keyword">return</span> paths;
-}
-</code></pre>
-<p>Gives a comprehensive view of how the forest makes predictions.</p>
-<h3 id="2.11-classification-domain-generation" tabindex="-1"><a class="observablehq-header-anchor" href="#2.11-classification-domain-generation">2.11 Classification Domain Generation</a></h3>
-<p>Generates a grid of predictions over the feature space for visualization.</p>
-<pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">generateClassificationDomain</span>(<span class="hljs-params">scatterData, stepSize = <span class="hljs-number">0.1</span></span>) {
-    <span class="hljs-keyword">const</span> xMin = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(...scatterData.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">x</span>)) - <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">const</span> xMax = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(...scatterData.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">x</span>)) + <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">const</span> yMin = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(...scatterData.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">y</span>)) - <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">const</span> yMax = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(...scatterData.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">y</span>)) + <span class="hljs-number">1</span>;
-
-    <span class="hljs-keyword">const</span> grid = [];
-    <span class="hljs-keyword">const</span> values = [];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> x = xMin; x &lt;= xMax; x += stepSize) {
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> y = yMin; y &lt;= yMax; y += stepSize) {
-            grid.<span class="hljs-title function_">push</span>([x, y]);
-            values.<span class="hljs-title function_">push</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">predict</span>([[x, y]])[<span class="hljs-number">0</span>]);
-        }
-    }
-
-    <span class="hljs-keyword">const</span> gridWidth = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>((xMax - xMin) / stepSize) + <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">const</span> gridHeight = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>((yMax - yMin) / stepSize) + <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">const</span> grid2D = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>({ <span class="hljs-attr">length</span>: gridHeight }, <span class="hljs-function">(<span class="hljs-params">_, i</span>) =&gt;</span> grid.<span class="hljs-title function_">slice</span>(i * gridWidth, (i + <span class="hljs-number">1</span>) * gridWidth));
-    <span class="hljs-keyword">const</span> values2D = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>({ <span class="hljs-attr">length</span>: gridHeight }, <span class="hljs-function">(<span class="hljs-params">_, i</span>) =&gt;</span> values.<span class="hljs-title function_">slice</span>(i * gridWidth, (i + <span class="hljs-number">1</span>) * gridWidth));
-
-    <span class="hljs-keyword">return</span> {
-        <span class="hljs-attr">gridPredictions</span>: values,
-        <span class="hljs-attr">gridWidth</span>: gridWidth,
-        <span class="hljs-attr">gridHeight</span>: gridHeight,
-        <span class="hljs-attr">grid2D</span>: grid2D,
-        <span class="hljs-attr">values2D</span>: values2D
-    };
-}
-</code></pre>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>scatterData</code>: An array of data points with <code>x</code> and <code>y</code> properties.</li>
-<li><code>stepSize</code>: The resolution of the grid.</li>
-</ul>
-<p>This method helps in visualizing the decision boundaries learned by the model. It creates a grid over the feature space and predicts the class for each point in the grid.</p>
-<h2 id="3.-what's-next%3F" tabindex="-1"><a class="observablehq-header-anchor" href="#3.-what's-next%3F">3. What's Next?</a></h2>
-<p>I absolutely love decision trees. They're interpretable, intuitive, and just plain cool.</p>
-<p>I could implement a boosting approach, but I think I'll dip my toes into some neural networks. Besides, the recursive insanity with decision trees has given me an insane headache.</p>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./"><span>Measurement By Design</span></a><a rel="next" href="./state-level-mapping"><span>BRFSS State Level Mapping</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-23T16:36:31">Nov 23, 2024</a>.</div>
+<nav><a rel="prev" href="./intervention-design"><span>Intervention Design</span></a><a rel="next" href="./mass-balance-business-models"><span>Mass Balance Business Models</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-03T02:01:16">Dec 3, 2024</a>.</div>
 </footer>
 </div>
+</body>
+</html>

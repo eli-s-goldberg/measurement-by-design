@@ -1,81 +1,87 @@
 <!DOCTYPE html>
+<html>
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.0">
 <title>Combating Uneccessary ER --  Mass Balance Business models | Measurement By Design</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
-<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
 <link rel="preload" as="style" href="./_npm/katex@0.16.10/dist/katex.min.css">
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
-<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
 <link rel="stylesheet" type="text/css" href="./_npm/katex@0.16.10/dist/katex.min.css">
-<link rel="modulepreload" href="./_observablehq/client.js">
-<link rel="modulepreload" href="./_observablehq/runtime.js">
-<link rel="modulepreload" href="./_observablehq/stdlib.js">
-<link rel="modulepreload" href="./_import/components/DistP.53f5d4a3.js">
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/d3@7/+esm">
-<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.js">
-<link rel="modulepreload" href="./_import/components/parallelmethods.8f1a55e7.js">
-<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/_esm.js">
-<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
-<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
-<link rel="modulepreload" href="./_observablehq/stdlib/tex.js">
-<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
-<link rel="modulepreload" href="./_npm/katex@0.16.10/_esm.js">
-<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
-<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/_esm.js">
-<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
-<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<link rel="modulepreload" href="./_observablehq/client.bdfce3d3.js">
+<link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.63ee1033.js">
+<link rel="modulepreload" href="./_import/components/DistP.fb4ccc78.js">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
+<link rel="modulepreload" href="./_import/components/parallelmethods.b03db0aa.js">
+<link rel="modulepreload" href="./_import/components/styles.1f6baada.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.625bbd4c.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/118fc3ce.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/tex.05d83e1d.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_npm/katex@0.16.10/6324e2c4.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e95f898e.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/d44feff9.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/5830b12a.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/626bedc4.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/b22c5864.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e1ff060.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/5851d7ef.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/dcd02767.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/567840a0.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/cf9b720b.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/5dcd62f4.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/f8e03c56.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/5bc129e1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/19c92b44.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/8debb4ba.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/4b0cc581.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
 <script type="module">
 
-import {define} from "./_observablehq/client.js";
+import {define} from "./_observablehq/client.bdfce3d3.js";
 
-define({id: "6fb9f70f", outputs: ["DistP","MatrixSolver","d3","require","jStat","math","calculateSampleSizeForMeans","calculateSampleSizeForProportions","calculateVarianceFormulaIndividualRandomized","calculateVarianceFormulaClusterRandomized","generateVarianceData","generateUnifiedVarianceData"], body: async () => {
-const [{DistP, MatrixSolver}, d3, {require}, {calculateSampleSizeForMeans, calculateSampleSizeForProportions, calculateVarianceFormulaIndividualRandomized, calculateVarianceFormulaClusterRandomized, generateVarianceData, generateUnifiedVarianceData}] = await Promise.all([import("./_import/components/DistP.53f5d4a3.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.js"), import("./_import/components/parallelmethods.8f1a55e7.js")]);
+define({id: "8ba19cb3", inputs: ["html"], outputs: ["DistP","MatrixSolver","d3","require","jStat","math","calculateSampleSizeForMeans","calculateSampleSizeForProportions","calculateVarianceFormulaIndividualRandomized","calculateVarianceFormulaClusterRandomized","generateVarianceData","generateUnifiedVarianceData","defaultStyles","styleElement"], body: async (html) => {
+const [{DistP, MatrixSolver}, d3, {require}, {calculateSampleSizeForMeans, calculateSampleSizeForProportions, calculateVarianceFormulaIndividualRandomized, calculateVarianceFormulaClusterRandomized, generateVarianceData, generateUnifiedVarianceData}, {defaultStyles}] = await Promise.all([import("./_import/components/DistP.fb4ccc78.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.45152b81.js"), import("./_import/components/parallelmethods.b03db0aa.js"), import("./_import/components/styles.1f6baada.js")]);
 // imports
 
 
 const jStat = await require("jstat@1.9.4");
 const math = await require("mathjs@9.4.2");
 
-return {DistP,MatrixSolver,d3,require,jStat,math,calculateSampleSizeForMeans,calculateSampleSizeForProportions,calculateVarianceFormulaIndividualRandomized,calculateVarianceFormulaClusterRandomized,generateVarianceData,generateUnifiedVarianceData};
+// import some CSS to keep things well styled
+const styleElement = html`<style>${defaultStyles}</style>`;
+document.head.appendChild(styleElement);
+return {DistP,MatrixSolver,d3,require,jStat,math,calculateSampleSizeForMeans,calculateSampleSizeForProportions,calculateVarianceFormulaIndividualRandomized,calculateVarianceFormulaClusterRandomized,generateVarianceData,generateUnifiedVarianceData,defaultStyles,styleElement};
 }});
 
-define({id: "217ca183", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "217ca183", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`f_{\text{from} \to \text{to}}`
 ))
@@ -182,7 +188,7 @@ view(equation_2)
 return {equation_2};
 }});
 
-define({id: "f312ea18", inline: true, inputs: ["math","current_state","display"], body: async (math,current_state,display) => {
+define({id: "f312ea18", mode: "inline", inputs: ["math","current_state","display"], body: async (math,current_state,display) => {
 display(await(
 math.sum(current_state)
 ))
@@ -711,49 +717,49 @@ view(equation_4)
 return {equation_4};
 }});
 
-define({id: "092e3ae4", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "092e3ae4", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`n`
 ))
 }});
 
-define({id: "f9bdb6e7", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "f9bdb6e7", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`Z_{1-\alpha/2}`
 ))
 }});
 
-define({id: "a2cb1b2f", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "a2cb1b2f", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`Z_{1-\beta}`
 ))
 }});
 
-define({id: "41bcbc02", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "41bcbc02", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`p_1`
 ))
 }});
 
-define({id: "dde8b54a", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "dde8b54a", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`p_2`
 ))
 }});
 
-define({id: "dde8b54a-1", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "dde8b54a-1", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`p_2`
 ))
 }});
 
-define({id: "41bcbc02-1", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "41bcbc02-1", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`p_1`
 ))
 }});
 
-define({id: "b70429e0", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "b70429e0", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`R_{\text{relative decrease}}`
 ))
@@ -765,13 +771,13 @@ view(equation_p2)
 return {equation_p2};
 }});
 
-define({id: "70a8e36c", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "70a8e36c", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`{P_1}`
 ))
 }});
 
-define({id: "b70429e0-1", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
+define({id: "b70429e0-1", mode: "inline", inputs: ["tex","display"], body: async (tex,display) => {
 display(await(
 tex`R_{\text{relative decrease}}`
 ))
@@ -830,115 +836,21 @@ const n_proportions_wand = calculateSampleSizeForProportions(
 return {n_proportions_wand};
 }});
 
-define({id: "185a128e", inline: true, inputs: ["n_proportions_wand","display"], body: async (n_proportions_wand,display) => {
+define({id: "185a128e", mode: "inline", inputs: ["n_proportions_wand","display"], body: async (n_proportions_wand,display) => {
 display(await(
 n_proportions_wand
 ))
 }});
 
-define({id: "5581e322", inline: true, inputs: ["Example1Form_Selections","display"], body: async (Example1Form_Selections,display) => {
+define({id: "5581e322", mode: "inline", inputs: ["Example1Form_Selections","display"], body: async (Example1Form_Selections,display) => {
 display(await(
 Example1Form_Selections.relative_decrease*100
 ))
 }});
 
-define({id: "327e4620", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
-display(await(
-tex`\text{ER}`
-))
-}});
-
-define({id: "2c53a3c0", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
-display(await(
-tex`\text{PC}`
-))
-}});
-
-define({id: "75a14638", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
-display(await(
-tex`\text{UC}`
-))
-}});
-
-define({id: "f597913b", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
-display(await(
-tex`\text{TH}`
-))
-}});
-
-define({id: "b2397fec", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
-display(await(
-tex`\text{SC}`
-))
-}});
-
-define({id: "d086bf80", inline: true, inputs: ["future_state","display"], body: async (future_state,display) => {
-display(await(
-future_state._data[0]
-))
-}});
-
-define({id: "3163fdb1", inline: true, inputs: ["future_state","display"], body: async (future_state,display) => {
-display(await(
-future_state._data[1]
-))
-}});
-
-define({id: "d0ab5d25", inline: true, inputs: ["future_state","display"], body: async (future_state,display) => {
-display(await(
-future_state._data[2]
-))
-}});
-
-define({id: "3831d616", inline: true, inputs: ["future_state","display"], body: async (future_state,display) => {
-display(await(
-future_state._data[3]
-))
-}});
-
-define({id: "fd9b0f26", inline: true, inputs: ["future_state","display"], body: async (future_state,display) => {
-display(await(
-future_state._data[4]
-))
-}});
-
-define({id: "94568f72", inline: true, inputs: ["output","display"], body: async (output,display) => {
-display(await(
-output["latex-matrices"].calculationStateMatrix_tex
-))
-}});
-
-define({id: "bb0ae8da", inline: true, inputs: ["output","display"], body: async (output,display) => {
-display(await(
-output["latex-cost-difference"].costDifferenceMatrix_tex
-))
-}});
-
-define({id: "152be11a", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
-display(await(
-tex`R_{enrollment}`
-))
-}});
-
-define({id: "152be11a-1", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
-display(await(
-tex`R_{enrollment}`
-))
-}});
-
-define({id: "b763ffbc", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
-display(await(
-tex.block`R_{enrollment} = \frac{n_{enrolled}}{n_{mailed}}`
-))
-}});
-
-define({id: "e71a885d", inline: true, inputs: ["tex","display"], body: async (tex,display) => {
-display(await(
-tex`R_{wand, relative~increase}=0.3`
-))
-}});
-
 </script>
+</head>
+<body>
 <input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
 <label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
 <nav id="observablehq-sidebar">
@@ -952,11 +864,11 @@ tex`R_{wand, relative~increase}=0.3`
   <section>
     <summary>Demo</summary>
     <ol>
-    <li class="observablehq-link"><a href="./random-forest">Intervention Demo</a></li>
+    <li class="observablehq-link"><a href="./intervention-demo">Intervention Demo</a></li>
     </ol>
   </section>
-  <section>
-    <summary>Working Folder</summary>
+  <details open class="observablehq-section-active">
+    <summary>Primitive Assets</summary>
     <ol>
     <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
     <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
@@ -964,10 +876,16 @@ tex`R_{wand, relative~increase}=0.3`
     <li class="observablehq-link"><a href="./distp-demo">Distribution Demo</a></li>
     <li class="observablehq-link"><a href="./funnel-chart">Funnel Chart</a></li>
     <li class="observablehq-link"><a href="./intervention-design">Intervention Design</a></li>
+    <li class="observablehq-link"><a href="./random-forest">In Browser Random Forests</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link"><a href="./experimental-design">Simple Experimental Design</a></li>
+    <li class="observablehq-link"><a href="./microsite">Microsite Demo</a></li>
+    <li class="observablehq-link"><a href="./collapsible-cell">Collapsible Cell</a></li>
     </ol>
-  </section>
+  </details>
 </nav>
-<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
 <div>Contents</div>
@@ -979,153 +897,9 @@ tex`R_{wand, relative~increase}=0.3`
 </ol>
 </nav>
 </aside>
-<div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div id="cell-6fb9f70f" class="observablehq observablehq--block"></div>
-<style>
-  body {
-    font: 13.5px/1.5 var(--serif);
-    margin: 0;
-    max-width: 90%;
-  }
-
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
-    gap: 10px; /* Space between the columns */
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.body-grid {
-    padding: 10px;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    font-size: 0.9em;
-    line-height: 1.5;
-}
-
-  table {
-    border-collapse: collapse;
-    table-layout: fixed;
-    width: 100%;
-    height: 20%;
-    font: 13.5px/1.5 var(--serif);
-  }
-  th {
-    font: 13.5px/1.5 var(--serif);
-    font-weight: bold;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-  }
-  tr:last-child td {
-    border-bottom: 1px solid black;
-  }
-  td, th {
-    text-align: left;
-    border-collapse: collapse;
-    padding: 2px;
-    font-size: 0.8em;
-  }
-
-  .horizontal-line {
-    border-top: 0.5px solid #d3d3d3;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  .katex { font-size: 1em; }
-
-  p { max-width: 90%; }
-
-  /* Style for code blocks */
-  pre code {
-    background-color: #f5f5f5;
-    padding: 10px;
-    display: block;
-    overflow-x: auto;
-    border-radius: 5px;
-  }
-
-  /* Style for inline code */
-  code {
-    background-color: #f5f5f5;
-    padding: 2px 4px;
-    border-radius: 3px;
-    font-size: 0.8em;
-  }
-
-  /* Ensure images are the same width as text (90%) */
-  img {
-    max-width: 90%; /* Matches the max-width of the text */
-    height: auto;   /* Keep aspect ratio */
-    display: block; /* Ensure the image is a block element */
-    margin: 10px 0; /* Add some vertical spacing */
-  }
-
-  .quote-box {
-    border-left: 4px solid #4CAF50;
-    background-color: #f9f9f9;
-    padding: 10px 20px;
-    margin: 20px 0;
-    font-family: "Georgia", serif;
-    font-style: italic;
-    color: #333;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-    .quote-text {
-        font-size: 1em;
-        margin: 0;
-        line-height: 1.5;
-    }
-
-    .quote-author {
-        text-align: right;
-        font-size: 1em;
-        margin-top: 10px;
-        color: #555;
-    }
-
-    .bibliography {
-    margin-top: 20px;
-    font-family: "Arial", sans-serif;
-    font-size: 0.9em;
-    color: #333;
-}
-
-.bibliography p {
-    margin: 5px 0;
-}
-
-.figure-container {
-    /* border: 1px solid #ccc; */
-    /* background-color: #f9f9f9; */
-    padding: 15px;
-    /* margin: 20px 0; */
-    /* border-radius: 5px; */
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-}
-
-figure {
-    margin: 0;
-    padding: 0;
-}
-
-figcaption {
-    margin-top: 10px;
-    font-size: 0.85em;
-    color: #555;
-    font-family: 'Arial', sans-serif;
-    line-height: 1.4;
-}
-
-</style>
-<h1 id="combating-unnecessary-er-visits%3A-mass-balance-business-models-and-behavior-change" tabindex="-1"><a class="observablehq-header-anchor" href="#combating-unnecessary-er-visits%3A-mass-balance-business-models-and-behavior-change">Combating Unnecessary ER Visits: Mass Balance Business Models and Behavior Change</a></h1>
-<!-- Why focus on reducing unnecessary ER visits when musculoskeletal (MSK) spending is so high?
-
-Indeed, MSK-related healthcare costs in the U.S. are staggering—exceeding **$874 billion** annually in medical expenses and lost wages. MSK disorders are the **#1 medical cost driver** for employers, outpacing expenditures on cancer, cardiovascular diseases, diabetes, and maternity combined. They account for over 50% of disabling health conditions reported by adults and are influenced by factors like age, occupation, activity level, lifestyle, and family history. With an aging population and rising obesity rates, MSK-related costs are only expected to increase. -->
+<div class="observablehq observablehq--block"><!--:8ba19cb3:--></div>
+<h1 id="combating-unnecessary-er-visits-mass-balance-business-models-and-behavior-change" tabindex="-1"><a class="observablehq-header-anchor" href="#combating-unnecessary-er-visits-mass-balance-business-models-and-behavior-change">Combating Unnecessary ER Visits: Mass Balance Business Models and Behavior Change</a></h1>
 <p>The number of unnecessary <strong>Emergency Room (ER) visits</strong> is alarming. Consider the following:</p>
 <div class="quote-box">
     <p class="quote-text">"Most studies find that at least 30% of all ED visits in the US are non-urgent, although select studies such as those using National Hospital Ambulatory Medical Survey data report lower percentages (&lt;10%).<sup><a href="#source-1">[1]</a></sup>
@@ -1186,10 +960,10 @@ Indeed, MSK-related healthcare costs in the U.S. are staggering—exceeding **$8
 <p>To model the dynamics of healthcare utilization, we can use a <strong>mass balance model</strong>—a concept borrowed from systems engineering. By viewing members as existing within various 'states' or 'boxes'—each representing a healthcare setting—we can model the flow of individuals between these states using <strong>matrix algebra</strong>.</p>
 <p>This approach allows us to parameterize the transitions between different healthcare settings, creating a steady-state model that simplifies complex dynamics into manageable mathematical expressions.</p>
 <h4 id="creating-the-transfer-matrix" tabindex="-1"><a class="observablehq-header-anchor" href="#creating-the-transfer-matrix">Creating the Transfer Matrix</a></h4>
-<p>We represent the transitions between healthcare settings using a <strong>transfer matrix</strong> (Equation 1). Each element <span id="cell-217ca183"><span class="observablehq-loading"></span></span> represents the fraction of individuals transitioning from one setting to another.</p>
+<p>We represent the transitions between healthcare settings using a <strong>transfer matrix</strong> (Equation 1). Each element <observablehq-loading></observablehq-loading><!--:217ca183:--> represents the fraction of individuals transitioning from one setting to another.</p>
 <div class="figure-container">
 <figure>
-<div id="cell-c727fe23" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:c727fe23:--></div>
 <figcaption>
 <p><strong>Equation 1</strong>: Idealized transfer matrix representing the flow of individuals between healthcare settings.</p>
 </figcaption>
@@ -1232,7 +1006,7 @@ Indeed, MSK-related healthcare costs in the U.S. are staggering—exceeding **$8
 <p>We can visualize the transfer matrix to better understand the flow dynamics:</p>
 <div class="figure-container">
 <figure>
-<div id="cell-f48315c5" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:f48315c5:--></div>
 <figcaption>
 <p><strong>Figure 2</strong>: Visual representation of the transfer matrix.</p>
 </figcaption>
@@ -1242,9 +1016,9 @@ Indeed, MSK-related healthcare costs in the U.S. are staggering—exceeding **$8
 <p>We start by defining the initial number of events in each healthcare setting (Equation 2). Let's assume, for now, that we have an ER problem, but it's not the highest utilized service.</p>
 <div class="figure-container">
 <figure>
-<div id="cell-985ef4de" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:985ef4de:--></div>
 <figcaption>
-<p><strong>Equation 2</strong>: Initial state definition, assuming approximately <span id="cell-f312ea18"><span class="observablehq-loading"></span></span> total events across all settings.</p>
+<p><strong>Equation 2</strong>: Initial state definition, assuming approximately <observablehq-loading></observablehq-loading><!--:f312ea18:--> total events across all settings.</p>
 </figcaption>
 </figure>
 </div>
@@ -1252,7 +1026,7 @@ Indeed, MSK-related healthcare costs in the U.S. are staggering—exceeding **$8
 <p>By taking the dot product of the current state vector with the transfer matrix, which is effectively a matrix of behavior change flows, we can estimate the future distribution of events (Equation 3):</p>
 <div class="figure-container">
 <figure>
-<div id="cell-c46956b6" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:c46956b6:--></div>
 <figcaption>
 <p><strong>Equation 3</strong>: Calculating the future state using matrix algebra.</p>
 </figcaption>
@@ -1262,7 +1036,7 @@ Indeed, MSK-related healthcare costs in the U.S. are staggering—exceeding **$8
 <p>To determine the financial impact, we introduce a **cost array ** representing the average cost per event in each care setting. By calculating the difference between the current and future states, and then performing a dot product with the cost array, we can estimate the total savings generated by the intervention.</p>
 <div class="figure-container">
 <figure>
-<div id="cell-9c75d963" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:9c75d963:--></div>
 <figcaption>
 <p><strong>Equation 4</strong>: Calculating the cost difference resulting from the intervention.</p>
 </figcaption>
@@ -1273,8 +1047,8 @@ Indeed, MSK-related healthcare costs in the U.S. are staggering—exceeding **$8
 <p>You can mess with this however you'd like, but let's initialize this generic solver with some practical information.</p>
 <p>To generalize this approach, we can adjust the model parameters interactively, allowing us to simulate different scenarios and interventions. By updating the transfer matrix, cost array, and initial state, we can observe how changes impact the future state and cost savings.</p>
 <p>N.b., that the transition matrix needs to sum to 1 by column. I've implemented a little function that shows you if you've done it correctly. If everything is <strong><span style="color:green">green</span></strong>, you're all good. If it's <strong><span style="color:blue">blue</span></strong>, then the sum is too high; <strong><span style="color:red">red</span></strong> if it's too low.</p>
-<div id="cell-229eb3b3" class="observablehq observablehq--block"></div>
-<div id="cell-b403d91b" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:229eb3b3:--></div>
+<div class="observablehq observablehq--block"><!--:b403d91b:--></div>
 <p>Oh good! If you haven't played with the example, and despite some of our off targeted effects driving spend a bit less efficiently than hoped, we'll save some money (~$1M or so). Nice. We'll see ~ 630 less ER visits than we would have otherwise normally observed. I hope we save some lives and some out of pocket costs for our members, as well!</p>
 <div class="figure-container">
 <h3 id="power-analysis" tabindex="-1"><a class="observablehq-header-anchor" href="#power-analysis">Power Analysis</a></h3>
@@ -1285,27 +1059,27 @@ Indeed, MSK-related healthcare costs in the U.S. are staggering—exceeding **$8
 <h4 id="statistical-framework" tabindex="-1"><a class="observablehq-header-anchor" href="#statistical-framework">Statistical Framework</a></h4>
 <p>We will use a <strong>two-proportion Z-test</strong> to compare the ER utilization rates between the control group (without intervention) and the intervention group (with our proposed measures).</p>
 <p>The sample size required for each group can be calculated using the following formula:</p>
-<div id="cell-ceb37a07" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:ceb37a07:--></div>
 <p>Where:</p>
 <ul>
-<li><span id="cell-092e3ae4"><span class="observablehq-loading"></span></span> is the sample size per group.</li>
-<li><span id="cell-f9bdb6e7"><span class="observablehq-loading"></span></span> is the Z-score corresponding to the desired significance level (α).</li>
-<li><span id="cell-a2cb1b2f"><span class="observablehq-loading"></span></span> is the Z-score corresponding to the desired power (1 - β).</li>
-<li><span id="cell-41bcbc02"><span class="observablehq-loading"></span></span> is the ER utilization rate in the control group.</li>
-<li><span id="cell-dde8b54a"><span class="observablehq-loading"></span></span> is the ER utilization rate in the intervention group.</li>
+<li><observablehq-loading></observablehq-loading><!--:092e3ae4:--> is the sample size per group.</li>
+<li><observablehq-loading></observablehq-loading><!--:f9bdb6e7:--> is the Z-score corresponding to the desired significance level (α).</li>
+<li><observablehq-loading></observablehq-loading><!--:a2cb1b2f:--> is the Z-score corresponding to the desired power (1 - β).</li>
+<li><observablehq-loading></observablehq-loading><!--:41bcbc02:--> is the ER utilization rate in the control group.</li>
+<li><observablehq-loading></observablehq-loading><!--:dde8b54a:--> is the ER utilization rate in the intervention group.</li>
 </ul>
-<p>Since we're aiming for a relative reduction, we can express <span id="cell-dde8b54a-1"><span class="observablehq-loading"></span></span> in terms of <span id="cell-41bcbc02-1"><span class="observablehq-loading"></span></span> and the relative decrease <span id="cell-b70429e0"><span class="observablehq-loading"></span></span>.</p>
-<div id="cell-c00c48f7" class="observablehq observablehq--block"></div>
+<p>Since we're aiming for a relative reduction, we can express <observablehq-loading></observablehq-loading><!--:dde8b54a-1:--> in terms of <observablehq-loading></observablehq-loading><!--:41bcbc02-1:--> and the relative decrease <observablehq-loading></observablehq-loading><!--:b70429e0:-->.</p>
+<div class="observablehq observablehq--block"><!--:c00c48f7:--></div>
 <p>To initialize this problem (and you can play with whatever you'd like), let's assume that we're looking to observe a relative ~50% decrease in avoidable visits. Let's assume the UnitedHealth is correct, and roughly the rate of ER utilization is ~27M of 164M privately insured lives in the USA, or roughtly ~16.4% in the general commercial population. This would means we want to observe our base rate shift during our experiment from ~16.4% to 11% (Avoidable Visits: 66% of total ED visits.
 Reduction of Avoidable Visits: 50% of avoidable visits = 50% of 66% = 33% of total ED visits.)</p>
-<p>That would make our <span id="cell-70a8e36c"><span class="observablehq-loading"></span></span> = 0.164 and our <span id="cell-b70429e0-1"><span class="observablehq-loading"></span></span> = 0.33.</p>
+<p>That would make our <observablehq-loading></observablehq-loading><!--:70a8e36c:--> = 0.164 and our <observablehq-loading></observablehq-loading><!--:b70429e0-1:--> = 0.33.</p>
 <p>Let's consider the following parameters:</p>
-<div id="cell-ad542eae" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:ad542eae:--></div>
 <p>Calculating ( p_2 ):</p>
-<div id="cell-81e6e81c" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:81e6e81c:--></div>
 <p>Calculating the required sample size:</p>
-<div id="cell-011e8b6b" class="observablehq observablehq--block"></div>
-<p>With these parameters, we determine that approximately <strong><span id="cell-185a128e"><span class="observablehq-loading"></span></span> </strong> are needed in each group to detect a <strong> <span id="cell-5581e322"><span class="observablehq-loading"></span></span> </strong> % relative reduction in ER utilization with 80% power at a 5% significance level (assuming you didn't change the Z's above :-).</p>
+<div class="observablehq observablehq--block"><!--:011e8b6b:--></div>
+<p>With these parameters, we determine that approximately <strong><observablehq-loading></observablehq-loading><!--:185a128e:--> </strong> are needed in each group to detect a <strong> <observablehq-loading></observablehq-loading><!--:5581e322:--> </strong> % relative reduction in ER utilization with 80% power at a 5% significance level (assuming you didn't change the Z's above :-).</p>
 <p>That's not very much, but then again, this would be a <em>true</em> RCT and not an intent to treat RCT. Further, the behavior change rate and relative reduction observed is somewhat <em>absurd</em>. If we were to redo this for something more reasonable (like a ~10% relative reduction in Uneccessary ER), we would need a lot more people (<strong>~7890</strong> per arm).</p>
 </div>
 <h2 id="citations" tabindex="-1"><a class="observablehq-header-anchor" href="#citations">Citations</a></h2>
@@ -1422,11 +1196,11 @@ view(equation_1)
 Equation 1: Idealized transfer matrix. 
 
 Where: 
-- <span id="cell-327e4620"><span class="observablehq-loading"></span></span> is the Emergency Room, where patients receive acute and emergency medical care.
-- <span id="cell-2c53a3c0"><span class="observablehq-loading"></span></span> is Primary Care, where patients receive general medical services and preventive care.
-- <span id="cell-75a14638"><span class="observablehq-loading"></span></span> is Urgent Care, where patients receive immediate treatment for non-emergency conditions.
-- <span id="cell-f597913b"><span class="observablehq-loading"></span></span> is Telehealth, where patients receive medical consultations and care remotely.
-- <span id="cell-b2397fec"><span class="observablehq-loading"></span></span> is Self-Care, where patients manage their own health without direct medical supervision or utilization.
+- ${tex`\text{ER}`} is the Emergency Room, where patients receive acute and emergency medical care.
+- ${tex`\text{PC}`} is Primary Care, where patients receive general medical services and preventive care.
+- ${tex`\text{UC}`} is Urgent Care, where patients receive immediate treatment for non-emergency conditions.
+- ${tex`\text{TH}`} is Telehealth, where patients receive medical consultations and care remotely.
+- ${tex`\text{SC}`} is Self-Care, where patients manage their own health without direct medical supervision or utilization.
 </figcaption>
 </figure>
 </div>
@@ -1659,11 +1433,11 @@ const equation_3 = tex.block`
 \end{bmatrix}
 =
 \begin{bmatrix}
-    <span id="cell-d086bf80"><span class="observablehq-loading"></span></span> \\
-    <span id="cell-3163fdb1"><span class="observablehq-loading"></span></span> \\
-    <span id="cell-d0ab5d25"><span class="observablehq-loading"></span></span> \\
-    <span id="cell-3831d616"><span class="observablehq-loading"></span></span> \\
-    <span id="cell-fd9b0f26"><span class="observablehq-loading"></span></span>
+    ${future_state._data[0]} \\
+    ${future_state._data[1]} \\
+    ${future_state._data[2]} \\
+    ${future_state._data[3]} \\
+    ${future_state._data[4]}
 \end{bmatrix}
 `
 view(equation_3)
@@ -1689,9 +1463,9 @@ const solver = new MatrixSolver({
 
 const cost_diff = solver.cost_difference
 const output = solver.generateLatexEquation()
-view(tex.block`<span id="cell-94568f72"><span class="observablehq-loading"></span></span>`)
+view(tex.block`${output["latex-matrices"].calculationStateMatrix_tex}`)
 
-view(tex.block`<span id="cell-bb0ae8da"><span class="observablehq-loading"></span></span>`)
+view(tex.block`${output["latex-cost-difference"].costDifferenceMatrix_tex}`)
 ```
 
 <figcaption>
@@ -1718,13 +1492,13 @@ Good question. We need to design an experiment to find out! In this example, it'
 Let's assume we'd like to power the experiment to observe the decrease in ER utilization. N.b., that it may be important to _also_ power the experiment to observe the other flows, as well. After all, how do you know if it's working for the _right_ reasons? In this case, we wwant to observe the _relative_ ER decrease as a function of behavior change (the matrix above is _relative_. )
 
 
-From our example, we want to reduce our ER our enrollment rate, <span id="cell-152be11a"><span class="observablehq-loading"></span></span>.
+From our example, we want to reduce our ER our enrollment rate, ${tex`R_{enrollment}`}.
 
-<span id="cell-152be11a-1"><span class="observablehq-loading"></span></span> is currently set to be:
+${tex`R_{enrollment}`} is currently set to be:
 
-<span id="cell-b763ffbc"><span class="observablehq-loading"></span></span>
+${tex.block`R_{enrollment} = \frac{n_{enrolled}}{n_{mailed}}`}
 
-Let's say we have a magic wand that incrementally increases the relative enrollment rate by 30%, i.e., <span id="cell-e71a885d"><span class="observablehq-loading"></span></span>.
+Let's say we have a magic wand that incrementally increases the relative enrollment rate by 30%, i.e., ${tex`R_{wand, relative~increase}=0.3`}.
 
 ```js
 const equation_enrollment = tex.block`R_{enrollment, wand} = \frac{n_{enrolled}}{n_{mailed}}\cdot (1+R_{wand, relative~increase})`
@@ -1821,6 +1595,9 @@ Here are some citations.
 
 </div> --></main>
 <footer id="observablehq-footer">
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-23T16:36:31">Nov 23, 2024</a>.</div>
+<nav><a rel="prev" href="./random-forest"><span>In Browser Random Forests</span></a><a rel="next" href="./experimental-design"><span>Simple Experimental Design</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-03T02:01:16">Dec 3, 2024</a>.</div>
 </footer>
 </div>
+</body>
+</html>

@@ -1,66 +1,68 @@
 <!DOCTYPE html>
+<html>
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.0">
 <title>Generic &#x60;BusinessModelBuilder&#x60; | Measurement By Design</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
-<link rel="modulepreload" href="./_observablehq/client.js">
-<link rel="modulepreload" href="./_observablehq/runtime.js">
-<link rel="modulepreload" href="./_observablehq/stdlib.js">
-<link rel="modulepreload" href="./_import/components/LiveTable.f224e53d.js">
-<link rel="modulepreload" href="./_import/components/FunnelChart.0f5c685d.js">
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/d3@7/+esm">
-<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.js">
-<link rel="modulepreload" href="./_import/components/styles.5938bdd2.js">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="modulepreload" href="./_observablehq/client.bdfce3d3.js">
+<link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.63ee1033.js">
+<link rel="modulepreload" href="./_import/components/LiveTable.1d7d0895.js">
+<link rel="modulepreload" href="./_import/components/FunnelChart.4c4f7fbb.js">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
+<link rel="modulepreload" href="./_import/components/styles.1f6baada.js">
 <link rel="modulepreload" href="./_import/components/BusinessModelBuilder.8f7b1542.js">
-<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/_esm.js">
-<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
-<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
-<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/_esm.js">
-<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
-<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
-<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/118fc3ce.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e95f898e.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/d44feff9.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/5830b12a.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/626bedc4.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/b22c5864.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e1ff060.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/5851d7ef.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/dcd02767.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/567840a0.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/cf9b720b.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/5dcd62f4.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/f8e03c56.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/5bc129e1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/19c92b44.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/8debb4ba.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/4b0cc581.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
 <script type="module">
 
-import {define} from "./_observablehq/client.js";
+import {define} from "./_observablehq/client.bdfce3d3.js";
 
 define({id: "0413996b", inputs: ["html"], outputs: ["TableInput","TableInputTypes","EVENTS","LiveTable","LiveTableData","FunnelChart","d3","require","jStat","math","genericInterventionStyle","styleElement"], body: async (html) => {
-const [{TableInput, TableInputTypes, EVENTS, LiveTable, LiveTableData}, {FunnelChart}, d3, {require}, {genericInterventionStyle}] = await Promise.all([import("./_import/components/LiveTable.f224e53d.js"), import("./_import/components/FunnelChart.0f5c685d.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.js"), import("./_import/components/styles.5938bdd2.js")]);
+const [{TableInput, TableInputTypes, EVENTS, LiveTable, LiveTableData}, {FunnelChart}, d3, {require}, {genericInterventionStyle}] = await Promise.all([import("./_import/components/LiveTable.1d7d0895.js"), import("./_import/components/FunnelChart.4c4f7fbb.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.45152b81.js"), import("./_import/components/styles.1f6baada.js")]);
 // imports
 
 
@@ -773,6 +775,8 @@ return {visualizationSalesPipeline,visualizationSalesPipelineD};
 }});
 
 </script>
+</head>
+<body>
 <input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
 <label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
 <nav id="observablehq-sidebar">
@@ -786,11 +790,11 @@ return {visualizationSalesPipeline,visualizationSalesPipelineD};
   <section>
     <summary>Demo</summary>
     <ol>
-    <li class="observablehq-link"><a href="./random-forest">Intervention Demo</a></li>
+    <li class="observablehq-link"><a href="./intervention-demo">Intervention Demo</a></li>
     </ol>
   </section>
-  <section class="observablehq-section-active">
-    <summary>Working Folder</summary>
+  <details open class="observablehq-section-active">
+    <summary>Primitive Assets</summary>
     <ol>
     <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
     <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
@@ -798,26 +802,31 @@ return {visualizationSalesPipeline,visualizationSalesPipelineD};
     <li class="observablehq-link"><a href="./distp-demo">Distribution Demo</a></li>
     <li class="observablehq-link"><a href="./funnel-chart">Funnel Chart</a></li>
     <li class="observablehq-link observablehq-link-active"><a href="./intervention-design">Intervention Design</a></li>
+    <li class="observablehq-link"><a href="./random-forest">In Browser Random Forests</a></li>
+    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link"><a href="./experimental-design">Simple Experimental Design</a></li>
+    <li class="observablehq-link"><a href="./microsite">Microsite Demo</a></li>
+    <li class="observablehq-link"><a href="./collapsible-cell">Collapsible Cell</a></li>
     </ol>
-  </section>
+  </details>
 </nav>
-<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
 <div>Contents</div>
 <ol>
-<li class="observablehq-secondary-link"><a href="#step-1%3A-create-parameter-table">Step 1: Create Parameter Table</a></li>
-<li class="observablehq-secondary-link"><a href="#step-2%3A-create-business-model-visualization">Step 2: Create Business Model Visualization</a></li>
-<li class="observablehq-secondary-link"><a href="#step-3%3A-implement-the-visualization">Step 3: Implement the Visualization</a></li>
-<li class="observablehq-secondary-link"><a href="#key-components%3A">Key Components:</a></li>
-<li class="observablehq-secondary-link"><a href="#example-use-cases%3A">Example Use Cases:</a></li>
+<li class="observablehq-secondary-link"><a href="#step-1-create-parameter-table">Step 1: Create Parameter Table</a></li>
+<li class="observablehq-secondary-link"><a href="#step-2-create-business-model-visualization">Step 2: Create Business Model Visualization</a></li>
+<li class="observablehq-secondary-link"><a href="#step-3-implement-the-visualization">Step 3: Implement the Visualization</a></li>
+<li class="observablehq-secondary-link"><a href="#key-components">Key Components:</a></li>
+<li class="observablehq-secondary-link"><a href="#example-use-cases">Example Use Cases:</a></li>
 </ol>
 </nav>
 </aside>
-<div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div id="cell-0413996b" class="observablehq observablehq--block"></div>
-<h1 id="generic-businessmodelbuilder-introduction" tabindex="-1"><a class="observablehq-header-anchor" href="#generic-businessmodelbuilder-introduction">Generic <code>BusinessModelBuilder</code> Introduction</a></h1>
+<div class="observablehq observablehq--block"><!--:0413996b:--></div>
+<h1 id="generic-business-model-builder-introduction" tabindex="-1"><a class="observablehq-header-anchor" href="#generic-business-model-builder-introduction">Generic <code>BusinessModelBuilder</code> Introduction</a></h1>
 <p>This framework provides a structured way to create interactive business model visualizations that show relationships between parameters and derived metrics. It consists of two main components: a parameter input table and a visualization builder.</p>
 <p>The system allows you to:</p>
 <ol>
@@ -827,7 +836,7 @@ return {visualizationSalesPipeline,visualizationSalesPipelineD};
 <li>Visualize the business model in a structured format</li>
 <li>Update visualizations reactively as parameters change</li>
 </ol>
-<h2 id="step-1%3A-create-parameter-table" tabindex="-1"><a class="observablehq-header-anchor" href="#step-1%3A-create-parameter-table">Step 1: Create Parameter Table</a></h2>
+<h2 id="step-1-create-parameter-table" tabindex="-1"><a class="observablehq-header-anchor" href="#step-1-create-parameter-table">Step 1: Create Parameter Table</a></h2>
 <p>First, define your parameters, their units, and distributions:</p>
 <pre data-language="javascript"><code class="language-javascript"><span class="hljs-comment">// Define your parameters data</span>
 <span class="hljs-keyword">const</span> parameterData = [
@@ -876,7 +885,7 @@ return {visualizationSalesPipeline,visualizationSalesPipelineD};
 <span class="hljs-comment">// Create reactive data stream</span>
 <span class="hljs-keyword">const</span> parameterTableData = <span class="hljs-title class_">LiveTableData</span>(parameterTable);
 </code></pre>
-<h2 id="step-2%3A-create-business-model-visualization" tabindex="-1"><a class="observablehq-header-anchor" href="#step-2%3A-create-business-model-visualization">Step 2: Create Business Model Visualization</a></h2>
+<h2 id="step-2-create-business-model-visualization" tabindex="-1"><a class="observablehq-header-anchor" href="#step-2-create-business-model-visualization">Step 2: Create Business Model Visualization</a></h2>
 <p>Define your business model structure and calculations:</p>
 <pre data-language="javascript"><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">visualizationModel</span>(<span class="hljs-params">currentData, html</span>) {
   <span class="hljs-keyword">const</span> builder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BusinessModelBuilder</span>(currentData, html);
@@ -936,7 +945,7 @@ return {visualizationSalesPipeline,visualizationSalesPipelineD};
     .<span class="hljs-title function_">build</span>();
 }
 </code></pre>
-<h2 id="step-3%3A-implement-the-visualization" tabindex="-1"><a class="observablehq-header-anchor" href="#step-3%3A-implement-the-visualization">Step 3: Implement the Visualization</a></h2>
+<h2 id="step-3-implement-the-visualization" tabindex="-1"><a class="observablehq-header-anchor" href="#step-3-implement-the-visualization">Step 3: Implement the Visualization</a></h2>
 <p>Connect everything together:</p>
 <pre data-language="javascript"><code class="language-javascript"><span class="hljs-comment">// Create and view the table</span>
 <span class="hljs-title function_">view</span>(parameterTable);
@@ -945,7 +954,7 @@ return {visualizationSalesPipeline,visualizationSalesPipelineD};
 <span class="hljs-keyword">const</span> visualizationOutput = <span class="hljs-title function_">visualizationModel</span>(parameterTableData, html);
 <span class="hljs-title function_">view</span>(visualizationOutput);
 </code></pre>
-<h2 id="key-components%3A" tabindex="-1"><a class="observablehq-header-anchor" href="#key-components%3A">Key Components:</a></h2>
+<h2 id="key-components" tabindex="-1"><a class="observablehq-header-anchor" href="#key-components">Key Components:</a></h2>
 <h3 id="formula-structure" tabindex="-1"><a class="observablehq-header-anchor" href="#formula-structure">Formula Structure</a></h3>
 <ul>
 <li><strong>Top Row Formula</strong>: Usually shows the main metric (ROI, profit, etc.)</li>
@@ -965,7 +974,7 @@ return {visualizationSalesPipeline,visualizationSalesPipelineD};
 <li>Show current values with units</li>
 <li>Update automatically with table changes</li>
 </ul>
-<h3 id="best-practices%3A" tabindex="-1"><a class="observablehq-header-anchor" href="#best-practices%3A">Best Practices:</a></h3>
+<h3 id="best-practices" tabindex="-1"><a class="observablehq-header-anchor" href="#best-practices">Best Practices:</a></h3>
 <ol>
 <li>Use clear, unique parameter names</li>
 <li>Group related formulas and parameters logically</li>
@@ -973,19 +982,21 @@ return {visualizationSalesPipeline,visualizationSalesPipelineD};
 <li>Use highlighting to show value flow</li>
 <li>Position formulas to show clear relationships</li>
 </ol>
-<h2 id="example-use-cases%3A" tabindex="-1"><a class="observablehq-header-anchor" href="#example-use-cases%3A">Example Use Cases:</a></h2>
-<h3 id="example-1%3A-belle-cares" tabindex="-1"><a class="observablehq-header-anchor" href="#example-1%3A-belle-cares">Example 1: Belle Cares</a></h3>
-<div id="cell-5aa9872a" class="observablehq observablehq--block"></div>
-<div id="cell-895eb1cf" class="observablehq observablehq--block"></div>
-<div id="cell-d6eec384" class="observablehq observablehq--block"></div>
-<div id="cell-dc415654" class="observablehq observablehq--block"></div>
-<h3 id="example-2%3A-a-sales-pipeline" tabindex="-1"><a class="observablehq-header-anchor" href="#example-2%3A-a-sales-pipeline">Example 2: A sales Pipeline</a></h3>
-<div id="cell-fc1a1f98" class="observablehq observablehq--block"></div>
-<div id="cell-708df49f" class="observablehq observablehq--block"></div>
-<div id="cell-591e72a0" class="observablehq observablehq--block"></div>
+<h2 id="example-use-cases" tabindex="-1"><a class="observablehq-header-anchor" href="#example-use-cases">Example Use Cases:</a></h2>
+<h3 id="example-1-belle-cares" tabindex="-1"><a class="observablehq-header-anchor" href="#example-1-belle-cares">Example 1: Belle Cares</a></h3>
+<div class="observablehq observablehq--block"><!--:5aa9872a:--></div>
+<div class="observablehq observablehq--block"><!--:895eb1cf:--></div>
+<div class="observablehq observablehq--block"><!--:d6eec384:--></div>
+<div class="observablehq observablehq--block"><!--:dc415654:--></div>
+<h3 id="example-2-a-sales-pipeline" tabindex="-1"><a class="observablehq-header-anchor" href="#example-2-a-sales-pipeline">Example 2: A sales Pipeline</a></h3>
+<div class="observablehq observablehq--block"><!--:fc1a1f98:--></div>
+<div class="observablehq observablehq--block"><!--:708df49f:--></div>
+<div class="observablehq observablehq--block"><!--:591e72a0:--></div>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./funnel-chart"><span>Funnel Chart</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-23T16:36:31">Nov 23, 2024</a>.</div>
+<nav><a rel="prev" href="./funnel-chart"><span>Funnel Chart</span></a><a rel="next" href="./random-forest"><span>In Browser Random Forests</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-03T02:01:16">Dec 3, 2024</a>.</div>
 </footer>
 </div>
+</body>
+</html>

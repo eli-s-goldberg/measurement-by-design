@@ -10,9 +10,31 @@ export const defaultStyles = `
     display: inline-block;
     margin: 2px 0;
   }
-    
+
+  :root {
+    --observablehq-max-width: 100%;
+}
+#observablehq-sidebar {
+--observablehq-max-width
+    --observablehq-sidebar-padding-left: calc(max(0rem,(100vw - var(--observablehq-max-width)) / 2)); 
+    position: fixed;
+    background: var(--theme-background-alt);
+    color: var(--theme-foreground-muted);
+    font: 14px var(--sans-serif);
+    visibility: hidden;
+    font-weight: 500;
+    width: calc(272px + var(--observablehq-sidebar-padding-left));
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: -272px;
+    box-sizing: border-box;
+    padding: 0 0.5rem 1rem calc(var(--observablehq-sidebar-padding-left) + 0.5rem);
+    overflow-y: auto;
+}
   body {
-    font: 13.5px/1.5 var(--serif);
+    font: 15px/1.5 var(--serif);
+    font-family: system-ui, -apple-system, sans-serif;
     margin: 0;
     max-width: 93%;
   }
@@ -138,7 +160,6 @@ export const defaultStyles = `
     margin: 0px;
     padding: 10px;
     max-width: 100%;
-    background-color: #f9f9f9;
   }
 
   figcaption {

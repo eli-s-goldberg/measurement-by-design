@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.0">
+<title>Collapsible Cell | Measurement By Design</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="modulepreload" href="./_observablehq/client.bdfce3d3.js">
+<link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.63ee1033.js">
+<link rel="modulepreload" href="./_import/components/collapsible.fe041762.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.bdfce3d3.js";
+
+define({id: "c356805c", inputs: ["html"], outputs: ["styles","styleElement"], body: async (html) => {
+const {styles} = await import("./_import/components/collapsible.fe041762.js");
+const styleElement = html`<style>${styles}</style>`;
+document.head.appendChild(styleElement);
+return {styles,styleElement};
+}});
+
+define({id: "28b52f16", inputs: ["html","styles","view"], outputs: ["collapsible"], body: (html,styles,view) => {
+// Create the HTML elements
+const collapsible = html`
+<div>
+  ${styles}
+  <button class="collapsible">Click to Learn More</button>
+  <div class="content">
+    <h3>Example Content</h3>
+    <p>This is the collapsible content. You can put any HTML content here.</p>
+    <pre><code>
+    // Example code
+    function greeting() {
+        console.log("Hello, Observable!");
+    }
+    </code></pre>
+  </div>
+</div>
+`;
+
+// Add the click handler using Observable's approach
+collapsible.querySelector('.collapsible').addEventListener('click', function() {
+  this.classList.toggle('active');
+  const content = this.nextElementSibling;
+  content.classList.toggle('show');
+});
+
+// Return the element to display it
+view(collapsible);
+return {collapsible};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Measurement By Design</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./">Introduction</a></li>
+  </ol>
+  <section>
+    <summary>Demo</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./intervention-demo">Intervention Demo</a></li>
+    </ol>
+  </section>
+  <details open class="observablehq-section-active">
+    <summary>Primitive Assets</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
+    <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
+    <li class="observablehq-link"><a href="./live-table-data">Live Table</a></li>
+    <li class="observablehq-link"><a href="./distp-demo">Distribution Demo</a></li>
+    <li class="observablehq-link"><a href="./funnel-chart">Funnel Chart</a></li>
+    <li class="observablehq-link"><a href="./intervention-design">Intervention Design</a></li>
+    <li class="observablehq-link"><a href="./random-forest">In Browser Random Forests</a></li>
+    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link"><a href="./experimental-design">Simple Experimental Design</a></li>
+    <li class="observablehq-link"><a href="./microsite">Microsite Demo</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./collapsible-cell">Collapsible Cell</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#describe-the-bet">Describe the &#x27;bet&#x27;</a></li>
+<li class="observablehq-secondary-link"><a href="#value-landscape">Value Landscape</a></li>
+<li class="observablehq-secondary-link"><a href="#evidence-to-support-effect-sizes">Evidence to support effect sizes</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<!-- ```js
+// import some CSS to keep things well styled
+import { defaultStyles } from "./components/styles.js"
+const styleElement = html`<style>${defaultStyles}</style>`;
+document.head.appendChild(styleElement);
+
+``` -->
+<div class="observablehq observablehq--block"><!--:c356805c:--></div>
+<div class="observablehq observablehq--block"><!--:28b52f16:--></div>
+<h2 id="describe-the-bet" tabindex="-1"><a class="observablehq-header-anchor" href="#describe-the-bet">Describe the 'bet'</a></h2>
+<h2 id="value-landscape" tabindex="-1"><a class="observablehq-header-anchor" href="#value-landscape">Value Landscape</a></h2>
+<h2 id="evidence-to-support-effect-sizes" tabindex="-1"><a class="observablehq-header-anchor" href="#evidence-to-support-effect-sizes">Evidence to support effect sizes</a></h2>
+<h2 id="" tabindex="-1"><a class="observablehq-header-anchor" href="#"></a></h2>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./microsite"><span>Microsite Demo</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-03T02:01:16">Dec 3, 2024</a>.</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,26 +1,28 @@
 <!DOCTYPE html>
+<html>
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.0">
 <title>Table Input Experiment | Measurement By Design</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
-<link rel="modulepreload" href="./_observablehq/client.js">
-<link rel="modulepreload" href="./_observablehq/runtime.js">
-<link rel="modulepreload" href="./_observablehq/stdlib.js">
-<link rel="modulepreload" href="./_import/components/LiveTable.f224e53d.js">
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/d3@7/+esm">
-<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.js">
-<link rel="modulepreload" href="./_import/components/styles.5938bdd2.js">
-<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="modulepreload" href="./_observablehq/client.bdfce3d3.js">
+<link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.63ee1033.js">
+<link rel="modulepreload" href="./_import/components/LiveTable.1d7d0895.js">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
+<link rel="modulepreload" href="./_import/components/styles.1f6baada.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
 <script type="module">
 
-import {define} from "./_observablehq/client.js";
+import {define} from "./_observablehq/client.bdfce3d3.js";
 
 define({id: "538fdf74", inputs: ["html"], outputs: ["TableInput","TableInputTypes","EVENTS","LiveTable","LiveTableData","d3","require","jStat","math","defaultStyles","styleElement"], body: async (html) => {
-const [{TableInput, TableInputTypes, EVENTS, LiveTable, LiveTableData}, d3, {require}, {defaultStyles}] = await Promise.all([import("./_import/components/LiveTable.f224e53d.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.js"), import("./_import/components/styles.5938bdd2.js")]);
+const [{TableInput, TableInputTypes, EVENTS, LiveTable, LiveTableData}, d3, {require}, {defaultStyles}] = await Promise.all([import("./_import/components/LiveTable.1d7d0895.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.45152b81.js"), import("./_import/components/styles.1f6baada.js")]);
 // imports
 
 const jStat = await require("jstat@1.9.4");
@@ -212,6 +214,8 @@ view(livetabledata)
 }});
 
 </script>
+</head>
+<body>
 <input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
 <label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
 <nav id="observablehq-sidebar">
@@ -225,11 +229,11 @@ view(livetabledata)
   <section>
     <summary>Demo</summary>
     <ol>
-    <li class="observablehq-link"><a href="./random-forest">Intervention Demo</a></li>
+    <li class="observablehq-link"><a href="./intervention-demo">Intervention Demo</a></li>
     </ol>
   </section>
-  <section class="observablehq-section-active">
-    <summary>Working Folder</summary>
+  <details open class="observablehq-section-active">
+    <summary>Primitive Assets</summary>
     <ol>
     <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
     <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
@@ -237,31 +241,36 @@ view(livetabledata)
     <li class="observablehq-link"><a href="./distp-demo">Distribution Demo</a></li>
     <li class="observablehq-link"><a href="./funnel-chart">Funnel Chart</a></li>
     <li class="observablehq-link"><a href="./intervention-design">Intervention Design</a></li>
+    <li class="observablehq-link"><a href="./random-forest">In Browser Random Forests</a></li>
+    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link"><a href="./experimental-design">Simple Experimental Design</a></li>
+    <li class="observablehq-link"><a href="./microsite">Microsite Demo</a></li>
+    <li class="observablehq-link"><a href="./collapsible-cell">Collapsible Cell</a></li>
     </ol>
-  </section>
+  </details>
 </nav>
-<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
 <div>Contents</div>
 <ol>
-<li class="observablehq-secondary-link"><a href="#livetable">LiveTable</a></li>
-<li class="observablehq-secondary-link"><a href="#tableinputtypes">TableInputTypes</a></li>
-<li class="observablehq-secondary-link"><a href="#livetabledata">LiveTableData</a></li>
+<li class="observablehq-secondary-link"><a href="#live-table">LiveTable</a></li>
+<li class="observablehq-secondary-link"><a href="#table-input-types">TableInputTypes</a></li>
+<li class="observablehq-secondary-link"><a href="#live-table-data">LiveTableData</a></li>
 <li class="observablehq-secondary-link"><a href="#an-example">An example</a></li>
 </ol>
 </nav>
 </aside>
-<div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div id="cell-538fdf74" class="observablehq observablehq--block"></div>
-<h1 id="introducing-livetable.-a-live%2C-editible%2C-observable-table." tabindex="-1"><a class="observablehq-header-anchor" href="#introducing-livetable.-a-live%2C-editible%2C-observable-table.">Introducing <code>LiveTable</code>. A live, editible, observable table.</a></h1>
+<div class="observablehq observablehq--block"><!--:538fdf74:--></div>
+<h1 id="introducing-live-table-a-live-editible-observable-table" tabindex="-1"><a class="observablehq-header-anchor" href="#introducing-live-table-a-live-editible-observable-table">Introducing <code>LiveTable</code>. A live, editible, observable table.</a></h1>
 <p>I've decided to do a bit of enhancement to observables default tables to make them live, responsive, and editable. I've also tried to do in an an 'observable~ish' manner, making things useful and generic and making the actual calls pretty simple. I did this because I didn't like the way I originally implemented my mass balance business model tables. It looked all weird like.</p>
 <p>Let's start out seeing what the table and output looks like.</p>
-<div id="cell-b5fa47df" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:b5fa47df:--></div>
 <p>Here's the object. Watch! If you change the table, it'll change this object.</p>
-<div id="cell-1aea6ab4" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
-<h2 id="livetable" tabindex="-1"><a class="observablehq-header-anchor" href="#livetable"><code>LiveTable</code></a></h2>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:1aea6ab4:--></div>
+<h2 id="live-table" tabindex="-1"><a class="observablehq-header-anchor" href="#live-table"><code>LiveTable</code></a></h2>
 <p>There are three components to making live, responsive, and editable tables:</p>
 <ol>
 <li><code>LiveTable</code>, the function to create the table.</li>
@@ -304,7 +313,7 @@ The table itself consists of a few components. Note that <code>html</code> is pa
 <span class="hljs-title function_">view</span>(table)
 </code></pre>
 <p>Cool. This will make a bit more sense when we put all the things together, but let's keep going.</p>
-<h2 id="tableinputtypes" tabindex="-1"><a class="observablehq-header-anchor" href="#tableinputtypes"><code>TableInputTypes</code></a></h2>
+<h2 id="table-input-types" tabindex="-1"><a class="observablehq-header-anchor" href="#table-input-types"><code>TableInputTypes</code></a></h2>
 <p>There are a few input type primitives that I've coded. They are as follows.</p>
 <ol>
 <li><a href="#integer-input-type">Integer Input Type</a></li>
@@ -445,7 +454,7 @@ The table itself consists of a few components. Note that <code>html</code> is pa
 <li><strong>defaultValue</strong>: <em>(String, optional)</em> Default value for new rows. Defaults to '0' because that's the responsible thing to do.</li>
 </ul>
 <hr>
-<h3 id="bonus%3A-custom-parsers" tabindex="-1"><a class="observablehq-header-anchor" href="#bonus%3A-custom-parsers">Bonus: Custom Parsers</a></h3>
+<h3 id="bonus-custom-parsers" tabindex="-1"><a class="observablehq-header-anchor" href="#bonus-custom-parsers">Bonus: Custom Parsers</a></h3>
 <p>Wait, there's more! You can add a <code>parser</code> function to any input type if you feel like being fancy. Useful for when users input JSON strings, and you want to parse them into objects because dealing with strings is so last year. This is good if you want to input dictionaries with parameters. Those parameters in that dict will then be parsed correctly in the <code>parsedData()</code> output.</p>
 <pre data-language="javascript"><code class="language-javascript"><span class="hljs-title class_">TableInputTypes</span>.<span class="hljs-title function_">text</span>({
   <span class="hljs-attr">width</span>: <span class="hljs-number">200</span>,
@@ -463,7 +472,7 @@ The table itself consists of a few components. Note that <code>html</code> is pa
 <ul>
 <li><strong>parser</strong>: <em>(Function, optional)</em> A function that takes the input value and returns the parsed value. Perfect for turning that stringified JSON into an actual object.</li>
 </ul>
-<h2 id="livetabledata" tabindex="-1"><a class="observablehq-header-anchor" href="#livetabledata"><code>LiveTableData</code></a></h2>
+<h2 id="live-table-data" tabindex="-1"><a class="observablehq-header-anchor" href="#live-table-data"><code>LiveTableData</code></a></h2>
 <p>Due to how reactivity works in observable or javascript (I'm not exactly sure), getting objects to update requires <code>generator</code> functions. Admittidly, I have <em>no</em> idea really how these things are supposed to work and I only mamaged to stumble through it with a lot of LLM assistance.</p>
 <p>However, you don't have to worry about it, because I've buried it all in the code. Note that in framework, you need to seperate the generate from the viewing to make it work properly.</p>
 <pre data-language="javascript"><code class="language-javascript"><span class="hljs-keyword">const</span> data = <span class="hljs-title class_">LiveTableData</span>(table)
@@ -634,12 +643,14 @@ The table itself consists of a few components. Note that <code>html</code> is pa
 <pre data-language="javascript"><code class="language-javascript"><span class="hljs-title function_">view</span>(livetabledata)
 </code></pre>
 <hr>
-<div id="cell-03790140" class="observablehq observablehq--block"></div>
-<div id="cell-895eb1cf" class="observablehq observablehq--block"></div>
-<div id="cell-1aea6ab4-1" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
+<div class="observablehq observablehq--block"><!--:03790140:--></div>
+<div class="observablehq observablehq--block"><!--:895eb1cf:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:1aea6ab4-1:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./exp-design-figures"><span>Experimental Design Figures</span></a><a rel="next" href="./distp-demo"><span>Distribution Demo</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-11-23T16:36:31">Nov 23, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-03T02:01:16">Dec 3, 2024</a>.</div>
 </footer>
 </div>
+</body>
+</html>

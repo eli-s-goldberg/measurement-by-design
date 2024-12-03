@@ -12,7 +12,7 @@ document.head.appendChild(styleElement);
 ```js
 // import data gen and consts
 import { generateHealthcareData, CONSTANTS, calculateImageUse } from './components/generateHealthcareData.js'
-import {prepareImagingData} from "./components/ml-utils.js"
+import {prepareImagingData, stratifiedSubsample, getRandomSubsample, computeMeanAndCI, computeROC} from "./components/ml-utils.js"
 import { require } from "d3-require";
 import { FunnelChart } from './components/FunnelChart.js';
 
@@ -23,13 +23,18 @@ import {
   createDemographicMetrics,
   aggregateData, createDataSummary, createIntMetric, createFloatMetric
 } from "./components/AggStats.js"
+import { createSankeyFlow } from './components/SankeyFlow.js';
+import { RandomForestClassifier } from "./components/RandomForestClassifier.js";
 ```
+
 
 # Unveiling Insights in Imaging Utilization
 
 A picture may be worth a thousand words, but it may also cost several thousand dollars—especially when imaging is done at non-preferred facilities. On the surface, imaging utilization across the book appears stable. However, when we dig deeper, we uncover a hidden inefficiency: a significant fraction of members seem to be bypassing preferred facilities, leading to higher costs and missed opportunities for clinical alignment.
 
-Non-preferred imaging usage might seem like a minor issue, but its cumulative impact is substantial. 
+Non-preferred imaging usage might seem like a minor issue, but its cumulative impact is substantial. For specific clinical groups, such as those with chronic conditions like COPD, this problem is amplified. These members often require frequent imaging, and when they consistently visit non-preferred centers, the financial burden grows while coordination of care suffers.
+
+This isn't just a cost problem; it's a care problem. By understanding who is driving this non-preferred utilization and why, we can uncover actionable insights to redirect behavior, reduce inefficiencies, and improve outcomes.
 
 --- 
 
@@ -37,7 +42,7 @@ Non-preferred imaging usage might seem like a minor issue, but its cumulative im
 
 ```js
 // Generate a large dataset for analysis
-const DATASETSIZE = 210000
+const DATASETSIZE = 2100000
 const data = generateHealthcareData(DATASETSIZE);
 ```
 
@@ -151,6 +156,8 @@ const rawData = Inputs.table(data, {
 
 Let's take this exploratory data analysis step by step, starting by inspecting the overall distribution of non-preferred imaging. 
 
+add: The average reported e.g., 22%. 
+
 <figure>
 <figcaption>
 <strong> Figure 2</strong>: Non-preferred Imaging Overview: This figure shows the summarizes key demographic attributes, health conditions, and utilization of healthcare services in an older population dataset.
@@ -260,7 +267,8 @@ view(Plot.plot({
    nice: true
  },
  y: {
-   label: null
+   label: null,
+   nice: true
  },
  color: {
    range: ["#FFB600", "#D04A02"],
@@ -430,7 +438,7 @@ Your selection order: ${Array.from(columnOrder).join(', ')}
 
 // Usage
 
-const stroke_width_divisor = 10000
+const stroke_width_divisor = 50000
 const combinedViz = createTreeWithStats(data, columnOrder,columnMap, stroke_width_divisor);
 view(combinedViz);
 ```
@@ -472,7 +480,6 @@ const headersDict = results.columns.reduce((acc, c) => {
   return acc;
 }, {});
 
-view(headersDict)
 
 const table = Inputs.table(results.data, {
   columns: results.columns.map(c => c.id), 
@@ -486,540 +493,480 @@ const table = Inputs.table(results.data, {
 view(table);
 ```
 
+## Hypothesis and Recommended Actions
 
-
-
-5.
-
- **COPD Subgroup**:
-    
-
-3. 
-   - **Geography**: Rural areas show higher non-preferred usage compared to Urban or Suburban.  
-   - **Primary Care Engagement**: Those with no primary care engagement are ~2x more likely to use non-preferred imaging centers.  
-
-4. **Specific Insight**:
-   - Members in rural areas, aged 55+ with COPD, and no primary care engagement, show the **highest likelihood** of non-preferred imaging usage.  
-   - Smoking status correlates: Smokers are 1.5x more likely to visit non-preferred imaging centers.  
- 
-
-   - Seems acceptable on the surface, but further investigation shows patterns in subgroups.
-
-// 1. Overall Distribution Analysis
-
-
-For specific clinical groups, such as those with chronic conditions like COPD, this problem is amplified. These members often require frequent imaging, and when they consistently visit non-preferred centers, the financial burden grows while coordination of care suffers.
-
-This isn't just a cost problem; it's a care problem. By understanding who is driving this non-preferred utilization and why, we can uncover actionable insights to redirect behavior, reduce inefficiencies, and improve outcomes.
-
-
-### Make a model 
-
-```js
-import { RandomForestClassifier } from "./components/RandomForestClassifier.js";
-```
-
-
-
-Random forest classifier parameters:
-
-
-```js
-view(data)
-```
-<!-- 
-```js
-
-const rfParamsForm = Inputs.form({
-  nEstimators: Inputs.range([1, 200], {
-    value: 5,
-    step: 1,
-    label: html`<b>nEstimators</b>`
-  }),
-  maxDepth: Inputs.range([1, 10], {
-    value: 4,
-    step: 1,
-    label: html`<b>maxDepth</b>`
-  }),
-  minSize: Inputs.range([1, 10], {
-    value: 2,
-    step: 1,
-    label: html`<b>minSize</b>`
-  }),
-  sampleSize: Inputs.range([0.1, 1.0], {
-    value: 0.8,
-    step: 0.1,
-    label: html`<b>sampleSize</b>`
-  }),
-  maxFeatures: Inputs.range([1, 10], {
-    value: 3,
-    step: 1,
-    label: html`<b>maxFeatures</b>`
-  }),
-  decimalPrecision: Inputs.range([1, 5], {
-    value: 2,
-    step: 1,
-    label: html`<b>decimalPrecision</b>`
-  })
-});
-view(rfParamsForm)
-const rfParamsForm_Selections = Generators.input(rfParamsForm)
-```
- 
-
-
-
-```js
-const trainButton = view(Inputs.button("Train Model"));
-
-```
-
-```js
-
-function modelState(){
-  const { X, y, featureNames } = prepareImagingData(data);
-  const clf = new RandomForestClassifier({
-  nEstimators: rfParamsForm_Selections.nEstimators,
-  maxDepth: rfParamsForm_Selections.maxDepth,
-  minSize: rfParamsForm_Selections.minSize,
-  sampleSize: rfParamsForm_Selections.sampleSize,
-  maxFeatures: rfParamsForm_Selections.maxFeatures,
-  decimalPrecision: rfParamsForm_Selections.decimalPrecision
-});
-  
-  clf.fit(X, y);
-
-  const yPred = clf.predict(X);
-  const proba = clf.predictProba(X);
-  
-  // Create plots here
-  const confusionMatrix = clf.confusionMatrix(y, yPred);
-  const accuracy = clf.accuracyScore(y, yPred);
-  
-  const plotData = {
-    clf, X, y, yPred, proba, featureNames,
-    metrics: {
-      accuracy,
-      confusionMatrix
-    }
-  };
-
-  return plotData;
-};
-
-
-```
-```js
-
-// Progress visualization
-trainButton; // Run when button clicked
-const progress = (function*() {
-  // Progress bar
-  for (let i = 600; i >= 0; --i) {
-    yield Plot.plot({
-      width: 600,
-      height: 30,
-      marks: [Plot.rect([], { x1: 0, x2: i, y1: 0, y2: 30, fill: "steelblue" })]
-    });
-  }
-  // Return model results
-  return modelState();
-})();
-
-```
-```js
-// View progress
-view(progress);
-
-// Results visualization
-const results = Generators.observe(progress, state => {
-  if (!state?.metrics) return html`<p>Training in progress...</p>`;
-  
-  return html`
-    <h3>Model Performance</h3>
-    <p>Accuracy: ${state.metrics.accuracy.toFixed(3)}</p>
-    <div>${Plot.plot({
-      width: 400,
-      height: 400,
-      color: {scheme: "blues"},
-      marks: [
-        Plot.rect(state.metrics.confusionMatrix, {
-          x: "predicted_label",
-          y: "true_label",
-          fill: "count"
-        })
-      ]
-    })}</div>
-  `;
-});
-```
-```js
-view(results);
-``` -->
-
-
-// let's transform said donut data to a conveniently structured form, because js is awesome like that.
-const scatterData = X.map((d, i) => ({
-    x: d[0],
-    y: d[1],
-    truth: y[i]
-}));
-
-// let's visualize the decision boundary
-const { grid2D, values2D } = clf.generateClassificationDomain(scatterData, 0.15);
-
-// let's turn this data into a convenient raster object. 
-const rasterData = [];
-for (let i = 0; i < grid2D.length; i++) {
-    for (let j = 0; j < grid2D[i].length; j++) {
-        rasterData.push({
-            x: grid2D[i][j][0],
-            y: grid2D[i][j][1],
-            fill: values2D[i][j]
-        });
-    }
-}
-
-const treePaths = clf.convertForestToPaths();
-const forestHierarch = clf.convertForestToHierarchy()
-```
-
-
-Ok cool. Now let's project the decision boundary over the 'donut-data' to visualize our trained model. 
-
-```js
-// Prepare the raster data for plotting
-const rasterData = [];
-for (let i = 0; i < grid2D.length; i++) {
-    for (let j = 0; j < grid2D[i].length; j++) {
-        rasterData.push({
-            x: grid2D[i][j][0], // X coordinate
-            y: grid2D[i][j][1], // Y coordinate
-            fill: values2D[i][j] // Predicted class (0 or 1)
-        });
-    }
-}
-
-const rasterPlot = Plot.plot({
-  color: {
-    type: "ordinal",
-    legend: true,
-    label: "Predicted Class",
-    // domain: [0, 1],  // Domain to define class 0 and class 1
-    range: ["lightblue", "lightcoral"]  // Color range for classes
-  },
-  width: 900,
-  height: 480,
-  marks: [
-    // Raster plot to represent the classification boundary
-    Plot.raster(rasterData, {
-      x: "x",
-      y: "y",
-      fill: "fill",
-      interpolate: "random-walk"  // Optional interpolation for smoother transition between classes
-    }),
-    // Scatter plot to show the actual points with ground truth labels
-    Plot.dot(scatterData, {
-      x: "x",
-      y: "y",
-      fill: d => d.truth === 0 ? "blue" : "red",
-      stroke: "black",
-      r: 4 // Larger radius for original data points
-    })
-  ]
-});
-
-view(rasterPlot);
-```
-
-Here's the trained forest object. 
-```js
-view(forestHierarch)
-```
-
-Neat. Now, let's visualize it. Note that trees here are connected to the terminal node. I don't want to mess with that visual (for now), so just like, get over it or whatever and stare at my beatiful FOREST. 
-
-```js
-// Visualize using Observable Plot
-const forestplot = Plot.plot({
-  axis: null,
-  margin: 10,
-  marginLeft: 40,
-  marginRight: 160,
-  width: 900,
-  height: 600,
-  marks: [
-   Plot.cluster(treePaths, {textStroke: "white"})
-  ]
-});
-view(forestplot)
-```
-
-Ok. Now let's make some predictions and check the performance. 
-
-```js
-const yPred = clf.predict(X)
-const confusionmatrix = clf.confusionMatrix(y, yPred)
-const confusionData = [];
-const labels = confusionmatrix.labels;
-
-for (let i = 0; i < labels.length; i++) {
-  for (let j = 0; j < labels.length; j++) {
-    confusionData.push({
-      true_label: labels[i],
-      predicted_label: labels[j],
-      count: confusionmatrix.matrix[i][j]
-    });
-  }
-}
-
-const accuracy = clf.round(clf.accuracyScore(yTrue, yPred))
-const recall = clf.round(clf.recallScore(yTrue, yPred))
-const precision = clf.round(clf.precisionScore(yTrue, yPred))
-```
-
-
-```js
-const confusionPlot = Plot.plot({
-  padding: 0,
-  grid: true,
-  x: {
-    axis: "top",
-    label: "Predicted Label",
-    domain: labels, // Ensure the x-axis includes all labels
-    tickFormat: d => d.toString()
-  },
-  y: {
-    label: "True Label",
-    domain: labels, // Ensure the y-axis includes all labels
-    tickFormat: d => d.toString()
-  },
-  color: {
-    type: "linear",
-    scheme: "Blues",
-    label: "Count"
-  },
-  width: 200,
-  height: 200,
-  marks: [
-    // Cells representing counts
-    Plot.cell(confusionData, {
-      x: "predicted_label",
-      y: "true_label",
-      fill: "count",
-      inset: 0.5,
-      title: d => `True: ${d.true_label}, Predicted: ${d.predicted_label}, Count: ${d.count}`
-    }),
-    // Text labels showing counts
-    Plot.text(confusionData, {
-      x: "predicted_label",
-      y: "true_label",
-      text: d => d.count.toString(),
-      fill: d => (d.count > 0 ? "black" : "gray"),
-      textAnchor: "middle",
-      stroke: 'white',
-      size: 10,
-      dy: 5
-    })
-  ]
-});
-
-```
-
-
-Should we make an AUC chart? I guess. 
-
-```js
-
-// 1. Get probability estimates
-const proba = clf.predictProba(X);
-
-// 2. Extract probabilities for the positive class (assuming class '1')
-const yScores = proba.map(probs => probs[1]);
-
-// 3. Ensure yTrue is an array of numbers
-const yTrue = y.map(label => Number(label));
-
-// 4. Compute ROC curve
-function computeROC(yTrue, yScores, positiveClass = 1) {
-  const data = yTrue.map((trueLabel, index) => ({
-    trueLabel,
-    score: yScores[index]
-  }));
-
-  data.sort((a, b) => b.score - a.score);
-
-  let tp = 0;
-  let fp = 0;
-  const tpr = [];
-  const fpr = [];
-  const thresholds = [];
-
-  const posCount = yTrue.filter(label => label === positiveClass).length;
-  const negCount = yTrue.length - posCount;
-
-  for (let i = 0; i < data.length; i++) {
-    const { trueLabel } = data[i];
-    if (trueLabel === positiveClass) {
-      tp += 1;
-    } else {
-      fp += 1;
-    }
-    tpr.push(tp / posCount);
-    fpr.push(fp / negCount);
-    thresholds.push(data[i].score);
-  }
-
-  return { fpr, tpr, thresholds };
-}
-
-const { fpr, tpr, thresholds } = computeROC(yTrue, yScores, 1);
-
-// 5. Compute AUC
-function computeAUC(fpr, tpr) {
-  let auc = 0;
-  for (let i = 1; i < fpr.length; i++) {
-    const xDiff = fpr[i] - fpr[i - 1];
-    const ySum = tpr[i] + tpr[i - 1];
-    auc += (xDiff * ySum) / 2;
-  }
-  return auc;
-}
-
-const auc = computeAUC(fpr, tpr);
-
-// 6. Prepare data for plotting
-const rocData = fpr.map((fprValue, index) => ({
-  fpr: fprValue,
-  tpr: tpr[index]
-}));
-
-// 7. Plot the ROC curve
-const rocPlot = Plot.plot({
-  width: 500,
-  height: 500,
-  x: {
-    label: 'False Positive Rate',
-    domain: [0, 1]
-  },
-  y: {
-    label: 'True Positive Rate',
-    domain: [0, 1]
-  },
-  marks: [
-    Plot.line(rocData, { x: 'fpr', y: 'tpr', stroke: 'steelblue' }),
-    Plot.ruleY([0, 1], { x: [0, 1], stroke: 'gray', strokeDasharray: '2,2' }),
-    Plot.text([{ x: 0.6, y: 0.1, text: `AUC = ${clf.round(auc)}` }], {
-      x: 'x',
-      y: 'y',
-      text: 'text',
-      fill: 'black',
-      fontSize: 14
-    })
-  ]
-});
-
-
-```
-
-<div class="grid grid-cols-2">
-  <div >
-  
-  ```js
-  view(confusionPlot)
-
-  ```
-
-  The accuracy ${accuracy}, recall ${recall}, and precision ${precision}. 
-  
-  </div>
-  <div >
-  
-  ```js
-  view(rocPlot);
-  ```
-  
-
- </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-### **EDA Process**
-
-
-
----
-
-### **Illustrative Opportunity**
+### Hypothesis
 1. **Clinical Opportunity**:
    - COPD patients aged 55+ are likely receiving imaging at non-preferred locations due to **lower primary care engagement** or limited local options.  
 
 2. **Demographic Insight**:
    - Rural geography and low-income brackets amplify the problem, suggesting potential **accessibility barriers** or misinformation.
+   
+### Recommended Actions
 
----
-
-### **Mock Output (for Demo)**
-
-#### **Basic Stats Table**
-| Subgroup                 | Population | Non-Preferred Usage (%) |  
-|--------------------------|------------|--------------------------|  
-| All Members              | 2,100,000  | 20%                     |  
-| COPD Members             | 100,000    | 35%                     |  
-| COPD + Rural             | 25,000     | 65%                     |  
-| COPD + Urban             | 50,000     | 20%                     |  
-| COPD + Age 55+           | 60,000     | 50%                     |  
-| COPD + No PCP Engagement | 40,000     | 70%                     |  
-
-#### **Key Visual**
-1. **Bar Chart**:  
-   Non-preferred usage % across demographics (COPD + Rural, COPD + Age 55+, etc.).
-
-2. **Heatmap**:  
-   Non-preferred usage rates by region (Urban, Rural) and age bracket (55+).
-
----
-
-### **Recommended Actions**
 1. Target COPD patients in rural areas with specific outreach to **improve primary care engagement**.  
 2. Launch campaigns in rural geographies to incentivize the use of preferred imaging centers (e.g., transport support, cost offsets).  
 3. Create educational materials for members 55+ on the benefits of preferred imaging.  
 
----
 
-Would you like a code snippet to simulate the dataset and produce visualizations?
+## Experimentation
+
+Now that we know where the opportunity lays, let's run an experiment to evaluate three design variations: a control (A), an alternative (AA), and an intervention (B). The goal is to measure user preference and identify the most effective design. To ensure valid results, the experiment must be properly sized, considering statistical power and expected effect sizes, to minimize risks of false positives or negatives.
+
+After sizing and conducting the experiment, the results are summarized in the figure. The outcomes indicate the distribution of user preferences ("Preferred" vs. "Non-Preferred") for each design. This data provides actionable insights into how the designs perform relative to each other, guiding decision-making for future implementations.
 
 
+<figure>
+<figcaption> <strong> Figure X</strong>: This figure illustrates the outcomes of an A/B/A test comparing the "control" (A), an alternative design (AA), and an intervention design (B). The figure shows the distribution of participants between "Preferred" and "Non-Preferred" outcomes for each design, along with their respective percentages. Key observations include:
 
-`
 
-## Describe the 'bet'
+</figcaption>
 
-## Value Landscape
+```js
+const sankeydata = {
+  root: {
+    "copd control": {  // Group without intervention
+      "a": { preferred: 300, non_preferred: 198 },
+    },
+    "COPD intervention": {  // Group with intervention
+      "b": { preferred: 280, non_preferred: 218 },
+      "bb": { preferred: 390, non_preferred: 172 }
 
-### Atomized Value Levers
+    }
+  }
+};
 
-#### Payer
+const config = {
+  width: 800,
+  height: 300,
+  particleSize: 6,
+  particleSpeed: 5,
+  particleSpawnRate: 0.4,
+  particleVerticalSpread: 0.8,
+  hideRootLabel: true,
+  counterSpacing: 100,
+  nodePadding: 30,
+  margin: { top: 20, right: 250, bottom: 20, left: 40 },
+  bucketColors: {
+    'preferred': '#FFB600',
+    'non_preferred': '#D04A02'
+  }
+};
 
-#### Provider
+const replay = view(Inputs.button("Replay"));
+const { node, replay: replayFn } = createSankeyFlow(sankeydata, config);
+view(node);
+```
+```js
+replay; // This will trigger the replay when the button is clicked
+replayFn();
 
-### Evidence to support effect sizes
+```
+</figure>
 
-## The business case
+## Target everyone or make a model 
 
-## 
+```js
+// introduce training model loop
+function trainModel(data, params) {
+  const { X, y, featureNames } = prepareImagingData(data);
+  const clf = new RandomForestClassifier({
+    nEstimators: params.nEstimators,
+    maxDepth: params.maxDepth,
+    minSize: params.minSize,
+    sampleSize: params.sampleSize,
+    maxFeatures: params.maxFeatures,
+    decimalPrecision: params.decimalPrecision
+  });
+
+  clf.fit(X, y);
+  const yPred = clf.predict(X);
+  const proba = clf.predictProba(X);
+  const confusionMatrix = clf.confusionMatrix(y, yPred);
+  const labels = confusionMatrix.labels;
+  const accuracy = clf.round(clf.accuracyScore(y, yPred));
+  const recall = clf.round(clf.recallScore(y, yPred));
+  const precision = clf.round(clf.precisionScore(y, yPred));
+
+  const confusionData = [];
+  for (let i = 0; i < labels.length; i++) {
+  for (let j = 0; j < labels.length; j++) {
+    confusionData.push({
+      true_label: labels[i],
+      predicted_label: labels[j],
+      count: confusionMatrix.matrix[i][j]
+    });
+    }
+    }
+
+    // confusion matrix plot
+    const confusionPlot = Plot.plot({
+    padding: 0,
+    grid: true,
+    x: {
+        axis: "top",
+        label: "Predicted Label",
+        domain: labels, // Ensure the x-axis includes all labels
+        tickFormat: d => d.toString()
+    },
+    y: {
+        label: "True Label",
+        domain: labels, // Ensure the y-axis includes all labels
+        tickFormat: d => d.toString()
+    },
+    color: {
+        type: "linear",
+        scheme: "Blues",
+        label: "Count"
+    },
+    width: 200,
+    height: 200,
+    marks: [
+        // Cells representing counts
+        Plot.cell(confusionData, {
+        x: "predicted_label",
+        y: "true_label",
+        fill: "count",
+        inset: 0.5,
+        title: d => `True: ${d.true_label}, Predicted: ${d.predicted_label}, Count: ${d.count}`
+        }),
+        // Text labels showing counts
+        Plot.text(confusionData, {
+        x: "predicted_label",
+        y: "true_label",
+        text: d => d.count.toString(),
+        fill: d => (d.count > 0 ? "black" : "gray"),
+        textAnchor: "middle",
+        stroke: 'white',
+        size: 10,
+        dy: 5
+        })
+    ]
+    });
+
+    // AUC plot w/ roc curve
+
+    // 1. Get probability estimates
+
+    // 2. Extract probabilities for the positive class (assuming class '1')
+    const yScores = proba.map(probs => probs[1]);
+
+    // 3. Ensure yTrue is an array of numbers
+    const yTrue = y.map(label => Number(label));
+
+    // 4. Compute ROC curve
+    function computeROC(yTrue, yScores, positiveClass = 1) {
+        const data = yTrue.map((trueLabel, index) => ({
+            trueLabel,
+            score: yScores[index]
+        }));
+
+    
+
+    data.sort((a, b) => b.score - a.score);
+
+    let tp = 0;
+    let fp = 0;
+    const tpr = [];
+    const fpr = [];
+    const thresholds = [];
+
+    const posCount = yTrue.filter(label => label === positiveClass).length;
+    const negCount = yTrue.length - posCount;
+
+    for (let i = 0; i < data.length; i++) {
+        const { trueLabel } = data[i];
+        if (trueLabel === positiveClass) {
+        tp += 1;
+        } else {
+        fp += 1;
+        }
+        tpr.push(tp / posCount);
+        fpr.push(fp / negCount);
+        thresholds.push(data[i].score);
+    }
+
+    return { fpr, tpr, thresholds };
+    }
+
+    const { fpr, tpr, thresholds } = computeROC(yTrue, yScores, 1);
+
+    // 5. Compute AUC
+    function computeAUC(fpr, tpr) {
+    let auc = 0;
+    for (let i = 1; i < fpr.length; i++) {
+        const xDiff = fpr[i] - fpr[i - 1];
+        const ySum = tpr[i] + tpr[i - 1];
+        auc += (xDiff * ySum) / 2;
+    }
+    return auc;
+    }
+
+    const auc = computeAUC(fpr, tpr);
+
+    // 6. Prepare data for plotting
+    const rocData = fpr.map((fprValue, index) => ({
+    fpr: fprValue,
+    tpr: tpr[index]
+    }));
+
+    // 7. Plot the ROC curve
+    const rocPlot = Plot.plot({
+    width: 500,
+    height: 500,
+    x: {
+        label: 'False Positive Rate',
+        domain: [0, 1]
+    },
+    y: {
+        label: 'True Positive Rate',
+        domain: [0, 1]
+    },
+    marks: [
+        Plot.line(rocData, { x: 'fpr', y: 'tpr', stroke: 'steelblue' }),
+        Plot.ruleY([0, 1], { x: [0, 1], stroke: 'gray', strokeDasharray: '2,2' }),
+        Plot.text([{ x: 0.6, y: 0.1, text: `AUC = ${clf.round(auc)}` }], {
+        x: 'x',
+        y: 'y',
+        text: 'text',
+        fill: 'black',
+        fontSize: 14
+        })
+    ]
+    });
+
+
+  return {
+    clf, X, y, yPred, proba, featureNames,
+    metrics: {
+      accuracy,
+      recall, 
+      precision,
+      confusionMatrix
+    }, 
+    plot: {confusionPlot: confusionPlot, rocPlot: rocPlot}
+  };
+}
+```
+
+```js
+function trainMultiModel(data, rfParamsForm_Selections) {
+    const headers = ['Region', 'planType', 'Gender', 'PrimaryCareEngagement'];
+    const sampleSize = 100;
+    const RUNS = 5;
+
+    const mlresults = Array.from({ length: RUNS }, () => {
+        const subsampledData = stratifiedSubsample(data, headers, sampleSize);
+        return trainModel(subsampledData, rfParamsForm_Selections);
+    });
+
+    const aucValues = mlresults.map(r => r.metrics.auc).filter(Boolean);
+    const aucStats = computeMeanAndCI(aucValues);
+
+    // Generate confusion matrix
+    const avgConfusionMatrix = mlresults.reduce((acc, result, idx) => {
+        const matrix = result.metrics.confusionMatrix.matrix;
+        const matrixTotal = matrix.flat().reduce((sum, val) => sum + val, 0);
+        const normalizedMatrix = matrix.map(row => row.map(val => val / matrixTotal));
+        return idx === 0 ? normalizedMatrix : 
+            acc.map((row, i) => row.map((val, j) => val + normalizedMatrix[i][j]));
+    }, null).map(row => row.map(val => (val / RUNS) * 100));
+
+    const labels = ['Preferred', 'Non Preferred'];
+    const avgConfusionData = avgConfusionMatrix.flatMap((row, trueIndex) => 
+        row.map((percent, predictedIndex) => ({
+            true_label: labels[trueIndex],
+            predicted_label: labels[predictedIndex],
+            percent: parseFloat(percent.toFixed(2))
+        }))
+    );
+
+    // Generate aggregate ROC curves
+    const fprPoints = Array.from({length: 100}, (_, i) => i / 99);
+    const aggregatedROC = fprPoints.map(targetFpr => {
+        const tprValues = mlresults.map(result => {
+            const yScores = result.proba.map(probs => probs[1]);
+            const yTrue = result.y.map(label => Number(label));
+            const { fpr, tpr } = computeROC(yTrue, yScores, 1);
+            
+            // Find closest FPR point and interpolate TPR
+            const idx = fpr.findIndex(x => x >= targetFpr);
+            if (idx === -1) return 1;
+            if (idx === 0) return tpr[0];
+            
+            const x1 = fpr[idx - 1];
+            const x2 = fpr[idx];
+            const y1 = tpr[idx - 1];
+            const y2 = tpr[idx];
+            return y1 + (y2 - y1) * (targetFpr - x1) / (x2 - x1);
+        });
+
+        const meanTpr = d3.mean(tprValues);
+        const sortedTpr = [...tprValues].sort(d3.ascending);
+        const ciLow = sortedTpr[Math.floor(0.025 * sortedTpr.length)];
+        const ciHigh = sortedTpr[Math.ceil(0.975 * sortedTpr.length) - 1];
+
+        return {
+            fpr: targetFpr,
+            tpr: meanTpr,
+            ciLow,
+            ciHigh
+        };
+    });
+
+    // Create plots
+    const avgConfusionPlot = Plot.plot({
+        height: 300,
+        width: 400,
+        marginLeft: 100,
+        marginRight: 40,
+        inset: 10,
+        marginTop: 50,
+        padding: 0.1,
+        grid: true,
+        x: {
+            label: "Predicted Label",
+            domain: labels,
+            tickFormat: d => d
+        },
+        y: {
+            label: "True Label",
+            domain: labels,
+            tickFormat: d => d
+        },
+        color: {
+            scheme: "Reds",
+            label: "Average %"
+        },
+        marks: [
+            Plot.cell(avgConfusionData, {
+                x: "predicted_label",
+                y: "true_label",
+                fill: "percent",
+                inset: 0.5,
+                title: d => `True: ${d.true_label}\nPredicted: ${d.predicted_label}\n${d.percent}%`
+            }),
+            Plot.text(avgConfusionData, {
+                x: "predicted_label",
+                y: "true_label",
+                text: d => `${d.percent}%`,
+                fill: "white",
+                textAnchor: "middle",
+                fontSize: 12
+            })
+        ]
+    });
+
+    const rocPlot = Plot.plot({
+        width: 500,
+        height: 500,
+        x: {
+            label: "False Positive Rate",
+            domain: [0, 1]
+        },
+        y: {
+            label: "True Positive Rate",
+            domain: [0, 1]
+        },
+        marks: [
+            Plot.line(aggregatedROC, {
+                x: "fpr",
+                y: "tpr",
+                stroke: "steelblue",
+                strokeWidth: 2
+            }),
+            Plot.areaY(aggregatedROC, {
+                x: "fpr",
+                y1: "ciLow",
+                y2: "ciHigh",
+                fill: "steelblue",
+                fillOpacity: 0.3
+            }),
+            Plot.ruleY([0, 1], {
+                x: [0, 1],
+                stroke: "gray",
+                strokeDasharray: "2,2"
+            })
+        ]
+    });
+
+
+    return {
+        mlresults,
+        metrics: { aucStats, avgConfusionData },
+        plot: { confusionPlot: avgConfusionPlot, 
+        // rocPlot: rocPlot 
+        }
+    };
+}
+
+```
+
+```js
+const rfParamsForm = Inputs.form({
+  nEstimators: Inputs.range([1, 200], {
+    value: 5,
+    step: 1,
+    label: html`<b>nEstimators</b>`,
+    disabled: true
+  }),
+  maxDepth: Inputs.range([1, 10], {
+    value: 4,
+    step: 1,
+    label: html`<b>maxDepth</b>`,
+    disabled: true
+  }),
+  minSize: Inputs.range([1, 10], {
+    value: 2,
+    step: 1,
+    label: html`<b>minSize</b>`,
+    disabled: true
+  }),
+  sampleSize: Inputs.range([0.1, 1.0], {
+    value: 0.8,
+    step: 0.1,
+    label: html`<b>sampleSize</b>`,
+    disabled: true
+  }),
+  maxFeatures: Inputs.range([1, 10], {
+    value: 3,
+    step: 1,
+    label: html`<b>maxFeatures</b>`,
+    disabled: true
+  }),
+  decimalPrecision: Inputs.range([1, 5], {
+    value: 2,
+    step: 1,
+    label: html`<b>decimalPrecision</b>`,
+    disabled: true
+  })
+});
+// view(rfParamsForm)
+const rfParamsForm_Selections = Generators.input(rfParamsForm)
+```
+ 
+```js
+// Create train button
+const trainButton = view(Inputs.button("Train Model"));
+// Training sequence generator
+```
+```js
+trainButton; // Run when button clicked
+const modelResults = Generators.observe((next) => {
+  if (trainButton) {
+    next( trainMultiModel(data, rfParamsForm_Selections));
+  } else {
+    next("click to train");
+  }
+  return () => {};
+}, trainButton);
+```
+
+
+```js
+view(modelResults.plot.confusionPlot)
+view(modelResults.plot.rocPlot)
+```
+
 
 
