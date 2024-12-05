@@ -14,6 +14,9 @@ const styleElement = html`<style>
 document.head.appendChild(styleElement);
 ```
 
+<figure>
+<figcaption>Analytics Process</figcaption>
+
 ```mermaid
 graph LR
   direction LR
@@ -34,6 +37,8 @@ graph LR
   classDef transparent fill:#ffffff40,stroke:#00000040,color:#00000040
   linkStyle default color:#00000040
 ```
+
+</figure>
 
 ```js
 import { require } from "d3-require";

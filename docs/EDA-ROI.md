@@ -56,6 +56,9 @@ import { RandomForestClassifier } from "./components/RandomForestClassifier.js";
 
 # EDA and ROI
 
+<figure>
+<figcaption>Analytics Process</figcaption>
+
 ```mermaid
 graph LR
   direction LR
@@ -77,9 +80,13 @@ graph LR
   linkStyle default color:#00000040
 ```
 
+</figure>
+
 Assuming we create an intervention that can divert a fraction of non-preferred imaging to preferred to investigate the magnitude of the opportunity, the savings (in dollars) for converting non-preferred to preferred imaging is displayed to the right of each bar. Savings vary across imaging types, with the highest savings for "MRI" (~$5.625M) and "CT" (~$4.455M), reflecting the cost impact of converting to preferred imaging, even at relatively low levels of behavior change, are significant.
 
 Diving deeper, members with COPD account for a significant portion of non-preferred imaging utilization, with rural regions driving the highest rates, especially among those without primary care engagement (~2x more likely). Smoking status and income bracket show minimal impact compared to chronic conditions like COPD, which drives ~3x more non-preferred imaging utilization than other conditions or no chronic conditions
+
+---
 
 <!--
 1. Across all plan types, income brackets, smoking status, members with COPD seem to be driving more non-preferred imaging utilization.
@@ -263,9 +270,13 @@ view(updatedVolumeChart);
 
 </figure>
 
+---
+
 ## How large and valuable is this problem?
 
-**What is the distribution of cost between preferred and non-preferred imaging, by image procedure?**
+### What is the distribution of cost between preferred and non-preferred imaging, by image procedure?
+
+<strong> Figure 1: </strong> shows Non-preferred Imaging Cost Overview. These charts depict the cost distributions for different imaging types, grouped into four categories. Each chart visualizes the cost of "Non-Preferred" imaging (left), the "Savings" achieved by converting to "Preferred" (middle), and the cost of "Preferred" imaging (right). Red dashed lines indicate the average cost savings per imaging type.
 
 ```js
 // Define the imaging settings with mean and shape
@@ -339,7 +350,7 @@ const groupedProcedures = [
 ];
 
 // Categories in order
-const categories = ["Non-Preferred", "Savings", "Preferred"];
+const categories = ["Non-Preferred", " ", "Preferred"];
 
 // Create distributions and calculate medians
 const distributionsMap = {};
@@ -424,9 +435,9 @@ function prepareTypeData(imagingType) {
   // Create arrow data with middle category
   const arrowData = [
     {
-      x1: "Savings",
+      x1: " ",
       y1: midValue,
-      x2: "Savings",
+      x2: " ",
       y2: midValue,
       savings: `$${savings.toLocaleString()}`,
     },
@@ -472,8 +483,11 @@ const createTypePlot = (data, title) =>
         x: "x2",
         y: "y2",
         text: "savings",
-        dx: 40,
+        dx: 0,
         fontSize: 10,
+        fill: "black",
+        stroke: "white",
+        strokeWidth: 3,
       }),
     ],
     y: {
@@ -483,7 +497,7 @@ const createTypePlot = (data, title) =>
     },
     x: {
       domain: categories, // Specify the order of categories
-      label: "Cost Category",
+      label: "",
     },
     color: {
       domain: ["Non-Preferred", "Preferred"], // Only color the box plots
@@ -522,7 +536,7 @@ const createGroupPlot = (groupTypes, index) => {
 
 <figure>
 <figcaption>
-<strong> Figure 1: </strong>: Non-preferred Imaging Cost Overview. The charts depict the cost distributions for different imaging types, grouped into four categories. Each chart visualizes the cost of "Non-Preferred" imaging (left), the "Savings" achieved by converting to "Preferred" (middle), and the cost of "Preferred" imaging (right). Red dashed lines indicate the potential cost savings per imaging type. 
+<strong> Figure 1: </strong> Non-preferred Imaging Cost Overview. 
 </figcaption>
 
 ```js
@@ -533,8 +547,6 @@ groupedProcedures.forEach((group, index) => {
 ```
 
 </figure>
-
----
 
 ```js
 // Define annual imaging volumes and network distributions
@@ -782,9 +794,11 @@ view(
 
 ---
 
+<strong> Figure 4:</strong> shows a Sankey Diagram of Patient Distribution Across Selected Factors. This diagram visualizes the flow of patient populations across regions, plan types, diagnoses, and smoking statuses based on the selected filters.
+
 <figure>
   <figcaption>
-    <strong>Figure 4:</strong> Sankey Diagram of Patient Distribution Across Selected Factors. The diagram visualizes the flow of patient populations across regions, plan types, diagnoses, and smoking statuses based on the selected filters. 
+    <strong>Figure 4:</strong> Sankey Diagram of Patient Distribution Across Selected Factors.  
   </figcaption>
 
 ```js
@@ -823,6 +837,8 @@ view(combinedViz);
 </figure>
 
 ---
+
+<strong>Table 1</strong> shows Patient Distribution by Path, Gender, and PCP Engagement. The table summarizes key metrics for patient groups stratified by region, plan type, diagnosis, and smoking status. Metrics include total counts, gender distribution, PCP engagement rates, imaging visits, and average age. For instance, among "Rural > C-SNP > COPD > Non-Smoker" patients, 389 individuals have a PCP engagement rate of 74.6% and an average age of 80.5 years.
 
 <figure>
 
@@ -877,6 +893,6 @@ view(table);
 ```
 
   <figcaption>
-    <strong>Table 1:</strong> Patient Distribution by Path, Gender, and PCP Engagement. The table summarizes key metrics for patient groups stratified by region, plan type, diagnosis, and smoking status. Metrics include total counts, gender distribution, PCP engagement rates, imaging visits, and average age. For instance, among "Rural > C-SNP > COPD > Non-Smoker" patients, 389 individuals have a PCP engagement rate of 74.6% and an average age of 80.5 years.
+    <strong>Table 1:</strong> Patient Distribution by Path, Gender, and PCP Engagement.
   </figcaption>
 </figure>

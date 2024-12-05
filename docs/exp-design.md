@@ -68,6 +68,9 @@ import { require } from "d3-require";
 const jStat = await require("jstat@1.9.4");
 ```
 
+<figure>
+<figcaption>Analytics Process</figcaption>
+
 ```mermaid
 graph LR
   direction LR
@@ -89,17 +92,16 @@ graph LR
   linkStyle default color:#00000040
 ```
 
-## Experimentation
+</figure>
 
-Now that we know where the opportunity lays, let's run an experiment to evaluate three design variations: a control (A), an alternative (AA), and an intervention (B). The goal is to measure user preference and identify the most effective design. To ensure valid results, the experiment must be properly sized, considering statistical power and expected effect sizes, to minimize risks of false positives or negatives.
+Now that we know where the opportunity lays, let's design our experiment to evaluate three design variations: a control (A), an alternative (AA), and an intervention (B). The goal is to measure user preference and identify the most effective design. To ensure valid results, the experiment must be properly sized, considering statistical power and expected effect sizes, to minimize risks of false positives or negatives.
 
 After sizing and conducting the experiment, the results are summarized in the figure. The outcomes indicate the distribution of user preferences ("Preferred" vs. "Non-Preferred") for each design. This data provides actionable insights into how the designs perform relative to each other, guiding decision-making for future implementations.
 
-**Question:** How many people would we need to observe a relative decrease in non-preferred imaging utilizaitoni with a given statistical certainty?
+**How many people would we need to observe a relative decrease in non-preferred imaging utilizaitoni with a given statistical certainty?**
 
-**Answer:**
-
-Let's use this equation to calculate:
+<figure>
+<figcaption><strong>Figure X:</strong> Experimental Design</figcaption>
 
 ```js
 const equation_2 = tex.block` n = \frac{(z_{1-\alpha/2} + z_{\beta})^2 [p_1 (1 - p_1) + p_2 (1 - p_2)]}{(p_1 - p_2)^2} `;
@@ -164,12 +166,13 @@ const n_proportions_wand = calculateSampleSizeForProportions(
 );
 ```
 
+</figure>
+
 <!-- prettier-ignore -->
 You would need: <strong>${n_proportions_wand} participants in each arm </strong> to observe a relative shift of <b>${Example1Form_Selections.relative_increase*100}%</b> in enrollment rate (i.e., a p1 of ${Example1Form_Selections.p1_proportions*100}% and a p2 of ${relative_p2_calc.toFixed(2)*100}%). Note that the relative increase is a common framing, but one that is somewhat mathematically confusing.
 
 <figure>
-<figcaption> <strong> Figure X</strong>: This figure illustrates the outcomes of an A/B/A test comparing the "control" (A), an alternative design (AA), and an intervention design (B). The figure shows the distribution of participants between "Preferred" and "Non-Preferred" outcomes for each design, along with their respective percentages. Key observations include:
-
+<figcaption> <strong> Figure X</strong>: This figure illustrates the outcomes of an A/B/A test comparing the "control" (A), an alternative design (AA), and an intervention design (B). The figure shows the distribution of participants between "Preferred" and "Non-Preferred" outcomes for each design, along with their respective percentages.
 </figcaption>
 
 ```js

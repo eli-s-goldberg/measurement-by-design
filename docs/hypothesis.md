@@ -16,6 +16,7 @@ document.head.appendChild(styleElement);
 import { InteractiveImagingExplorer } from "./components/interactiveimagingexample.js";
 import { DistP, distributions } from "./components/DistP.js";
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+import { generateImagingBusinessCase } from "./components/imagingbusinesscase.js";
 ```
 
 ```js
@@ -56,6 +57,9 @@ import { RandomForestClassifier } from "./components/RandomForestClassifier.js";
 
 # Hypotheses and Actions
 
+<figure>
+<figcaption>Analytics Process</figcaption>
+
 ```mermaid
 graph LR
   direction LR
@@ -76,6 +80,10 @@ graph LR
   classDef transparent fill:#ffffff40,stroke:#00000040,color:#00000040
   linkStyle default color:#00000040
 ```
+
+</figure>
+
+---
 
 ## Hypothesis 1: **Clinical Opportunity for COPD Patients**
 
@@ -99,6 +107,22 @@ graph LR
      - Establish agreements with ride-sharing providers.
      - Develop an incentive structure for co-pay reductions or waived fees.
    - **Behavior Change Estimate**: A 5–10% reduction in non-preferred imaging utilization among rural COPD patients.
+
+```js
+const percentageDecreaseHyp1 = view(
+  Inputs.range([0, 100], {
+    step: 1,
+    label: "Percentage Decrease",
+    value: 5,
+  })
+);
+
+// Generate and display results
+const results = generateImagingBusinessCase(percentageDecreaseHyp1);
+view(results.chart);
+
+view(results);
+```
 
 ---
 
@@ -669,5 +693,3 @@ const volumeChart = Plot.plot({
   },
 });
 ```
-
-<

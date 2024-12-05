@@ -18,7 +18,7 @@ export default {
       pages: [
         {
           name: "Problem Definition",
-          path: "/value-framing",
+          path: "/problem",
         },
         {
           name: "EDA & ROI",
@@ -35,6 +35,10 @@ export default {
         {
           name: "Experimental Design",
           path: "/exp-design",
+        },
+        {
+          name: "Personalization",
+          path: "/personalization",
         },
       ],
     },
@@ -98,5 +102,5 @@ export default {
   pager: true, // whether to show previous & next links in the footer
   // root: "docs", // path to the source root for preview
   // output: "dist", // path to the output root for build
-  // search: true, // activate search
+  search: true, // activate search
 };
