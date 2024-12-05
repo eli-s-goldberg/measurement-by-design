@@ -12,15 +12,20 @@
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
 <link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
 <link rel="stylesheet" type="text/css" href="./_npm/leaflet@1.9.4/dist/leaflet.css">
-<link rel="modulepreload" href="./_observablehq/client.bdfce3d3.js">
+<link rel="modulepreload" href="./_observablehq/client.11aa6b6e.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
-<link rel="modulepreload" href="./_observablehq/stdlib.63ee1033.js">
-<link rel="modulepreload" href="./_import/components/styles.1f6baada.js">
-<link rel="modulepreload" href="./_import/components/MicroSiteBuilder.62b9bdfe.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.95bfbf7e.js">
+<link rel="modulepreload" href="./_import/components/styles.5ae71931.js">
+<link rel="modulepreload" href="./_import/components/MicroSiteBuilder.c11c7778.js">
+<link rel="modulepreload" href="./_import/components/emailcomparison.cd269ef1.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
 <link rel="modulepreload" href="./_npm/leaflet@1.9.4/d8a0af43.js">
-<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/118fc3ce.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/mermaid.b7b51fd9.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/e828d8c8.js">
 <link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
+<link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs.940dc0bc.js">
 <link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
 <link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
 <link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
@@ -33,7 +38,6 @@
 <link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
 <link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
 <link rel="modulepreload" href="./_npm/d3-drag@3.0.0/b22c5864.js">
-<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
 <link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
 <link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
 <link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e1ff060.js">
@@ -60,26 +64,98 @@
 <link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
 <script type="module">
 
-import {define} from "./_observablehq/client.bdfce3d3.js";
+import {define} from "./_observablehq/client.11aa6b6e.js";
+import {registerFile} from "./_observablehq/stdlib.95bfbf7e.js";
 
-define({id: "15929645", inputs: ["html"], outputs: ["defaultStyles","styleElement","Microsite"], body: async (html) => {
-const [{defaultStyles}, {Microsite}] = await Promise.all([import("./_import/components/styles.1f6baada.js"), import("./_import/components/MicroSiteBuilder.62b9bdfe.js")]);
+registerFile("./data/morley.csv", {"name":"./data/morley.csv","mimeType":"text/csv","path":"./_file/data/morley.a9c06023.csv","lastModified":1733333919456,"size":874});
+
+define({id: "bd834160", inputs: ["html"], outputs: ["defaultStyles","styleElement","Microsite"], body: async (html) => {
+const [{defaultStyles}, {Microsite}] = await Promise.all([import("./_import/components/styles.5ae71931.js"), import("./_import/components/MicroSiteBuilder.c11c7778.js")]);
 ///
 // import some CSS to keep things well styled
-const styleElement = html`<style>${defaultStyles}</style>`;
+const styleElement = html`<style>
+  ${defaultStyles}
+</style>`;
 
 document.head.appendChild(styleElement);
 return {defaultStyles,styleElement,Microsite};
 }});
 
-define({id: "59d8e30e", inputs: ["html"], outputs: ["mapContainer"], body: (html) => {
+define({id: "f332cc5f", inputs: ["styleElement"], outputs: ["EmailComparisonView","CleanEmailView"], body: async (styleElement) => {
+const {EmailComparisonView, CleanEmailView} = await import("./_import/components/emailcomparison.cd269ef1.js");
+document.head.appendChild(styleElement);
+return {EmailComparisonView,CleanEmailView};
+}});
+
+define({id: "3e41708c", inputs: ["view","EmailComparisonView"], body: (view,EmailComparisonView) => {
+view(EmailComparisonView());
+}});
+
+define({id: "f1a296a8", inputs: ["view","CleanEmailView"], body: (view,CleanEmailView) => {
+view(CleanEmailView());
+}});
+
+define({id: "1a67e80a", inputs: ["FileAttachment"], outputs: ["morley"], body: (FileAttachment) => {
+const morley = FileAttachment("./data/morley.csv").csv({ typed: true });
+return {morley};
+}});
+
+define({id: "9baa5fad", inputs: ["view","Plot","morley"], body: (view,Plot,morley) => {
+view(
+  Plot.plot({
+    y: {
+      grid: true,
+      inset: 6,
+    },
+    marks: [Plot.boxY(morley, { x: "Expt", y: "Speed" })],
+  })
+);
+}});
+
+define({id: "c218be46", inputs: ["mermaid","display"], body: async (mermaid,display) => {
+display(await(
+await mermaid`graph LR
+  direction LR
+  BCPrinc[BC Principal,
+  Personalization &
+  Engagement Approach] -->  MktMeas[Refine
+  Experimental
+  Design
+  ]
+  MktMeas --> MktApproval[Marketing
+  Approval]
+  MktApproval-->  CommApproval[Comm
+  Approval]
+  CommApproval--> MktDecision{Decision}
+  MktDecision--> |Terminate|MktTerm["Start Over"]
+  MktDecision--> |"Rethink"|MktReturn["Return to EDA
+  or BC Principal"]
+  MktDecision--> |"Approval"|ToLaunch["To Launch"]`
+))
+}});
+
+define({id: "40ce235e", inputs: ["mermaid","display"], body: async (mermaid,display) => {
+display(await(
+await mermaid`graph LR
+  direction LR
+  DC["Pre-launch Review"] --> Launch
+  Launch --> Monitor[Measurement &
+  Monitoring]
+  Monitor --> LaunchEval{Evaluation}
+  LaunchEval --> |"Start Over"|LaunchTerm["Terminate"]
+  LaunchEval --> |"Relaunch"|LaunchReapp["Relaunch"]
+  LaunchEval --> |"Lock In"|LaunchLock["Scale-up"]`
+))
+}});
+
+define({id: "c046f4f5", inputs: ["html"], outputs: ["mapContainer"], body: (html) => {
 const mapContainer = html`
   <style>
     .map-container {
       height: 450px;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
     .map-popup {
       font-family: var(--font-main);
@@ -99,37 +175,36 @@ const mapContainer = html`
   </style>
   <div id="map-container" class="map-container"></div>
 `;
-
 return {mapContainer};
 }});
 
-define({id: "18c68f7b", outputs: ["BOSTON_CONFIG"], body: () => {
+define({id: "4be7d0dc", outputs: ["BOSTON_CONFIG"], body: () => {
 // Configuration file for Boston locations and cost data
 const BOSTON_CONFIG = {
   mapCenter: {
     lat: 42.3601,
     lng: -71.0589,
-    zoom: 14
+    zoom: 14,
   },
   locations: {
     current: {
       name: "Massachusetts General Hospital",
       address: "55 Fruit Street, Boston, MA 02114",
-      coordinates: {x: 400, y: 200},
+      coordinates: { x: 400, y: 200 },
       cost: 1200,
       description: "Current imaging provider",
       phone: "(617) 726-2000",
       costDetails: {
         baseCost: 1200,
         withInsurance: 300,
-        differential: "+300"
-      }
+        differential: "+300",
+      },
     },
     alternatives: [
       {
         name: "CareWell Urgent Care - Downtown",
         address: "51 Commercial Street, Boston, MA 02109",
-        coordinates: {x: 300, y: 150},
+        coordinates: { x: 300, y: 150 },
         cost: 700,
         distance: 0.8,
         savings: 500,
@@ -138,14 +213,14 @@ const BOSTON_CONFIG = {
         costDetails: {
           baseCost: 700,
           withInsurance: 200,
-          savings: 500
+          savings: 500,
         },
-        availability: "Next Day"
+        availability: "Next Day",
       },
       {
         name: "Beth Israel Deaconess Medical Center Radiology",
         address: "330 Brookline Ave, Boston, MA 02215",
-        coordinates: {x: 500, y: 250},
+        coordinates: { x: 500, y: 250 },
         cost: 400,
         distance: 1.2,
         savings: 800,
@@ -154,48 +229,48 @@ const BOSTON_CONFIG = {
         costDetails: {
           baseCost: 400,
           withInsurance: 100,
-          savings: 800
+          savings: 800,
         },
-        availability: "Same Week"
-      }
-    ]
+        availability: "Same Week",
+      },
+    ],
   },
   streets: [
     {
       name: "Cambridge Street",
       path: "M 100 200 L 700 200",
-      major: true
+      major: true,
     },
     {
       name: "Charles Street",
       path: "M 400 50 L 400 350",
-      major: true
+      major: true,
     },
     {
       name: "Storrow Drive",
       path: "M 50 150 L 750 150",
-      major: true
-    }
-  ]
+      major: true,
+    },
+  ],
 };
 return {BOSTON_CONFIG};
 }});
 
-define({id: "f71ecd4d", inputs: ["L","BOSTON_CONFIG"], outputs: ["isMapInitialized","createBostonMap"], body: (L,BOSTON_CONFIG) => {
+define({id: "f9803d17", inputs: ["L","BOSTON_CONFIG"], outputs: ["isMapInitialized","createBostonMap"], body: (L,BOSTON_CONFIG) => {
 let isMapInitialized = false;
 
 function createBostonMap() {
   function addLeafletResources() {
     if (!document.querySelector('link[href*="leaflet.css"]')) {
-      const css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      const css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
       document.head.appendChild(css);
     }
 
     if (!document.querySelector('script[src*="leaflet.js"]')) {
-      const script = document.createElement('script');
-      script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      const script = document.createElement("script");
+      script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
       script.onload = () => {
         if (!isMapInitialized) {
           initMap();
@@ -208,8 +283,8 @@ function createBostonMap() {
   }
 
   function initMap() {
-    const container = document.getElementById('map-container');
-    if (!container || typeof L === 'undefined' || isMapInitialized) return;
+    const container = document.getElementById("map-container");
+    if (!container || typeof L === "undefined" || isMapInitialized) return;
 
     // Set initialization flag
     isMapInitialized = true;
@@ -217,28 +292,31 @@ function createBostonMap() {
     const bostonLocations = {
       current: {
         ...BOSTON_CONFIG.locations.current,
-        position: [42.3632, -71.0686]
+        position: [42.3632, -71.0686],
       },
       alternatives: [
         {
           ...BOSTON_CONFIG.locations.alternatives[0],
-          position: [42.3589, -71.0518]
+          position: [42.3589, -71.0518],
         },
         {
           ...BOSTON_CONFIG.locations.alternatives[1],
-          position: [42.3389, -71.1067]
-        }
-      ]
+          position: [42.3389, -71.1067],
+        },
+      ],
     };
 
     // Clear any existing map instance
-    container.innerHTML = '';
+    container.innerHTML = "";
 
-    const map = L.map('map-container').setView(bostonLocations.current.position, 14);
+    const map = L.map("map-container").setView(
+      bostonLocations.current.position,
+      14
+    );
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors',
-      opacity: 0.5
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap contributors",
+      opacity: 0.5,
     }).addTo(map);
 
     // Icon for the current location (red circle with red dot center)
@@ -263,7 +341,7 @@ function createBostonMap() {
           "></div>
         </div>
       `,
-      className: 'current-location-marker',
+      className: "current-location-marker",
       iconSize: [24, 24],
     });
 
@@ -278,13 +356,14 @@ function createBostonMap() {
         ">
         </div>
       `,
-      className: 'alternative-location-marker',
+      className: "alternative-location-marker",
       iconSize: [24, 24],
     });
 
     // Add current location marker
     L.marker(bostonLocations.current.position, { icon: currentIcon })
-      .bindPopup(`
+      .bindPopup(
+        `
         <div class="map-popup">
           <h3 style="color: #dc2626; margin: 0 0 8px 0">${bostonLocations.current.name}</h3>
           <p style="margin: 0 0 4px 0">${bostonLocations.current.address}</p>
@@ -293,13 +372,15 @@ function createBostonMap() {
             $${bostonLocations.current.costDetails.differential} more expensive
           </p>
         </div>
-      `)
+      `
+      )
       .addTo(map);
 
     // Add alternative location markers
-    bostonLocations.alternatives.forEach(location => {
+    bostonLocations.alternatives.forEach((location) => {
       L.marker(location.position, { icon: alternativeIcon })
-        .bindPopup(`
+        .bindPopup(
+          `
           <div class="map-popup">
             <h3 style="color: #22c55e; margin: 0 0 8px 0">${location.name}</h3>
             <p style="margin: 0 0 4px 0">${location.address}</p>
@@ -309,7 +390,8 @@ function createBostonMap() {
             </p>
             <p style="margin: 0">Available: ${location.availability}</p>
           </div>
-        `)
+        `
+        )
         .addTo(map);
     });
 
@@ -320,15 +402,11 @@ function createBostonMap() {
     addLeafletResources();
   }
 }
-
 return {isMapInitialized,createBostonMap};
 }});
 
-define({id: "ff99a31d", inputs: ["view","html","mapContainer","createBostonMap"], body: (view,html,mapContainer,createBostonMap) => {
-view(html`
-${mapContainer}
-${createBostonMap()}
-`);
+define({id: "593ce54f", inputs: ["view","html","mapContainer","createBostonMap"], body: (view,html,mapContainer,createBostonMap) => {
+view(html` ${mapContainer} ${createBostonMap()} `);
 }});
 
 </script>
@@ -342,14 +420,18 @@ ${createBostonMap()}
     <li class="observablehq-link"><a href="./">Measurement By Design</a></li>
   </ol>
   <ol>
-    <li class="observablehq-link"><a href="./">Introduction</a></li>
+    <li class="observablehq-link"><a href="./">Overview Dashboard</a></li>
   </ol>
-  <section>
-    <summary>Demo</summary>
+  <details open>
+    <summary>Imaging</summary>
     <ol>
-    <li class="observablehq-link"><a href="./intervention-demo">Intervention Demo</a></li>
+    <li class="observablehq-link"><a href="./value-framing">Problem Definition</a></li>
+    <li class="observablehq-link"><a href="./EDA-ROI">EDA &amp; ROI</a></li>
+    <li class="observablehq-link"><a href="./hypothesis">Hypothesis</a></li>
+    <li class="observablehq-link"><a href="./targeting">Targeting Strategy</a></li>
+    <li class="observablehq-link"><a href="./exp-design">Experimental Design</a></li>
     </ol>
-  </section>
+  </details>
   <details open class="observablehq-section-active">
     <summary>Primitive Assets</summary>
     <ol>
@@ -373,16 +455,66 @@ ${createBostonMap()}
 <nav>
 <div>Contents</div>
 <ol>
+<li class="observablehq-secondary-link"><a href="#email-comparison-vierw">Email comparison Vierw</a></li>
+<li class="observablehq-secondary-link"><a href="#org">Org</a></li>
+<li class="observablehq-secondary-link"><a href="#describe-the-flow">Describe the flow</a></li>
+<li class="observablehq-secondary-link"><a href="#microsite-view">Microsite view</a></li>
 <li class="observablehq-secondary-link"><a href="#generic-microsite-builder">Generic Microsite Builder</a></li>
 </ol>
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:15929645:--></div>
-<h1 id="i-made-a-microsite" tabindex="-1"><a class="observablehq-header-anchor" href="#i-made-a-microsite">I made a microsite</a></h1>
-<div class="observablehq observablehq--block"><!--:59d8e30e:--></div>
-<div class="observablehq observablehq--block"><!--:18c68f7b:--></div>
-<div class="observablehq observablehq--block"><!--:f71ecd4d:--></div>
+<div class="observablehq observablehq--block"><!--:bd834160:--></div>
+<div class="observablehq observablehq--block"><!--:f332cc5f:--></div>
+<h2 id="email-comparison-vierw" tabindex="-1"><a class="observablehq-header-anchor" href="#email-comparison-vierw">Email comparison Vierw</a></h2>
+<div class="observablehq observablehq--block"><!--:3e41708c:--></div>
+<div class="observablehq observablehq--block"><!--:f1a296a8:--></div>
+<h2 id="org" tabindex="-1"><a class="observablehq-header-anchor" href="#org">Org</a></h2>
+<p>Describe the process:</p>
+<p>Let's mock up an email to link to this microsite.
+<img src="./_file/email.58f00e81.png" alt="alt text"></p>
+<p>TODO:</p>
+<ul>
+<li>not 'up to', you could save examctly</li>
+<li>Show it explicitly (average cost for you, average cost at x)</li>
+<li>show the email</li>
+<li>show the microsite
+<ul>
+<li>incremental microsite advantages are:
+<ol>
+<li>show the math on the savings</li>
+<li>show the diversity and location of options, with math.</li>
+<li>show a boxplot</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>On demo website: first tab: pull up email. Second tab, experience on microsite. Default on landing, shown on exact 4 providers, with exact cost for precedure in question compared to average hospital cost for that procedure.</p>
+<p>What about the historical look.
+two cohorts maybe;</p>
+<ol>
+<li>drove non preferred and likely to do it again</li>
+<li>likely to do it by model</li>
+</ol>
+<p>Boxplot for the costs</p>
+<div class="observablehq observablehq--block"><!--:1a67e80a:--></div>
+<div class="observablehq observablehq--block"><!--:9baa5fad:--></div>
+<p>Then a drop down for the costs/template and locations.</p>
+<h2 id="describe-the-flow" tabindex="-1"><a class="observablehq-header-anchor" href="#describe-the-flow">Describe the flow</a></h2>
+<p>figure&gt;</p>
+<figure>
+<figcaption>Figure 2: Marketing Approval Process</figcaption>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c218be46:--></div>
+</figure>
+<figure>
+<figcaption>Figure 3: Launch and Scale Process</figcaption>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:40ce235e:--></div>
+</figure>
+<h2 id="microsite-view" tabindex="-1"><a class="observablehq-header-anchor" href="#microsite-view">Microsite view</a></h2>
+<div class="observablehq observablehq--block"><!--:c046f4f5:--></div>
+<div class="observablehq observablehq--block"><!--:4be7d0dc:--></div>
+<div class="observablehq observablehq--block"><!--:f9803d17:--></div>
 <style>
     :root {
         --primary-color: #1e40af;
@@ -590,7 +722,7 @@ ${createBostonMap()}
 <!-- <section class="map-section"> -->
 <div class="hero-content">
 <h2>Find Affordable COPD Imaging Near You</h2>
-<div class="observablehq observablehq--block"><!--:ff99a31d:--></div>
+<div class="observablehq observablehq--block"><!--:593ce54f:--></div>
 <div class="cost-grid">
     <div class="cost-card">
         <h3>Current Cost</h3>
@@ -609,7 +741,7 @@ ${createBostonMap()}
     </div>
 </div>
 </div>
- 
+
 <section class="location-cards">
 <div class="location-card current">
     <h3>Current Location</h3>
@@ -644,7 +776,7 @@ ${createBostonMap()}
 </footer>
 </div>
 <h2 id="generic-microsite-builder" tabindex="-1"><a class="observablehq-header-anchor" href="#generic-microsite-builder">Generic Microsite Builder</a></h2>
-<!-- 
+<!--
 ```js
 const micrositeConfig = {
   defaultZip: '02114',
@@ -740,7 +872,7 @@ const micrositeConfig = {
 <div class="microsite-container"></div>
 
 ```js
-  
+
 
   const containerDD = document.querySelector(".microsite-container");
   const microsite = new Microsite(micrositeConfig);
@@ -751,10 +883,11 @@ const micrositeConfig = {
 ```js
 view(containerDD)
 ```
-</div> --></main>
+</div> -->
+</main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./experimental-design"><span>Simple Experimental Design</span></a><a rel="next" href="./collapsible-cell"><span>Collapsible Cell</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-03T02:01:16">Dec 3, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-05T02:19:43">Dec 5, 2024</a>.</div>
 </footer>
 </div>
 </body>

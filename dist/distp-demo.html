@@ -12,12 +12,12 @@
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
 <link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
 <link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
-<link rel="modulepreload" href="./_observablehq/client.bdfce3d3.js">
+<link rel="modulepreload" href="./_observablehq/client.11aa6b6e.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
-<link rel="modulepreload" href="./_observablehq/stdlib.63ee1033.js">
-<link rel="modulepreload" href="./_import/components/DistP.fb4ccc78.js">
-<link rel="modulepreload" href="./_observablehq/stdlib/inputs.625bbd4c.js">
-<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/118fc3ce.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.95bfbf7e.js">
+<link rel="modulepreload" href="./_import/components/DistP.ac9bc534.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.d397b6a8.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/e828d8c8.js">
 <link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
 <link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
@@ -59,168 +59,210 @@
 <link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
 <script type="module">
 
-import {define} from "./_observablehq/client.bdfce3d3.js";
+import {define} from "./_observablehq/client.11aa6b6e.js";
 
-define({id: "6dfb8953", outputs: ["DistP","distributions"], body: async () => {
-const {DistP, distributions} = await import("./_import/components/DistP.fb4ccc78.js");
+define({id: "459f5825", outputs: ["DistP","distributions"], body: async () => {
+const {DistP, distributions} = await import("./_import/components/DistP.ac9bc534.js");
 
 return {DistP,distributions};
 }});
 
-define({id: "587ed566", inputs: ["view","Inputs"], outputs: ["ndp"], body: (view,Inputs) => {
-const ndp = view(Inputs.form(
-    {
-        'mean': Inputs.range([0, 1], { label: "Mean", value: 0.25, 
-                    step: 0.01 }),
-        'std' : Inputs.range([0.1, 1], { label: "Standard Deviation", value: 0.15, step: 0.01 }),
-        'size' : Inputs.range([100, 500000], { label: "Size", value: 50000, step: 100, disabled:true }),
-        'lowerBound' : Inputs.range([0, 10], { label: "Lower Bound", value: 0, step: 1, disabled:true }),
-        'upperBound' : Inputs.range([0.1, 100000], { label: "Upper Bound", value: 1, step: 0.1, disabled:true }),
-    }
-    ));
-    
+define({id: "9e031856", inputs: ["view","Inputs"], outputs: ["ndp"], body: (view,Inputs) => {
+const ndp = view(
+  Inputs.form({
+    mean: Inputs.range([0, 1], { label: "Mean", value: 0.25, step: 0.01 }),
+    std: Inputs.range([0.1, 1], {
+      label: "Standard Deviation",
+      value: 0.15,
+      step: 0.01,
+    }),
+    size: Inputs.range([100, 500000], {
+      label: "Size",
+      value: 50000,
+      step: 100,
+      disabled: true,
+    }),
+    lowerBound: Inputs.range([0, 10], {
+      label: "Lower Bound",
+      value: 0,
+      step: 1,
+      disabled: true,
+    }),
+    upperBound: Inputs.range([0.1, 100000], {
+      label: "Upper Bound",
+      value: 1,
+      step: 0.1,
+      disabled: true,
+    }),
+  })
+);
 return {ndp};
 }});
 
-define({id: "ae457847", inputs: ["DistP","distributions","ndp","view"], outputs: ["normalDist"], body: (DistP,distributions,ndp,view) => {
+define({id: "28194bf3", inputs: ["DistP","distributions","ndp","view"], outputs: ["normalDist"], body: (DistP,distributions,ndp,view) => {
 const normalDist = new DistP({
-    name: "Normal Distribution",
-    distfunc: distributions.normal,
-    params: { mean: ndp.mean, std: ndp.std },
-    bounds: [ndp.lowerBound, ndp.upperBound],
-    size: ndp.size
+  name: "Normal Distribution",
+  distfunc: distributions.normal,
+  params: { mean: ndp.mean, std: ndp.std },
+  bounds: [ndp.lowerBound, ndp.upperBound],
+  size: ndp.size,
 });
-view(normalDist.plot())
+view(normalDist.plot());
 return {normalDist};
 }});
 
-define({id: "edb90f45", inputs: ["view","Inputs"], outputs: ["ldp"], body: (view,Inputs) => {
-const ldp = view(Inputs.form(
-    {
-        'mean': Inputs.range([0, 1], { label: "Mean", value: 0.2, step: 0.1 }),
-        'shape' : Inputs.range([0.1, 1], { label: "Shape", value: 0.8, step: 0.01 }),
-        'size' : Inputs.range([1000, 100000], { label: "Size", value: 50000, step: 1000,disabled:true }),
-        'lowerBound' : Inputs.range([0, 10], { label: "Lower Bound", value: 0, step: 1, disabled:true }),
-        'upperBound' : Inputs.range([0.1, 1], { label: "Upper Bound", value: 100000, step: 0.1, disabled:true}),
-    }
-    ));
-    
+define({id: "b8d61988", inputs: ["view","Inputs"], outputs: ["ldp"], body: (view,Inputs) => {
+const ldp = view(
+  Inputs.form({
+    mean: Inputs.range([0, 1], { label: "Mean", value: 0.2, step: 0.1 }),
+    shape: Inputs.range([0.1, 1], { label: "Shape", value: 0.8, step: 0.01 }),
+    size: Inputs.range([1000, 100000], {
+      label: "Size",
+      value: 50000,
+      step: 1000,
+      disabled: true,
+    }),
+    lowerBound: Inputs.range([0, 10], {
+      label: "Lower Bound",
+      value: 0,
+      step: 1,
+      disabled: true,
+    }),
+    upperBound: Inputs.range([0.1, 1], {
+      label: "Upper Bound",
+      value: 100000,
+      step: 0.1,
+      disabled: true,
+    }),
+  })
+);
 return {ldp};
 }});
 
-define({id: "20c6309b", inputs: ["DistP","distributions","ldp","view"], outputs: ["lognormalDist"], body: (DistP,distributions,ldp,view) => {
+define({id: "d7b1f542", inputs: ["DistP","distributions","ldp","view"], outputs: ["lognormalDist"], body: (DistP,distributions,ldp,view) => {
 // Create a lognormal distribution
 const lognormalDist = new DistP({
-    name: "Lognormal Distribution",
-    distfunc: distributions.lognormal,
-    params: { mean: ldp.mean, shape: ldp.shape },
-    bounds: [ldp.lowerBound, ldp.upperBound],
-    size: ldp.size,
-        boundMethod: "stack",
+  name: "Lognormal Distribution",
+  distfunc: distributions.lognormal,
+  params: { mean: ldp.mean, shape: ldp.shape },
+  bounds: [ldp.lowerBound, ldp.upperBound],
+  size: ldp.size,
+  boundMethod: "stack",
 });
 
-view(lognormalDist.plot())
+view(lognormalDist.plot());
 return {lognormalDist};
 }});
 
-define({id: "03fba68e", inputs: ["view","Inputs"], outputs: ["bdp"], body: (view,Inputs) => {
-const bdp = view(Inputs.form(
-    {
-        'alpha': Inputs.range([0.1, 100],
-             { label: "Alpha", value: 2, step: 0.1 }),
-        'beta' : Inputs.range([0.1, 100], 
-            { label: "Beta", value: 2, step: 0.1 }),
-        'size' : Inputs.range([1000, 100000], 
-            { label: "Size", value: 50000, step: 1000, disabled:true }),
-        'lowerBound' : Inputs.range([0, 10], { label: "Lower Bound", value: 0, step: 1, disabled:true }),
-        'upperBound' : Inputs.range([0.1, 100000], { label: "Upper Bound", value: 100000, step: 0.1, disabled:true  }),
-    }
-    ));
-    
+define({id: "eb882e7f", inputs: ["view","Inputs"], outputs: ["bdp"], body: (view,Inputs) => {
+const bdp = view(
+  Inputs.form({
+    alpha: Inputs.range([0.1, 100], { label: "Alpha", value: 2, step: 0.1 }),
+    beta: Inputs.range([0.1, 100], { label: "Beta", value: 2, step: 0.1 }),
+    size: Inputs.range([1000, 100000], {
+      label: "Size",
+      value: 50000,
+      step: 1000,
+      disabled: true,
+    }),
+    lowerBound: Inputs.range([0, 10], {
+      label: "Lower Bound",
+      value: 0,
+      step: 1,
+      disabled: true,
+    }),
+    upperBound: Inputs.range([0.1, 100000], {
+      label: "Upper Bound",
+      value: 100000,
+      step: 0.1,
+      disabled: true,
+    }),
+  })
+);
 return {bdp};
 }});
 
-define({id: "dd578002", inputs: ["DistP","distributions","bdp","view"], outputs: ["betaDist"], body: (DistP,distributions,bdp,view) => {
+define({id: "70999527", inputs: ["DistP","distributions","bdp","view"], outputs: ["betaDist"], body: (DistP,distributions,bdp,view) => {
 // Create a lognormal distribution
 const betaDist = new DistP({
-    name: "Beta Distribution",
-    distfunc: distributions.beta,
-    params: { alpha: bdp.alpha, beta: bdp.beta },
-    bounds: [bdp.lowerBound, bdp.upperBound],
-    size: bdp.size
+  name: "Beta Distribution",
+  distfunc: distributions.beta,
+  params: { alpha: bdp.alpha, beta: bdp.beta },
+  bounds: [bdp.lowerBound, bdp.upperBound],
+  size: bdp.size,
 });
 
-view(betaDist.plot())
+view(betaDist.plot());
 return {betaDist};
 }});
 
-define({id: "91a92b80", inputs: ["DistP","distributions","view"], outputs: ["diseasePrevalence"], body: (DistP,distributions,view) => {
+define({id: "e8984865", inputs: ["DistP","distributions","view"], outputs: ["diseasePrevalence"], body: (DistP,distributions,view) => {
 // Create a lognormal distribution
 const diseasePrevalence = new DistP({
-    name: "Disease Prevalence Distribution",
-    distfunc: distributions.lognormal,
-    pparams: { mean: 0.2, shape: 0.9 },
-    bounds: [0, 10],
-    boundMethod: "stack",
-    size: 5000
+  name: "Disease Prevalence Distribution",
+  distfunc: distributions.lognormal,
+  pparams: { mean: 0.2, shape: 0.9 },
+  bounds: [0, 10],
+  boundMethod: "stack",
+  size: 5000,
 });
 
-view(diseasePrevalence.plot())
+view(diseasePrevalence.plot());
 return {diseasePrevalence};
 }});
 
-define({id: "77300cec", inputs: ["DistP","distributions"], outputs: ["normalBase","uniformDist"], body: (DistP,distributions) => {
+define({id: "836ad407", inputs: ["DistP","distributions"], outputs: ["normalBase","uniformDist"], body: (DistP,distributions) => {
 // Example using chain operations with different distributions
 const normalBase = new DistP({
-    name: "Base Normal",
-    distfunc: distributions.normal,
-    params: { mean: 100, std: 10 },
-    size: 5000,
-    bounds: [0, 200]
+  name: "Base Normal",
+  distfunc: distributions.normal,
+  params: { mean: 100, std: 10 },
+  size: 5000,
+  bounds: [0, 200],
 });
 
 const uniformDist = new DistP({
-    name: "Uniform",
-    distfunc: distributions.uniform,
-    params: { min: 0.8, max: 1.2 },
-    size: 5000
+  name: "Uniform",
+  distfunc: distributions.uniform,
+  params: { min: 0.8, max: 1.2 },
+  size: 5000,
 });
 return {normalBase,uniformDist};
 }});
 
-define({id: "8031f6ed", inputs: ["DistP","normalBase","uniformDist","view"], outputs: ["addResult"], body: (DistP,normalBase,uniformDist,view) => {
+define({id: "1881c473", inputs: ["DistP","normalBase","uniformDist","view"], outputs: ["addResult"], body: (DistP,normalBase,uniformDist,view) => {
 // Chain operations
 const addResult = new DistP({
-    name: "Normal + Lognormal",
-    samples: [...normalBase.samples],
-    size: 5000
+  name: "Normal + Lognormal",
+  samples: [...normalBase.samples],
+  size: 5000,
 }).chainAdd(uniformDist);
-view(addResult.plot())
+view(addResult.plot());
 return {addResult};
 }});
 
-define({id: "a4a54ee6", inputs: ["DistP","normalBase","uniformDist","view"], outputs: ["multResult"], body: (DistP,normalBase,uniformDist,view) => {
+define({id: "f5741956", inputs: ["DistP","normalBase","uniformDist","view"], outputs: ["multResult"], body: (DistP,normalBase,uniformDist,view) => {
 // Chain operations
 const multResult = new DistP({
-    name: "Normal × Uniform",
-    samples: [...normalBase.samples],
-    size: 5000
+  name: "Normal × Uniform",
+  samples: [...normalBase.samples],
+  size: 5000,
 }).chainMult(uniformDist);
 
 //plot it
-view(multResult.plot())
+view(multResult.plot());
 return {multResult};
 }});
 
-define({id: "47e5da48", inputs: ["DistP","normalBase","uniformDist","view"], outputs: ["divResult"], body: (DistP,normalBase,uniformDist,view) => {
+define({id: "b90c1d2e", inputs: ["DistP","normalBase","uniformDist","view"], outputs: ["divResult"], body: (DistP,normalBase,uniformDist,view) => {
 const divResult = new DistP({
-    name: "Normal ÷ Uniform",
-    samples: [...normalBase.samples],
-    size: 5000,
+  name: "Normal ÷ Uniform",
+  samples: [...normalBase.samples],
+  size: 5000,
 }).chainDivide(uniformDist);
 
 //plot it
-view(divResult.plot())
+view(divResult.plot());
 return {divResult};
 }});
 
@@ -235,14 +277,18 @@ return {divResult};
     <li class="observablehq-link"><a href="./">Measurement By Design</a></li>
   </ol>
   <ol>
-    <li class="observablehq-link"><a href="./">Introduction</a></li>
+    <li class="observablehq-link"><a href="./">Overview Dashboard</a></li>
   </ol>
-  <section>
-    <summary>Demo</summary>
+  <details open>
+    <summary>Imaging</summary>
     <ol>
-    <li class="observablehq-link"><a href="./intervention-demo">Intervention Demo</a></li>
+    <li class="observablehq-link"><a href="./value-framing">Problem Definition</a></li>
+    <li class="observablehq-link"><a href="./EDA-ROI">EDA &amp; ROI</a></li>
+    <li class="observablehq-link"><a href="./hypothesis">Hypothesis</a></li>
+    <li class="observablehq-link"><a href="./targeting">Targeting Strategy</a></li>
+    <li class="observablehq-link"><a href="./exp-design">Experimental Design</a></li>
     </ol>
-  </section>
+  </details>
   <details open class="observablehq-section-active">
     <summary>Primitive Assets</summary>
     <ol>
@@ -273,7 +319,7 @@ return {divResult};
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:6dfb8953:--></div>
+<div class="observablehq observablehq--block"><!--:459f5825:--></div>
 <h1 id="distributions" tabindex="-1"><a class="observablehq-header-anchor" href="#distributions">Distributions</a></h1>
 <p>There are rarely truly static parameters in life. In business, either. Creating distribution-based business cases is pretty easy to do and a powerful way to model and add probability to your estimates.</p>
 <p>Let's create the fundamental primatives for working with distributions. Then let's introduce some math to manipulate them.</p>
@@ -293,59 +339,59 @@ return {divResult};
 </ol>
 <p>N.b., that the idea behind the <code>custom</code> distribution is actually to use <em>real data</em>. in other words, why fit a distribution if you have actual data? This is implemented in the python version of this package, but not yet in javascript.</p>
 <h3 id="normal-distribution" tabindex="-1"><a class="observablehq-header-anchor" href="#normal-distribution">Normal distribution</a></h3>
-<div class="observablehq observablehq--block"><!--:587ed566:--></div>
-<div class="observablehq observablehq--block"><!--:ae457847:--></div>
+<div class="observablehq observablehq--block"><!--:9e031856:--></div>
+<div class="observablehq observablehq--block"><!--:28194bf3:--></div>
 <h3 id="lognormal-distribution" tabindex="-1"><a class="observablehq-header-anchor" href="#lognormal-distribution">Lognormal distribution</a></h3>
-<div class="observablehq observablehq--block"><!--:edb90f45:--></div>
-<div class="observablehq observablehq--block"><!--:20c6309b:--></div>
+<div class="observablehq observablehq--block"><!--:b8d61988:--></div>
+<div class="observablehq observablehq--block"><!--:d7b1f542:--></div>
 <h3 id="beta-distribution" tabindex="-1"><a class="observablehq-header-anchor" href="#beta-distribution">Beta distribution</a></h3>
 <p>Beta distributions are super flexible. They can be uniform, or resemble lognormal skewed left or right. Play around.</p>
-<div class="observablehq observablehq--block"><!--:03fba68e:--></div>
-<div class="observablehq observablehq--block"><!--:dd578002:--></div>
+<div class="observablehq observablehq--block"><!--:eb882e7f:--></div>
+<div class="observablehq observablehq--block"><!--:70999527:--></div>
 <h2 id="operations-on-distributions-for-business-cases" tabindex="-1"><a class="observablehq-header-anchor" href="#operations-on-distributions-for-business-cases">Operations on distributions for business cases</a></h2>
 <p>I'm convinced that almmost everyone builds <em>terrible</em> business cases. Every parameter in a business case is actually a distribution. Thus, distributions as an object or entity are important to be able to use, and on which we're able to do some quick math.</p>
 <p>Let's say that the prevalence of a disease across counties varies in an approximatly lognormal manner, centered about ~20% prevalence. Let's say it's actually a beta distribution.</p>
 <p>Let's create that distribution and visualize it.</p>
-<div class="observablehq observablehq--block"><!--:91a92b80:--></div>
+<div class="observablehq observablehq--block"><!--:e8984865:--></div>
 <h2 id="lets-explore-chaining" tabindex="-1"><a class="observablehq-header-anchor" href="#lets-explore-chaining">Let's explore chaining</a></h2>
-<div class="observablehq observablehq--block"><!--:77300cec:--></div>
+<div class="observablehq observablehq--block"><!--:836ad407:--></div>
 <p>Let's add two distributions together.</p>
 <pre data-language="javascript"><code class="language-javascript"><span class="hljs-comment">// Chain operations</span>
 <span class="hljs-keyword">const</span> addResult = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DistP</span>({
-    <span class="hljs-attr">name</span>: <span class="hljs-string">"Normal + Lognormal"</span>,
-    <span class="hljs-attr">samples</span>: [...normalBase.<span class="hljs-property">samples</span>],
-    <span class="hljs-attr">size</span>: <span class="hljs-number">5000</span>
+  <span class="hljs-attr">name</span>: <span class="hljs-string">"Normal + Lognormal"</span>,
+  <span class="hljs-attr">samples</span>: [...normalBase.<span class="hljs-property">samples</span>],
+  <span class="hljs-attr">size</span>: <span class="hljs-number">5000</span>,
 }).<span class="hljs-title function_">chainAdd</span>(uniformDist);
-<span class="hljs-title function_">view</span>(addResult.<span class="hljs-title function_">plot</span>())
+<span class="hljs-title function_">view</span>(addResult.<span class="hljs-title function_">plot</span>());
 </code></pre>
-<div class="observablehq observablehq--block"><!--:8031f6ed:--></div>
+<div class="observablehq observablehq--block"><!--:1881c473:--></div>
 <p>Let's multiply two distributions together.</p>
 <pre data-language="javascript"><code class="language-javascript"><span class="hljs-comment">// Chain operations</span>
 <span class="hljs-keyword">const</span> multResult = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DistP</span>({
-    <span class="hljs-attr">name</span>: <span class="hljs-string">"Normal × Uniform"</span>,
-    <span class="hljs-attr">samples</span>: [...normalBase.<span class="hljs-property">samples</span>],
-    <span class="hljs-attr">size</span>: <span class="hljs-number">5000</span>
+  <span class="hljs-attr">name</span>: <span class="hljs-string">"Normal × Uniform"</span>,
+  <span class="hljs-attr">samples</span>: [...normalBase.<span class="hljs-property">samples</span>],
+  <span class="hljs-attr">size</span>: <span class="hljs-number">5000</span>,
 }).<span class="hljs-title function_">chainMult</span>(uniformDist);
 
 <span class="hljs-comment">//plot it</span>
-<span class="hljs-title function_">view</span>(multResult.<span class="hljs-title function_">plot</span>())
+<span class="hljs-title function_">view</span>(multResult.<span class="hljs-title function_">plot</span>());
 </code></pre>
-<div class="observablehq observablehq--block"><!--:a4a54ee6:--></div>
+<div class="observablehq observablehq--block"><!--:f5741956:--></div>
 <p>Let's divide two distributions.</p>
 <pre data-language="javascript"><code class="language-javascript"><span class="hljs-keyword">const</span> divResult = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DistP</span>({
-    <span class="hljs-attr">name</span>: <span class="hljs-string">"Normal ÷ Uniform"</span>,
-    <span class="hljs-attr">samples</span>: [...normalBase.<span class="hljs-property">samples</span>],
-    <span class="hljs-attr">size</span>: <span class="hljs-number">5000</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">"Normal ÷ Uniform"</span>,
+  <span class="hljs-attr">samples</span>: [...normalBase.<span class="hljs-property">samples</span>],
+  <span class="hljs-attr">size</span>: <span class="hljs-number">5000</span>,
 }).<span class="hljs-title function_">chainDivide</span>(uniformDist);
 
 <span class="hljs-comment">//plot it</span>
-<span class="hljs-title function_">view</span>(multResult.<span class="hljs-title function_">plot</span>())
+<span class="hljs-title function_">view</span>(multResult.<span class="hljs-title function_">plot</span>());
 </code></pre>
-<div class="observablehq observablehq--block"><!--:47e5da48:--></div>
+<div class="observablehq observablehq--block"><!--:b90c1d2e:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./live-table-data"><span>Live Table</span></a><a rel="next" href="./funnel-chart"><span>Funnel Chart</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-03T02:01:16">Dec 3, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-05T02:19:43">Dec 5, 2024</a>.</div>
 </footer>
 </div>
 </body>

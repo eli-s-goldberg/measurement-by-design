@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.0">
+<title>Hypotheses and Actions | Measurement By Design</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="./_observablehq/client.11aa6b6e.js">
+<link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.95bfbf7e.js">
+<link rel="modulepreload" href="./_import/components/styles.5ae71931.js">
+<link rel="modulepreload" href="./_import/components/interactiveimagingexample.cd0d0742.js">
+<link rel="modulepreload" href="./_import/components/DistP.ac9bc534.js">
+<link rel="modulepreload" href="./_import/components/generateHealthcareData.59569be6.js">
+<link rel="modulepreload" href="./_import/components/ml-utils.49f0e6d0.js">
+<link rel="modulepreload" href="./_import/components/FunnelChart.56736e39.js">
+<link rel="modulepreload" href="./_import/components/TreeExplore.d56586fd.js">
+<link rel="modulepreload" href="./_import/components/AggStats.7b40fa2c.js">
+<link rel="modulepreload" href="./_import/components/SankeyFlow.0b51f987.js">
+<link rel="modulepreload" href="./_import/components/RandomForestClassifier.1e680409.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.d397b6a8.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/mermaid.b7b51fd9.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/e828d8c8.js">
+<link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs.940dc0bc.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e95f898e.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/d44feff9.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/5830b12a.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/626bedc4.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/b22c5864.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e1ff060.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/5851d7ef.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/dcd02767.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/567840a0.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/cf9b720b.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/5dcd62f4.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/f8e03c56.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/5bc129e1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/19c92b44.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/8debb4ba.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/4b0cc581.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.11aa6b6e.js";
+
+define({id: "d19a1792", inputs: ["html"], outputs: ["defaultStyles","styleElement"], body: async (html) => {
+const {defaultStyles} = await import("./_import/components/styles.5ae71931.js");
+// import some CSS to keep things well styled
+const styleElement = html`<style>
+  ${defaultStyles}
+</style>`;
+document.head.appendChild(styleElement);
+return {defaultStyles,styleElement};
+}});
+
+define({id: "e8e56bf4", outputs: ["InteractiveImagingExplorer","DistP","distributions","d3"], body: async () => {
+const [{InteractiveImagingExplorer}, {DistP, distributions}, d3] = await Promise.all([import("./_import/components/interactiveimagingexample.cd0d0742.js"), import("./_import/components/DistP.ac9bc534.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm")]);
+
+return {InteractiveImagingExplorer,DistP,distributions,d3};
+}});
+
+define({id: "6a1f9258", outputs: ["generateHealthcareData","CONSTANTS","calculateImageUse","prepareImagingData","stratifiedSubsample","getRandomSubsample","computeMeanAndCI","computeROC","FunnelChart","createTreeWithStats","calculateStats","createFunnelData","formatNumber","createMulticlassMetric","createRateMetric","createDemographicMetrics","aggregateData","createDataSummary","createIntMetric","createFloatMetric","createSankeyFlow","RandomForestClassifier"], body: async () => {
+const [{generateHealthcareData, CONSTANTS, calculateImageUse}, {prepareImagingData, stratifiedSubsample, getRandomSubsample, computeMeanAndCI, computeROC}, {FunnelChart}, {createTreeWithStats, calculateStats, createFunnelData, formatNumber}, {createMulticlassMetric, createRateMetric, createDemographicMetrics, aggregateData, createDataSummary, createIntMetric, createFloatMetric}, {createSankeyFlow}, {RandomForestClassifier}] = await Promise.all([import("./_import/components/generateHealthcareData.59569be6.js"), import("./_import/components/ml-utils.49f0e6d0.js"), import("./_import/components/FunnelChart.56736e39.js"), import("./_import/components/TreeExplore.d56586fd.js"), import("./_import/components/AggStats.7b40fa2c.js"), import("./_import/components/SankeyFlow.0b51f987.js"), import("./_import/components/RandomForestClassifier.1e680409.js")]);
+// import data gen and consts
+
+
+
+return {generateHealthcareData,CONSTANTS,calculateImageUse,prepareImagingData,stratifiedSubsample,getRandomSubsample,computeMeanAndCI,computeROC,FunnelChart,createTreeWithStats,calculateStats,createFunnelData,formatNumber,createMulticlassMetric,createRateMetric,createDemographicMetrics,aggregateData,createDataSummary,createIntMetric,createFloatMetric,createSankeyFlow,RandomForestClassifier};
+}});
+
+define({id: "52b792bc", inputs: ["mermaid","display"], body: async (mermaid,display) => {
+display(await(
+await mermaid`graph LR
+  direction LR
+  PD[Problem
+  Definition] --> DS[EDA & ROI]
+  DS --> ClinApproval[Hypothesis &
+  Recommend Actions]:::pwcYellow
+  ClinApproval--> TargExc[Targeting,
+  Exclusions,
+  Cohorting]:::transparent
+  TargExc--> ExpDesign1[Experimental
+  Design]:::transparent
+  ExpDesign1-- Terminate -->DevTerm["Start Over"]:::transparent
+  ExpDesign1-- Rethink -->DevReturn["Return to EDA"]:::transparent
+  ExpDesign1-- Approval -->ToMarketing["To Marketing"]:::transparent
+
+  classDef pwcYellow fill:#FFB600,stroke:#000000,color:#000000
+  classDef transparent fill:#ffffff40,stroke:#00000040,color:#00000040
+  linkStyle default color:#00000040`
+))
+}});
+
+define({id: "e18bade8", inputs: ["view","Inputs"], outputs: ["percentageDecrease"], body: (view,Inputs) => {
+const percentageDecrease = view(
+  Inputs.range([0, 100], {
+    step: 1, // Step size for the slider
+    format: (x) => x, // Display as percentage
+    label: "Percentage Decrease", // Optional: Label for clarity
+    value: 5, // Default value
+  })
+);
+return {percentageDecrease};
+}});
+
+define({id: "b4596109", inputs: ["percentageDecrease","imagingVolumes","imagingSettings","Plot"], outputs: ["updatedImagingVolumes","prepareUpdatedVolumeData","updatedVolumeData","calculateTotals","appendCostData","stackedVolumeData","updatedVolumeChart"], body: (percentageDecrease,imagingVolumes,imagingSettings,Plot) => {
+const updatedImagingVolumes = appendCostData(percentageDecrease);
+function prepareUpdatedVolumeData(imagingVolumes, percentageConverted) {
+  const volumeData = [];
+  Object.entries(imagingVolumes).forEach(([type, data]) => {
+    const { annualVolume, preferredShare, totalSavings } = data;
+
+    // Calculate volumes
+    const preferredVolume = annualVolume * preferredShare;
+    const nonPreferredVolume = annualVolume * (1 - preferredShare);
+    const convertedVolume = nonPreferredVolume * (percentageConverted / 100);
+    const remainingNonPreferredVolume = nonPreferredVolume - convertedVolume;
+    const totalVolume =
+      preferredVolume + convertedVolume + remainingNonPreferredVolume;
+
+    // Push the combined data into a single element
+    volumeData.push({
+      imaging_type: type,
+      preferredVolume,
+      convertedVolume,
+      remainingNonPreferredVolume,
+      totalVolume,
+      totalSavings, // For text display
+    });
+  });
+  return volumeData;
+}
+// Prepare updated data for the chart
+const updatedVolumeData = prepareUpdatedVolumeData(
+  updatedImagingVolumes,
+  percentageDecrease
+);
+
+// Calculate costs and savings using mean cost data
+function calculateTotals(percentageDecrease) {
+  const data = [];
+  Object.entries(imagingVolumes).forEach(([type, volumeData]) => {
+    const { annualVolume, preferredShare } = volumeData;
+    const { mean, shape, nonPreferredMultiplier } = imagingSettings[type];
+
+    // Calculate total preferred and non-preferred volumes
+    const totalPreferredVolume = annualVolume * preferredShare;
+    const totalNonPreferredVolume = annualVolume * (1 - preferredShare);
+
+    // Use the mean cost for preferred and non-preferred
+    const preferredCostPerUnit = mean;
+    const nonPreferredCostPerUnit =
+      preferredCostPerUnit * nonPreferredMultiplier;
+
+    // Calculate total costs
+    const totalPreferredCost = totalPreferredVolume * preferredCostPerUnit;
+    const totalNonPreferredCost =
+      totalNonPreferredVolume * nonPreferredCostPerUnit;
+
+    // Calculate savings per unit and total savings
+    const savingsPerUnit = nonPreferredCostPerUnit - preferredCostPerUnit;
+    const totalSavings =
+      totalNonPreferredVolume * savingsPerUnit * (percentageDecrease / 100);
+
+    // Store results
+    data.push({
+      imagingType: type,
+      totalCost: totalPreferredCost + totalNonPreferredCost,
+      totalSavings: totalSavings,
+      preferredCostPerUnit,
+      nonPreferredCostPerUnit,
+    });
+  });
+  return data;
+}
+
+// Append cost data to imagingVolumes
+function appendCostData(percentageDecrease) {
+  const costData = calculateTotals(percentageDecrease);
+
+  costData.forEach(({ imagingType, totalCost, totalSavings }) => {
+    imagingVolumes[imagingType] = {
+      ...imagingVolumes[imagingType], // Retain existing properties
+      totalCost,
+      totalSavings,
+    };
+  });
+
+  return imagingVolumes;
+}
+
+const stackedVolumeData = updatedVolumeData.flatMap((d) => [
+  {
+    imaging_type: d.imaging_type,
+    imaging_preference: "Preferred",
+    count: d.preferredVolume,
+  },
+  {
+    imaging_type: d.imaging_type,
+    imaging_preference: "Converted",
+    count: d.convertedVolume,
+  },
+  {
+    imaging_type: d.imaging_type,
+    imaging_preference: "Remaining Non-Preferred",
+    count: d.remainingNonPreferredVolume,
+  },
+]);
+// Create stacked bar chart
+const updatedVolumeChart = Plot.plot({
+  marginLeft: 150,
+  marginRight: 150,
+  height: 200,
+  subtitle: "Imaging Costs and Savings by Imaging Type",
+  marks: [
+    // Stacked bars for preferred, converted, and non-preferred
+    Plot.barX(stackedVolumeData, {
+      x: "count",
+      y: "imaging_type",
+      fill: "imaging_preference",
+      sort: { y: "x", reverse: true }, // Sort for better ordering
+      title: (d) => `${d.imaging_preference}: ${d.count.toLocaleString()}`,
+    }),
+    // Text mark for total savings at the total volume's right edge
+    Plot.text(
+      updatedVolumeData, // Use the combined data for totalVolume and savings
+      {
+        x: "totalVolume", // Position at total volume
+        y: "imaging_type",
+        text: (d) => `Savings: $${(d.totalSavings / 100000).toLocaleString()}M`,
+        textAnchor: "start", // Align text to the right
+        dx: 5, // Slightly offset to the right of the bar
+        fill: "black",
+      }
+    ),
+  ],
+  color: {
+    legend: true,
+    domain: ["Preferred", "Converted", "Remaining Non-Preferred"],
+    range: ["steelblue", "orange", "red"], // Colors for the bars
+  },
+  x: {
+    label: "Total Volume",
+    grid: true,
+    tickFormat: "~s", // Format large numbers with SI units
+  },
+  y: {
+    label: "Imaging Type",
+    grid: false,
+  },
+});
+//
+return {updatedImagingVolumes,prepareUpdatedVolumeData,updatedVolumeData,calculateTotals,appendCostData,stackedVolumeData,updatedVolumeChart};
+}});
+
+define({id: "f1b743b3", inputs: ["view","updatedVolumeChart"], body: (view,updatedVolumeChart) => {
+// Display the updated chart
+view(updatedVolumeChart);
+}});
+
+define({id: "e6feed8a", outputs: ["imagingSettings"], body: () => {
+// Define the imaging settings with mean and shape
+const imagingSettings = {
+  "X-Ray": {
+    mean: 150, // Average cost in dollars
+    shape: 0.8, // Doubled shape for even wider distribution
+    nonPreferredMultiplier: 1.45,
+    lowerBound: 20, // Lower bound for costs
+    upperBound: 400, // Upper bound for costs
+  },
+  CT: {
+    mean: 300,
+    shape: 1.0, // Doubled shape
+    nonPreferredMultiplier: 1.55,
+    lowerBound: 40,
+    upperBound: 100,
+  },
+  MRI: {
+    mean: 500,
+    shape: 1.2, // Doubled shape
+    nonPreferredMultiplier: 1.6,
+    lowerBound: 250,
+    upperBound: 1000,
+  },
+  Ultrasound: {
+    mean: 100,
+    shape: 0.2, // Doubled shape
+    nonPreferredMultiplier: 1.35,
+    lowerBound: 50,
+    upperBound: 500,
+  },
+  "Nuclear Medicine": {
+    mean: 350,
+    shape: 0.4, // Doubled shape for broader range
+    nonPreferredMultiplier: 1.5,
+    lowerBound: 175,
+    upperBound: 700,
+  },
+  Mammography: {
+    mean: 200,
+    shape: 1.0, // Doubled shape
+    nonPreferredMultiplier: 1.4,
+    lowerBound: 100,
+    upperBound: 400,
+  },
+  Fluoroscopy: {
+    mean: 120,
+    shape: 0.8, // Doubled shape
+    nonPreferredMultiplier: 1.45,
+    lowerBound: 60,
+    upperBound: 240,
+  },
+  "Interventional Radiology": {
+    mean: 800,
+    shape: 1.6, // Doubled shape for very wide range
+    nonPreferredMultiplier: 1.7,
+    lowerBound: 400,
+    upperBound: 1600,
+  },
+};
+return {imagingSettings};
+}});
+
+define({id: "a177533c", inputs: ["imagingSettings","DistP","distributions","d3","Plot"], outputs: ["groupedProcedures","categories","distributionsMap","medianValues","prepareTypeData","createTypePlot","createGroupPlot"], body: (imagingSettings,DistP,distributions,d3,Plot) => {
+// Group definitions - 4 groups of 2
+const groupedProcedures = [
+  ["Ultrasound", "X-Ray"],
+  ["Mammography", "Fluoroscopy"],
+  ["Nuclear Medicine", "CT"],
+  ["MRI", "Interventional Radiology"],
+];
+
+// Categories in order
+const categories = ["Non-Preferred", "Savings", "Preferred"];
+
+// Create distributions and calculate medians
+const distributionsMap = {};
+const medianValues = {};
+// Verify lognormal distribution sampling
+Object.entries(imagingSettings).forEach(([imagingType, settings]) => {
+  // Create preferred samples using DistP
+  const preferredDist = new DistP({
+    name: `${imagingType} Lognormal Distribution`,
+    distfunc: distributions.lognormal,
+    params: { mean: Math.log(settings.mean), shape: settings.shape },
+    bounds: [settings.lowerBound, settings.upperBound],
+    size: 2000,
+    boundMethod: "stack",
+  });
+
+  const preferredSamples = preferredDist.samples;
+
+  // Create non-preferred samples by applying the multiplier
+  const nonPreferredSamples = preferredSamples.map(
+    (value) => value * settings.nonPreferredMultiplier
+  );
+  // Populate distributionsMap with samples
+  distributionsMap[imagingType] = {
+    preferred: preferredSamples,
+    nonPreferred: nonPreferredSamples,
+  };
+
+  // Calculate medians for preferred and non-preferred costs
+  medianValues[imagingType] = {
+    preferred: d3.median(preferredSamples),
+    nonPreferred: d3.median(nonPreferredSamples),
+  };
+});
+
+// Debug boxPlotData preparation
+function prepareTypeData(imagingType) {
+  const boxPlotData = [];
+
+  // Add preferred data
+  distributionsMap[imagingType].preferred.forEach((value) => {
+    if (!isNaN(value)) {
+      boxPlotData.push({
+        Value: value,
+        Category: "Preferred",
+      });
+    }
+  });
+
+  // Add non-preferred data
+  distributionsMap[imagingType].nonPreferred.forEach((value) => {
+    if (!isNaN(value)) {
+      boxPlotData.push({
+        Value: value,
+        Category: "Non-Preferred",
+      });
+    }
+  });
+
+  // Debug boxPlotData content
+  if (boxPlotData.length === 0) {
+    console.error(`No boxplot data for ${imagingType}`);
+  }
+
+  // Create median line data
+  const medianLineData = [
+    {
+      Category: "Non-Preferred",
+      Value: medianValues[imagingType].nonPreferred,
+    },
+    { Category: "Preferred", Value: medianValues[imagingType].preferred },
+  ];
+
+  const midValue =
+    (medianValues[imagingType].preferred +
+      medianValues[imagingType].nonPreferred) /
+    2;
+  const savings = Math.round(
+    medianValues[imagingType].nonPreferred - medianValues[imagingType].preferred
+  );
+
+  // Create arrow data with middle category
+  const arrowData = [
+    {
+      x1: "Savings",
+      y1: midValue,
+      x2: "Savings",
+      y2: midValue,
+      savings: `$${savings.toLocaleString()}`,
+    },
+  ];
+
+  return { boxPlotData, medianLineData, arrowData };
+}
+
+// Debugging outputs for individual imaging types
+groupedProcedures.forEach((group, index) => {
+  group.forEach((type) => {
+    const data = prepareTypeData(type);
+    console.log(`Prepared data for ${type}`, data);
+  });
+});
+
+// Create plot for a single type
+const createTypePlot = (data, title) =>
+  Plot.plot({
+    subtitle: title,
+    marks: [
+      Plot.boxY(data.boxPlotData, {
+        x: "Category",
+        y: "Value",
+        fill: "Category",
+        stroke: "Category",
+      }),
+      Plot.line(data.medianLineData, {
+        x: "Category",
+        y: "Value",
+        stroke: "red",
+        strokeDasharray: "4,4",
+      }),
+      Plot.arrow(data.arrowData, {
+        x1: "x1",
+        y1: "y1",
+        x2: "x2",
+        y2: "y2",
+        dx: 20,
+        stroke: "gray",
+      }),
+      Plot.text(data.arrowData, {
+        x: "x2",
+        y: "y2",
+        text: "savings",
+        dx: 40,
+        fontSize: 10,
+      }),
+    ],
+    y: {
+      grid: true,
+      label: "Cost ($)",
+      tickFormat: "$.0f",
+    },
+    x: {
+      domain: categories, // Specify the order of categories
+      label: "Cost Category",
+    },
+    color: {
+      domain: ["Non-Preferred", "Preferred"], // Only color the box plots
+      scheme: "paired",
+    },
+    width: 300,
+    height: 200,
+  });
+
+// Create container for a group
+const createGroupPlot = (groupTypes, index) => {
+  const container = document.createElement("div");
+  container.style.display = "flex";
+  container.style.gap = "5px";
+  container.style.padding = "5px";
+  container.style.flexDirection = "column";
+
+  const title = document.createElement("h3");
+  title.textContent = "";
+  container.appendChild(title);
+
+  const plotsContainer = document.createElement("div");
+  plotsContainer.style.display = "flex";
+  plotsContainer.style.gap = "5px";
+
+  groupTypes.forEach((type) => {
+    const data = prepareTypeData(type);
+    const plot = createTypePlot(data, type);
+    plotsContainer.appendChild(plot);
+  });
+
+  container.appendChild(plotsContainer);
+  return container;
+};
+return {groupedProcedures,categories,distributionsMap,medianValues,prepareTypeData,createTypePlot,createGroupPlot};
+}});
+
+define({id: "252fa351", inputs: ["Plot"], outputs: ["imagingVolumes","volumeData","volumeChart"], body: (Plot) => {
+// Define annual imaging volumes and network distributions
+const imagingVolumes = {
+  "X-Ray": {
+    annualVolume: 250000,
+    preferredShare: 0.65,
+  },
+  CT: {
+    annualVolume: 180000,
+    preferredShare: 0.7,
+  },
+  MRI: {
+    annualVolume: 150000,
+    preferredShare: 0.75,
+  },
+  Ultrasound: {
+    annualVolume: 200000,
+    preferredShare: 0.6,
+  },
+  "Nuclear Medicine": {
+    annualVolume: 50000,
+    preferredShare: 0.7,
+  },
+  Mammography: {
+    annualVolume: 160000,
+    preferredShare: 0.8,
+  },
+  Fluoroscopy: {
+    annualVolume: 70000,
+    preferredShare: 0.65,
+  },
+  "Interventional Radiology": {
+    annualVolume: 40000,
+    preferredShare: 0.75,
+  },
+};
+
+// Prepare data for the stacked bar chart
+const volumeData = [];
+Object.entries(imagingVolumes).forEach(([type, data]) => {
+  // Preferred volume
+  volumeData.push({
+    imaging_type: type,
+    imaging_preference: "Preferred",
+    count: Math.round(data.annualVolume * data.preferredShare),
+  });
+  // Non-preferred volume
+  volumeData.push({
+    imaging_type: type,
+    imaging_preference: "Non-Preferred",
+    count: Math.round(data.annualVolume * (1 - data.preferredShare)),
+  });
+});
+
+// Create stacked bar chart
+const volumeChart = Plot.plot({
+  marginLeft: 150,
+  height: 200,
+  marks: [
+    Plot.barX(volumeData, {
+      x: "count",
+      y: "imaging_type",
+      fill: "imaging_preference",
+      sort: { y: "x", reverse: true },
+      title: (d) => `${d.imaging_preference}: ${d.count}`,
+    }),
+  ],
+  color: {
+    legend: true,
+  },
+  x: {
+    label: "Total Volume",
+    grid: true,
+  },
+  y: {
+    label: "",
+    grid: false,
+  },
+});
+return {imagingVolumes,volumeData,volumeChart};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Measurement By Design</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./">Overview Dashboard</a></li>
+  </ol>
+  <details open class="observablehq-section-active">
+    <summary>Imaging</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./value-framing">Problem Definition</a></li>
+    <li class="observablehq-link"><a href="./EDA-ROI">EDA &amp; ROI</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./hypothesis">Hypothesis</a></li>
+    <li class="observablehq-link"><a href="./targeting">Targeting Strategy</a></li>
+    <li class="observablehq-link"><a href="./exp-design">Experimental Design</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Primitive Assets</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
+    <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
+    <li class="observablehq-link"><a href="./live-table-data">Live Table</a></li>
+    <li class="observablehq-link"><a href="./distp-demo">Distribution Demo</a></li>
+    <li class="observablehq-link"><a href="./funnel-chart">Funnel Chart</a></li>
+    <li class="observablehq-link"><a href="./intervention-design">Intervention Design</a></li>
+    <li class="observablehq-link"><a href="./random-forest">In Browser Random Forests</a></li>
+    <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
+    <li class="observablehq-link"><a href="./experimental-design">Simple Experimental Design</a></li>
+    <li class="observablehq-link"><a href="./microsite">Microsite Demo</a></li>
+    <li class="observablehq-link"><a href="./collapsible-cell">Collapsible Cell</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#hypothesis-1-clinical-opportunity-for-copd-patients">Hypothesis 1: Clinical Opportunity for COPD Patients</a></li>
+<li class="observablehq-secondary-link"><a href="#hypothesis-2-addressing-geographic-and-economic-barriers">Hypothesis 2: Addressing Geographic and Economic Barriers</a></li>
+<li class="observablehq-secondary-link"><a href="#hypothesis-3-targeting-non-engaged-smokers">Hypothesis 3: Targeting Non-Engaged Smokers</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<div class="observablehq observablehq--block"><!--:d19a1792:--></div>
+<div class="observablehq observablehq--block"><!--:e8e56bf4:--></div>
+<div class="observablehq observablehq--block"><!--:6a1f9258:--></div>
+<h1 id="hypotheses-and-actions" tabindex="-1"><a class="observablehq-header-anchor" href="#hypotheses-and-actions">Hypotheses and Actions</a></h1>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:52b792bc:--></div>
+<h2 id="hypothesis-1-clinical-opportunity-for-copd-patients" tabindex="-1"><a class="observablehq-header-anchor" href="#hypothesis-1-clinical-opportunity-for-copd-patients">Hypothesis 1: <strong>Clinical Opportunity for COPD Patients</strong></a></h2>
+<p><strong>Hypothesis</strong>: COPD patients aged 55+ are receiving imaging at non-preferred locations due to low primary care engagement or limited access to preferred imaging centers in rural areas.</p>
+<ol>
+<li>
+<p><strong>Improve Primary Care Engagement</strong>:</p>
+<ul>
+<li><strong>Behavior Change Principle</strong>: Leverage <strong>Social Norms and Personalization</strong>.</li>
+<li><strong>Justification</strong>: Studies show that proactive primary care engagement improves adherence to preferred providers by emphasizing personalized health plans and trusted physician recommendations.</li>
+<li><strong>Channels</strong>: Outreach via primary care providers (PCPs), digital patient portals, automated SMS reminders.</li>
+<li><strong>Incremental Work</strong>:
+<ul>
+<li>PCP education to promote the benefits of preferred imaging.</li>
+<li>Integrate outreach campaigns into existing digital health management systems.</li>
+</ul>
+</li>
+<li><strong>Behavior Change Estimate</strong>: A 10–15% reduction in non-preferred imaging utilization via PCP-led engagement campaigns.</li>
+</ul>
+</li>
+<li>
+<p><strong>Enhance Access to Preferred Imaging Centers</strong>:</p>
+<ul>
+<li><strong>Behavior Change Principle</strong>: <strong>Reducing Friction</strong>.</li>
+<li><strong>Justification</strong>: Providing transportation assistance and co-pay incentives addresses logistical barriers, a critical factor for rural populations.</li>
+<li><strong>Channels</strong>: Direct mail with vouchers, community outreach programs, ride-sharing partnerships (e.g., Lyft Healthcare).</li>
+<li><strong>Incremental Work</strong>:
+<ul>
+<li>Establish agreements with ride-sharing providers.</li>
+<li>Develop an incentive structure for co-pay reductions or waived fees.</li>
+</ul>
+</li>
+<li><strong>Behavior Change Estimate</strong>: A 5–10% reduction in non-preferred imaging utilization among rural COPD patients.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="hypothesis-2-addressing-geographic-and-economic-barriers" tabindex="-1"><a class="observablehq-header-anchor" href="#hypothesis-2-addressing-geographic-and-economic-barriers">Hypothesis 2: <strong>Addressing Geographic and Economic Barriers</strong></a></h2>
+<p><strong>Hypothesis</strong>: Rural geography and low-income brackets exacerbate non-preferred imaging utilization due to limited access and misinformation.</p>
+<ol>
+<li>
+<p><strong>Educational Campaigns for Preferred Imaging</strong>:</p>
+<ul>
+<li><strong>Behavior Change Principle</strong>: Use <strong>Cognitive Ease and Simplification</strong>.</li>
+<li><strong>Justification</strong>: Educational materials tailored to specific demographics (low literacy, older age) increase understanding of preferred imaging benefits, as shown in behavior change studies for preventive care.</li>
+<li><strong>Channels</strong>: Social media ads (e.g., Facebook for rural areas), local community newsletters, and in-clinic handouts.</li>
+<li><strong>Incremental Work</strong>:
+<ul>
+<li>Develop region-specific, culturally relevant educational materials.</li>
+<li>Partner with rural clinics to distribute educational content.</li>
+</ul>
+</li>
+<li><strong>Behavior Change Estimate</strong>: A 7–12% increase in preferred imaging use through education-based interventions.</li>
+</ul>
+</li>
+<li>
+<p><strong>Preferred Imaging Center Incentives</strong>:</p>
+<ul>
+<li><strong>Behavior Change Principle</strong>: <strong>Loss Aversion and Immediate Rewards</strong>.</li>
+<li><strong>Justification</strong>: Offering immediate rewards, such as waived co-pays for using preferred centers, motivates members to change behavior by emphasizing immediate financial benefits.</li>
+<li><strong>Channels</strong>: Payer-provided co-pay vouchers via app notifications, physical mailers, or in-clinic visits.</li>
+<li><strong>Incremental Work</strong>:
+<ul>
+<li>Coordinate with imaging providers to implement co-pay reduction programs.</li>
+<li>Integrate voucher systems into payer apps and member accounts.</li>
+</ul>
+</li>
+<li><strong>Behavior Change Estimate</strong>: A 10–15% reduction in non-preferred imaging utilization in targeted rural regions.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="hypothesis-3-targeting-non-engaged-smokers" tabindex="-1"><a class="observablehq-header-anchor" href="#hypothesis-3-targeting-non-engaged-smokers">Hypothesis 3: <strong>Targeting Non-Engaged Smokers</strong></a></h2>
+<p><strong>Hypothesis</strong>: Members with low primary care engagement and smoking history are more likely to drive non-preferred imaging utilization due to fragmented care and lack of proactive outreach.</p>
+<ol>
+<li>
+<p><strong>Smoking Cessation Linked to Imaging Preferences</strong>:</p>
+<ul>
+<li><strong>Behavior Change Principle</strong>: <strong>Bundling Behaviors</strong>.</li>
+<li><strong>Justification</strong>: Bundling smoking cessation programs with preferred imaging education has been shown to drive health behavior changes in smokers.</li>
+<li><strong>Channels</strong>: Integrated payer apps offering bundled programs, phone-based coaching, or in-person workshops.</li>
+<li><strong>Incremental Work</strong>:
+<ul>
+<li>Bundle smoking cessation programs with imaging-specific education in existing apps.</li>
+<li>Train coaches or PCPs to emphasize imaging-related outcomes during smoking interventions.</li>
+</ul>
+</li>
+<li><strong>Behavior Change Estimate</strong>: A 5–8% increase in preferred imaging utilization through behavior bundling.</li>
+</ul>
+</li>
+<li>
+<p><strong>Incentivized Health Checks for Smokers</strong>:</p>
+<ul>
+<li><strong>Behavior Change Principle</strong>: <strong>Positive Reinforcement and Goal Setting</strong>.</li>
+<li><strong>Justification</strong>: Incentivizing annual health checks has been shown to increase adherence to preventive care recommendations, including preferred imaging use.</li>
+<li><strong>Channels</strong>: Monetary incentives through payer platforms, health check reward programs tied to PCP visits, digital nudges.</li>
+<li><strong>Incremental Work</strong>:
+<ul>
+<li>Build incentive tracking into payer member portals.</li>
+<li>Partner with PCPs to ensure targeted outreach.</li>
+</ul>
+</li>
+<li><strong>Behavior Change Estimate</strong>: A 10–12% reduction in non-preferred imaging utilization among smokers.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>These recommended actions combine <strong>evidence-based behavior change principles</strong> with practical payer-driven interventions, designed to address the root causes of non-preferred imaging utilization while providing measurable outcomes.</p>
+<!--
+1. Across all plan types, income brackets, smoking status, members with COPD seem to be driving more non-preferred imaging utilization.
+
+- <strong>${copd_membership}</strong> members are diagnosed with COPD (${copd_frac} of ${total_membership}).
+- Among these, <strong> ${copd_non_pref_to_total_imaging_visits} </strong>  (${copd_non_pref_imaging_membership} unique members) visit non-preferred imaging centers.
+
+2.  Rural members drive more non-preferred imaging utilization than suburban and Urban regions, with members with COPD driving ~3x more non-preferred imaging utilization than diabetes, hypertension, and those without a chronic condition.
+3.  Members without primary care engagement are ~2x as likely to drive non-preferred imaging utilization than those with a primary care physician.
+4.  Smoking status and income bracket do appear to be a significant factor in non-preferred imaging utilization. -->
+<div class="observablehq observablehq--block"><!--:e18bade8:--></div>
+<div class="observablehq observablehq--block"><!--:b4596109:--></div>
+<figure>
+  <figcaption>
+    <strong>Figure 2:</strong> Stacked Bar Chart of Imaging Costs and Savings by Imaging Type. The chart shows the total volume for each imaging type divided into three categories: "Preferred" (blue), "Converted" (orange), and "Remaining Non-Preferred" (red). The savings (in dollars) for converting non-preferred to preferred imaging is displayed to the right of each bar. 
+  </figcaption>
+<div class="observablehq observablehq--block"><!--:f1b743b3:--></div>
+</figure>
+<div class="observablehq observablehq--block"><!--:e6feed8a:--></div>
+<div class="observablehq observablehq--block"><!--:a177533c:--></div>
+<div class="observablehq observablehq--block"><!--:252fa351:--></div>
+<p>&lt;</p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./EDA-ROI"><span>EDA &amp; ROI</span></a><a rel="next" href="./targeting"><span>Targeting Strategy</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-05T02:19:43">Dec 5, 2024</a>.</div>
+</footer>
+</div>
+</body>
+</html>

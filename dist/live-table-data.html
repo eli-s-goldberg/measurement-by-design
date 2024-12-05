@@ -10,19 +10,19 @@
 <link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
 <link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
-<link rel="modulepreload" href="./_observablehq/client.bdfce3d3.js">
+<link rel="modulepreload" href="./_observablehq/client.11aa6b6e.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
-<link rel="modulepreload" href="./_observablehq/stdlib.63ee1033.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.95bfbf7e.js">
 <link rel="modulepreload" href="./_import/components/LiveTable.1d7d0895.js">
 <link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
-<link rel="modulepreload" href="./_import/components/styles.1f6baada.js">
+<link rel="modulepreload" href="./_import/components/styles.5ae71931.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
 <script type="module">
 
-import {define} from "./_observablehq/client.bdfce3d3.js";
+import {define} from "./_observablehq/client.11aa6b6e.js";
 
 define({id: "538fdf74", inputs: ["html"], outputs: ["TableInput","TableInputTypes","EVENTS","LiveTable","LiveTableData","d3","require","jStat","math","defaultStyles","styleElement"], body: async (html) => {
-const [{TableInput, TableInputTypes, EVENTS, LiveTable, LiveTableData}, d3, {require}, {defaultStyles}] = await Promise.all([import("./_import/components/LiveTable.1d7d0895.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.45152b81.js"), import("./_import/components/styles.1f6baada.js")]);
+const [{TableInput, TableInputTypes, EVENTS, LiveTable, LiveTableData}, d3, {require}, {defaultStyles}] = await Promise.all([import("./_import/components/LiveTable.1d7d0895.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.45152b81.js"), import("./_import/components/styles.5ae71931.js")]);
 // imports
 
 const jStat = await require("jstat@1.9.4");
@@ -224,14 +224,18 @@ view(livetabledata)
     <li class="observablehq-link"><a href="./">Measurement By Design</a></li>
   </ol>
   <ol>
-    <li class="observablehq-link"><a href="./">Introduction</a></li>
+    <li class="observablehq-link"><a href="./">Overview Dashboard</a></li>
   </ol>
-  <section>
-    <summary>Demo</summary>
+  <details open>
+    <summary>Imaging</summary>
     <ol>
-    <li class="observablehq-link"><a href="./intervention-demo">Intervention Demo</a></li>
+    <li class="observablehq-link"><a href="./value-framing">Problem Definition</a></li>
+    <li class="observablehq-link"><a href="./EDA-ROI">EDA &amp; ROI</a></li>
+    <li class="observablehq-link"><a href="./hypothesis">Hypothesis</a></li>
+    <li class="observablehq-link"><a href="./targeting">Targeting Strategy</a></li>
+    <li class="observablehq-link"><a href="./exp-design">Experimental Design</a></li>
     </ol>
-  </section>
+  </details>
   <details open class="observablehq-section-active">
     <summary>Primitive Assets</summary>
     <ol>
@@ -649,7 +653,7 @@ The table itself consists of a few components. Note that <code>html</code> is pa
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./exp-design-figures"><span>Experimental Design Figures</span></a><a rel="next" href="./distp-demo"><span>Distribution Demo</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-03T02:01:16">Dec 3, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-05T02:19:43">Dec 5, 2024</a>.</div>
 </footer>
 </div>
 </body>
