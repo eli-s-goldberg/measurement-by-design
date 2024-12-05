@@ -8,16 +8,33 @@ export default {
   // lets you organize them into sections and have unlisted pages.
   pages: [
     {
-      name: "Introduction",
+      name: "Overview Dashboard",
       path: "/index",
     },
-  
+
     {
-      name: "Demo",
+      name: "Imaging",
+      open: true,
       pages: [
         {
-          name: "Intervention Demo",
-          path: "/intervention-demo",
+          name: "Problem Definition",
+          path: "/value-framing",
+        },
+        {
+          name: "EDA & ROI",
+          path: "/EDA-ROI",
+        },
+        {
+          name: "Hypothesis",
+          path: "/hypothesis",
+        },
+        {
+          name: "Targeting Strategy",
+          path: "/targeting",
+        },
+        {
+          name: "Experimental Design",
+          path: "/exp-design",
         },
       ],
     },
@@ -71,16 +88,15 @@ export default {
         },
       ],
     },
-   
   ],
 
   // Some additional configuration options and their defaults:
   // theme: "default", // try "light", "dark", "slate", etc.
   // header: "", // what to show in the header (HTML)
   // footer: "Built with Observable.", // what to show in the footer (HTML)
-  // toc: true, // whether to show the table of contents
+  toc: true, // whether to show the table of contents
   pager: true, // whether to show previous & next links in the footer
   // root: "docs", // path to the source root for preview
   // output: "dist", // path to the output root for build
-  // search: true, // activate search 
+  // search: true, // activate search
 };

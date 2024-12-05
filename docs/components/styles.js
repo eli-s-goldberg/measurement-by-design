@@ -8,7 +8,7 @@ export const defaultStyles = `
     border-radius: 4px;
     font-family: monospace;
     display: inline-block;
-    margin: 2px 0;
+    margin: 2px 0;o
   }
 
   :root {
@@ -33,10 +33,9 @@ export const defaultStyles = `
     overflow-y: auto;
 }
   body {
-    font: 15px/1.5 var(--serif);
-    font-family: system-ui, -apple-system, sans-serif;
+    font: 13.5px/1.5 var(--serif);
     margin: 0;
-    max-width: 93%;
+    max-width: 95%;
   }
 
   .grid-container {
@@ -160,12 +159,13 @@ export const defaultStyles = `
     margin: 0px;
     padding: 10px;
     max-width: 100%;
+    background-color: #f9f9f9;
   }
 
   figcaption {
     margin-top: 10px;
     font-size: 0.85em;
-    color: #555;
+    color: black;
     font-family: 'Arial', sans-serif;
     line-height: 1.4;
   }

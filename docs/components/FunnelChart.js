@@ -1,5 +1,6 @@
 import * as Plot from "npm:@observablehq/plot";
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
 import { require } from "d3-require";
 const jStat = await require("jstat@1.9.4");
 const math = await require("mathjs@9.4.2");
@@ -7,7 +8,7 @@ const math = await require("mathjs@9.4.2");
 export function FunnelChart(data, rates = null, config = {}) {
   // Utility functions remain the same
   function getLuminance(r, g, b) {
-    let [rs, gs, bs] = [r, g, b].map(c => {
+    let [rs, gs, bs] = [r, g, b].map((c) => {
       c = c / 255;
       return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
     });
@@ -24,14 +25,14 @@ export function FunnelChart(data, rates = null, config = {}) {
     const r = parseInt(bgColor.slice(1, 3), 16);
     const g = parseInt(bgColor.slice(3, 5), 16);
     const b = parseInt(bgColor.slice(5, 7), 16);
-    
+
     const bgLuminance = getLuminance(r, g, b);
     const whiteLuminance = getLuminance(255, 255, 255);
     const blackLuminance = getLuminance(0, 0, 0);
-    
+
     const whiteContrast = getContrastRatio(whiteLuminance, bgLuminance);
     const blackContrast = getContrastRatio(blackLuminance, bgLuminance);
-    
+
     return whiteContrast > blackContrast ? "#FFFFFF" : "#000000";
   }
 
@@ -39,33 +40,30 @@ export function FunnelChart(data, rates = null, config = {}) {
     if (!finalConfig.labels.includePercentage) {
       return d.group;
     }
-    
+
     if (finalConfig.labels.useAltValue && d.altValue !== undefined) {
       return `${d.group} (${d.altValue})`;
     }
-    
+
     return `${d.group} (${d.value}%)`;
   }
-
 
   // Default configuration
   const defaultConfig = {
     width: 800,
     height: 500,
     margin: { top: 40, right: 40, bottom: 40, left: 200 },
-    colors: [
-      "#20B2AA", "#48D1CC", "#90EE90", "#BBF7D0", "#FFEC8B", "#FFA07A"
-    ],
+    colors: ["#20B2AA", "#48D1CC", "#90EE90", "#BBF7D0", "#FFEC8B", "#FFA07A"],
     labels: {
       fontSize: "12px",
       fontFamily: "sans-serif",
       padding: 10,
       includePercentage: true,
-      useAltValue: false,  // New option to use alternative value
+      useAltValue: false, // New option to use alternative value
       offset: {
         x: 0,
-        y: 0
-      }
+        y: 0,
+      },
     },
     percentages: {
       fontSize: "12px",
@@ -73,8 +71,8 @@ export function FunnelChart(data, rates = null, config = {}) {
       show: true,
       offset: {
         x: 0,
-        y: 0
-      }
+        y: 0,
+      },
     },
     rates: {
       fontSize: "11px",
@@ -84,9 +82,9 @@ export function FunnelChart(data, rates = null, config = {}) {
       leftAligned: true,
       offset: {
         x: 0,
-        y: 0
-      }
-    }
+        y: 0,
+      },
+    },
   };
 
   // Merge configurations properly
@@ -97,50 +95,61 @@ export function FunnelChart(data, rates = null, config = {}) {
     labels: {
       ...defaultConfig.labels,
       ...config.labels,
-      offset: { ...defaultConfig.labels.offset, ...config?.labels?.offset }
+      offset: { ...defaultConfig.labels.offset, ...config?.labels?.offset },
     },
     percentages: {
       ...defaultConfig.percentages,
       ...config.percentages,
-      offset: { ...defaultConfig.percentages.offset, ...config?.percentages?.offset }
+      offset: {
+        ...defaultConfig.percentages.offset,
+        ...config?.percentages?.offset,
+      },
     },
     rates: {
       ...defaultConfig.rates,
       ...config.rates,
-      offset: { ...defaultConfig.rates.offset, ...config?.rates?.offset }
-    }
+      offset: { ...defaultConfig.rates.offset, ...config?.rates?.offset },
+    },
   };
 
   // Calculate dimensions
-  const chartWidth = finalConfig.width - finalConfig.margin.left - finalConfig.margin.right;
-  const chartHeight = finalConfig.height - finalConfig.margin.top - finalConfig.margin.bottom;
+  const chartWidth =
+    finalConfig.width - finalConfig.margin.left - finalConfig.margin.right;
+  const chartHeight =
+    finalConfig.height - finalConfig.margin.top - finalConfig.margin.bottom;
 
   // Create color scale
-  const colorScale = d3.scaleOrdinal()
-    .domain(data.map(d => d.group))
+  const colorScale = d3
+    .scaleOrdinal()
+    .domain(data.map((d) => d.group))
     .range(finalConfig.colors);
 
   // Create SVG
-  const svg = d3.create("svg")
+  const svg = d3
+    .create("svg")
     .attr("width", finalConfig.width)
     .attr("height", finalConfig.height)
     .attr("viewBox", [0, 0, finalConfig.width, finalConfig.height])
     .attr("style", "max-width: 100%; height: auto;");
 
   // Add chart group
-  const g = svg.append("g")
-    .attr("transform", `translate(${finalConfig.margin.left},${finalConfig.margin.top})`);
+  const g = svg
+    .append("g")
+    .attr(
+      "transform",
+      `translate(${finalConfig.margin.left},${finalConfig.margin.top})`
+    );
 
   // Process data and calculate positions
   const section = data.map((d, i) => {
     const sectionHeight = chartHeight / data.length;
     const y = i * sectionHeight;
-    
+
     const maxWidth = chartWidth;
     const topWidth = (d.value / 100) * maxWidth;
     const nextValue = data[i + 1] ? data[i + 1].value : d.value;
     const bottomWidth = (nextValue / 100) * maxWidth;
-    
+
     const topLeft = (chartWidth - topWidth) / 2;
     const topRight = topLeft + topWidth;
     const bottomLeft = (chartWidth - bottomWidth) / 2;
@@ -152,14 +161,18 @@ export function FunnelChart(data, rates = null, config = {}) {
     return {
       group: d.group,
       value: d.value,
-      altValue: d.altValue,  // Pass through the altValue
-      path: `M${topLeft},${y} L${topRight},${y} L${bottomRight},${y + sectionHeight} L${bottomLeft},${y + sectionHeight}Z`,
+      altValue: d.altValue, // Pass through the altValue
+      path: `M${topLeft},${y} L${topRight},${y} L${bottomRight},${
+        y + sectionHeight
+      } L${bottomLeft},${y + sectionHeight}Z`,
       labelX: (topLeft + bottomLeft) / 2,
       labelY: y + sectionHeight / 2,
-      rateX: finalConfig.rates.leftAligned ? bottomLeft : (bottomLeft + bottomRight) / 2,
+      rateX: finalConfig.rates.leftAligned
+        ? bottomLeft
+        : (bottomLeft + bottomRight) / 2,
       rateY: y + sectionHeight,
       color: color,
-      textColor: textColor
+      textColor: textColor,
     };
   });
 
@@ -167,22 +180,25 @@ export function FunnelChart(data, rates = null, config = {}) {
   g.selectAll("path")
     .data(section)
     .join("path")
-    .attr("d", d => d.path)
-    .attr("fill", d => d.color);
+    .attr("d", (d) => d.path)
+    .attr("fill", (d) => d.color);
 
   // Add labels
   g.selectAll("text.label")
     .data(section)
     .join("text")
     .attr("class", "label")
-    .attr("x", d => d.labelX - finalConfig.labels.padding + finalConfig.labels.offset.x)
-    .attr("y", d => d.labelY + finalConfig.labels.offset.y)
+    .attr(
+      "x",
+      (d) => d.labelX - finalConfig.labels.padding + finalConfig.labels.offset.x
+    )
+    .attr("y", (d) => d.labelY + finalConfig.labels.offset.y)
     .attr("text-anchor", "end")
     .attr("dy", "0.35em")
     .style("font-size", finalConfig.labels.fontSize)
     .style("font-family", finalConfig.labels.fontFamily)
-    .style("fill", d => d.textColor)
-    .text(d => getLabelText(d));
+    .style("fill", (d) => d.textColor)
+    .text((d) => getLabelText(d));
 
   // Add centered percentage labels
   if (finalConfig.percentages.show) {
@@ -191,36 +207,38 @@ export function FunnelChart(data, rates = null, config = {}) {
       .join("text")
       .attr("class", "percentage")
       .attr("x", chartWidth / 2 + finalConfig.percentages.offset.x)
-      .attr("y", d => d.labelY + finalConfig.percentages.offset.y)
+      .attr("y", (d) => d.labelY + finalConfig.percentages.offset.y)
       .attr("text-anchor", "middle")
       .attr("dy", "0.35em")
       .style("font-size", finalConfig.percentages.fontSize)
       .style("font-family", finalConfig.percentages.fontFamily)
-      .style("fill", d => d.textColor)
-      .text(d => `${d.value}%`);
+      .style("fill", (d) => d.textColor)
+      .text((d) => `${d.value}%`);
   }
 
   // Add conversion rates
   if (Array.isArray(rates) && rates.length > 0 && finalConfig.rates.show) {
     const rateData = rates.slice(0, -1).map((rate, i) => ({
       rate,
-      ...section[i]
+      ...section[i],
     }));
 
     g.selectAll(".rate")
       .data(rateData)
       .join("text")
       .attr("class", "rate")
-      .attr("x", d => finalConfig.rates.leftAligned ? 
-        (d.rateX - finalConfig.rates.padding + finalConfig.rates.offset.x) : 
-        (d.rateX + finalConfig.rates.offset.x))
-      .attr("y", d => d.rateY + finalConfig.rates.offset.y)
+      .attr("x", (d) =>
+        finalConfig.rates.leftAligned
+          ? d.rateX - finalConfig.rates.padding + finalConfig.rates.offset.x
+          : d.rateX + finalConfig.rates.offset.x
+      )
+      .attr("y", (d) => d.rateY + finalConfig.rates.offset.y)
       .attr("text-anchor", finalConfig.rates.leftAligned ? "end" : "middle")
       .attr("dy", "-0.35em")
       .style("font-size", finalConfig.rates.fontSize)
       .style("font-family", finalConfig.rates.fontFamily)
-      .style("fill", d => d.textColor)
-      .text(d => d.rate);
+      .style("fill", (d) => d.textColor)
+      .text((d) => d.rate);
   }
 
   return svg.node();

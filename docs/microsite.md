@@ -2,17 +2,130 @@
 toc: true
 title: Microsite
 ---
+
 ```js
 ///
 // import some CSS to keep things well styled
-import { defaultStyles } from "./components/styles.js"
-const styleElement = html`<style>${defaultStyles}</style>`;
+import { defaultStyles } from "./components/styles.js";
+const styleElement = html`<style>
+  ${defaultStyles}
+</style>`;
 
-import { Microsite } from "./components/MicroSiteBuilder.js"
+import { Microsite } from "./components/MicroSiteBuilder.js";
 document.head.appendChild(styleElement);
 ```
 
-# I made a microsite
+```js
+import {
+  EmailComparisonView,
+  CleanEmailView,
+} from "./components/emailcomparison.js";
+document.head.appendChild(styleElement);
+```
+
+## Email comparison Vierw
+
+```js
+view(EmailComparisonView());
+```
+
+```js
+view(CleanEmailView());
+```
+
+## Org
+
+Describe the process:
+
+Let's mock up an email to link to this microsite.
+![alt text](email.png)
+
+TODO:
+
+- not 'up to', you could save examctly
+- Show it explicitly (average cost for you, average cost at x)
+- show the email
+- show the microsite
+  - incremental microsite advantages are:
+    1. show the math on the savings
+    2. show the diversity and location of options, with math.
+    3. show a boxplot
+
+On demo website: first tab: pull up email. Second tab, experience on microsite. Default on landing, shown on exact 4 providers, with exact cost for precedure in question compared to average hospital cost for that procedure.
+
+What about the historical look.
+two cohorts maybe;
+
+1. drove non preferred and likely to do it again
+2. likely to do it by model
+
+Boxplot for the costs
+
+```js
+const morley = FileAttachment("./data/morley.csv").csv({ typed: true });
+```
+
+```js
+view(
+  Plot.plot({
+    y: {
+      grid: true,
+      inset: 6,
+    },
+    marks: [Plot.boxY(morley, { x: "Expt", y: "Speed" })],
+  })
+);
+```
+
+Then a drop down for the costs/template and locations.
+
+## Describe the flow
+
+figure>
+
+<figure>
+<figcaption>Figure 2: Marketing Approval Process</figcaption>
+
+```mermaid
+graph LR
+  direction LR
+  BCPrinc[BC Principal,
+  Personalization &
+  Engagement Approach] -->  MktMeas[Refine
+  Experimental
+  Design
+  ]
+  MktMeas --> MktApproval[Marketing
+  Approval]
+  MktApproval-->  CommApproval[Comm
+  Approval]
+  CommApproval--> MktDecision{Decision}
+  MktDecision--> |Terminate|MktTerm["Start Over"]
+  MktDecision--> |"Rethink"|MktReturn["Return to EDA
+  or BC Principal"]
+  MktDecision--> |"Approval"|ToLaunch["To Launch"]
+```
+
+</figure>
+
+<figure>
+<figcaption>Figure 3: Launch and Scale Process</figcaption>
+
+```mermaid
+graph LR
+  direction LR
+  DC["Pre-launch Review"] --> Launch
+  Launch --> Monitor[Measurement &
+  Monitoring]
+  Monitor --> LaunchEval{Evaluation}
+  LaunchEval --> |"Start Over"|LaunchTerm["Terminate"]
+  LaunchEval --> |"Relaunch"|LaunchReapp["Relaunch"]
+  LaunchEval --> |"Lock In"|LaunchLock["Scale-up"]
+```
+
+</figure>
+
+## Microsite view
 
 ```js
 const mapContainer = html`
@@ -21,7 +134,7 @@ const mapContainer = html`
       height: 450px;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
     .map-popup {
       font-family: var(--font-main);
@@ -41,37 +154,35 @@ const mapContainer = html`
   </style>
   <div id="map-container" class="map-container"></div>
 `;
-
 ```
 
 ```js
-
 // Configuration file for Boston locations and cost data
 const BOSTON_CONFIG = {
   mapCenter: {
     lat: 42.3601,
     lng: -71.0589,
-    zoom: 14
+    zoom: 14,
   },
   locations: {
     current: {
       name: "Massachusetts General Hospital",
       address: "55 Fruit Street, Boston, MA 02114",
-      coordinates: {x: 400, y: 200},
+      coordinates: { x: 400, y: 200 },
       cost: 1200,
       description: "Current imaging provider",
       phone: "(617) 726-2000",
       costDetails: {
         baseCost: 1200,
         withInsurance: 300,
-        differential: "+300"
-      }
+        differential: "+300",
+      },
     },
     alternatives: [
       {
         name: "CareWell Urgent Care - Downtown",
         address: "51 Commercial Street, Boston, MA 02109",
-        coordinates: {x: 300, y: 150},
+        coordinates: { x: 300, y: 150 },
         cost: 700,
         distance: 0.8,
         savings: 500,
@@ -80,14 +191,14 @@ const BOSTON_CONFIG = {
         costDetails: {
           baseCost: 700,
           withInsurance: 200,
-          savings: 500
+          savings: 500,
         },
-        availability: "Next Day"
+        availability: "Next Day",
       },
       {
         name: "Beth Israel Deaconess Medical Center Radiology",
         address: "330 Brookline Ave, Boston, MA 02215",
-        coordinates: {x: 500, y: 250},
+        coordinates: { x: 500, y: 250 },
         cost: 400,
         distance: 1.2,
         savings: 800,
@@ -96,29 +207,29 @@ const BOSTON_CONFIG = {
         costDetails: {
           baseCost: 400,
           withInsurance: 100,
-          savings: 800
+          savings: 800,
         },
-        availability: "Same Week"
-      }
-    ]
+        availability: "Same Week",
+      },
+    ],
   },
   streets: [
     {
       name: "Cambridge Street",
       path: "M 100 200 L 700 200",
-      major: true
+      major: true,
     },
     {
       name: "Charles Street",
       path: "M 400 50 L 400 350",
-      major: true
+      major: true,
     },
     {
       name: "Storrow Drive",
       path: "M 50 150 L 750 150",
-      major: true
-    }
-  ]
+      major: true,
+    },
+  ],
 };
 ```
 
@@ -128,15 +239,15 @@ let isMapInitialized = false;
 function createBostonMap() {
   function addLeafletResources() {
     if (!document.querySelector('link[href*="leaflet.css"]')) {
-      const css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      const css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
       document.head.appendChild(css);
     }
 
     if (!document.querySelector('script[src*="leaflet.js"]')) {
-      const script = document.createElement('script');
-      script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      const script = document.createElement("script");
+      script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
       script.onload = () => {
         if (!isMapInitialized) {
           initMap();
@@ -149,8 +260,8 @@ function createBostonMap() {
   }
 
   function initMap() {
-    const container = document.getElementById('map-container');
-    if (!container || typeof L === 'undefined' || isMapInitialized) return;
+    const container = document.getElementById("map-container");
+    if (!container || typeof L === "undefined" || isMapInitialized) return;
 
     // Set initialization flag
     isMapInitialized = true;
@@ -158,28 +269,31 @@ function createBostonMap() {
     const bostonLocations = {
       current: {
         ...BOSTON_CONFIG.locations.current,
-        position: [42.3632, -71.0686]
+        position: [42.3632, -71.0686],
       },
       alternatives: [
         {
           ...BOSTON_CONFIG.locations.alternatives[0],
-          position: [42.3589, -71.0518]
+          position: [42.3589, -71.0518],
         },
         {
           ...BOSTON_CONFIG.locations.alternatives[1],
-          position: [42.3389, -71.1067]
-        }
-      ]
+          position: [42.3389, -71.1067],
+        },
+      ],
     };
 
     // Clear any existing map instance
-    container.innerHTML = '';
+    container.innerHTML = "";
 
-    const map = L.map('map-container').setView(bostonLocations.current.position, 14);
+    const map = L.map("map-container").setView(
+      bostonLocations.current.position,
+      14
+    );
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors',
-      opacity: 0.5
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap contributors",
+      opacity: 0.5,
     }).addTo(map);
 
     // Icon for the current location (red circle with red dot center)
@@ -204,7 +318,7 @@ function createBostonMap() {
           "></div>
         </div>
       `,
-      className: 'current-location-marker',
+      className: "current-location-marker",
       iconSize: [24, 24],
     });
 
@@ -219,13 +333,14 @@ function createBostonMap() {
         ">
         </div>
       `,
-      className: 'alternative-location-marker',
+      className: "alternative-location-marker",
       iconSize: [24, 24],
     });
 
     // Add current location marker
     L.marker(bostonLocations.current.position, { icon: currentIcon })
-      .bindPopup(`
+      .bindPopup(
+        `
         <div class="map-popup">
           <h3 style="color: #dc2626; margin: 0 0 8px 0">${bostonLocations.current.name}</h3>
           <p style="margin: 0 0 4px 0">${bostonLocations.current.address}</p>
@@ -234,13 +349,15 @@ function createBostonMap() {
             $${bostonLocations.current.costDetails.differential} more expensive
           </p>
         </div>
-      `)
+      `
+      )
       .addTo(map);
 
     // Add alternative location markers
-    bostonLocations.alternatives.forEach(location => {
+    bostonLocations.alternatives.forEach((location) => {
       L.marker(location.position, { icon: alternativeIcon })
-        .bindPopup(`
+        .bindPopup(
+          `
           <div class="map-popup">
             <h3 style="color: #22c55e; margin: 0 0 8px 0">${location.name}</h3>
             <p style="margin: 0 0 4px 0">${location.address}</p>
@@ -250,7 +367,8 @@ function createBostonMap() {
             </p>
             <p style="margin: 0">Available: ${location.availability}</p>
           </div>
-        `)
+        `
+        )
         .addTo(map);
     });
 
@@ -261,7 +379,6 @@ function createBostonMap() {
     addLeafletResources();
   }
 }
-
 ```
 
 <style>
@@ -470,18 +587,13 @@ function createBostonMap() {
 </div>
 </section>
 
-
 <!-- <section class="map-section"> -->
 <div class="hero-content">
 <h2>Find Affordable COPD Imaging Near You</h2>
 
 ```js
-view(html`
-${mapContainer}
-${createBostonMap()}
-`);
+view(html` ${mapContainer} ${createBostonMap()} `);
 ```
-
 
 <div class="cost-grid">
     <div class="cost-card">
@@ -501,8 +613,7 @@ ${createBostonMap()}
     </div>
 </div>
 </div>
-</section> 
-
+</section>
 
 <section class="location-cards">
 <div class="location-card current">
@@ -535,17 +646,15 @@ ${createBostonMap()}
 </div>
 </section>
 
-
 <footer class="disclaimer">
     <p>* Costs shown are estimates based on average insurance coverage. Actual costs may vary based on your specific insurance plan and coverage.</p>
     <p>** All alternative locations are fully accredited and meet the highest quality standards for medical imaging.</p>
 </footer>
 </div>
 
-
 ## Generic Microsite Builder
 
-<!-- 
+<!--
 ```js
 const micrositeConfig = {
   defaultZip: '02114',
@@ -641,7 +750,7 @@ const micrositeConfig = {
 <div class="microsite-container"></div>
 
 ```js
-  
+
 
   const containerDD = document.querySelector(".microsite-container");
   const microsite = new Microsite(micrositeConfig);

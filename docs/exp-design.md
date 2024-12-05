@@ -209,7 +209,7 @@ view(node);
 ```
 
 ```js
-replay; // This will trigger the replay when the button is clicked
+replay; // This will trigger the replay when the button is clickeds
 replayFn();
 ```
 
