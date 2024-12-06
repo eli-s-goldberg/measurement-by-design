@@ -32,7 +32,7 @@ graph LR
 
 ```js
 ///
-// import some CSS to keep things well styled
+// import some CSS to keep things well styled and
 import { defaultStyles } from "./components/styles.js";
 const styleElement = html`<style>
   ${defaultStyles}
