@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="generator" content="Observable Framework v1.13.0">
-<title>Microsite | Measurement By Design</title>
+<title>Personalization | Measurement By Design</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
 <link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
@@ -24,7 +24,6 @@
 <link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/e828d8c8.js">
 <link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
 <link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
-<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
 <link rel="modulepreload" href="./_npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs.940dc0bc.js">
 <link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
 <link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
@@ -38,6 +37,7 @@
 <link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
 <link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
 <link rel="modulepreload" href="./_npm/d3-drag@3.0.0/b22c5864.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
 <link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
 <link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
 <link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e1ff060.js">
@@ -65,14 +65,35 @@
 <script type="module">
 
 import {define} from "./_observablehq/client.11aa6b6e.js";
-import {registerFile} from "./_observablehq/stdlib.95bfbf7e.js";
 
-registerFile("./data/morley.csv", {"name":"./data/morley.csv","mimeType":"text/csv","path":"./_file/data/morley.a9c06023.csv","lastModified":1733333919456,"size":874});
+define({id: "3060a8b4", inputs: ["mermaid","display"], body: async (mermaid,display) => {
+display(await(
+await mermaid`graph LR
+  direction LR
+  BCPrinc[Personalization]:::pwcYellow -->  MktMeas[Refine
+  Experimental
+  Design
+  ]:::transparent
+  MktMeas --> MktApproval[Marketing
+  Approval]:::transparent
+  MktApproval-->  CommApproval[Comm
+  Approval]:::transparent
+  CommApproval--> MktDecision{Decision}:::transparent
+  MktDecision--> |Terminate|MktTerm["Start Over"]:::transparent
+  MktDecision--> |"Rethink"|MktReturn["Return to EDA
+  or BC Principal"]:::transparent
+  MktDecision--> |"Approval"|ToLaunch["To Launch"]:::transparent
 
-define({id: "bd834160", inputs: ["html"], outputs: ["defaultStyles","styleElement","Microsite"], body: async (html) => {
+  classDef pwcYellow fill:#FFB600,stroke:#000000,color:#000000
+  classDef transparent fill:#ffffff40,stroke:#00000040,color:#00000040
+  linkStyle default color:#00000040`
+))
+}});
+
+define({id: "8418a1f3", inputs: ["html"], outputs: ["defaultStyles","styleElement","Microsite"], body: async (html) => {
 const [{defaultStyles}, {Microsite}] = await Promise.all([import("./_import/components/styles.5ae71931.js"), import("./_import/components/MicroSiteBuilder.c11c7778.js")]);
 ///
-// import some CSS to keep things well styled
+// import some CSS to keep things well styled and
 const styleElement = html`<style>
   ${defaultStyles}
 </style>`;
@@ -93,45 +114,6 @@ view(EmailComparisonView());
 
 define({id: "f1a296a8", inputs: ["view","CleanEmailView"], body: (view,CleanEmailView) => {
 view(CleanEmailView());
-}});
-
-define({id: "1a67e80a", inputs: ["FileAttachment"], outputs: ["morley"], body: (FileAttachment) => {
-const morley = FileAttachment("./data/morley.csv").csv({ typed: true });
-return {morley};
-}});
-
-define({id: "9baa5fad", inputs: ["view","Plot","morley"], body: (view,Plot,morley) => {
-view(
-  Plot.plot({
-    y: {
-      grid: true,
-      inset: 6,
-    },
-    marks: [Plot.boxY(morley, { x: "Expt", y: "Speed" })],
-  })
-);
-}});
-
-define({id: "c218be46", inputs: ["mermaid","display"], body: async (mermaid,display) => {
-display(await(
-await mermaid`graph LR
-  direction LR
-  BCPrinc[BC Principal,
-  Personalization &
-  Engagement Approach] -->  MktMeas[Refine
-  Experimental
-  Design
-  ]
-  MktMeas --> MktApproval[Marketing
-  Approval]
-  MktApproval-->  CommApproval[Comm
-  Approval]
-  CommApproval--> MktDecision{Decision}
-  MktDecision--> |Terminate|MktTerm["Start Over"]
-  MktDecision--> |"Rethink"|MktReturn["Return to EDA
-  or BC Principal"]
-  MktDecision--> |"Approval"|ToLaunch["To Launch"]`
-))
 }});
 
 define({id: "40ce235e", inputs: ["mermaid","display"], body: async (mermaid,display) => {
@@ -425,7 +407,7 @@ view(html` ${mapContainer} ${createBostonMap()} `);
   <ol>
     <li class="observablehq-link"><a href="./">Overview Dashboard</a></li>
   </ol>
-  <details open>
+  <details open class="observablehq-section-active">
     <summary>Imaging</summary>
     <ol>
     <li class="observablehq-link"><a href="./problem">Problem Definition</a></li>
@@ -433,10 +415,10 @@ view(html` ${mapContainer} ${createBostonMap()} `);
     <li class="observablehq-link"><a href="./hypothesis">Hypothesis</a></li>
     <li class="observablehq-link"><a href="./targeting">Targeting Strategy</a></li>
     <li class="observablehq-link"><a href="./exp-design">Experimental Design</a></li>
-    <li class="observablehq-link"><a href="./personalization">Personalization</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./personalization">Personalization</a></li>
     </ol>
   </details>
-  <details open class="observablehq-section-active">
+  <details open>
     <summary>Primitive Assets</summary>
     <ol>
     <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
@@ -448,7 +430,7 @@ view(html` ${mapContainer} ${createBostonMap()} `);
     <li class="observablehq-link"><a href="./random-forest">In Browser Random Forests</a></li>
     <li class="observablehq-link"><a href="./mass-balance-business-models">Mass Balance Business Models</a></li>
     <li class="observablehq-link"><a href="./experimental-design">Simple Experimental Design</a></li>
-    <li class="observablehq-link observablehq-link-active"><a href="./microsite">Microsite Demo</a></li>
+    <li class="observablehq-link"><a href="./microsite">Microsite Demo</a></li>
     <li class="observablehq-link"><a href="./collapsible-cell">Collapsible Cell</a></li>
     </ol>
   </details>
@@ -468,7 +450,11 @@ view(html` ${mapContainer} ${createBostonMap()} `);
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:bd834160:--></div>
+<h1 id="personalization" tabindex="-1"><a class="observablehq-header-anchor" href="#personalization">Personalization</a></h1>
+<figure>
+<figcaption>Marketing Process</figcaption>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:3060a8b4:--></div>
+<div class="observablehq observablehq--block"><!--:8418a1f3:--></div>
 <div class="observablehq observablehq--block"><!--:f332cc5f:--></div>
 <h2 id="email-comparison-vierw" tabindex="-1"><a class="observablehq-header-anchor" href="#email-comparison-vierw">Email comparison Vierw</a></h2>
 <div class="observablehq observablehq--block"><!--:3e41708c:--></div>
@@ -497,19 +483,8 @@ view(html` ${mapContainer} ${createBostonMap()} `);
 <p>On demo website: first tab: pull up email. Second tab, experience on microsite. Default on landing, shown on exact 4 providers, with exact cost for precedure in question compared to average hospital cost for that procedure.</p>
 <p>What about the historical look.
 two cohorts maybe;</p>
-<ol>
-<li>drove non preferred and likely to do it again</li>
-<li>likely to do it by model</li>
-</ol>
-<p>Boxplot for the costs</p>
-<div class="observablehq observablehq--block"><!--:1a67e80a:--></div>
-<div class="observablehq observablehq--block"><!--:9baa5fad:--></div>
-<p>Then a drop down for the costs/template and locations.</p>
 <h2 id="describe-the-flow" tabindex="-1"><a class="observablehq-header-anchor" href="#describe-the-flow">Describe the flow</a></h2>
 <p>figure&gt;</p>
-<figure>
-<figcaption>Figure 2: Marketing Approval Process</figcaption>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c218be46:--></div>
 </figure>
 <figure>
 <figcaption>Figure 3: Launch and Scale Process</figcaption>
@@ -890,7 +865,7 @@ view(containerDD)
 </div> -->
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./experimental-design"><span>Simple Experimental Design</span></a><a rel="next" href="./collapsible-cell"><span>Collapsible Cell</span></a></nav>
+<nav><a rel="prev" href="./exp-design"><span>Experimental Design</span></a><a rel="next" href="./state-level-mapping"><span>BRFSS State Level Mapping</span></a></nav>
 <div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-06T16:03:30">Dec 6, 2024</a>.</div>
 </footer>
 </div>

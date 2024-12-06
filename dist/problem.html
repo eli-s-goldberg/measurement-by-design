@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="generator" content="Observable Framework v1.13.0">
-<title>Targeting | Measurement By Design</title>
+<title>Problem Definition | Measurement By Design</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
 <link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
@@ -14,18 +14,13 @@
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.95bfbf7e.js">
 <link rel="modulepreload" href="./_import/components/styles.5ae71931.js">
-<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
-<link rel="modulepreload" href="./_import/components/generateHealthcareData.59569be6.js">
-<link rel="modulepreload" href="./_import/components/ml-utils.49f0e6d0.js">
-<link rel="modulepreload" href="./_import/components/FunnelChart.56736e39.js">
-<link rel="modulepreload" href="./_import/components/TreeExplore.d56586fd.js">
-<link rel="modulepreload" href="./_import/components/AggStats.7b40fa2c.js">
-<link rel="modulepreload" href="./_import/components/SankeyFlow.0b51f987.js">
-<link rel="modulepreload" href="./_import/components/RandomForestClassifier.1e680409.js">
-<link rel="modulepreload" href="./_import/components/LiveTable.1d7d0895.js">
+<link rel="modulepreload" href="./_import/components/interactiveimagingexample.cd0d0742.js">
+<link rel="modulepreload" href="./_import/components/DistP.ac9bc534.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
 <link rel="modulepreload" href="./_observablehq/stdlib/mermaid.b7b51fd9.js">
+<link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
 <link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/e828d8c8.js">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
 <link rel="modulepreload" href="./_npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs.940dc0bc.js">
 <link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
 <link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
@@ -78,17 +73,24 @@ document.head.appendChild(styleElement);
 return {defaultStyles,styleElement};
 }});
 
-define({id: "f220f354", inputs: ["mermaid","display"], body: async (mermaid,display) => {
+define({id: "e8e56bf4", outputs: ["InteractiveImagingExplorer","DistP","distributions","d3"], body: async () => {
+const [{InteractiveImagingExplorer}, {DistP, distributions}, d3] = await Promise.all([import("./_import/components/interactiveimagingexample.cd0d0742.js"), import("./_import/components/DistP.ac9bc534.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm")]);
+
+return {InteractiveImagingExplorer,DistP,distributions,d3};
+}});
+
+define({id: "e4ce0bce", inputs: ["mermaid","display"], body: async (mermaid,display) => {
 display(await(
 await mermaid`graph LR
   direction LR
   PD[Problem
-  Definition] --> DS[EDA & ROI]
-  DS --> ClinApproval[Hypothesis &
-  Recommend Actions]
+  Definition]:::pwcYellow --> DS[EDA & ROI]:::transparent
+  DS[EDA &
+  ROI] --> ClinApproval[Hypothesis &
+  Recommend Actions]:::transparent
   ClinApproval--> TargExc[Targeting,
   Exclusions,
-  Cohorting]:::pwcYellow
+  Cohorting]:::transparent
   TargExc--> ExpDesign1[Experimental
   Design]:::transparent
   ExpDesign1-- Terminate -->DevTerm["Start Over"]:::transparent
@@ -101,100 +103,8 @@ await mermaid`graph LR
 ))
 }});
 
-define({id: "6b0cd8dd", outputs: ["require"], body: async () => {
-const {require} = await import("./_node/d3-require@1.3.0/index.45152b81.js");
-
-return {require};
-}});
-
-define({id: "6a1f9258", outputs: ["generateHealthcareData","CONSTANTS","calculateImageUse","prepareImagingData","stratifiedSubsample","getRandomSubsample","computeMeanAndCI","computeROC","FunnelChart","createTreeWithStats","calculateStats","createFunnelData","formatNumber","createMulticlassMetric","createRateMetric","createDemographicMetrics","aggregateData","createDataSummary","createIntMetric","createFloatMetric","createSankeyFlow","RandomForestClassifier"], body: async () => {
-const [{generateHealthcareData, CONSTANTS, calculateImageUse}, {prepareImagingData, stratifiedSubsample, getRandomSubsample, computeMeanAndCI, computeROC}, {FunnelChart}, {createTreeWithStats, calculateStats, createFunnelData, formatNumber}, {createMulticlassMetric, createRateMetric, createDemographicMetrics, aggregateData, createDataSummary, createIntMetric, createFloatMetric}, {createSankeyFlow}, {RandomForestClassifier}] = await Promise.all([import("./_import/components/generateHealthcareData.59569be6.js"), import("./_import/components/ml-utils.49f0e6d0.js"), import("./_import/components/FunnelChart.56736e39.js"), import("./_import/components/TreeExplore.d56586fd.js"), import("./_import/components/AggStats.7b40fa2c.js"), import("./_import/components/SankeyFlow.0b51f987.js"), import("./_import/components/RandomForestClassifier.1e680409.js")]);
-// import data gen and consts
-
-
-
-return {generateHealthcareData,CONSTANTS,calculateImageUse,prepareImagingData,stratifiedSubsample,getRandomSubsample,computeMeanAndCI,computeROC,FunnelChart,createTreeWithStats,calculateStats,createFunnelData,formatNumber,createMulticlassMetric,createRateMetric,createDemographicMetrics,aggregateData,createDataSummary,createIntMetric,createFloatMetric,createSankeyFlow,RandomForestClassifier};
-}});
-
-define({id: "160b6a2e", inputs: ["html"], outputs: ["TableInput","TableInputTypes","EVENTS","LiveTable","LiveTableData","d3","require","jStat","math","defaultStyles","styleElement"], body: async (html) => {
-const [{TableInput, TableInputTypes, EVENTS, LiveTable, LiveTableData}, d3, {require}, {defaultStyles}] = await Promise.all([import("./_import/components/LiveTable.1d7d0895.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.45152b81.js"), import("./_import/components/styles.5ae71931.js")]);
-// imports
-
-
-const jStat = await require("jstat@1.9.4");
-const math = await require("mathjs@9.4.2");
-
-// it's 'noisy' when we have so much CSS in the page
-const styleElement = html`<style>
-  ${defaultStyles}
-</style>`;
-document.head.appendChild(styleElement);
-return {TableInput,TableInputTypes,EVENTS,LiveTable,LiveTableData,d3,require,jStat,math,defaultStyles,styleElement};
-}});
-
-define({id: "c53dc338", inputs: ["FunnelChart","view"], outputs: ["data","rates","chart"], body: (FunnelChart,view) => {
-const data = [
-  {
-    group: "Systems Development",
-    value: 100.0,
-    altValue: "2,854 users",
-  },
-  {
-    group: "Operations",
-    value: 88.6,
-    altValue: "2,528 users",
-  },
-  {
-    group: "Web Infrastructure",
-    value: 51.1,
-    altValue: "1,458 users",
-  },
-  {
-    group: "IT Infrastructure",
-    value: 39.9,
-    altValue: "1,139 users",
-  },
-  {
-    group: "Systems",
-    value: 27.4,
-    altValue: "782 users",
-  },
-  {
-    group: "Non-IT/Systems",
-    value: 21.8,
-    altValue: "622 users",
-  },
-];
-
-const rates = [
-  "conversion rate: 88.6% ",
-  "adoption rate: 57.7%",
-  "implementation rate: 78.1%",
-  "integration rate: 68.7%",
-  "utilization rate: 79.6%",
-  "",
-];
-
-// Create chart with rates
-const chart = FunnelChart(data, rates, {
-  margin: { top: 40, right: 40, bottom: 40, left: 250 },
-  labels: {
-    includePercentage: true,
-    useAltValue: true, // This will use altValue instead of percentage in labels
-    offset: { x: -20 },
-  },
-  percentages: {
-    show: true,
-    offset: { x: 0, y: 0 },
-  },
-  rates: {
-    leftAligned: true,
-    offset: { x: -10 },
-  },
-});
-
-view(chart);
-return {data,rates,chart};
+define({id: "7d32686b", inputs: ["view","InteractiveImagingExplorer"], body: (view,InteractiveImagingExplorer) => {
+view(InteractiveImagingExplorer());
 }});
 
 </script>
@@ -216,10 +126,10 @@ return {data,rates,chart};
   <details open class="observablehq-section-active">
     <summary>Imaging</summary>
     <ol>
-    <li class="observablehq-link"><a href="./problem">Problem Definition</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./problem">Problem Definition</a></li>
     <li class="observablehq-link"><a href="./EDA-ROI">EDA &amp; ROI</a></li>
     <li class="observablehq-link"><a href="./hypothesis">Hypothesis</a></li>
-    <li class="observablehq-link observablehq-link-active"><a href="./targeting">Targeting Strategy</a></li>
+    <li class="observablehq-link"><a href="./targeting">Targeting Strategy</a></li>
     <li class="observablehq-link"><a href="./exp-design">Experimental Design</a></li>
     <li class="observablehq-link"><a href="./personalization">Personalization</a></li>
     </ol>
@@ -245,22 +155,40 @@ return {data,rates,chart};
 <div id="observablehq-center">
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#why-preferred-imaging-locations">Why preferred Imaging Locations?</a></li>
+<li class="observablehq-secondary-link"><a href="#what-types-of-imaging-are-there-what-is-preferred-vs-non-preferred-imaging">What types of imaging are there? What is preferred vs non-preferred imaging?</a></li>
+</ol>
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<h1 id="targeting-and-exclusions" tabindex="-1"><a class="observablehq-header-anchor" href="#targeting-and-exclusions">Targeting &amp; Exclusions</a></h1>
 <div class="observablehq observablehq--block"><!--:d19a1792:--></div>
+<div class="observablehq observablehq--block"><!--:e8e56bf4:--></div>
+<h1 id="problem-definition" tabindex="-1"><a class="observablehq-header-anchor" href="#problem-definition">Problem Definition</a></h1>
 <figure>
 <figcaption>Analytics Process</figcaption>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:f220f354:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:e4ce0bce:--></div>
 </figure>
-<div class="observablehq observablehq--block"><!--:6b0cd8dd:--></div>
-<div class="observablehq observablehq--block"><!--:6a1f9258:--></div>
-<div class="observablehq observablehq--block"><!--:160b6a2e:--></div>
-<div class="observablehq observablehq--block"><!--:c53dc338:--></div>
+<hr>
+<h2 id="why-preferred-imaging-locations" tabindex="-1"><a class="observablehq-header-anchor" href="#why-preferred-imaging-locations">Why <code>preferred</code> Imaging Locations?</a></h2>
+<p>Opting for <strong>preferred (in-network) imaging locations</strong> benefits both payers and members:</p>
+<ul>
+<li>
+<p><strong>For Members</strong>: Lower out-of-pocket costs due to negotiated rates with in-network providers. Members also avoid unexpected billing surprises and benefit from streamlined approval and claims processes.</p>
+</li>
+<li>
+<p><strong>For Payers</strong>: Reduced costs by leveraging pre-negotiated contracts with in-network providers. This promotes predictable spending, reduces administrative burden, and helps maintain lower premiums for members.</p>
+</li>
+</ul>
+<p>Encouraging preferred imaging usage aligns financial incentives, improves member satisfaction, and supports sustainable healthcare costs.</p>
+<hr>
+<h2 id="what-types-of-imaging-are-there-what-is-preferred-vs-non-preferred-imaging" tabindex="-1"><a class="observablehq-header-anchor" href="#what-types-of-imaging-are-there-what-is-preferred-vs-non-preferred-imaging">What types of imaging are there? What is <code>preferred</code> vs <code>non-preferred</code> imaging?</a></h2>
+<div class="observablehq observablehq--block"><!--:7d32686b:--></div>
+<hr>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./hypothesis"><span>Hypothesis</span></a><a rel="next" href="./exp-design"><span>Experimental Design</span></a></nav>
+<nav><a rel="prev" href="./"><span>Measurement By Design</span></a><a rel="next" href="./EDA-ROI"><span>EDA &amp; ROI</span></a></nav>
 <div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-06T16:03:30">Dec 6, 2024</a>.</div>
 </footer>
 </div>

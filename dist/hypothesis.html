@@ -18,6 +18,7 @@
 <link rel="modulepreload" href="./_import/components/styles.5ae71931.js">
 <link rel="modulepreload" href="./_import/components/interactiveimagingexample.cd0d0742.js">
 <link rel="modulepreload" href="./_import/components/DistP.ac9bc534.js">
+<link rel="modulepreload" href="./_import/components/imagingbusinesscase.9aaf4bb1.js">
 <link rel="modulepreload" href="./_import/components/generateHealthcareData.59569be6.js">
 <link rel="modulepreload" href="./_import/components/ml-utils.49f0e6d0.js">
 <link rel="modulepreload" href="./_import/components/FunnelChart.56736e39.js">
@@ -83,10 +84,10 @@ document.head.appendChild(styleElement);
 return {defaultStyles,styleElement};
 }});
 
-define({id: "e8e56bf4", outputs: ["InteractiveImagingExplorer","DistP","distributions","d3"], body: async () => {
-const [{InteractiveImagingExplorer}, {DistP, distributions}, d3] = await Promise.all([import("./_import/components/interactiveimagingexample.cd0d0742.js"), import("./_import/components/DistP.ac9bc534.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm")]);
+define({id: "6754eb11", outputs: ["InteractiveImagingExplorer","DistP","distributions","d3","generateImagingBusinessCase"], body: async () => {
+const [{InteractiveImagingExplorer}, {DistP, distributions}, d3, {generateImagingBusinessCase}] = await Promise.all([import("./_import/components/interactiveimagingexample.cd0d0742.js"), import("./_import/components/DistP.ac9bc534.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_import/components/imagingbusinesscase.9aaf4bb1.js")]);
 
-return {InteractiveImagingExplorer,DistP,distributions,d3};
+return {InteractiveImagingExplorer,DistP,distributions,d3,generateImagingBusinessCase};
 }});
 
 define({id: "6a1f9258", outputs: ["generateHealthcareData","CONSTANTS","calculateImageUse","prepareImagingData","stratifiedSubsample","getRandomSubsample","computeMeanAndCI","computeROC","FunnelChart","createTreeWithStats","calculateStats","createFunnelData","formatNumber","createMulticlassMetric","createRateMetric","createDemographicMetrics","aggregateData","createDataSummary","createIntMetric","createFloatMetric","createSankeyFlow","RandomForestClassifier"], body: async () => {
@@ -119,6 +120,23 @@ await mermaid`graph LR
   classDef transparent fill:#ffffff40,stroke:#00000040,color:#00000040
   linkStyle default color:#00000040`
 ))
+}});
+
+define({id: "02aabbb9", inputs: ["view","Inputs","generateImagingBusinessCase"], outputs: ["percentageDecreaseHyp1","results"], body: (view,Inputs,generateImagingBusinessCase) => {
+const percentageDecreaseHyp1 = view(
+  Inputs.range([0, 100], {
+    step: 1,
+    label: "Percentage Decrease",
+    value: 5,
+  })
+);
+
+// Generate and display results
+const results = generateImagingBusinessCase(percentageDecreaseHyp1);
+view(results.chart);
+
+view(results);
+return {percentageDecreaseHyp1,results};
 }});
 
 define({id: "e18bade8", inputs: ["view","Inputs"], outputs: ["percentageDecrease"], body: (view,Inputs) => {
@@ -635,17 +653,21 @@ return {imagingVolumes,volumeData,volumeChart};
     <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
     <li class="observablehq-link"><a href="./">Measurement By Design</a></li>
   </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("./_observablehq/search.27e94681.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
   <ol>
     <li class="observablehq-link"><a href="./">Overview Dashboard</a></li>
   </ol>
   <details open class="observablehq-section-active">
     <summary>Imaging</summary>
     <ol>
-    <li class="observablehq-link"><a href="./value-framing">Problem Definition</a></li>
+    <li class="observablehq-link"><a href="./problem">Problem Definition</a></li>
     <li class="observablehq-link"><a href="./EDA-ROI">EDA &amp; ROI</a></li>
     <li class="observablehq-link observablehq-link-active"><a href="./hypothesis">Hypothesis</a></li>
     <li class="observablehq-link"><a href="./targeting">Targeting Strategy</a></li>
     <li class="observablehq-link"><a href="./exp-design">Experimental Design</a></li>
+    <li class="observablehq-link"><a href="./personalization">Personalization</a></li>
     </ol>
   </details>
   <details open>
@@ -679,10 +701,14 @@ return {imagingVolumes,volumeData,volumeChart};
 </aside>
 <main id="observablehq-main" class="observablehq">
 <div class="observablehq observablehq--block"><!--:d19a1792:--></div>
-<div class="observablehq observablehq--block"><!--:e8e56bf4:--></div>
+<div class="observablehq observablehq--block"><!--:6754eb11:--></div>
 <div class="observablehq observablehq--block"><!--:6a1f9258:--></div>
 <h1 id="hypotheses-and-actions" tabindex="-1"><a class="observablehq-header-anchor" href="#hypotheses-and-actions">Hypotheses and Actions</a></h1>
+<figure>
+<figcaption>Analytics Process</figcaption>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:52b792bc:--></div>
+</figure>
+<hr>
 <h2 id="hypothesis-1-clinical-opportunity-for-copd-patients" tabindex="-1"><a class="observablehq-header-anchor" href="#hypothesis-1-clinical-opportunity-for-copd-patients">Hypothesis 1: <strong>Clinical Opportunity for COPD Patients</strong></a></h2>
 <p><strong>Hypothesis</strong>: COPD patients aged 55+ are receiving imaging at non-preferred locations due to low primary care engagement or limited access to preferred imaging centers in rural areas.</p>
 <ol>
@@ -717,6 +743,7 @@ return {imagingVolumes,volumeData,volumeChart};
 </ul>
 </li>
 </ol>
+<div class="observablehq observablehq--block"><!--:02aabbb9:--></div>
 <hr>
 <h2 id="hypothesis-2-addressing-geographic-and-economic-barriers" tabindex="-1"><a class="observablehq-header-anchor" href="#hypothesis-2-addressing-geographic-and-economic-barriers">Hypothesis 2: <strong>Addressing Geographic and Economic Barriers</strong></a></h2>
 <p><strong>Hypothesis</strong>: Rural geography and low-income brackets exacerbate non-preferred imaging utilization due to limited access and misinformation.</p>
@@ -809,11 +836,10 @@ return {imagingVolumes,volumeData,volumeChart};
 <div class="observablehq observablehq--block"><!--:e6feed8a:--></div>
 <div class="observablehq observablehq--block"><!--:a177533c:--></div>
 <div class="observablehq observablehq--block"><!--:252fa351:--></div>
-<p>&lt;</p>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./EDA-ROI"><span>EDA &amp; ROI</span></a><a rel="next" href="./targeting"><span>Targeting Strategy</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-05T02:25:39">Dec 5, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-06T16:03:30">Dec 6, 2024</a>.</div>
 </footer>
 </div>
 </body>
