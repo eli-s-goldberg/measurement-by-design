@@ -662,7 +662,7 @@ view(
 );
 }});
 
-define({id: "096136e9", inputs: ["view","Inputs","metricTables"], body: (view,Inputs,metricTables) => {
+define({id: "da380cea", inputs: ["view","Inputs","metricTables"], body: (view,Inputs,metricTables) => {
 view(
   Inputs.table(
     metricTables.filter((d) => d.metricName === "Engagement Rate")[0]
@@ -686,13 +686,13 @@ view(
         ci_upper: "CI (u)",
         stdDev: "σ",
       },
-      // layout: "auto",
+      layout: "auto",
     }
   )
 );
 }});
 
-define({id: "039f80ed", inputs: ["view","Inputs","metricTables"], body: (view,Inputs,metricTables) => {
+define({id: "5cea6cea", inputs: ["view","Inputs","metricTables"], body: (view,Inputs,metricTables) => {
 view(
   Inputs.table(
     metricTables.filter((d) => d.metricName === "Conversion Rate")[0]
@@ -716,7 +716,7 @@ view(
         ci_upper: "CI (u)",
         stdDev: "σ",
       },
-      // layout: "auto",
+      layout: "auto",
     }
   )
 );
@@ -807,20 +807,24 @@ view(
 <div class="card">
 <figure>
 <figcaption>Engagement Rate Stats</figcaption>
-<div class="observablehq observablehq--block"><!--:096136e9:--></div>
+<div style="overflow-x: auto;">
+<div class="observablehq observablehq--block"><!--:da380cea:--></div>
+</div>
 </figure>
 </div>
 <div class="card">
 <figure>
 <figcaption>Engaged Population Stats</figcaption>
-<div class="observablehq observablehq--block"><!--:039f80ed:--></div>
+<div style="overflow-x: auto;">
+<div class="observablehq observablehq--block"><!--:5cea6cea:--></div>
+</div>
 </figure>
 </div>
 </div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="next" href="./problem"><span>Problem Definition</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-08T22:23:45">Dec 8, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-08T22:34:19">Dec 8, 2024</a>.</div>
 </footer>
 </div>
 </body>

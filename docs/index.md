@@ -645,6 +645,8 @@ view(
 <figure>
 <figcaption>Engagement Rate Stats</figcaption>
 
+<div style="overflow-x: auto;">
+
 ```js
 view(
   Inputs.table(
@@ -669,11 +671,13 @@ view(
         ci_upper: "CI (u)",
         stdDev: "σ",
       },
-      // layout: "auto",
+      layout: "auto",
     }
   )
 );
 ```
+
+</div>
 
 </figure>
 </div>
@@ -682,6 +686,7 @@ view(
 
 <figure>
 <figcaption>Engaged Population Stats</figcaption>
+<div style="overflow-x: auto;">
 
 ```js
 view(
@@ -707,12 +712,13 @@ view(
         ci_upper: "CI (u)",
         stdDev: "σ",
       },
-      // layout: "auto",
+      layout: "auto",
     }
   )
 );
 ```
 
+</div>
 </figure>
 </div>
 </div>
