@@ -669,7 +669,7 @@ view(
         ci_upper: "CI (u)",
         stdDev: "σ",
       },
-      layout: "auto",
+      // layout: "auto",
     }
   )
 );
@@ -707,7 +707,7 @@ view(
         ci_upper: "CI (u)",
         stdDev: "σ",
       },
-      layout: "auto",
+      // layout: "auto",
     }
   )
 );
