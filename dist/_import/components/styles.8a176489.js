@@ -204,10 +204,15 @@ export const interventionStyles = `
     font-size: 0.9em;
     line-height: 1.5;
   }
+  .table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+}
+
 
   table {
     border-collapse: collapse;
-    table-layout: fixed;
+    table-layout: auto;
     width: 100%;
     height: 20%;
     font: 13.5px/1.5 var(--serif);
@@ -433,6 +438,8 @@ export const interventionStyles = `
       column-gap: 6px;
       row-gap: 8px;
     }
+
+    
     
     .box {
       min-height: 46px;

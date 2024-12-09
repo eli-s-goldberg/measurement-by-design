@@ -640,12 +640,10 @@ view(
 ## Engagement Stats
 
 <div class="card">
-
-<figure>
-<figcaption>Engagement Rate Stats</figcaption>
+<figcaption>Engagement Rate Stats </figcaption>
 
 ```js
-view(
+const engageratetable = view(
   Inputs.table(
     metricTables.filter((d) => d.metricName === "Engagement Rate")[0]
       .metricData,
@@ -666,7 +664,7 @@ view(
         pValue: "P",
         ci_lower: "CI (l)",
         ci_upper: "CI (u)",
-        stdDev: "σ",
+        stdDev: tex`\sigma`,
       },
       layout: "auto",
     }
@@ -674,13 +672,11 @@ view(
 );
 ```
 
-</figure>
 </div>
 
 <div class="card">
 
-<figure>
-<figcaption>Engaged Population Stats</figcaption>
+  <figcaption>Engaged Population Stats</figcaption>
 
 ```js
 view(
@@ -699,12 +695,12 @@ view(
       ],
       header: {
         intervention: "Intervention",
-        value: "Engaged",
+        value: "Rate",
         lift: "Lift",
         pValue: "P",
         ci_lower: "CI (l)",
         ci_upper: "CI (u)",
-        stdDev: "σ",
+        stdDev: tex`\sigma`,
       },
       layout: "auto",
     }
@@ -712,5 +708,6 @@ view(
 );
 ```
 
-</figure>
+</div>
+
 </div>
