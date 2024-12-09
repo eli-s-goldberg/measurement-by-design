@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
 <link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
 <link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
-<link rel="modulepreload" href="./_observablehq/client.11aa6b6e.js">
+<link rel="modulepreload" href="./_observablehq/client.f8e00754.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.95bfbf7e.js">
 <link rel="modulepreload" href="./_import/components/RandomForestClassifier.1e680409.js">
@@ -59,7 +59,7 @@
 <link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
 <script type="module">
 
-import {define} from "./_observablehq/client.11aa6b6e.js";
+import {define} from "./_observablehq/client.f8e00754.js";
 
 define({id: "abdbd3b2", outputs: ["RandomForestClassifier","generateDonutHoleData"], body: async () => {
 const [{RandomForestClassifier}, {generateDonutHoleData}] = await Promise.all([import("./_import/components/RandomForestClassifier.1e680409.js"), import("./_import/components/DonutData.a71427a5.js")]);
@@ -67,76 +67,76 @@ const [{RandomForestClassifier}, {generateDonutHoleData}] = await Promise.all([i
 return {RandomForestClassifier,generateDonutHoleData};
 }});
 
-define({id: "c0af19bd", inputs: ["Inputs","html","view","Generators"], outputs: ["donutParamsForm","donutParamsForm_Selections"], body: (Inputs,html,view,Generators) => {
+define({id: "69e7ef83", inputs: ["Inputs","html","view","Generators"], outputs: ["donutParamsForm","donutParamsForm_Selections"], body: (Inputs,html,view,Generators) => {
 // Donut hole data generation parameters as range inputs in a form with adjusted labels
 const donutParamsForm = Inputs.form({
   nOuter: Inputs.range([5, 200], {
     value: 20,
     step: 10,
-    label: html`<b>nOuter</b>`
+    label: html`<b>nOuter</b>`,
   }),
   nInner: Inputs.range([5, 100], {
     value: 20,
     step: 5,
-    label: html`<b>nInner</b>`
+    label: html`<b>nInner</b>`,
   }),
   innerRadius: Inputs.range([1, 5], {
     value: 2,
     step: 0.5,
-    label: html`<b>innerRadius</b>`
+    label: html`<b>innerRadius</b>`,
   }),
   outerRadius: Inputs.range([2, 10], {
     value: 5,
     step: 0.5,
-    label: html`<b>outerRadius</b>`
-  })
+    label: html`<b>outerRadius</b>`,
+  }),
 });
 
-view(donutParamsForm)
-const donutParamsForm_Selections = Generators.input(donutParamsForm)
+view(donutParamsForm);
+const donutParamsForm_Selections = Generators.input(donutParamsForm);
 return {donutParamsForm,donutParamsForm_Selections};
 }});
 
-define({id: "f70bca2b", inputs: ["Inputs","html","view","Generators"], outputs: ["rfParamsForm","rfParamsForm_Selections"], body: (Inputs,html,view,Generators) => {
+define({id: "57a46a03", inputs: ["Inputs","html","view","Generators"], outputs: ["rfParamsForm","rfParamsForm_Selections"], body: (Inputs,html,view,Generators) => {
 // RandomForestClassifier parameters as range inputs in a form with adjusted labels
 const rfParamsForm = Inputs.form({
   nEstimators: Inputs.range([1, 200], {
     value: 5,
     step: 1,
-    label: html`<b>nEstimators</b>`
+    label: html`<b>nEstimators</b>`,
   }),
   maxDepth: Inputs.range([1, 10], {
     value: 4,
     step: 1,
-    label: html`<b>maxDepth</b>`
+    label: html`<b>maxDepth</b>`,
   }),
   minSize: Inputs.range([1, 10], {
     value: 2,
     step: 1,
-    label: html`<b>minSize</b>`
+    label: html`<b>minSize</b>`,
   }),
   sampleSize: Inputs.range([0.1, 1.0], {
     value: 0.8,
     step: 0.1,
-    label: html`<b>sampleSize</b>`
+    label: html`<b>sampleSize</b>`,
   }),
   maxFeatures: Inputs.range([1, 10], {
     value: 3,
     step: 1,
-    label: html`<b>maxFeatures</b>`
+    label: html`<b>maxFeatures</b>`,
   }),
   decimalPrecision: Inputs.range([1, 5], {
     value: 2,
     step: 1,
-    label: html`<b>decimalPrecision</b>`
-  })
+    label: html`<b>decimalPrecision</b>`,
+  }),
 });
-view(rfParamsForm)
-const rfParamsForm_Selections = Generators.input(rfParamsForm)
+view(rfParamsForm);
+const rfParamsForm_Selections = Generators.input(rfParamsForm);
 return {rfParamsForm,rfParamsForm_Selections};
 }});
 
-define({id: "8988d116", inputs: ["generateDonutHoleData","donutParamsForm_Selections","RandomForestClassifier","rfParamsForm_Selections"], outputs: ["X","y","clf","scatterData","grid2D","values2D","rasterData","treePaths","forestHierarch"], body: (generateDonutHoleData,donutParamsForm_Selections,RandomForestClassifier,rfParamsForm_Selections) => {
+define({id: "86c3548a", inputs: ["generateDonutHoleData","donutParamsForm_Selections","RandomForestClassifier","rfParamsForm_Selections"], outputs: ["X","y","clf","scatterData","grid2D","values2D","rasterData","treePaths","forestHierarch"], body: (generateDonutHoleData,donutParamsForm_Selections,RandomForestClassifier,rfParamsForm_Selections) => {
 // Generate data using the inputs
 const { X, y } = generateDonutHoleData(
   donutParamsForm_Selections.nOuter,
@@ -152,50 +152,53 @@ const clf = new RandomForestClassifier({
   minSize: rfParamsForm_Selections.minSize,
   sampleSize: rfParamsForm_Selections.sampleSize,
   maxFeatures: rfParamsForm_Selections.maxFeatures,
-  decimalPrecision: rfParamsForm_Selections.decimalPrecision
+  decimalPrecision: rfParamsForm_Selections.decimalPrecision,
 });
 
 // fit the classifier
-clf.fit(X,y)
+clf.fit(X, y);
 
 // let's transform said donut data to a conveniently structured form, because js is awesome like that.
 const scatterData = X.map((d, i) => ({
-    x: d[0],
-    y: d[1],
-    truth: y[i]
+  x: d[0],
+  y: d[1],
+  truth: y[i],
 }));
 
 // let's visualize the decision boundary
-const { grid2D, values2D } = clf.generateClassificationDomain(scatterData, 0.15);
+const { grid2D, values2D } = clf.generateClassificationDomain(
+  scatterData,
+  0.15
+);
 
-// let's turn this data into a convenient raster object. 
+// let's turn this data into a convenient raster object.
 const rasterData = [];
 for (let i = 0; i < grid2D.length; i++) {
-    for (let j = 0; j < grid2D[i].length; j++) {
-        rasterData.push({
-            x: grid2D[i][j][0],
-            y: grid2D[i][j][1],
-            fill: values2D[i][j]
-        });
-    }
+  for (let j = 0; j < grid2D[i].length; j++) {
+    rasterData.push({
+      x: grid2D[i][j][0],
+      y: grid2D[i][j][1],
+      fill: values2D[i][j],
+    });
+  }
 }
 
 const treePaths = clf.convertForestToPaths();
-const forestHierarch = clf.convertForestToHierarchy()
+const forestHierarch = clf.convertForestToHierarchy();
 return {X,y,clf,scatterData,grid2D,values2D,rasterData,treePaths,forestHierarch};
 }});
 
-define({id: "18667d62", inputs: ["grid2D","values2D","Plot","scatterData","view"], outputs: ["rasterData","rasterPlot"], body: (grid2D,values2D,Plot,scatterData,view) => {
+define({id: "199071fe", inputs: ["grid2D","values2D","Plot","scatterData","view"], outputs: ["rasterData","rasterPlot"], body: (grid2D,values2D,Plot,scatterData,view) => {
 // Prepare the raster data for plotting
 const rasterData = [];
 for (let i = 0; i < grid2D.length; i++) {
-    for (let j = 0; j < grid2D[i].length; j++) {
-        rasterData.push({
-            x: grid2D[i][j][0], // X coordinate
-            y: grid2D[i][j][1], // Y coordinate
-            fill: values2D[i][j] // Predicted class (0 or 1)
-        });
-    }
+  for (let j = 0; j < grid2D[i].length; j++) {
+    rasterData.push({
+      x: grid2D[i][j][0], // X coordinate
+      y: grid2D[i][j][1], // Y coordinate
+      fill: values2D[i][j], // Predicted class (0 or 1)
+    });
+  }
 }
 
 const rasterPlot = Plot.plot({
@@ -204,7 +207,7 @@ const rasterPlot = Plot.plot({
     legend: true,
     label: "Predicted Class",
     // domain: [0, 1],  // Domain to define class 0 and class 1
-    range: ["lightblue", "lightcoral"]  // Color range for classes
+    range: ["lightblue", "lightcoral"], // Color range for classes
   },
   width: 900,
   height: 480,
@@ -214,28 +217,28 @@ const rasterPlot = Plot.plot({
       x: "x",
       y: "y",
       fill: "fill",
-      interpolate: "random-walk"  // Optional interpolation for smoother transition between classes
+      interpolate: "random-walk", // Optional interpolation for smoother transition between classes
     }),
     // Scatter plot to show the actual points with ground truth labels
     Plot.dot(scatterData, {
       x: "x",
       y: "y",
-      fill: d => d.truth === 0 ? "blue" : "red",
+      fill: (d) => (d.truth === 0 ? "blue" : "red"),
       stroke: "black",
-      r: 4 // Larger radius for original data points
-    })
-  ]
+      r: 4, // Larger radius for original data points
+    }),
+  ],
 });
 
 view(rasterPlot);
 return {rasterData,rasterPlot};
 }});
 
-define({id: "b2d26022", inputs: ["view","forestHierarch"], body: (view,forestHierarch) => {
-view(forestHierarch)
+define({id: "1cf71d18", inputs: ["view","forestHierarch"], body: (view,forestHierarch) => {
+view(forestHierarch);
 }});
 
-define({id: "59892206", inputs: ["Plot","treePaths","view"], outputs: ["forestplot"], body: (Plot,treePaths,view) => {
+define({id: "4871da4b", inputs: ["Plot","treePaths","view"], outputs: ["forestplot"], body: (Plot,treePaths,view) => {
 // Visualize using Observable Plot
 const forestplot = Plot.plot({
   axis: null,
@@ -244,17 +247,15 @@ const forestplot = Plot.plot({
   marginRight: 160,
   width: 900,
   height: 600,
-  marks: [
-   Plot.cluster(treePaths, {textStroke: "white"})
-  ]
+  marks: [Plot.cluster(treePaths, { textStroke: "white" })],
 });
-view(forestplot)
+view(forestplot);
 return {forestplot};
 }});
 
-define({id: "a049f78d", inputs: ["clf","X","y","yTrue"], outputs: ["yPred","confusionmatrix","confusionData","labels","accuracy","recall","precision"], body: (clf,X,y,yTrue) => {
-const yPred = clf.predict(X)
-const confusionmatrix = clf.confusionMatrix(y, yPred)
+define({id: "a923a856", inputs: ["clf","X","y","yTrue"], outputs: ["yPred","confusionmatrix","confusionData","labels","accuracy","recall","precision"], body: (clf,X,y,yTrue) => {
+const yPred = clf.predict(X);
+const confusionmatrix = clf.confusionMatrix(y, yPred);
 const confusionData = [];
 const labels = confusionmatrix.labels;
 
@@ -263,18 +264,18 @@ for (let i = 0; i < labels.length; i++) {
     confusionData.push({
       true_label: labels[i],
       predicted_label: labels[j],
-      count: confusionmatrix.matrix[i][j]
+      count: confusionmatrix.matrix[i][j],
     });
   }
 }
 
-const accuracy = clf.round(clf.accuracyScore(yTrue, yPred))
-const recall = clf.round(clf.recallScore(yTrue, yPred))
-const precision = clf.round(clf.precisionScore(yTrue, yPred))
+const accuracy = clf.round(clf.accuracyScore(yTrue, yPred));
+const recall = clf.round(clf.recallScore(yTrue, yPred));
+const precision = clf.round(clf.precisionScore(yTrue, yPred));
 return {yPred,confusionmatrix,confusionData,labels,accuracy,recall,precision};
 }});
 
-define({id: "65d8c314", inputs: ["Plot","labels","confusionData"], outputs: ["confusionPlot"], body: (Plot,labels,confusionData) => {
+define({id: "ce3b5eac", inputs: ["Plot","labels","confusionData"], outputs: ["confusionPlot"], body: (Plot,labels,confusionData) => {
 const confusionPlot = Plot.plot({
   padding: 0,
   grid: true,
@@ -282,17 +283,17 @@ const confusionPlot = Plot.plot({
     axis: "top",
     label: "Predicted Label",
     domain: labels, // Ensure the x-axis includes all labels
-    tickFormat: d => d.toString()
+    tickFormat: (d) => d.toString(),
   },
   y: {
     label: "True Label",
     domain: labels, // Ensure the y-axis includes all labels
-    tickFormat: d => d.toString()
+    tickFormat: (d) => d.toString(),
   },
   color: {
     type: "linear",
     scheme: "Blues",
-    label: "Count"
+    label: "Count",
   },
   width: 200,
   height: 200,
@@ -303,40 +304,40 @@ const confusionPlot = Plot.plot({
       y: "true_label",
       fill: "count",
       inset: 0.5,
-      title: d => `True: ${d.true_label}, Predicted: ${d.predicted_label}, Count: ${d.count}`
+      title: (d) =>
+        `True: ${d.true_label}, Predicted: ${d.predicted_label}, Count: ${d.count}`,
     }),
     // Text labels showing counts
     Plot.text(confusionData, {
       x: "predicted_label",
       y: "true_label",
-      text: d => d.count.toString(),
-      fill: d => (d.count > 0 ? "black" : "gray"),
+      text: (d) => d.count.toString(),
+      fill: (d) => (d.count > 0 ? "black" : "gray"),
       textAnchor: "middle",
-      stroke: 'white',
+      stroke: "white",
       size: 10,
-      dy: 5
-    })
-  ]
+      dy: 5,
+    }),
+  ],
 });
-
 return {confusionPlot};
 }});
 
-define({id: "9369a6d4", inputs: ["clf","X","y","Plot"], outputs: ["proba","yScores","yTrue","computeROC","fpr","tpr","thresholds","computeAUC","auc","rocData","rocPlot"], body: (clf,X,y,Plot) => {
+define({id: "d26f71e5", inputs: ["clf","X","y","Plot"], outputs: ["proba","yScores","yTrue","computeROC","fpr","tpr","thresholds","computeAUC","auc","rocData","rocPlot"], body: (clf,X,y,Plot) => {
 // 1. Get probability estimates
 const proba = clf.predictProba(X);
 
 // 2. Extract probabilities for the positive class (assuming class '1')
-const yScores = proba.map(probs => probs[1]);
+const yScores = proba.map((probs) => probs[1]);
 
 // 3. Ensure yTrue is an array of numbers
-const yTrue = y.map(label => Number(label));
+const yTrue = y.map((label) => Number(label));
 
 // 4. Compute ROC curve
 function computeROC(yTrue, yScores, positiveClass = 1) {
   const data = yTrue.map((trueLabel, index) => ({
     trueLabel,
-    score: yScores[index]
+    score: yScores[index],
   }));
 
   data.sort((a, b) => b.score - a.score);
@@ -347,7 +348,7 @@ function computeROC(yTrue, yScores, positiveClass = 1) {
   const fpr = [];
   const thresholds = [];
 
-  const posCount = yTrue.filter(label => label === positiveClass).length;
+  const posCount = yTrue.filter((label) => label === positiveClass).length;
   const negCount = yTrue.length - posCount;
 
   for (let i = 0; i < data.length; i++) {
@@ -383,7 +384,7 @@ const auc = computeAUC(fpr, tpr);
 // 6. Prepare data for plotting
 const rocData = fpr.map((fprValue, index) => ({
   fpr: fprValue,
-  tpr: tpr[index]
+  tpr: tpr[index],
 }));
 
 // 7. Plot the ROC curve
@@ -391,27 +392,25 @@ const rocPlot = Plot.plot({
   width: 500,
   height: 500,
   x: {
-    label: 'False Positive Rate',
-    domain: [0, 1]
+    label: "False Positive Rate",
+    domain: [0, 1],
   },
   y: {
-    label: 'True Positive Rate',
-    domain: [0, 1]
+    label: "True Positive Rate",
+    domain: [0, 1],
   },
   marks: [
-    Plot.line(rocData, { x: 'fpr', y: 'tpr', stroke: 'steelblue' }),
-    Plot.ruleY([0, 1], { x: [0, 1], stroke: 'gray', strokeDasharray: '2,2' }),
+    Plot.line(rocData, { x: "fpr", y: "tpr", stroke: "steelblue" }),
+    Plot.ruleY([0, 1], { x: [0, 1], stroke: "gray", strokeDasharray: "2,2" }),
     Plot.text([{ x: 0.6, y: 0.1, text: `AUC = ${clf.round(auc)}` }], {
-      x: 'x',
-      y: 'y',
-      text: 'text',
-      fill: 'black',
-      fontSize: 14
-    })
-  ]
+      x: "x",
+      y: "y",
+      text: "text",
+      fill: "black",
+      fontSize: 14,
+    }),
+  ],
 });
-
-
 return {proba,yScores,yTrue,computeROC,fpr,tpr,thresholds,computeAUC,auc,rocData,rocPlot};
 }});
 
@@ -454,9 +453,9 @@ view(rocPlot);
   </ol>
   <div id="observablehq-search"><input type="search" placeholder="Search"></div>
   <div id="observablehq-search-results"></div>
-  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("./_observablehq/search.27e94681.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("./_observablehq/search.e38032ea.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
   <ol>
-    <li class="observablehq-link"><a href="./">Overview Dashboard</a></li>
+    <li class="observablehq-link"><a href="./example-dashboard">Overview Dashboard</a></li>
   </ol>
   <details open>
     <summary>Imaging</summary>
@@ -472,6 +471,7 @@ view(rocPlot);
   <details open class="observablehq-section-active">
     <summary>Primitive Assets</summary>
     <ol>
+    <li class="observablehq-link"><a href="./dpr-network">DPR Network Example</a></li>
     <li class="observablehq-link"><a href="./state-level-mapping">BRFSS State Level Mapping</a></li>
     <li class="observablehq-link"><a href="./exp-design-figures">Experimental Design Figures</a></li>
     <li class="observablehq-link"><a href="./live-table-data">Live Table</a></li>
@@ -564,34 +564,34 @@ view(rocPlot);
 <h1 id="in-browser-machine-learning-building-a-random-forest-classifier-in-java-script" tabindex="-1"><a class="observablehq-header-anchor" href="#in-browser-machine-learning-building-a-random-forest-classifier-in-java-script">In-Browser Machine Learning: Building a Random Forest Classifier in JavaScript</a></h1>
 <h2 id="training-and-visualization" tabindex="-1"><a class="observablehq-header-anchor" href="#training-and-visualization">Training and Visualization</a></h2>
 <p>Donut-hole Parameters:</p>
-<div class="observablehq observablehq--block"><!--:c0af19bd:--></div>
+<div class="observablehq observablehq--block"><!--:69e7ef83:--></div>
 <p>Random forest classifier parameters:</p>
-<div class="observablehq observablehq--block"><!--:f70bca2b:--></div>
-<div class="observablehq observablehq--block"><!--:8988d116:--></div>
+<div class="observablehq observablehq--block"><!--:57a46a03:--></div>
+<div class="observablehq observablehq--block"><!--:86c3548a:--></div>
 <p>Ok cool. Now let's project the decision boundary over the 'donut-data' to visualize our trained model.</p>
-<div class="observablehq observablehq--block"><!--:18667d62:--></div>
+<div class="observablehq observablehq--block"><!--:199071fe:--></div>
 <p>Here's the trained forest object.</p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:b2d26022:--></div>
+<div class="observablehq observablehq--block"><!--:1cf71d18:--></div>
 <p>Neat. Now, let's visualize it. Note that trees here are connected to the terminal node. I don't want to mess with that visual (for now), so just like, get over it or whatever and stare at my beatiful FOREST.</p>
-<div class="observablehq observablehq--block"><!--:59892206:--></div>
+<div class="observablehq observablehq--block"><!--:4871da4b:--></div>
 <p>Ok. Now let's make some predictions and check the performance.</p>
-<div class="observablehq observablehq--block"><!--:a049f78d:--></div>
-<div class="observablehq observablehq--block"><!--:65d8c314:--></div>
+<div class="observablehq observablehq--block"><!--:a923a856:--></div>
+<div class="observablehq observablehq--block"><!--:ce3b5eac:--></div>
 <p>Should we make an AUC chart? I guess.</p>
-<div class="observablehq observablehq--block"><!--:9369a6d4:--></div>
+<div class="observablehq observablehq--block"><!--:d26f71e5:--></div>
 <div class="grid grid-cols-2">
   <div>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:a2e9c13f:--></div>
 <p>The accuracy <observablehq-loading></observablehq-loading><!--:5879092f:-->, recall <observablehq-loading></observablehq-loading><!--:2ed6b4c1:-->, and precision <observablehq-loading></observablehq-loading><!--:68c2f9ee:-->.</p>
-  </div>
-  <div>
+</div>
+<div>
 <div class="observablehq observablehq--block"><!--:9e2dce0b:--></div>
  </div>
 </div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./intervention-design"><span>Intervention Design</span></a><a rel="next" href="./mass-balance-business-models"><span>Mass Balance Business Models</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-06T16:03:30">Dec 6, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-08T22:15:17">Dec 8, 2024</a>.</div>
 </footer>
 </div>
 </body>
