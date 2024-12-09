@@ -13,7 +13,7 @@ export default {
     // },
     {
       name: "Overview Dashboard",
-      path: "/example-dashboard",
+      path: "/index",
     },
 
     {

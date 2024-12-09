@@ -4,535 +4,722 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="generator" content="Observable Framework v1.13.0">
-<title>Executive Summary Dashboard | Measurement By Design</title>
+<title>Example dashboard | Measurement By Design</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight,alt,wide.db1cdf55.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
 <link rel="modulepreload" href="./_observablehq/client.f8e00754.js">
 <link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.95bfbf7e.js">
-<link rel="modulepreload" href="./_import/components/styles.5ae71931.js">
-<link rel="modulepreload" href="./_import/components/campaigndashboard.ebd7195e.js">
+<link rel="modulepreload" href="./_import/components/CampaignAnalyzer.f45bc31b.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.d397b6a8.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/e828d8c8.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
-<link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e95f898e.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/d44feff9.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/5830b12a.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/626bedc4.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/b22c5864.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e1ff060.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/5851d7ef.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/dcd02767.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/567840a0.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/cf9b720b.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/5dcd62f4.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/f8e03c56.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/5bc129e1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/19c92b44.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/8debb4ba.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/4b0cc581.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
 <script type="module">
 
 import {define} from "./_observablehq/client.f8e00754.js";
 
-define({id: "d19a1792", inputs: ["html"], outputs: ["defaultStyles","styleElement"], body: async (html) => {
-const {defaultStyles} = await import("./_import/components/styles.5ae71931.js");
-// import some CSS to keep things well styled
-const styleElement = html`<style>
-  ${defaultStyles}
-</style>`;
-document.head.appendChild(styleElement);
-return {defaultStyles,styleElement};
+define({id: "87c13df6", outputs: ["CampaignAnalyzer"], body: async () => {
+const {CampaignAnalyzer} = await import("./_import/components/CampaignAnalyzer.f45bc31b.js");
+// Import the CampaignAnalyzer class
+
+return {CampaignAnalyzer};
 }});
 
-define({id: "025a3dfa", outputs: ["CampaignDashboard","campaignData","dd"], body: async () => {
-const {CampaignDashboard} = await import("./_import/components/campaigndashboard.ebd7195e.js");
-const campaignData = [
-  {
-    id: 3,
-    version: "v3",
-    timeInMarket: "Sep 2023 - Present",
-    deprecated: false,
-    intervention: "ML-powered personalized engagement timing",
-    description: "All active users with 30+ days history",
-    behaviorLevers: [
-      "Optimal message timing",
-      "Personalized content",
-      "Context-aware notifications",
-    ],
-    fundamentalAssumptions: [
-      "Users respond better to personalized timing",
-      "Context awareness increases engagement",
-    ],
-    population: {
-      size: 300000,
-      description: "All active users with 30+ days history",
-    },
-    metrics: {
-      engagementRate: {
-        value: 55.1,
-        lift: 25.4,
-        pValue: 0.001,
-        ci: [52.3, 57.9],
-        stdDev: 2.8,
+define({id: "9d39b873", outputs: ["sampleData"], body: () => {
+// make some data
+const sampleData = {
+  campaigns: [
+    {
+      name: "Early Breast Cancer Detection",
+      intervention: "Mammography Screening",
+      populationDesc: "Women aged 40-65",
+      version: "1.0",
+      timeInMarket: "14 months",
+      populationSize: 120000,
+      costPerChange: 50.0,
+      totalImpact: "6.5M",
+      financialImpact: "5.2M",
+      pValue: 0.004,
+      timeSeriesData: Array.from({ length: 120 }, (_, i) => ({
+        month: new Date(2023, 0, i),
+        changeRate: 10 + Math.random() * 3,
+        engagement: 800 + Math.random() * 200,
+      })),
+      funnelData: {
+        totalBooked: 15000,
+        targeted: 12000,
+        connected: 9000,
+        enrolled: 7000,
+        engaged: 4500,
+        changedBehavior: 2000,
       },
-      engagedPopulation: {
-        value: 165300,
-        lift: 28.7,
-        pValue: 0.001,
-        ci: [160000, 170000],
-        stdDev: 5000,
+      impact: {
+        livesImproved: 2000,
+        costSavings: 800000,
+        qualityMetrics: 85,
       },
-      behavioralChange: {
-        value: 32.4,
-        lift: 25.4,
-        pValue: 0.001,
-        ci: [29.1, 35.7],
-        stdDev: 3.2,
-      },
-      costPerChange: {
-        value: 42.5,
-        lift: -15.2,
-        pValue: 0.002,
-        ci: [38.75, 46.25],
-        stdDev: 3.75,
-      },
-      clinicalImpact: {
-        value: 18.9,
-        lift: 18.9,
-        pValue: 0.002,
-        ci: [15.4, 22.4],
-        stdDev: 2.8,
-      },
-      financialImpact: {
-        value: 12000000,
-        lift: 35.2,
-        pValue: 0.001,
-        ci: [10500000, 13500000],
-        stdDev: 1500000,
-      },
-      totalImpact: {
-        value: 15000000,
-        lift: 40.5,
-        pValue: 0.001,
-        ci: [13000000, 17000000],
-        stdDev: 2000000,
-      },
-    },
-    priorVersions: [
-      {
-        version: "2.1",
-        timeInMarket: "Jun 2023 - Aug 2023",
-        changes: "Added basic personalization",
-        metrics: {
-          engagementRate: { value: 45.2 },
-          totalImpact: { value: 10000000 },
-          costPerChange: { value: 50.25 },
+      levers: ["Preventive screenings", "Mobile mammogram units"],
+      assumptions: [
+        "Early detection improves outcomes",
+        "Accessibility reduces disparities",
+      ],
+      metrics: [
+        {
+          name: "Conversion Rate",
+          value: "16.7%", // From totalBooked to changedBehavior
+          lift: "15.0%",
+          pValue: 0.004,
+          ci_lower: "14.0%",
+          ci_upper: "19.0%",
+          stdDev: "1.5%",
         },
-      },
-    ],
-  },
-  {
-    id: 4,
-    version: "v2",
-    timeInMarket: "Oct 2023 - Present",
-    deprecated: false,
-    intervention: "Gamified rewards for engagement",
-    description: "Users under age 40 with high digital engagement",
-    behaviorLevers: ["Frequent feedback loops", "Achievement badges"],
-    fundamentalAssumptions: [
-      "Gamification increases retention",
-      "Recognition motivates users",
-    ],
-    population: {
-      size: 250000,
-      description: "Users under age 40 with high digital engagement",
-    },
-    metrics: {
-      engagementRate: {
-        value: 63.4,
-        lift: 32.1,
-        pValue: 0.001,
-        ci: [60.0, 66.8],
-        stdDev: 3.1,
-      },
-      engagedPopulation: {
-        value: 158500,
-        lift: 30.2,
-        pValue: 0.001,
-        ci: [155000, 162000],
-        stdDev: 4000,
-      },
-      behavioralChange: {
-        value: 28.6,
-        lift: 22.5,
-        pValue: 0.001,
-        ci: [26.1, 31.1],
-        stdDev: 2.5,
-      },
-      costPerChange: {
-        value: 37.1,
-        lift: -12.3,
-        pValue: 0.003,
-        ci: [33.5, 40.7],
-        stdDev: 3.2,
-      },
-      financialImpact: {
-        value: 8500000,
-        lift: 28.0,
-        pValue: 0.001,
-        ci: [7500000, 9500000],
-        stdDev: 1000000,
-      },
-      totalImpact: {
-        value: 11000000,
-        lift: 31.5,
-        pValue: 0.001,
-        ci: [9500000, 12500000],
-        stdDev: 1500000,
-      },
-    },
-    priorVersions: [
-      {
-        version: "1.0",
-        timeInMarket: "Jul 2023 - Sep 2023",
-        changes: "Initial launch with basic reward tracking",
-        metrics: {
-          engagementRate: { value: 48.5 },
-          totalImpact: { value: 6500000 },
-          costPerChange: { value: 43.2 },
+        {
+          name: "Engagement Rate",
+          value: "30.0%", // From enrolled to engaged
+          lift: "18.0%",
+          pValue: 0.004,
+          ci_lower: "28.0%",
+          ci_upper: "32.0%",
+          stdDev: "1.2%",
         },
-      },
-    ],
-  },
-  {
-    id: 5,
-    version: "v3.2",
-    timeInMarket: "Nov 2023 - Present",
-    deprecated: false,
-    intervention: "AI-driven habit-forming nudges",
-    description: "Health-focused users with 7+ days of daily activity",
-    behaviorLevers: ["Small frequent prompts", "Goal reinforcement"],
-    fundamentalAssumptions: [
-      "Consistent nudges sustain habits",
-      "Goal setting aligns actions",
-    ],
-    population: {
-      size: 200000,
-      description: "Health-focused users with 7+ days of daily activity",
+      ],
     },
-    metrics: {
-      engagementRate: {
-        value: 58.7,
-        lift: 26.3,
-        pValue: 0.001,
-        ci: [55.4, 62.0],
-        stdDev: 3.3,
+    {
+      name: "Lung Cancer Screening Initiative",
+      intervention: "Low-Dose CT Scans",
+      populationDesc: "Smokers aged 50+",
+      version: "2.0",
+      timeInMarket: "18 months",
+      populationSize: 80000,
+      costPerChange: 75.0,
+      totalImpact: "7.8M",
+      financialImpact: "6.4M",
+      pValue: 0.002,
+      timeSeriesData: Array.from({ length: 120 }, (_, i) => ({
+        month: new Date(2023, 0, i),
+        changeRate: 8 + Math.random() * 4,
+        engagement: 600 + Math.random() * 300,
+      })),
+      funnelData: {
+        totalBooked: 10000,
+        targeted: 8500,
+        connected: 6500,
+        enrolled: 5000,
+        engaged: 3000,
+        changedBehavior: 1400,
       },
-      engagedPopulation: {
-        value: 117400,
-        lift: 27.8,
-        pValue: 0.001,
-        ci: [114000, 121000],
-        stdDev: 3500,
+      impact: {
+        livesImproved: 1500,
+        costSavings: 1200000,
+        qualityMetrics: 90,
       },
-      behavioralChange: {
-        value: 33.5,
-        lift: 29.1,
-        pValue: 0.001,
-        ci: [30.2, 36.8],
-        stdDev: 3.1,
-      },
-      costPerChange: {
-        value: 39.9,
-        lift: -10.5,
-        pValue: 0.003,
-        ci: [36.4, 43.4],
-        stdDev: 3.0,
-      },
-      clinicalImpact: {
-        value: 22.5,
-        lift: 21.2,
-        pValue: 0.002,
-        ci: [19.1, 25.9],
-        stdDev: 3.4,
-      },
-      financialImpact: {
-        value: 7800000,
-        lift: 31.0,
-        pValue: 0.001,
-        ci: [6700000, 8900000],
-        stdDev: 1200000,
-      },
-      totalImpact: {
-        value: 9500000,
-        lift: 33.8,
-        pValue: 0.001,
-        ci: [8200000, 10800000],
-        stdDev: 1300000,
-      },
-    },
-    priorVersions: [
-      {
-        version: "3.0",
-        timeInMarket: "Aug 2023 - Oct 2023",
-        changes: "Added reinforcement messaging",
-        metrics: {
-          engagementRate: { value: 50.6 },
-          totalImpact: { value: 5800000 },
-          costPerChange: { value: 45.7 },
+      levers: ["CT scans in rural areas", "Smoking cessation integration"],
+      assumptions: [
+        "Smoking history correlates with lung cancer risk",
+        "Accessibility improves compliance",
+      ],
+      metrics: [
+        {
+          name: "Conversion Rate",
+          value: "14.0%", // From totalBooked to changedBehavior
+          lift: "20.0%",
+          pValue: 0.002,
+          ci_lower: "12.0%",
+          ci_upper: "16.0%",
+          stdDev: "1.5%",
         },
-      },
-      {
-        version: "2.0",
-        timeInMarket: "May 2023 - Jul 2023",
-        changes: "Initial AI integration for habit formation",
-        metrics: {
-          engagementRate: { value: 42.1 },
-          totalImpact: { value: 4500000 },
-          costPerChange: { value: 48.95 },
+        {
+          name: "Engagement Rate",
+          value: "30.0%", // From enrolled to engaged
+          lift: "22.0%",
+          pValue: 0.002,
+          ci_lower: "28.0%",
+          ci_upper: "32.0%",
+          stdDev: "1.3%",
         },
-      },
-    ],
-  },
-  {
-    id: 6,
-    version: "v1.5",
-    timeInMarket: "Oct 2023 - Present",
-    deprecated: false,
-    intervention: "Social proof motivational messaging",
-    description: "New users in first 90 days",
-    behaviorLevers: [
-      "Peer comparisons",
-      "Success stories",
-      "Community milestones",
-    ],
-    fundamentalAssumptions: [
-      "Social comparison drives behavior change",
-      "Peer success stories increase motivation",
-    ],
-    population: {
-      size: 175000,
-      description: "New users in first 90 days",
+      ],
     },
-    metrics: {
-      engagementRate: {
-        value: 51.2,
-        lift: 22.8,
-        pValue: 0.001,
-        ci: [48.5, 53.9],
-        stdDev: 2.7,
+    {
+      name: "Cardiac Health Screening",
+      intervention: "Ultrasound and EKG",
+      populationDesc: "Adults aged 30-70 with hypertension",
+      version: "3.0",
+      timeInMarket: "12 months",
+      populationSize: 100000,
+      costPerChange: 65.0,
+      totalImpact: "8.0M",
+      financialImpact: "6.5M",
+      pValue: 0.003,
+      timeSeriesData: Array.from({ length: 120 }, (_, i) => ({
+        month: new Date(2023, 0, i),
+        changeRate: 9 + Math.random() * 5,
+        engagement: 700 + Math.random() * 250,
+      })),
+      funnelData: {
+        totalBooked: 12000,
+        targeted: 9500,
+        connected: 7000,
+        enrolled: 5500,
+        engaged: 3500,
+        changedBehavior: 1750,
       },
-      engagedPopulation: {
-        value: 89600,
-        lift: 24.1,
-        pValue: 0.001,
-        ci: [86000, 93200],
-        stdDev: 3600,
+      impact: {
+        livesImproved: 1750,
+        costSavings: 950000,
+        qualityMetrics: 88,
       },
-      behavioralChange: {
-        value: 28.9,
-        lift: 20.4,
-        pValue: 0.002,
-        ci: [26.1, 31.7],
-        stdDev: 2.8,
-      },
-      costPerChange: {
-        value: 44.75,
-        lift: -8.2,
-        pValue: 0.004,
-        ci: [41.2, 48.3],
-        stdDev: 3.5,
-      },
-      financialImpact: {
-        value: 6200000,
-        lift: 25.5,
-        pValue: 0.001,
-        ci: [5400000, 7000000],
-        stdDev: 800000,
-      },
-      totalImpact: {
-        value: 7800000,
-        lift: 27.2,
-        pValue: 0.001,
-        ci: [6800000, 8800000],
-        stdDev: 1000000,
-      },
-    },
-    priorVersions: [
-      {
-        version: "1.0",
-        timeInMarket: "Jul 2023 - Sep 2023",
-        changes: "Initial social proof implementation",
-        metrics: {
-          engagementRate: { value: 41.8 },
-          totalImpact: { value: 4900000 },
-          costPerChange: { value: 48.75 },
+      levers: [
+        "Heart health awareness campaigns",
+        "Onsite screenings at clinics",
+      ],
+      assumptions: [
+        "Hypertension is a leading cardiac risk factor",
+        "Early detection reduces mortality",
+      ],
+      metrics: [
+        {
+          name: "Conversion Rate",
+          value: "14.6%", // From totalBooked to changedBehavior
+          lift: "18.0%",
+          pValue: 0.003,
+          ci_lower: "12.0%",
+          ci_upper: "17.0%",
+          stdDev: "1.8%",
         },
-      },
-    ],
-  },
-  {
-    id: 7,
-    version: "v2.3",
-    timeInMarket: "Nov 2023 - Present",
-    deprecated: false,
-    intervention: "Micro-goals progression system",
-    description: "Users with moderate to high health risk scores",
-    behaviorLevers: [
-      "Milestone tracking",
-      "Progressive challenges",
-      "Achievement unlocks",
-    ],
-    fundamentalAssumptions: [
-      "Small wins build momentum",
-      "Progressive difficulty maintains engagement",
-    ],
-    population: {
-      size: 225000,
-      description: "Users with moderate to high health risk scores",
-    },
-    metrics: {
-      engagementRate: {
-        value: 59.8,
-        lift: 28.5,
-        pValue: 0.001,
-        ci: [56.9, 62.7],
-        stdDev: 2.9,
-      },
-      engagedPopulation: {
-        value: 134550,
-        lift: 29.8,
-        pValue: 0.001,
-        ci: [130000, 139000],
-        stdDev: 4500,
-      },
-      behavioralChange: {
-        value: 35.2,
-        lift: 27.3,
-        pValue: 0.001,
-        ci: [32.4, 38.0],
-        stdDev: 2.8,
-      },
-      costPerChange: {
-        value: 38.2,
-        lift: -13.6,
-        pValue: 0.002,
-        ci: [35.1, 41.3],
-        stdDev: 3.1,
-      },
-      clinicalImpact: {
-        value: 21.3,
-        lift: 19.8,
-        pValue: 0.002,
-        ci: [18.6, 24.0],
-        stdDev: 2.7,
-      },
-      financialImpact: {
-        value: 8900000,
-        lift: 32.8,
-        pValue: 0.001,
-        ci: [7800000, 10000000],
-        stdDev: 1100000,
-      },
-      totalImpact: {
-        value: 11200000,
-        lift: 34.5,
-        pValue: 0.001,
-        ci: [9800000, 12600000],
-        stdDev: 1400000,
-      },
-    },
-    priorVersions: [
-      {
-        version: "2.2",
-        timeInMarket: "Aug 2023 - Oct 2023",
-        changes: "Enhanced progression algorithm",
-        metrics: {
-          engagementRate: { value: 52.4 },
-          totalImpact: { value: 6700000 },
-          costPerChange: { value: 44.2 },
+        {
+          name: "Engagement Rate",
+          value: "31.8%", // From enrolled to engaged
+          lift: "21.0%",
+          pValue: 0.003,
+          ci_lower: "30.0%",
+          ci_upper: "33.0%",
+          stdDev: "1.5%",
         },
-      },
-    ],
-  },
-  {
-    id: 8,
-    version: "v1.8",
-    timeInMarket: "Sep 2023 - Present",
-    deprecated: false,
-    intervention: "Behavioral economics choice architecture",
-    description: "High-cost medical condition population",
-    behaviorLevers: [
-      "Default option optimization",
-      "Choice framing",
-      "Decision simplification",
-    ],
-    fundamentalAssumptions: [
-      "Choice architecture influences decisions",
-      "Simplified decisions improve follow-through",
-    ],
-    population: {
-      size: 150000,
-      description: "High-cost medical condition population",
+      ],
     },
-    metrics: {
-      engagementRate: {
-        value: 54.5,
-        lift: 23.9,
-        pValue: 0.001,
-        ci: [51.8, 57.2],
-        stdDev: 2.7,
+    {
+      name: "Diabetes Management A",
+      intervention: "Personalized Coaching",
+      populationDesc: "Type 2 Diabetes Patients",
+      version: "2.1",
+      timeInMarket: "8 months",
+      populationSize: 300000,
+      costPerChange: 42.5,
+      totalImpact: "15.0M",
+      financialImpact: "12.0M",
+      pValue: 0.001,
+      timeSeriesData: Array.from({ length: 120 }, (_, i) => ({
+        month: new Date(2023, 0, i),
+        changeRate: 15 + Math.random() * 10,
+        engagement: 1000 + Math.random() * 500,
+      })),
+      funnelData: {
+        totalBooked: 10000,
+        targeted: 8000,
+        connected: 6000,
+        enrolled: 4500,
+        engaged: 2500,
+        changedBehavior: 1200,
       },
-      engagedPopulation: {
-        value: 81750,
-        lift: 25.2,
-        pValue: 0.001,
-        ci: [78000, 85500],
-        stdDev: 3750,
+      impact: {
+        livesImproved: 1200,
+        costSavings: 2500000,
+        qualityMetrics: 85,
       },
-      behavioralChange: {
-        value: 31.8,
-        lift: 24.7,
-        pValue: 0.001,
-        ci: [29.0, 34.6],
-        stdDev: 2.8,
-      },
-      costPerChange: {
-        value: 41.3,
-        lift: -11.2,
-        pValue: 0.003,
-        ci: [38.2, 44.4],
-        stdDev: 3.1,
-      },
-      clinicalImpact: {
-        value: 19.7,
-        lift: 17.5,
-        pValue: 0.002,
-        ci: [17.1, 22.3],
-        stdDev: 2.6,
-      },
-      financialImpact: {
-        value: 7100000,
-        lift: 29.1,
-        pValue: 0.001,
-        ci: [6200000, 8000000],
-        stdDev: 900000,
-      },
-      totalImpact: {
-        value: 8900000,
-        lift: 31.2,
-        pValue: 0.001,
-        ci: [7700000, 10100000],
-        stdDev: 1200000,
-      },
-    },
-    priorVersions: [
-      {
-        version: "1.7",
-        timeInMarket: "Jun 2023 - Aug 2023",
-        changes: "Refined choice architecture",
-        metrics: {
-          engagementRate: { value: 47.2 },
-          totalImpact: { value: 5500000 },
-          costPerChange: { value: 46.5 },
+      levers: [
+        "Optimal message timing",
+        "Personalized content",
+        "Context-aware notifications",
+      ],
+      assumptions: [
+        "Users respond better to personalized timing",
+        "Context awareness increases engagement",
+      ],
+      metrics: [
+        {
+          name: "Conversion Rate",
+          value: "12.0%",
+          lift: "15.0%",
+          pValue: 0.001,
+          ci_lower: "10.0%",
+          ci_upper: "14.0%",
+          stdDev: "1.5%",
         },
+        {
+          name: "Engagement Rate",
+          value: "27.8%",
+          lift: "18.0%",
+          pValue: 0.001,
+          ci_lower: "26.0%",
+          ci_upper: "29.0%",
+          stdDev: "1.2%",
+        },
+      ],
+    },
+    {
+      name: "Hypertension Management",
+      intervention: "Remote Monitoring",
+      populationDesc: "Hypertensive Adults",
+      version: "1.8",
+      timeInMarket: "12 months",
+      populationSize: 250000,
+      costPerChange: 38.2,
+      totalImpact: "12.5M",
+      financialImpact: "10.0M",
+      pValue: 0.002,
+      timeSeriesData: Array.from({ length: 120 }, (_, i) => ({
+        month: new Date(2023, 0, i),
+        changeRate: 12 + Math.random() * 8,
+        engagement: 800 + Math.random() * 400,
+      })),
+      funnelData: {
+        totalBooked: 8000,
+        targeted: 6400,
+        connected: 4800,
+        enrolled: 3600,
+        engaged: 2000,
+        changedBehavior: 1000,
       },
-    ],
-  },
+      impact: {
+        livesImproved: 1000,
+        costSavings: 2000000,
+        qualityMetrics: 80,
+      },
+      levers: [
+        "Remote monitoring alerts",
+        "Daily check-ins",
+        "Medication reminders",
+      ],
+      assumptions: [
+        "Regular monitoring improves adherence",
+        "Timely alerts prevent complications",
+      ],
+      metrics: [
+        {
+          name: "Conversion Rate",
+          value: "12.5%",
+          lift: "16.0%",
+          pValue: 0.002,
+          ci_lower: "10.5%",
+          ci_upper: "14.5%",
+          stdDev: "1.5%",
+        },
+        {
+          name: "Engagement Rate",
+          value: "27.8%",
+          lift: "20.0%",
+          pValue: 0.002,
+          ci_lower: "26.0%",
+          ci_upper: "29.0%",
+          stdDev: "1.4%",
+        },
+      ],
+    },
+    {
+      name: "Heart Health Initiative",
+      intervention: "Dietary Counseling",
+      populationDesc: "Cardiac Patients",
+      version: "3.0",
+      timeInMarket: "10 months",
+      populationSize: 200000,
+      costPerChange: 35.0,
+      totalImpact: "10.0M",
+      financialImpact: "8.0M",
+      pValue: 0.003,
+      timeSeriesData: Array.from({ length: 120 }, (_, i) => ({
+        month: new Date(2023, 0, i),
+        changeRate: 10 + Math.random() * 5,
+        engagement: 700 + Math.random() * 300,
+      })),
+      funnelData: {
+        totalBooked: 6000,
+        targeted: 4800,
+        connected: 3600,
+        enrolled: 2700,
+        engaged: 1500,
+        changedBehavior: 700,
+      },
+      impact: {
+        livesImproved: 700,
+        costSavings: 1500000,
+        qualityMetrics: 82,
+      },
+      levers: ["Nutritional plans", "Calorie tracking", "Meal prep coaching"],
+      assumptions: [
+        "Meal tracking improves compliance",
+        "Counseling encourages sustainable habits",
+      ],
+      metrics: [
+        {
+          name: "Conversion Rate",
+          value: "11.7%",
+          lift: "17.0%",
+          pValue: 0.003,
+          ci_lower: "10.0%",
+          ci_upper: "13.0%",
+          stdDev: "1.4%",
+        },
+        {
+          name: "Engagement Rate",
+          value: "25.9%",
+          lift: "16.0%",
+          pValue: 0.003,
+          ci_lower: "24.0%",
+          ci_upper: "27.0%",
+          stdDev: "1.3%",
+        },
+      ],
+    },
+    {
+      name: "Smoking Cessation Support",
+      intervention: "Smoking Cessation Coaching",
+      populationDesc: "Chronic Smokers",
+      version: "1.5",
+      timeInMarket: "9 months",
+      populationSize: 180000,
+      costPerChange: 30.2,
+      totalImpact: "8.5M",
+      financialImpact: "7.0M",
+      pValue: 0.004,
+      timeSeriesData: Array.from({ length: 120 }, (_, i) => ({
+        month: new Date(2023, 0, i),
+        changeRate: 8 + Math.random() * 4,
+        engagement: 600 + Math.random() * 200,
+      })),
+      funnelData: {
+        totalBooked: 5000,
+        targeted: 4000,
+        connected: 3000,
+        enrolled: 2250,
+        engaged: 1250,
+        changedBehavior: 600,
+      },
+      impact: {
+        livesImproved: 600,
+        costSavings: 1300000,
+        qualityMetrics: 78,
+      },
+      levers: ["Nicotine patches", "Behavioral counseling", "Peer groups"],
+      assumptions: [
+        "Support groups improve adherence",
+        "Behavioral counseling aids habit change",
+      ],
+      metrics: [
+        {
+          name: "Conversion Rate",
+          value: "12.0%",
+          lift: "18.0%",
+          pValue: 0.004,
+          ci_lower: "10.0%",
+          ci_upper: "14.0%",
+          stdDev: "1.5%",
+        },
+        {
+          name: "Engagement Rate",
+          value: "26.7%",
+          lift: "15.0%",
+          pValue: 0.004,
+          ci_lower: "25.0%",
+          ci_upper: "28.0%",
+          stdDev: "1.2%",
+        },
+      ],
+    },
+  ],
+};
+return {sampleData};
+}});
+
+define({id: "fa14dfbf", inputs: ["CampaignAnalyzer","sampleData"], outputs: ["analyzer","tableData"], body: (CampaignAnalyzer,sampleData) => {
+// Initialize the analyzer with sample data
+const analyzer = new CampaignAnalyzer(sampleData);
+
+// Get formatted table data
+const tableData = analyzer.formatCampaignData();
+return {analyzer,tableData};
+}});
+
+define({id: "0a0965bc", inputs: ["analyzer","selection"], outputs: ["selectedTimeSeriesData","selectedMetrics","metricTables","funData","steps","processedData","barData"], body: (analyzer,selection) => {
+// Transform data using the analyzer
+const selectedTimeSeriesData = analyzer.transformTimeSeriesData(selection);
+const selectedMetrics = analyzer.transformMetrics(selection);
+const metricTables = analyzer.createMetricTables(selectedMetrics);
+const funData = analyzer.getFunnelData(selection);
+const steps = [
+  "totalBooked",
+  "targeted",
+  "connected",
+  "enrolled",
+  "engaged",
+  "changedBehavior",
 ];
-const dd = CampaignDashboard(campaignData);
-return {CampaignDashboard,campaignData,dd};
+const processedData = analyzer.processFunnelData(funData, steps);
+const barData = analyzer.createBarChartData(selection);
+return {selectedTimeSeriesData,selectedMetrics,metricTables,funData,steps,processedData,barData};
 }});
 
-define({id: "a1a0d9b5", inputs: ["view","dd"], body: (view,dd) => {
-view(dd);
+define({id: "ed31f986", inputs: ["view","Inputs","tableData"], outputs: ["selection"], body: (view,Inputs,tableData) => {
+const selection = view(
+  Inputs.table(tableData, {
+    columns: [
+      "intervention",
+      "populationDesc",
+      "version",
+      "timeInMarket",
+      "populationSize",
+      "costPerChange",
+      "totalImpact",
+      "financialImpact",
+    ],
+    header: {
+      intervention: "Intervention",
+      populationDesc: "Description",
+      version: "Vs",
+      timeInMarket: "Runtime ",
+      populationSize: "Population",
+      costPerChange: "$/BC",
+      totalImpact: "Impact @ Scale",
+      financialImpact: "Impact @ Pilot",
+    },
+    layout: "auto",
+  })
+);
+return {selection};
+}});
+
+define({id: "c28afed8", inputs: ["view","Plot","steps","processedData"], body: (view,Plot,steps,processedData) => {
+view(
+  Plot.plot({
+    height: 200,
+    grid: true,
+    x: { label: "Stage", domain: steps },
+    y: { label: "Population" },
+    color: { legend: true },
+    marks: [
+      Plot.line(
+        processedData.flatMap((d) => d.absoluteData),
+        { x: "step", y: "value", stroke: "intervention", strokeWidth: 0.5 }
+      ),
+      Plot.dot(
+        processedData.flatMap((d) => d.absoluteData),
+        {
+          x: "step",
+          y: "value",
+          fill: "intervention",
+          r: 1,
+          channels: {
+            Intervention: "intervention",
+            Step: "step",
+            Population: "value",
+          },
+          tip: {
+            format: {
+              Intervention: true,
+              Step: true,
+              Population: true,
+              x: false,
+              y: false,
+              fill: false,
+            },
+          },
+        }
+      ),
+    ],
+  })
+);
+}});
+
+define({id: "00ddbeff", inputs: ["view","Plot","steps","processedData"], body: (view,Plot,steps,processedData) => {
+view(
+  Plot.plot({
+    height: 200,
+    grid: true,
+    x: { label: "Stage", domain: steps },
+    y: { label: "Percentage", domain: [0, 100] },
+    color: { legend: true },
+    marks: [
+      Plot.line(
+        processedData.flatMap((d) => d.percentageData),
+        { x: "step", y: "value", stroke: "intervention", strokeWidth: 0.5 }
+      ),
+      Plot.dot(
+        processedData.flatMap((d) => d.percentageData),
+        { x: "step", y: "value", fill: "intervention", r: 1 }
+      ),
+    ],
+  })
+);
+}});
+
+define({id: "5e830e41", inputs: ["view","Plot","selectedTimeSeriesData"], body: (view,Plot,selectedTimeSeriesData) => {
+view(
+  Plot.plot({
+    marginRight: 60,
+    height: 200,
+    grid: true,
+    x: {
+      type: "time",
+      label: "Month",
+    },
+    y: {
+      label: "Change Rate (%)",
+      grid: true,
+    },
+    marks: [
+      Plot.line(selectedTimeSeriesData, {
+        x: "month",
+        y: "changeRate",
+        stroke: "intervention",
+        strokeWidth: 0.5,
+      }),
+      Plot.dot(selectedTimeSeriesData, {
+        x: "month",
+        y: "changeRate",
+        fill: "intervention",
+        r: 1,
+        channels: {
+          intervention: "intervention",
+          Month: (d) => d.month.toLocaleDateString(),
+          "Change Rate": (d) => `${d.changeRate.toFixed(2)}%`,
+        },
+        tip: {
+          format: {
+            x: false,
+            y: false,
+            fill: false,
+          },
+        },
+      }),
+    ],
+  })
+);
+}});
+
+define({id: "64cce50a", inputs: ["view","Plot","barData"], body: (view,Plot,barData) => {
+view(
+  Plot.plot({
+    marginRight: 0,
+    marginLeft: 150,
+    grid: true,
+    inset: 10,
+    x: {
+      label: "Value per Behavior Change ($)",
+    },
+    y: {
+      label: "",
+    },
+    marks: [
+      Plot.ruleX([0]),
+      Plot.barX(barData, {
+        x: "costPerChange",
+        y: "intervention",
+        sort: { y: "x", reverse: true },
+      }),
+    ],
+  })
+);
+}});
+
+define({id: "da380cea", inputs: ["view","Inputs","metricTables"], body: (view,Inputs,metricTables) => {
+view(
+  Inputs.table(
+    metricTables.filter((d) => d.metricName === "Engagement Rate")[0]
+      .metricData,
+    {
+      columns: [
+        "intervention",
+        "value",
+        "lift",
+        "pValue",
+        "ci_lower",
+        "ci_upper",
+        "stdDev",
+      ],
+      header: {
+        intervention: "Intervention",
+        value: "Rate",
+        lift: "Lift",
+        pValue: "P",
+        ci_lower: "CI (l)",
+        ci_upper: "CI (u)",
+        stdDev: "σ",
+      },
+      layout: "auto",
+    }
+  )
+);
+}});
+
+define({id: "5cea6cea", inputs: ["view","Inputs","metricTables"], body: (view,Inputs,metricTables) => {
+view(
+  Inputs.table(
+    metricTables.filter((d) => d.metricName === "Conversion Rate")[0]
+      .metricData,
+    {
+      columns: [
+        "intervention",
+        "value",
+        "lift",
+        "pValue",
+        "ci_lower",
+        "ci_upper",
+        "stdDev",
+      ],
+      header: {
+        intervention: "Intervention",
+        value: "Engaged",
+        lift: "Lift",
+        pValue: "P",
+        ci_lower: "CI (l)",
+        ci_upper: "CI (u)",
+        stdDev: "σ",
+      },
+      layout: "auto",
+    }
+  )
+);
 }});
 
 </script>
@@ -547,9 +734,9 @@ view(dd);
   </ol>
   <div id="observablehq-search"><input type="search" placeholder="Search"></div>
   <div id="observablehq-search-results"></div>
-  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("./_observablehq/search.e38032ea.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("./_observablehq/search.8a05dc6f.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
   <ol>
-    <li class="observablehq-link"><a href="./example-dashboard">Overview Dashboard</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Overview Dashboard</a></li>
   </ol>
   <details open>
     <summary>Imaging</summary>
@@ -582,29 +769,58 @@ view(dd);
 </nav>
 <script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
-<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
-<nav>
-<div>Contents</div>
-<ol>
-<li class="observablehq-secondary-link"><a href="#purpose">Purpose</a></li>
-<li class="observablehq-secondary-link"><a href="#executive-summary-dashboard">Executive Summary Dashboard</a></li>
-</ol>
-</nav>
-</aside>
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:d19a1792:--></div>
-<h1 id="measurement-by-design" tabindex="-1"><a class="observablehq-header-anchor" href="#measurement-by-design">Measurement by design</a></h1>
-<p>Of the subset of things that providers, payers, and people <em>should</em> do to help their members and patients and selves, one can only afford to do a smaller subset... <em>always</em>. In order to make this bet, you need to understand how to go from an idea to an intervention design to a business case estimate of the incremental clinical and financial impact to marketing material that will drive behavior change to understanding the degree to which that intervention <em>credibly</em> moves the needle on cost and health.</p>
-<h2 id="purpose" tabindex="-1"><a class="observablehq-header-anchor" href="#purpose">Purpose</a></h2>
-<p>The purpose of this demo is to clearly articulate and provide an example of how to create, size, sell, optimize, and understand the impact of an intervention on your book.</p>
-<p>Let's start with the executive summary.</p>
-<h2 id="executive-summary-dashboard" tabindex="-1"><a class="observablehq-header-anchor" href="#executive-summary-dashboard">Executive Summary Dashboard</a></h2>
-<div class="observablehq observablehq--block"><!--:025a3dfa:--></div>
-<div class="observablehq observablehq--block"><!--:a1a0d9b5:--></div>
+<div class="observablehq observablehq--block"><!--:87c13df6:--></div>
+<div class="observablehq observablehq--block"><!--:9d39b873:--></div>
+<div class="observablehq observablehq--block"><!--:fa14dfbf:--></div>
+<div class="observablehq observablehq--block"><!--:0a0965bc:--></div>
+<h1 id="campaign-performance-dashboard" tabindex="-1"><a class="observablehq-header-anchor" href="#campaign-performance-dashboard">Campaign Performance Dashboard</a></h1>
+<div class="card">
+<div class="observablehq observablehq--block"><!--:ed31f986:--></div>
+</div>
+<h2 id="funnel-analysis" tabindex="-1"><a class="observablehq-header-anchor" href="#funnel-analysis">Funnel Analysis</a></h2>
+<div class="grid grid-cols-2">
+<div class="card">
+<div class="observablehq observablehq--block"><!--:c28afed8:--></div>
+</div>
+<div class="card">
+<div class="observablehq observablehq--block"><!--:00ddbeff:--></div>
+</div>
+</div>
+<h2 id="performance-metrics" tabindex="-1"><a class="observablehq-header-anchor" href="#performance-metrics">Performance Metrics</a></h2>
+<div class="grid grid-cols-2">
+<div class="card">
+<figure>
+<figcaption>Observed Behavior Change Rate Over Time</figcaption>
+<div class="observablehq observablehq--block"><!--:5e830e41:--></div>
+</figure>
+</div>
+<div class="card">
+<figure>
+<figcaption>Value per Behavior Change by Campaign</figcaption>
+<div class="observablehq observablehq--block"><!--:64cce50a:--></div>
+</figure>
+</div>
+</div>
+<h2 id="engagement-stats" tabindex="-1"><a class="observablehq-header-anchor" href="#engagement-stats">Engagement Stats</a></h2>
+<div class="grid grid-cols-2">
+<div class="card">
+<figure>
+<figcaption>Engagement Rate Stats</figcaption>
+<div class="observablehq observablehq--block"><!--:da380cea:--></div>
+</figure>
+</div>
+<div class="card">
+<figure>
+<figcaption>Engaged Population Stats</figcaption>
+<div class="observablehq observablehq--block"><!--:5cea6cea:--></div>
+</figure>
+</div>
+</div>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="next" href="./example-dashboard"><span>Overview Dashboard</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-08T22:15:17">Dec 8, 2024</a>.</div>
+<nav><a rel="next" href="./problem"><span>Problem Definition</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-08T22:18:08">Dec 8, 2024</a>.</div>
 </footer>
 </div>
 </body>
