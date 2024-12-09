@@ -1,8 +1,7 @@
 ---
-
-toc: true  
-title: Home-grown In-Browser ML -- Building a Random Forest Classifier in JavaScript  
-sidebar: true  
+toc: true
+title: Home-grown In-Browser ML -- Building a Random Forest Classifier in JavaScript
+sidebar: true
 ---
 
 <style>
@@ -80,79 +79,78 @@ import { generateDonutHoleData } from "./components/DonutData.js";
 
 # In-Browser Machine Learning: Building a Random Forest Classifier in JavaScript
 
-
 ## Training and Visualization
 
 Donut-hole Parameters:
+
 ```js
 // Donut hole data generation parameters as range inputs in a form with adjusted labels
 const donutParamsForm = Inputs.form({
   nOuter: Inputs.range([5, 200], {
     value: 20,
     step: 10,
-    label: html`<b>nOuter</b>`
+    label: html`<b>nOuter</b>`,
   }),
   nInner: Inputs.range([5, 100], {
     value: 20,
     step: 5,
-    label: html`<b>nInner</b>`
+    label: html`<b>nInner</b>`,
   }),
   innerRadius: Inputs.range([1, 5], {
     value: 2,
     step: 0.5,
-    label: html`<b>innerRadius</b>`
+    label: html`<b>innerRadius</b>`,
   }),
   outerRadius: Inputs.range([2, 10], {
     value: 5,
     step: 0.5,
-    label: html`<b>outerRadius</b>`
-  })
+    label: html`<b>outerRadius</b>`,
+  }),
 });
 
-view(donutParamsForm)
-const donutParamsForm_Selections = Generators.input(donutParamsForm)
+view(donutParamsForm);
+const donutParamsForm_Selections = Generators.input(donutParamsForm);
 ```
 
 Random forest classifier parameters:
+
 ```js
 // RandomForestClassifier parameters as range inputs in a form with adjusted labels
 const rfParamsForm = Inputs.form({
   nEstimators: Inputs.range([1, 200], {
     value: 5,
     step: 1,
-    label: html`<b>nEstimators</b>`
+    label: html`<b>nEstimators</b>`,
   }),
   maxDepth: Inputs.range([1, 10], {
     value: 4,
     step: 1,
-    label: html`<b>maxDepth</b>`
+    label: html`<b>maxDepth</b>`,
   }),
   minSize: Inputs.range([1, 10], {
     value: 2,
     step: 1,
-    label: html`<b>minSize</b>`
+    label: html`<b>minSize</b>`,
   }),
   sampleSize: Inputs.range([0.1, 1.0], {
     value: 0.8,
     step: 0.1,
-    label: html`<b>sampleSize</b>`
+    label: html`<b>sampleSize</b>`,
   }),
   maxFeatures: Inputs.range([1, 10], {
     value: 3,
     step: 1,
-    label: html`<b>maxFeatures</b>`
+    label: html`<b>maxFeatures</b>`,
   }),
   decimalPrecision: Inputs.range([1, 5], {
     value: 2,
     step: 1,
-    label: html`<b>decimalPrecision</b>`
-  })
+    label: html`<b>decimalPrecision</b>`,
+  }),
 });
-view(rfParamsForm)
-const rfParamsForm_Selections = Generators.input(rfParamsForm)
+view(rfParamsForm);
+const rfParamsForm_Selections = Generators.input(rfParamsForm);
 ```
-
-
 
 ```js
 // Generate data using the inputs
@@ -170,52 +168,54 @@ const clf = new RandomForestClassifier({
   minSize: rfParamsForm_Selections.minSize,
   sampleSize: rfParamsForm_Selections.sampleSize,
   maxFeatures: rfParamsForm_Selections.maxFeatures,
-  decimalPrecision: rfParamsForm_Selections.decimalPrecision
+  decimalPrecision: rfParamsForm_Selections.decimalPrecision,
 });
 
 // fit the classifier
-clf.fit(X,y)
+clf.fit(X, y);
 
 // let's transform said donut data to a conveniently structured form, because js is awesome like that.
 const scatterData = X.map((d, i) => ({
-    x: d[0],
-    y: d[1],
-    truth: y[i]
+  x: d[0],
+  y: d[1],
+  truth: y[i],
 }));
 
 // let's visualize the decision boundary
-const { grid2D, values2D } = clf.generateClassificationDomain(scatterData, 0.15);
+const { grid2D, values2D } = clf.generateClassificationDomain(
+  scatterData,
+  0.15
+);
 
-// let's turn this data into a convenient raster object. 
+// let's turn this data into a convenient raster object.
 const rasterData = [];
 for (let i = 0; i < grid2D.length; i++) {
-    for (let j = 0; j < grid2D[i].length; j++) {
-        rasterData.push({
-            x: grid2D[i][j][0],
-            y: grid2D[i][j][1],
-            fill: values2D[i][j]
-        });
-    }
+  for (let j = 0; j < grid2D[i].length; j++) {
+    rasterData.push({
+      x: grid2D[i][j][0],
+      y: grid2D[i][j][1],
+      fill: values2D[i][j],
+    });
+  }
 }
 
 const treePaths = clf.convertForestToPaths();
-const forestHierarch = clf.convertForestToHierarchy()
+const forestHierarch = clf.convertForestToHierarchy();
 ```
 
-
-Ok cool. Now let's project the decision boundary over the 'donut-data' to visualize our trained model. 
+Ok cool. Now let's project the decision boundary over the 'donut-data' to visualize our trained model.
 
 ```js
 // Prepare the raster data for plotting
 const rasterData = [];
 for (let i = 0; i < grid2D.length; i++) {
-    for (let j = 0; j < grid2D[i].length; j++) {
-        rasterData.push({
-            x: grid2D[i][j][0], // X coordinate
-            y: grid2D[i][j][1], // Y coordinate
-            fill: values2D[i][j] // Predicted class (0 or 1)
-        });
-    }
+  for (let j = 0; j < grid2D[i].length; j++) {
+    rasterData.push({
+      x: grid2D[i][j][0], // X coordinate
+      y: grid2D[i][j][1], // Y coordinate
+      fill: values2D[i][j], // Predicted class (0 or 1)
+    });
+  }
 }
 
 const rasterPlot = Plot.plot({
@@ -224,7 +224,7 @@ const rasterPlot = Plot.plot({
     legend: true,
     label: "Predicted Class",
     // domain: [0, 1],  // Domain to define class 0 and class 1
-    range: ["lightblue", "lightcoral"]  // Color range for classes
+    range: ["lightblue", "lightcoral"], // Color range for classes
   },
   width: 900,
   height: 480,
@@ -234,28 +234,29 @@ const rasterPlot = Plot.plot({
       x: "x",
       y: "y",
       fill: "fill",
-      interpolate: "random-walk"  // Optional interpolation for smoother transition between classes
+      interpolate: "random-walk", // Optional interpolation for smoother transition between classes
     }),
     // Scatter plot to show the actual points with ground truth labels
     Plot.dot(scatterData, {
       x: "x",
       y: "y",
-      fill: d => d.truth === 0 ? "blue" : "red",
+      fill: (d) => (d.truth === 0 ? "blue" : "red"),
       stroke: "black",
-      r: 4 // Larger radius for original data points
-    })
-  ]
+      r: 4, // Larger radius for original data points
+    }),
+  ],
 });
 
 view(rasterPlot);
 ```
 
-Here's the trained forest object. 
+Here's the trained forest object.
+
 ```js
-view(forestHierarch)
+view(forestHierarch);
 ```
 
-Neat. Now, let's visualize it. Note that trees here are connected to the terminal node. I don't want to mess with that visual (for now), so just like, get over it or whatever and stare at my beatiful FOREST. 
+Neat. Now, let's visualize it. Note that trees here are connected to the terminal node. I don't want to mess with that visual (for now), so just like, get over it or whatever and stare at my beatiful FOREST.
 
 ```js
 // Visualize using Observable Plot
@@ -266,18 +267,16 @@ const forestplot = Plot.plot({
   marginRight: 160,
   width: 900,
   height: 600,
-  marks: [
-   Plot.cluster(treePaths, {textStroke: "white"})
-  ]
+  marks: [Plot.cluster(treePaths, { textStroke: "white" })],
 });
-view(forestplot)
+view(forestplot);
 ```
 
-Ok. Now let's make some predictions and check the performance. 
+Ok. Now let's make some predictions and check the performance.
 
 ```js
-const yPred = clf.predict(X)
-const confusionmatrix = clf.confusionMatrix(y, yPred)
+const yPred = clf.predict(X);
+const confusionmatrix = clf.confusionMatrix(y, yPred);
 const confusionData = [];
 const labels = confusionmatrix.labels;
 
@@ -286,16 +285,15 @@ for (let i = 0; i < labels.length; i++) {
     confusionData.push({
       true_label: labels[i],
       predicted_label: labels[j],
-      count: confusionmatrix.matrix[i][j]
+      count: confusionmatrix.matrix[i][j],
     });
   }
 }
 
-const accuracy = clf.round(clf.accuracyScore(yTrue, yPred))
-const recall = clf.round(clf.recallScore(yTrue, yPred))
-const precision = clf.round(clf.precisionScore(yTrue, yPred))
+const accuracy = clf.round(clf.accuracyScore(yTrue, yPred));
+const recall = clf.round(clf.recallScore(yTrue, yPred));
+const precision = clf.round(clf.precisionScore(yTrue, yPred));
 ```
-
 
 ```js
 const confusionPlot = Plot.plot({
@@ -305,17 +303,17 @@ const confusionPlot = Plot.plot({
     axis: "top",
     label: "Predicted Label",
     domain: labels, // Ensure the x-axis includes all labels
-    tickFormat: d => d.toString()
+    tickFormat: (d) => d.toString(),
   },
   y: {
     label: "True Label",
     domain: labels, // Ensure the y-axis includes all labels
-    tickFormat: d => d.toString()
+    tickFormat: (d) => d.toString(),
   },
   color: {
     type: "linear",
     scheme: "Blues",
-    label: "Count"
+    label: "Count",
   },
   width: 200,
   height: 200,
@@ -326,43 +324,41 @@ const confusionPlot = Plot.plot({
       y: "true_label",
       fill: "count",
       inset: 0.5,
-      title: d => `True: ${d.true_label}, Predicted: ${d.predicted_label}, Count: ${d.count}`
+      title: (d) =>
+        `True: ${d.true_label}, Predicted: ${d.predicted_label}, Count: ${d.count}`,
     }),
     // Text labels showing counts
     Plot.text(confusionData, {
       x: "predicted_label",
       y: "true_label",
-      text: d => d.count.toString(),
-      fill: d => (d.count > 0 ? "black" : "gray"),
+      text: (d) => d.count.toString(),
+      fill: (d) => (d.count > 0 ? "black" : "gray"),
       textAnchor: "middle",
-      stroke: 'white',
+      stroke: "white",
       size: 10,
-      dy: 5
-    })
-  ]
+      dy: 5,
+    }),
+  ],
 });
-
 ```
 
-
-Should we make an AUC chart? I guess. 
+Should we make an AUC chart? I guess.
 
 ```js
-
 // 1. Get probability estimates
 const proba = clf.predictProba(X);
 
 // 2. Extract probabilities for the positive class (assuming class '1')
-const yScores = proba.map(probs => probs[1]);
+const yScores = proba.map((probs) => probs[1]);
 
 // 3. Ensure yTrue is an array of numbers
-const yTrue = y.map(label => Number(label));
+const yTrue = y.map((label) => Number(label));
 
 // 4. Compute ROC curve
 function computeROC(yTrue, yScores, positiveClass = 1) {
   const data = yTrue.map((trueLabel, index) => ({
     trueLabel,
-    score: yScores[index]
+    score: yScores[index],
   }));
 
   data.sort((a, b) => b.score - a.score);
@@ -373,7 +369,7 @@ function computeROC(yTrue, yScores, positiveClass = 1) {
   const fpr = [];
   const thresholds = [];
 
-  const posCount = yTrue.filter(label => label === positiveClass).length;
+  const posCount = yTrue.filter((label) => label === positiveClass).length;
   const negCount = yTrue.length - posCount;
 
   for (let i = 0; i < data.length; i++) {
@@ -409,7 +405,7 @@ const auc = computeAUC(fpr, tpr);
 // 6. Prepare data for plotting
 const rocData = fpr.map((fprValue, index) => ({
   fpr: fprValue,
-  tpr: tpr[index]
+  tpr: tpr[index],
 }));
 
 // 7. Plot the ROC curve
@@ -417,27 +413,25 @@ const rocPlot = Plot.plot({
   width: 500,
   height: 500,
   x: {
-    label: 'False Positive Rate',
-    domain: [0, 1]
+    label: "False Positive Rate",
+    domain: [0, 1],
   },
   y: {
-    label: 'True Positive Rate',
-    domain: [0, 1]
+    label: "True Positive Rate",
+    domain: [0, 1],
   },
   marks: [
-    Plot.line(rocData, { x: 'fpr', y: 'tpr', stroke: 'steelblue' }),
-    Plot.ruleY([0, 1], { x: [0, 1], stroke: 'gray', strokeDasharray: '2,2' }),
+    Plot.line(rocData, { x: "fpr", y: "tpr", stroke: "steelblue" }),
+    Plot.ruleY([0, 1], { x: [0, 1], stroke: "gray", strokeDasharray: "2,2" }),
     Plot.text([{ x: 0.6, y: 0.1, text: `AUC = ${clf.round(auc)}` }], {
-      x: 'x',
-      y: 'y',
-      text: 'text',
-      fill: 'black',
-      fontSize: 14
-    })
-  ]
+      x: "x",
+      y: "y",
+      text: "text",
+      fill: "black",
+      fontSize: 14,
+    }),
+  ],
 });
-
-
 ```
 
 <div class="grid grid-cols-2">
@@ -446,18 +440,16 @@ const rocPlot = Plot.plot({
   ```js
   view(confusionPlot)
 
-  ```
+````
 
-  The accuracy ${accuracy}, recall ${recall}, and precision ${precision}. 
-  
-  </div>
-  <div >
-  
-  ```js
-  view(rocPlot);
-  ```
-  
+The accuracy ${accuracy}, recall ${recall}, and precision ${precision}.
+
+</div>
+<div >
+
+```js
+view(rocPlot);
+````
 
  </div>
 </div>
-

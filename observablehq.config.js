@@ -7,9 +7,13 @@ export default {
   // all pages will be listed in alphabetical order. Listing pages explicitly
   // lets you organize them into sections and have unlisted pages.
   pages: [
+    // {
+    //   name: "Overview Dashboard",
+    //   path: "/index",
+    // },
     {
       name: "Overview Dashboard",
-      path: "/index",
+      path: "/example-dashboard",
     },
 
     {
@@ -46,6 +50,10 @@ export default {
       name: "Primitive Assets",
       open: true,
       pages: [
+        {
+          name: "DPR Network Example",
+          path: "/dpr-network",
+        },
         {
           name: "BRFSS State Level Mapping",
           path: "/state-level-mapping",

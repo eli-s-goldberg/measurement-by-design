@@ -84,7 +84,7 @@ Then a drop down for the costs/template and locations.
 figure>
 
 <figure>
-<figcaption>Figure 2: Marketing Approval Process</figcaption>
+<figcaption>Figure 2: Marketing Process</figcaption>
 
 ```mermaid
 graph LR
