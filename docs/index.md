@@ -639,7 +639,7 @@ view(
 
 ## Engagement Stats
 
-<div class="grid grid-cols-2">
+<div class="grid grid-cols-1">
 <div class="card">
 
 <figure>
