@@ -639,13 +639,10 @@ view(
 
 ## Engagement Stats
 
-<div class="grid grid-cols-1">
 <div class="card">
 
 <figure>
 <figcaption>Engagement Rate Stats</figcaption>
-
-<div style="overflow-x: auto;">
 
 ```js
 view(
@@ -677,8 +674,6 @@ view(
 );
 ```
 
-</div>
-
 </figure>
 </div>
 
@@ -686,7 +681,6 @@ view(
 
 <figure>
 <figcaption>Engaged Population Stats</figcaption>
-<div style="overflow-x: auto;">
 
 ```js
 view(
@@ -718,7 +712,5 @@ view(
 );
 ```
 
-</div>
 </figure>
-</div>
 </div>
