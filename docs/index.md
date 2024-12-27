@@ -252,6 +252,16 @@ const table_selected = await view(
       value: "left",
       status: "left",
     },
+    header: {
+      campaign: "Campaign",
+      category: "Category",
+      version: "Vs.",
+      outreach: "Outreach",
+      behaviorChange: "Behavior Change",
+      liftPerPerson: "Lift",
+      value: "Value",
+      status: "Status",
+    },
     layout: "auto",
     rows: 20,
   })

@@ -197,7 +197,7 @@ const df = new DataFrame(data);
 return {data,df};
 }});
 
-define({id: "bc636cca", inputs: ["htl","view","Inputs","df","d3"], outputs: ["sparkbar","formatTextBold","formatText","table_selected"], body: async (htl,view,Inputs,df,d3) => {
+define({id: "022c8d8f", inputs: ["htl","view","Inputs","df","d3"], outputs: ["sparkbar","formatTextBold","formatText","table_selected"], body: async (htl,view,Inputs,df,d3) => {
 function sparkbar(max) {
   return (x) => htl.html`<div style="
     background: lightblue;
@@ -266,6 +266,16 @@ const table_selected = await view(
       liftPerPerson: "left",
       value: "left",
       status: "left",
+    },
+    header: {
+      campaign: "Campaign",
+      category: "Category",
+      version: "Vs.",
+      outreach: "Outreach",
+      behaviorChange: "Behavior Change",
+      liftPerPerson: "Lift",
+      value: "Value",
+      status: "Status",
     },
     layout: "auto",
     rows: 20,
@@ -345,13 +355,13 @@ Behavior Change Portfolio: MedEx
 <div class="table-header-style">
 <p>Campaigns</p>
 </div>
-<div class="observablehq observablehq--block"><!--:bc636cca:--></div>
+<div class="observablehq observablehq--block"><!--:022c8d8f:--></div>
 </div>
 </div>
 </div></main>
 <footer id="observablehq-footer">
 <nav><a rel="next" href="./value-framing"><span>Value Framing</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-26T22:08:28">Dec 26, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-26T22:23:01">Dec 26, 2024</a>.</div>
 </footer>
 </div>
 </body>
