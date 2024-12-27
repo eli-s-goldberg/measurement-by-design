@@ -17,11 +17,12 @@
 <link rel="modulepreload" href="./_observablehq/stdlib.95bfbf7e.js">
 <link rel="modulepreload" href="./_import/components/CampaignAnalyzer.f45bc31b.js">
 <link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
-<link rel="modulepreload" href="./_import/components/DataFrame.f293b44f.js">
+<link rel="modulepreload" href="./_import/components/DataFrame.7a992023.js">
+<link rel="modulepreload" href="./_import/components/TableFormatters.f37bcb18.js">
 <link rel="modulepreload" href="./_import/components/pwcStyle.b81b5271.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
-<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/e828d8c8.js">
 <link rel="modulepreload" href="./_observablehq/stdlib/inputs.d397b6a8.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/e828d8c8.js">
 <link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
 <link rel="modulepreload" href="./_npm/d3@7.9.0/7055d4c5.js">
 <link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
@@ -70,10 +71,10 @@ const [{CampaignAnalyzer}, d3, {require}] = await Promise.all([import("./_import
 return {CampaignAnalyzer,d3,require};
 }});
 
-define({id: "f58a7aee", outputs: ["DataFrame"], body: async () => {
-const {DataFrame} = await import("./_import/components/DataFrame.f293b44f.js");
+define({id: "ba0b9e20", outputs: ["DataFrame","formatTwoLevel","formatStatus","sparkbar","formatTextBold"], body: async () => {
+const [{DataFrame}, {formatTwoLevel, formatStatus, sparkbar, formatTextBold}] = await Promise.all([import("./_import/components/DataFrame.7a992023.js"), import("./_import/components/TableFormatters.f37bcb18.js")]);
 
-return {DataFrame};
+return {DataFrame,formatTwoLevel,formatStatus,sparkbar,formatTextBold};
 }});
 
 define({id: "0d61e71c", inputs: ["html"], outputs: ["pwcStyle","styleElement"], body: async (html) => {
@@ -124,6 +125,87 @@ tabs.forEach((tab, index) => {
 return {tabs,contents};
 }});
 
+define({id: "f0640754", inputs: ["DataFrame"], outputs: ["version","df_versions"], body: (DataFrame) => {
+const version = [
+  {
+    version: {
+      header: "Version 1",
+      description: "Email w/generic savings,\n no predictive model",
+    },
+    timeInMarket: {
+      header: "5 Months",
+      description: "2/1/23 to 7/1/23",
+    },
+    outreach: 15000,
+    costPerChangeBehavior: 1700,
+    behaviorChangeLift: "Not Significant",
+    value: 0,
+    status: "Deprecated",
+  },
+  {
+    version: {
+      header: "Version 2",
+      description: "Email w/generic savings, no predictive model",
+    },
+    timeInMarket: {
+      header: "5 Months",
+      description: "2/1/23 to 7/1/23",
+    },
+    outreach: 15000,
+    costPerChangeBehavior: 1700,
+    behaviorChangeLift: "Not Significant",
+    value: 0,
+    status: "Deprecated",
+  },
+];
+
+const df_versions = new DataFrame(version);
+return {version,df_versions};
+}});
+
+define({id: "6362ccde", inputs: ["Inputs","version","formatTwoLevel","sparkbar","d3","formatStatus","view"], outputs: ["table"], body: (Inputs,version,formatTwoLevel,sparkbar,d3,formatStatus,view) => {
+const table = Inputs.table(version, {
+  format: {
+    version: formatTwoLevel(),
+    timeInMarket: formatTwoLevel(),
+    outreach: sparkbar(d3.max(version, (d) => d.outreach)),
+    costPerChangeBehavior: (x) => `$${x.toLocaleString("en-US")}`,
+    status: formatStatus,
+  },
+  align: {
+    version: "left",
+    timeInMarket: "left",
+    outreach: "left",
+    costPerChangeBehavior: "left",
+    behaviorChangeLift: "left",
+    value: "left",
+    status: "left",
+  },
+  header: {
+    version: "Version",
+    timeInMarket: "Time in Market",
+    outreach: "Outreach",
+    costPerChangeBehavior: "$/Change",
+    behaviorChangeLift: "Lift",
+    value: "Value",
+    status: "Status",
+  },
+  width: "auto",
+  // width: {
+  //   version: 200,
+  //   timeInMarket: 150,
+  //   outreach: 120,
+  //   costPerChangeBehavior: 120,
+  //   behaviorChangeLift: 150,
+  //   value: 100,
+  //   status: 100,
+  // },
+});
+
+view(table);
+return {table};
+}});
+
 </script>
 </head>
 <body>
@@ -136,7 +218,7 @@ return {tabs,contents};
   </ol>
   <div id="observablehq-search"><input type="search" placeholder="Search"></div>
   <div id="observablehq-search-results"></div>
-  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("./_observablehq/search.abb7d18c.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("./_observablehq/search.37a33638.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
   <ol>
     <li class="observablehq-link"><a href="./">Executive Summary</a></li>
   </ol>
@@ -151,7 +233,7 @@ return {tabs,contents};
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
 <div class="observablehq observablehq--block"><!--:2ae31828:--></div>
-<div class="observablehq observablehq--block"><!--:f58a7aee:--></div>
+<div class="observablehq observablehq--block"><!--:ba0b9e20:--></div>
 <div class="observablehq observablehq--block"><!--:0d61e71c:--></div>
 <div class="page-title-header ">
 <div class="page-title ">
@@ -214,6 +296,12 @@ Shifting Imaging to Preferred Facility
 </div>
   </div>
 </div>
+<div class="observablehq observablehq--block"><!--:f0640754:--></div>
+<div style="height: 32px;"></div>
+<div class="text-subheader">
+Version History
+</div>
+<div class="observablehq observablehq--block"><!--:6362ccde:--></div>
 <!--
 ```js
 // Initialize the analyzer with sample data
@@ -585,7 +673,7 @@ view(
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./"><span>Behavior Change Portfolio</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-26T22:23:01">Dec 26, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-12-27T13:52:50">Dec 27, 2024</a>.</div>
 </footer>
 </div>
 </body>

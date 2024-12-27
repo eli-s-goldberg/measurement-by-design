@@ -1065,9 +1065,6 @@ export class DataFrame {
 
     return new DataFrame(describeData);
   }
-
-  Untitled;
-
   setType(column, type) {
     if (!this._data[column]) {
       throw new Error(`Column ${column} not found`);
