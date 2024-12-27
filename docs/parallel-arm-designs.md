@@ -210,11 +210,7 @@ Observations needed per arm <b>${view(n_means)}</b>.
 
 Note, that these are for an _individually_ not _cluster_ randomized designs.
 
-```js
-const equation_2 = tex.block` \begin{equation} n = \frac{(z_{1-\alpha/2} + z_{\beta})^2 [p_1 (1 - p_1) + p_2 (1 - p_2)]}{(p_1 - p_2)^2} \end{equation}`
 
-view(equation_2)
-```
 
 ```js
 const z_alpha_2_proportions = Inputs.range([0, 5], {
