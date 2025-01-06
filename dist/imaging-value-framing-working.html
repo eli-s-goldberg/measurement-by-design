@@ -18,9 +18,9 @@
 <link rel="modulepreload" href="./_import/components/CampaignAnalyzer.f45bc31b.js">
 <link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
 <link rel="modulepreload" href="./_import/components/DataFrame.7a992023.js">
-<link rel="modulepreload" href="./_import/components/TableFormatters.ebb3c989.js">
+<link rel="modulepreload" href="./_import/components/TableFormatters.68f4d0f6.js">
 <link rel="modulepreload" href="./_import/components/pwcStyle.20181f60.js">
-<link rel="modulepreload" href="./_import/components/Layouts.0cf07243.js">
+<link rel="modulepreload" href="./_import/components/Layouts.3c42c2ea.js">
 <link rel="modulepreload" href="./_import/components/TwoToneBoxplot.9148e6c1.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
 <link rel="modulepreload" href="./_observablehq/stdlib/inputs.7b5fa90e.js">
@@ -72,7 +72,7 @@ registerFile("./data/Synthetic_Boxplot_Data.csv", {"name":"./data/Synthetic_Boxp
 registerFile("./data/us-state-population-2010-2019.csv", {"name":"./data/us-state-population-2010-2019.csv","mimeType":"text/csv","path":"./_file/data/us-state-population-2010-2019.c915d8ff.csv","lastModified":1736181264973,"size":1354});
 
 define({id: "4d9afb94", inputs: ["html"], outputs: ["CampaignAnalyzer","d3","require","DataFrame","formatTwoLevel","formatStatus","sparkbar","formatTextBold","formatWrappedText","withRowHeight","pwcStyle","styleElement","createUnifiedSplitPanel","createTwoToneBoxplot"], body: async (html) => {
-const [{CampaignAnalyzer}, d3, {require}, {DataFrame}, {formatTwoLevel, formatStatus, sparkbar, formatTextBold, formatWrappedText, withRowHeight}, {pwcStyle}, {createUnifiedSplitPanel}, {createTwoToneBoxplot}] = await Promise.all([import("./_import/components/CampaignAnalyzer.f45bc31b.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.45152b81.js"), import("./_import/components/DataFrame.7a992023.js"), import("./_import/components/TableFormatters.ebb3c989.js"), import("./_import/components/pwcStyle.20181f60.js"), import("./_import/components/Layouts.0cf07243.js"), import("./_import/components/TwoToneBoxplot.9148e6c1.js")]);
+const [{CampaignAnalyzer}, d3, {require}, {DataFrame}, {formatTwoLevel, formatStatus, sparkbar, formatTextBold, formatWrappedText, withRowHeight}, {pwcStyle}, {createUnifiedSplitPanel}, {createTwoToneBoxplot}] = await Promise.all([import("./_import/components/CampaignAnalyzer.f45bc31b.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.45152b81.js"), import("./_import/components/DataFrame.7a992023.js"), import("./_import/components/TableFormatters.68f4d0f6.js"), import("./_import/components/pwcStyle.20181f60.js"), import("./_import/components/Layouts.3c42c2ea.js"), import("./_import/components/TwoToneBoxplot.9148e6c1.js")]);
 // Import the CampaignAnalyzer class try
 
 
@@ -833,6 +833,9 @@ return {element2,element,element3,element4,element5};
     <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
     <li class="observablehq-link"><a href="./">Behavior Change Portfolio</a></li>
   </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("./_observablehq/search.f477a57e.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
   <ol>
     <li class="observablehq-link"><a href="./">Executive Summary</a></li>
   </ol>
@@ -893,7 +896,7 @@ table {
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./imaging-exec-summ"><span>Summary</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-06T11:46:26">Jan 6, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-06T17:05:47">Jan 6, 2025</a>.</div>
 </footer>
 </div>
 </body>

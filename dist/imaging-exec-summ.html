@@ -18,8 +18,9 @@
 <link rel="modulepreload" href="./_import/components/CampaignAnalyzer.f45bc31b.js">
 <link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
 <link rel="modulepreload" href="./_import/components/createSplitPanelSummaryLayout.2d0b118a.js">
+<link rel="modulepreload" href="./_import/components/Layouts.3c42c2ea.js">
 <link rel="modulepreload" href="./_import/components/DataFrame.7a992023.js">
-<link rel="modulepreload" href="./_import/components/TableFormatters.ebb3c989.js">
+<link rel="modulepreload" href="./_import/components/TableFormatters.68f4d0f6.js">
 <link rel="modulepreload" href="./_import/components/pwcStyle.20181f60.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
 <link rel="modulepreload" href="./_observablehq/stdlib/inputs.7b5fa90e.js">
@@ -66,16 +67,17 @@
 
 import {define} from "./_observablehq/client.1c3ee162.js";
 
-define({id: "ecc20043", outputs: ["CampaignAnalyzer","d3","require","createSplitPanelSummaryLayout"], body: async () => {
-const [{CampaignAnalyzer}, d3, {require}, {createSplitPanelSummaryLayout}] = await Promise.all([import("./_import/components/CampaignAnalyzer.f45bc31b.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.45152b81.js"), import("./_import/components/createSplitPanelSummaryLayout.2d0b118a.js")]);
+define({id: "c0e185d8", outputs: ["CampaignAnalyzer","d3","require","createSplitPanelSummaryLayout","createUnifiedSplitPanel"], body: async () => {
+const [{CampaignAnalyzer}, d3, {require}, {createSplitPanelSummaryLayout}, {createUnifiedSplitPanel}] = await Promise.all([import("./_import/components/CampaignAnalyzer.f45bc31b.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.45152b81.js"), import("./_import/components/createSplitPanelSummaryLayout.2d0b118a.js"), import("./_import/components/Layouts.3c42c2ea.js")]);
 // Import the CampaignAnalyzer class
 
 
-return {CampaignAnalyzer,d3,require,createSplitPanelSummaryLayout};
+
+return {CampaignAnalyzer,d3,require,createSplitPanelSummaryLayout,createUnifiedSplitPanel};
 }});
 
 define({id: "a7396d37", inputs: ["html"], outputs: ["DataFrame","formatTwoLevel","formatStatus","sparkbar","formatTextBold","pwcStyle","styleElement"], body: async (html) => {
-const [{DataFrame}, {formatTwoLevel, formatStatus, sparkbar, formatTextBold}, {pwcStyle}] = await Promise.all([import("./_import/components/DataFrame.7a992023.js"), import("./_import/components/TableFormatters.ebb3c989.js"), import("./_import/components/pwcStyle.20181f60.js")]);
+const [{DataFrame}, {formatTwoLevel, formatStatus, sparkbar, formatTextBold}, {pwcStyle}] = await Promise.all([import("./_import/components/DataFrame.7a992023.js"), import("./_import/components/TableFormatters.68f4d0f6.js"), import("./_import/components/pwcStyle.20181f60.js")]);
 
 const styleElement = html`<style>
   ${pwcStyle}
@@ -84,7 +86,13 @@ document.head.appendChild(styleElement);
 return {DataFrame,formatTwoLevel,formatStatus,sparkbar,formatTextBold,pwcStyle,styleElement};
 }});
 
-define({id: "e5bdd212", inputs: ["createSplitPanelSummaryLayout","view"], outputs: ["config","element"], body: (createSplitPanelSummaryLayout,view) => {
+define({id: "75f3cf24", inputs: ["createUnifiedSplitPanel","tabconfig","view"], outputs: ["element5"], body: (createUnifiedSplitPanel,tabconfig,view) => {
+const element5 = createUnifiedSplitPanel(tabconfig);
+view(element5);
+return {element5};
+}});
+
+define({id: "52129ed2", outputs: ["config"], body: () => {
 const config = {
   title: "",
   subtitle: "Current Campaign",
@@ -134,10 +142,7 @@ const config = {
     },
   ],
 };
-
-const element = createSplitPanelSummaryLayout(config);
-view(element);
-return {config,element};
+return {config};
 }});
 
 define({id: "f0640754", inputs: ["DataFrame"], outputs: ["version","df_versions"], body: (DataFrame) => {
@@ -178,7 +183,7 @@ const df_versions = new DataFrame(version);
 return {version,df_versions};
 }});
 
-define({id: "6362ccde", inputs: ["Inputs","version","formatTwoLevel","sparkbar","d3","formatStatus","view"], outputs: ["table"], body: (Inputs,version,formatTwoLevel,sparkbar,d3,formatStatus,view) => {
+define({id: "f92b708b", inputs: ["Inputs","version","formatTwoLevel","sparkbar","d3","formatStatus","view"], outputs: ["table"], body: (Inputs,version,formatTwoLevel,sparkbar,d3,formatStatus,view) => {
 const table = Inputs.table(version, {
   format: {
     version: formatTwoLevel(),
@@ -206,19 +211,100 @@ const table = Inputs.table(version, {
     status: "Status",
   },
   width: "auto",
-  // width: {
-  //   version: 200,
-  //   timeInMarket: 150,
-  //   outreach: 120,
-  //   costPerChangeBehavior: 120,
-  //   behaviorChangeLift: 150,
-  //   value: 100,
-  //   status: 100,
-  // },
 });
 
 view(table);
 return {table};
+}});
+
+define({id: "0abdbe2d", inputs: ["html"], outputs: ["tabconfig"], body: (html) => {
+const tabconfig = {
+  title: "Current Campaign",
+  subtitle: "",
+  gridSplit: { left: 50, right: 25 },
+  leftContent: {
+    type: "tabs",
+    content: [
+      {
+        type: "bodyDescription", // New type to handle body description
+        initialText: "This campaign targets members who are ",
+        highlightedText:
+          "most likely to receive imaging procedures at Non-Preferred facilities ",
+        finalText:
+          "  and attempts to drive them to Preferred locations instead.",
+        position: "top",
+      },
+      {
+        name: "Tactics",
+        title: "",
+        subtitle: "",
+        description: html`<div style="width: 499px;">
+          Member-specific out-of-pocket savings as hook to influence switch to
+          Preferred. Duis nec efficitur massa. Maecenas pellentesque sapien et
+          quam scelerisque, vitae blandit odio vehicula. Class aptent taciti
+          sociosqu ad litora torquent per conubia nostra, per inceptos
+          himenaeos. Vivamus at viverra sem, sed tempor elit. Sed rhoncus nec
+          nunc nec commodo. Phasellus lobortis, eros ultricies feugiat
+          hendrerit.
+        </div>`,
+        isActive: true,
+      },
+      {
+        name: "Channels",
+        title: "",
+        subtitle: "",
+        description: html`<div style="width: 499px;">
+          Channel-specific out-of-pocket savings as hook to influence switch to
+          Preferred. Duis nec efficitur massa. Maecenas pellentesque sapien et
+          quam scelerisque, vitae blandit odio vehicula. Class aptent taciti
+          sociosqu ad litora torquent per conubia nostra, per inceptos
+          himenaeos. Vivamus at viverra sem, sed tempor elit. Sed rhoncus nec
+          nunc nec commodo. Phasellus lobortis, eros ultricies feugiat
+          hendrerit.
+        </div>`,
+        isActive: false,
+      },
+      {
+        name: "Measurement",
+        title: "",
+        subtitle: "",
+        description: html`<div style="width: 499px;">
+          Measurement-specific out-of-pocket savings as hook to influence switch
+          to Preferred. Duis nec efficitur massa. Maecenas pellentesque sapien
+          et quam scelerisque, vitae blandit odio vehicula. Class aptent taciti
+          sociosqu ad litora torquent per conubia nostra, per inceptos
+          himenaeos. Vivamus at viverra sem, sed tempor elit. Sed rhoncus nec
+          nunc nec commodo. Phasellus lobortis, eros ultricies feugiat
+          hendrerit.
+        </div>`,
+        isActive: false,
+      },
+    ],
+    cardBackground: "#FFF",
+  },
+  rightContent: {
+    type: "cards",
+    content: [
+      {
+        title: "KEY TAKEAWAY",
+        flavor: "keyTakeaway",
+        value: "4%",
+        subtitle:
+          "of Commercial Fully Insured members used Non-Preferred facilities for imaging in 2024",
+        highlight: true,
+      },
+      {
+        title: "RUN-RATE SAVINGS",
+        flavor: "valueAtStake",
+        value: "$1.1M",
+        subtitle: "Current Campaign (v3)",
+        highlight: true,
+      },
+    ],
+  },
+  theme: "dark",
+};
+return {tabconfig};
 }});
 
 </script>
@@ -231,6 +317,9 @@ return {table};
     <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
     <li class="observablehq-link"><a href="./">Behavior Change Portfolio</a></li>
   </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("./_observablehq/search.f477a57e.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
   <ol>
     <li class="observablehq-link"><a href="./">Executive Summary</a></li>
   </ol>
@@ -245,7 +334,7 @@ return {table};
 <script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:ecc20043:--></div>
+<div class="observablehq observablehq--block"><!--:c0e185d8:--></div>
 <div class="observablehq observablehq--block"><!--:a7396d37:--></div>
 <div class="page-title-header ">
 <div class="page-title">
@@ -254,385 +343,19 @@ Shifting Imaging to Preferred Facility
 <div class="horizontal-line"></div>
 <p>Version 3: direct mail + email + microsite for predicted savers</p>
 </div>
-<div class="observablehq observablehq--block"><!--:e5bdd212:--></div>
+<div class="observablehq observablehq--block"><!--:75f3cf24:--></div>
+<div class="observablehq observablehq--block"><!--:52129ed2:--></div>
 <div style="height: 16px;"></div>
 <div class="observablehq observablehq--block"><!--:f0640754:--></div>
 <div class="text-subheader">
 Version History
 </div>
-<div class="observablehq observablehq--block"><!--:6362ccde:--></div>
-<!--
-```js
-// Initialize the analyzer with sample data
-const analyzer = new CampaignAnalyzer(sampleData);
-
-// Get formatted table data
-const tableData = analyzer.formatCampaignData();
-
-````
-
-```js
-// Transform data using the analyzer
-const selectedTimeSeriesData = analyzer.transformTimeSeriesData(selection);
-const selectedMetrics = analyzer.transformMetrics(selection);
-const metricTables = analyzer.createMetricTables(selectedMetrics);
-const funData = analyzer.getFunnelData(selection);
-const steps = [
-  "totalBooked",
-  "targeted",
-  "connected",
-  "enrolled",
-  "engaged",
-  "changedBehavior",
-];
-const processedData = analyzer.processFunnelData(funData, steps);
-const barData = analyzer.createBarChartData(selection);
-````
-
-<div class="card">
-
-```js
-const selection = view(
-  Inputs.table(tableData, {
-    columns: [
-      "intervention",
-      "populationDesc",
-      "version",
-      "timeInMarket",
-      "populationSize",
-      "costPerChange",
-      "totalImpact",
-      "financialImpact",
-    ],
-    header: {
-      intervention: "Intervention",
-      populationDesc: "Description",
-      version: "Vs",
-      timeInMarket: "Runtime ",
-      populationSize: "Population",
-      costPerChange: "$/BC",
-      totalImpact: "Impact @ Scale",
-      financialImpact: "Impact @ Pilot",
-    },
-    layout: "auto",
-  })
-);
-```
-
-</div>
-
-asdfdsasfd
-asdf
-
-<table class="table-card-campaign-table">
-  <thead>
-    <tr>
-      <th>Campaign</th>
-      <th>Levers</th>
-      <th>Version</th>
-      <th>Outreach</th>
-      <th>$ per Change Behavior</th>
-      <th>Behavior Change Lift</th>
-      <th>Value</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Shift Imaging to Preferred Facility</td>
-      <td>Site of Care & Provider Selection</td>
-      <td>v3 <span class="icon">📄</span></td>
-      <td>20,000</td>
-      <td>$1,800</td>
-      <td>3pp</td>
-      <td>$1.1M</td>
-      <td><span class="status-pill status-booked">Booked <span class="icon">📄</span></span></td>
-    </tr>
-    <tr>
-      <td>Increased Adherence for High Risk of CHF Readmission</td>
-      <td>Site of Care & Provider Selection</td>
-      <td>v3 <span class="icon">📄</span></td>
-      <td>20,000</td>
-      <td>$1,800</td>
-      <td>3pp</td>
-      <td>$1.1M</td>
-      <td><span class="status-pill status-booked">Booked <span class="icon">📄</span></span></td>
-    </tr>
-    <tr>
-      <td>Avoid Low Value Procedures</td>
-      <td>RX Management</td>
-      <td>v3 <span class="icon">📄</span></td>
-      <td>20,000</td>
-      <td>$1,800</td>
-      <td>3pp</td>
-      <td>$1.1M</td>
-      <td><span class="status-pill status-booked">Booked <span class="icon">📄</span></span></td>
-    </tr>
-    <tr>
-      <td>ASC for Cataracts</td>
-      <td>RX Management</td>
-      <td>v3 <span class="icon">📄</span></td>
-      <td>20,000</td>
-      <td>$1,800</td>
-      <td>3pp</td>
-      <td>$1.1M</td>
-      <td><span class="status-pill status-booked">Booked <span class="icon">📄</span></span></td>
-    </tr>
-    <tr>
-      <td>Switch to On-Formulary RX</td>
-      <td>RX Management</td>
-      <td>v3 <span class="icon">📄</span></td>
-      <td>20,000</td>
-      <td>$1,800</td>
-      <td>3pp</td>
-      <td>$1.1M</td>
-      <td><span class="status-pill status-pilot">Pilot <span class="icon">📄</span></span></td>
-    </tr>
-  </tbody>
-</table>
-
-## Funnel Analysis
-
-<div class="grid grid-cols-2">
-<div class="card">
-
-```js
-view(
-  Plot.plot({
-    height: 200,
-    grid: true,
-    x: { label: "Stage", domain: steps },
-    y: { label: "Population" },
-    color: { legend: true },
-    marks: [
-      Plot.line(
-        processedData.flatMap((d) => d.absoluteData),
-        { x: "step", y: "value", stroke: "intervention", strokeWidth: 0.5 }
-      ),
-      Plot.dot(
-        processedData.flatMap((d) => d.absoluteData),
-        {
-          x: "step",
-          y: "value",
-          fill: "intervention",
-          r: 1,
-          channels: {
-            Intervention: "intervention",
-            Step: "step",
-            Population: "value",
-          },
-          tip: {
-            format: {
-              Intervention: true,
-              Step: true,
-              Population: true,
-              x: false,
-              y: false,
-              fill: false,
-            },
-          },
-        }
-      ),
-    ],
-  })
-);
-```
-
-</div>
-<div class="card">
-
-```js
-view(
-  Plot.plot({
-    height: 200,
-    grid: true,
-    x: { label: "Stage", domain: steps },
-    y: { label: "Percentage", domain: [0, 100] },
-    color: { legend: true },
-    marks: [
-      Plot.line(
-        processedData.flatMap((d) => d.percentageData),
-        { x: "step", y: "value", stroke: "intervention", strokeWidth: 0.5 }
-      ),
-      Plot.dot(
-        processedData.flatMap((d) => d.percentageData),
-        { x: "step", y: "value", fill: "intervention", r: 1 }
-      ),
-    ],
-  })
-);
-```
-
-</div>
-</div>
-
-## Performance Metrics
-
-<div class="grid grid-cols-2">
-<div class="card">
-
-<figure>
-<figcaption>Observed Behavior Change Rate Over Time</figcaption>
-
-```js
-view(
-  Plot.plot({
-    marginRight: 60,
-    height: 200,
-    grid: true,
-    x: {
-      type: "time",
-      label: "Month",
-    },
-    y: {
-      label: "Change Rate (%)",
-      grid: true,
-    },
-    marks: [
-      Plot.line(selectedTimeSeriesData, {
-        x: "month",
-        y: "changeRate",
-        stroke: "intervention",
-        strokeWidth: 0.5,
-      }),
-      Plot.dot(selectedTimeSeriesData, {
-        x: "month",
-        y: "changeRate",
-        fill: "intervention",
-        r: 1,
-        channels: {
-          intervention: "intervention",
-          Month: (d) => d.month.toLocaleDateString(),
-          "Change Rate": (d) => `${d.changeRate.toFixed(2)}%`,
-        },
-        tip: {
-          format: {
-            x: false,
-            y: false,
-            fill: false,
-          },
-        },
-      }),
-    ],
-  })
-);
-```
-
-</figure>
-</div>
-
-<div class="card">
-
-<figure>
-<figcaption>Value per Behavior Change by Campaign</figcaption>
-
-```js
-view(
-  Plot.plot({
-    marginRight: 0,
-    marginLeft: 150,
-    grid: true,
-    inset: 10,
-    x: {
-      label: "Value per Behavior Change ($)",
-    },
-    y: {
-      label: "",
-    },
-    marks: [
-      Plot.ruleX([0]),
-      Plot.barX(barData, {
-        x: "costPerChange",
-        y: "intervention",
-        sort: { y: "x", reverse: true },
-      }),
-    ],
-  })
-);
-```
-
-</figure>
-</div>
-</div>
-
-## Engagement Stats
-
-<div class="card">
-<figcaption>Engagement Rate Stats </figcaption>
-
-```js
-const engageratetable = view(
-  Inputs.table(
-    metricTables.filter((d) => d.metricName === "Engagement Rate")[0]
-      .metricData,
-    {
-      columns: [
-        "intervention",
-        "value",
-        "lift",
-        "pValue",
-        "ci_lower",
-        "ci_upper",
-        "stdDev",
-      ],
-      header: {
-        intervention: "Intervention",
-        value: "Rate",
-        lift: "Lift",
-        pValue: "P",
-        ci_lower: "CI (l)",
-        ci_upper: "CI (u)",
-        stdDev: tex`\sigma`,
-      },
-      layout: "auto",
-    }
-  )
-);
-```
-
-</div>
-
-<div class="card">
-
-  <figcaption>Engaged Population Stats</figcaption>
-
-```js
-view(
-  Inputs.table(
-    metricTables.filter((d) => d.metricName === "Conversion Rate")[0]
-      .metricData,
-    {
-      columns: [
-        "intervention",
-        "value",
-        "lift",
-        "pValue",
-        "ci_lower",
-        "ci_upper",
-        "stdDev",
-      ],
-      header: {
-        intervention: "Intervention",
-        value: "Rate",
-        lift: "Lift",
-        pValue: "P",
-        ci_lower: "CI (l)",
-        ci_upper: "CI (u)",
-        stdDev: tex`\sigma`,
-      },
-      layout: "auto",
-    }
-  )
-);
-```
-
-</div>
-
-</div> -->
+<div class="observablehq observablehq--block"><!--:f92b708b:--></div>
+<div class="observablehq observablehq--block"><!--:0abdbe2d:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./"><span>Behavior Change Portfolio</span></a><a rel="next" href="./imaging-value-framing-working"><span>Value Framing</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-06T11:46:26">Jan 6, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-06T17:05:47">Jan 6, 2025</a>.</div>
 </footer>
 </div>
 </body>

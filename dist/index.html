@@ -15,14 +15,16 @@
 <link rel="modulepreload" href="./_observablehq/client.1c3ee162.js">
 <link rel="modulepreload" href="./_observablehq/runtime.f168f711.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.1d18d6f6.js">
-<link rel="modulepreload" href="./_import/components/CampaignAnalyzer.f45bc31b.js">
 <link rel="modulepreload" href="./_import/components/DataFrame.7a992023.js">
+<link rel="modulepreload" href="./_import/components/Layouts.3c42c2ea.js">
+<link rel="modulepreload" href="./_import/components/TableFormatters.68f4d0f6.js">
 <link rel="modulepreload" href="./_import/components/pwcStyle.20181f60.js">
 <link rel="modulepreload" href="./_npm/d3@7.9.0/3da9d5d0.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
 <link rel="modulepreload" href="./_observablehq/stdlib/inputs.7b5fa90e.js">
 <link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/b55d4b20.js">
 <link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
+<link rel="modulepreload" href="./_node/htl@0.3.1/index.692f28bb.js">
 <link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
 <link rel="modulepreload" href="./_npm/d3-array@3.2.4/37839b6a.js">
 <link rel="modulepreload" href="./_npm/d3-axis@3.0.0/bd0afa17.js">
@@ -63,17 +65,10 @@
 
 import {define} from "./_observablehq/client.1c3ee162.js";
 
-define({id: "87c13df6", outputs: ["CampaignAnalyzer"], body: async () => {
-const {CampaignAnalyzer} = await import("./_import/components/CampaignAnalyzer.f45bc31b.js");
-// Import the CampaignAnalyzer class
+define({id: "8c51daaf", outputs: ["DataFrame","createUnifiedSplitPanel","formatTwoLevel","formatStatus","sparkbar","formatTextBold","formatWrappedText","withRowHeight"], body: async () => {
+const [{DataFrame}, {createUnifiedSplitPanel}, {formatTwoLevel, formatStatus, sparkbar, formatTextBold, formatWrappedText, withRowHeight}] = await Promise.all([import("./_import/components/DataFrame.7a992023.js"), import("./_import/components/Layouts.3c42c2ea.js"), import("./_import/components/TableFormatters.68f4d0f6.js")]);
 
-return {CampaignAnalyzer};
-}});
-
-define({id: "f58a7aee", outputs: ["DataFrame"], body: async () => {
-const {DataFrame} = await import("./_import/components/DataFrame.7a992023.js");
-
-return {DataFrame};
+return {DataFrame,createUnifiedSplitPanel,formatTwoLevel,formatStatus,sparkbar,formatTextBold,formatWrappedText,withRowHeight};
 }});
 
 define({id: "0d61e71c", inputs: ["html"], outputs: ["pwcStyle","styleElement"], body: async (html) => {
@@ -109,7 +104,7 @@ const metrics = [
 return {metrics};
 }});
 
-define({id: "34324aff", inputs: ["DataFrame"], outputs: ["data","df"], body: (DataFrame) => {
+define({id: "114a9f33", inputs: ["DataFrame"], outputs: ["data","df"], body: (DataFrame) => {
 const data = [
   {
     campaign: "Shift Imaging to Preferred Facility",
@@ -154,7 +149,7 @@ const data = [
   {
     campaign: "Switch to On-Formulary RX",
     category: "rx management",
-    version: "vs3",
+    version: "v3",
     outreach: 35000,
     behaviorChange: 1800,
     liftPerPerson: 3,
@@ -197,91 +192,200 @@ const df = new DataFrame(data);
 return {data,df};
 }});
 
-define({id: "022c8d8f", inputs: ["htl","view","Inputs","df","d3"], outputs: ["sparkbar","formatTextBold","formatText","table_selected"], body: async (htl,view,Inputs,df,d3) => {
-function sparkbar(max) {
-  return (x) => htl.html`<div style="
-    background: lightblue;
-    color: black;
-    width: ${(100 * x) / max}%;
-    float: left;
-    padding-right: 3px;
-    padding-left: 3px;
-    box-sizing: border-box;
-    overflow: visible;
-    display: flex;
-    justify-content: start;">${x.toLocaleString("en-US")}`;
-}
+define({id: "5922c943", inputs: ["html"], outputs: ["withTooltip","hoverTableStyles","versionTooltips"], body: (html) => {
+const withTooltip =
+  (tooltipContent) =>
+  (formatter = (d) => d) => {
+    return (value, row) => {
+      const formattedValue = formatter(value, row);
+      const tooltip =
+        typeof tooltipContent === "function"
+          ? tooltipContent(row)
+          : tooltipContent;
 
-function formatTextBold(text, charLimit = 50) {
-  return (x) => {
-    const str = x.toLocaleString("en-US");
-    const wrapped = str.replace(new RegExp(`(.{${charLimit}})`, "g"), "$1\n");
-    return htl.html`<div style="
-      color: black;
-      font-weight: 500;
-      min-height: 40px;
-      float: left;
-      padding: 3px;
-      box-sizing: border-box;
-      white-space: pre-wrap;
-      display: flex;
-      align-items: center;
-      justify-content: start;">${wrapped}</div>`;
+      return html`
+        <div class="points-wrapper">
+          <span class="points-red tooltip-left" data-tooltip="${tooltip}">
+            ${formattedValue}
+          </span>
+        </div>
+      `;
+    };
   };
-}
 
-function formatText(text, charLimit = 50) {
-  return (x) => {
-    const str = x.toLocaleString("en-US");
-    const wrapped = str.replace(new RegExp(`(.{${charLimit}})`, "g"), "$1\n");
-    return htl.html`<div style="
-      color: black;
-      min-height: 40px;
-      float: left;
-      padding: 3px;
-      box-sizing: border-box;
-      white-space: pre-wrap;
-      display: flex;
-      align-items: center;
-      justify-content: start;">${wrapped}</div>`;
-  };
-}
-// font: 52px/1.5 "ITC Charter Com", serif;
+// Change tableStyles to hoverTableStyles
+const hoverTableStyles = {
+  styles: html`
+    <style>
+      .points-wrapper {
+        position: relative;
+        display: inline-block;
+      }
 
-const table_selected = await view(
-  Inputs.table(df.print(), {
-    required: false,
-    format: {
-      campaign: formatTextBold(df.print(), (d) => d.outreach),
-      category: formatText(df.print(), (d) => d.category),
-      outreach: sparkbar(d3.max(df.print(), (d) => d.outreach)),
-      behaviorChange: sparkbar(d3.max(df.print(), (d) => d.behaviorChange)),
-    },
-    align: {
-      campaign: "left",
-      category: "left",
-      version: "center",
-      outreach: "left",
-      behaviorChange: "left",
-      liftPerPerson: "left",
-      value: "left",
-      status: "left",
-    },
-    header: {
-      campaign: "Campaign",
-      category: "Category",
-      version: "Vs.",
-      outreach: "Outreach",
-      behaviorChange: "Behavior Change",
-      liftPerPerson: "Lift",
-      value: "Value",
-      status: "Status",
-    },
-    layout: "auto",
-    rows: 20,
-  })
-);
-return {sparkbar,formatTextBold,formatText,table_selected};
+      .points-red {
+        background-color: #d75f44;
+        border-radius: 100%;
+        height: 19px;
+        color: #fff;
+        font-size: 13px;
+        line-height: 19px;
+        text-align: center;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+        width: 19px;
+        display: inline-block;
+      }
+
+      .tooltip-left[data-tooltip]:hover::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid #af241c;
+        margin: -8px 0 0 4px;
+      }
+
+      .tooltip-left[data-tooltip]:hover::after {
+        content: attr(data-tooltip);
+        padding: 2px 10px;
+        position: absolute;
+        background: #af241c;
+        color: #fff;
+        text-align: right;
+        text-indent: 0;
+        line-height: 25px;
+        white-space: nowrap;
+        word-wrap: normal;
+        border-radius: 2px;
+        z-index: 9999;
+        font-weight: normal;
+        margin: -36px 48px 0 0;
+        right: 0;
+      }
+    </style>
+  `,
+};
+
+// Version tooltips mapping
+const versionTooltips = {
+  v3: "Version 3: Latest production release with enhanced targeting",
+  vs3: "Version S3: Special release with experimental features",
+};
+return {withTooltip,hoverTableStyles,versionTooltips};
+}});
+
+define({id: "373ffe82", inputs: ["Inputs","df","formatTextBold","withTooltip","withRowHeight","formatWrappedText","sparkbar","d3","hoverTableStyles"], outputs: ["table_selected"], body: async (Inputs,df,formatTextBold,withTooltip,withRowHeight,formatWrappedText,sparkbar,d3,hoverTableStyles) => {
+const table_selected = await Inputs.table(df.print(), {
+  required: false,
+  format: {
+    campaign: formatTextBold(df.print(), (d) => d.outreach),
+    value: withTooltip((row) => `Here is the hover test for ${row.value}`)(
+      (d) => d
+    ),
+    category: withRowHeight("45px", "top")(formatWrappedText()),
+    outreach: sparkbar(d3.max(df.print(), (d) => d.outreach)),
+    behaviorChange: sparkbar(d3.max(df.print(), (d) => d.behaviorChange)),
+  },
+  align: {
+    campaign: "left",
+    category: "left",
+    version: "center",
+    outreach: "left",
+    behaviorChange: "left",
+    liftPerPerson: "left",
+    value: "left",
+    status: "left",
+  },
+  style: hoverTableStyles.styles,
+  header: {
+    campaign: "Campaign",
+    category: "Lever",
+    version: "Vs.",
+    outreach: "Outreach",
+    behaviorChange: "Behavior Change",
+    liftPerPerson: "Lift",
+    value: "Value",
+    status: "Status",
+  },
+  width: "auto",
+  height: "auto",
+  rows: 20,
+});
+return {table_selected};
+}});
+
+define({id: "8c994d9d", inputs: ["html","table_selected","createUnifiedSplitPanel","view"], outputs: ["myTableStyles","dashboardConfig","dashboardPanel"], body: (html,table_selected,createUnifiedSplitPanel,view) => {
+const myTableStyles = {
+  headerBackground: "#fff",
+  headerTextColor: "#000",
+  headerHeight: "40px",
+  tableBorderRadius: "18px",
+};
+
+// Example usage of createUnifiedSplitPanel for dashboard layout
+const dashboardConfig = {
+  title: "Campaign Dashboard",
+  layout: "vertical", // Specify vertical layout
+  tableStyles: myTableStyles,
+
+  // Top section with cards
+  topContent: {
+    type: "cards",
+    content: [
+      {
+        flavor: "keyTakeaway",
+        title: "TOTAL CAMPAIGN VALUE",
+        value: "$103M",
+        subtitle: "50 Campaigns",
+      },
+      {
+        flavor: "keyTakeawayWhite",
+        title: "BOOKED VALUE",
+        value: "$60M",
+        subtitle: "35 Campaigns",
+      },
+      {
+        flavor: "keyTakeawayWhite",
+        title: "FORECASTED VALUE",
+        value: "$43M",
+        subtitle: "15 Campaigns",
+      },
+    ],
+    cardHeight: "160px",
+
+    card: true, // Don't wrap the cards section in an additional card
+  },
+
+  // Bottom section with table
+  bottomContent: {
+    type: "table",
+
+    tableSubtitle: html`<div
+      style="
+      font-family: 'Helvetica Neue', sans-serif; 
+      font-weight: 700; 
+      font-size: 20px; 
+      line-height: 24.42px;
+      letter-spacing: -0.03em; 
+      margin-bottom: 1rem;
+      margin-left: 2rem;
+      margin-top: 2rem"
+    >
+      Campaigns
+    </div>`,
+    tableStyles: myTableStyles,
+    content: table_selected,
+    card: false, // Wrap the table in a card container
+  },
+
+  theme: "dark",
+};
+
+// Create the panel
+const dashboardPanel = createUnifiedSplitPanel(dashboardConfig);
+view(dashboardPanel);
+return {myTableStyles,dashboardConfig,dashboardPanel};
 }});
 
 </script>
@@ -294,6 +398,9 @@ return {sparkbar,formatTextBold,formatText,table_selected};
     <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
     <li class="observablehq-link observablehq-link-active"><a href="./">Behavior Change Portfolio</a></li>
   </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("./_observablehq/search.f477a57e.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
   <ol>
     <li class="observablehq-link observablehq-link-active"><a href="./">Executive Summary</a></li>
   </ol>
@@ -308,8 +415,7 @@ return {sparkbar,formatTextBold,formatText,table_selected};
 <script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:87c13df6:--></div>
-<div class="observablehq observablehq--block"><!--:f58a7aee:--></div>
+<div class="observablehq observablehq--block"><!--:8c51daaf:--></div>
 <div class="observablehq observablehq--block"><!--:0d61e71c:--></div>
 <div class="page-title-header ">
 <div class="page-title ">
@@ -319,48 +425,16 @@ Behavior Change Portfolio: MedEx
 <p>Track, manage, and forecast campaign impact.</p>
 </div>
 <div class="observablehq observablehq--block"><!--:b83b38ae:--></div>
-<div class="full-width-section">
-  <div class="content-container">
-<div class="grid">
-  <div class="card card-yellow">
-    <div>
-      <p class="text-header">TOTAL CAMPAIGN VALUE</p>
-      <p class="horizontal-line"></p>
-      <p class="text-title">$103M</p>
-      <p class="text-subtext">50 Campaigns</p>
-    </div>
-  </div>
-  <!-- Second Card (White) -->
-  <div class="card card-white">
-    <div>
-      <p class="text-header">BOOKED VALUE</p>
-      <div class="horizontal-line"></div>
-      <p class="text-title">$60M</p>
-      <p class="text-subtext">35 Campaigns</p>
-    </div>
-  </div>
-  <!-- Third Card (Gray) -->
-  <div class="card card-white">
-    <div>
-      <p class="text-header">FORECASTED VALUE</p>
-      <div class="horizontal-line"></div>
-      <p class="text-title">$43M</p>
-      <p class="text-subtext">15 Campaigns</p>
-    </div>
-  </div>
-</div>
-<div class="observablehq observablehq--block"><!--:34324aff:--></div>
-<div class="card">
-<div class="table-header-style">
-<p>Campaigns</p>
-</div>
-<div class="observablehq observablehq--block"><!--:022c8d8f:--></div>
-</div>
-</div>
-</div></main>
+<div class="observablehq observablehq--block"><!--:114a9f33:--></div>
+<div class="observablehq observablehq--block"><!--:5922c943:--></div>
+<div class="observablehq observablehq--block"><!--:373ffe82:--></div>
+
+
+<div class="observablehq observablehq--block"><!--:8c994d9d:--></div>
+</main>
 <footer id="observablehq-footer">
 <nav><a rel="next" href="./imaging-exec-summ"><span>Summary</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-06T11:46:26">Jan 6, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-06T17:05:47">Jan 6, 2025</a>.</div>
 </footer>
 </div>
 </body>
