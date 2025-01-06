@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.0">
+<title>Summary | Behavior Change Portfolio</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,wide.d041fa8d.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,wide.d041fa8d.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="./_observablehq/client.1c3ee162.js">
+<link rel="modulepreload" href="./_observablehq/runtime.f168f711.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.1d18d6f6.js">
+<link rel="modulepreload" href="./_import/components/CampaignAnalyzer.f45bc31b.js">
+<link rel="modulepreload" href="./_import/components/DataFrame.7a992023.js">
+<link rel="modulepreload" href="./_import/components/pwcStyle.20181f60.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/3da9d5d0.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.7b5fa90e.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/b55d4b20.js">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/37839b6a.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/bd0afa17.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/6495590f.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/d496a3b3.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/ef06b1ff.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/60bb70b3.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/33fb7288.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/5e427f4b.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/4143aac9.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/b6952b03.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/a4e530fb.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/be692bd9.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/3a9ac1c1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/28d1ef76.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/0c259fbf.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/da4a6ccc.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.1c3ee162.js";
+
+define({id: "87c13df6", outputs: ["CampaignAnalyzer"], body: async () => {
+const {CampaignAnalyzer} = await import("./_import/components/CampaignAnalyzer.f45bc31b.js");
+// Import the CampaignAnalyzer class
+
+return {CampaignAnalyzer};
+}});
+
+define({id: "f58a7aee", outputs: ["DataFrame"], body: async () => {
+const {DataFrame} = await import("./_import/components/DataFrame.7a992023.js");
+
+return {DataFrame};
+}});
+
+define({id: "0d61e71c", inputs: ["html"], outputs: ["pwcStyle","styleElement"], body: async (html) => {
+const {pwcStyle} = await import("./_import/components/pwcStyle.20181f60.js");
+const styleElement = html`<style>
+  ${pwcStyle}
+</style>`;
+document.head.appendChild(styleElement);
+return {pwcStyle,styleElement};
+}});
+
+define({id: "b83b38ae", outputs: ["metrics"], body: () => {
+const metrics = [
+  {
+    title: "TOTAL CAMPAIGN VALUE",
+    value: "$103M",
+    subtext: "50 Campaigns",
+    bgColor: "bg-yellow-400",
+  },
+  {
+    title: "BOOKED VALUE",
+    value: "$60M",
+    subtext: "35 Campaigns",
+    bgColor: "bg-white",
+  },
+  {
+    title: "FORECASTED VALUE",
+    value: "$43M",
+    subtext: "15 Campaigns",
+    bgColor: "bg-gray-50",
+  },
+];
+return {metrics};
+}});
+
+define({id: "34324aff", inputs: ["DataFrame"], outputs: ["data","df"], body: (DataFrame) => {
+const data = [
+  {
+    campaign: "Shift Imaging to Preferred Facility",
+    category: "site of care & provider selection",
+    version: "v3",
+    outreach: 18800,
+    behaviorChange: 1300,
+    liftPerPerson: 3,
+    value: 1100000,
+    status: "booked",
+  },
+  {
+    campaign: "Increased Adherence for High Risk of CHF Readmission",
+    category: "site of care & provider selection",
+    version: "v3",
+    outreach: 20000,
+    behaviorChange: 2200,
+    liftPerPerson: 3,
+    value: 1100000,
+    status: "booked",
+  },
+  {
+    campaign: "Avoid Low Value Procedures",
+    category: "rx management",
+    version: "v3",
+    outreach: 28000,
+    behaviorChange: 1800,
+    liftPerPerson: 3,
+    value: 1100000,
+    status: "booked",
+  },
+  {
+    campaign: "ASC for Cataracts",
+    category: "rx management",
+    version: "v3",
+    outreach: 48000,
+    behaviorChange: 1800,
+    liftPerPerson: 3,
+    value: 1100000,
+    status: "booked",
+  },
+  {
+    campaign: "Switch to On-Formulary RX",
+    category: "rx management",
+    version: "vs3",
+    outreach: 35000,
+    behaviorChange: 1800,
+    liftPerPerson: 3,
+    value: 1100000,
+    status: "pilot",
+  },
+  {
+    campaign: "Avoid Specialty Escalation",
+    category: "rx management",
+    version: "v3",
+    outreach: 50000,
+    behaviorChange: 1800,
+    liftPerPerson: 3,
+    value: 1100000,
+    status: "pilot",
+  },
+  {
+    campaign: "Early PT Adherence",
+    category: "rx management",
+    version: "v3",
+    outreach: 24000,
+    behaviorChange: 1800,
+    liftPerPerson: 3,
+    value: 1100000,
+    status: "pilot",
+  },
+  {
+    campaign: "Asthma + COPD Misdiagnosis",
+    category: "rx management",
+    version: "v3",
+    outreach: 5000,
+    behaviorChange: 1800,
+    liftPerPerson: 3,
+    value: 1100000,
+    status: "pilot",
+  },
+];
+
+const df = new DataFrame(data);
+return {data,df};
+}});
+
+define({id: "022c8d8f", inputs: ["htl","view","Inputs","df","d3"], outputs: ["sparkbar","formatTextBold","formatText","table_selected"], body: async (htl,view,Inputs,df,d3) => {
+function sparkbar(max) {
+  return (x) => htl.html`<div style="
+    background: lightblue;
+    color: black;
+    width: ${(100 * x) / max}%;
+    float: left;
+    padding-right: 3px;
+    padding-left: 3px;
+    box-sizing: border-box;
+    overflow: visible;
+    display: flex;
+    justify-content: start;">${x.toLocaleString("en-US")}`;
+}
+
+function formatTextBold(text, charLimit = 50) {
+  return (x) => {
+    const str = x.toLocaleString("en-US");
+    const wrapped = str.replace(new RegExp(`(.{${charLimit}})`, "g"), "$1\n");
+    return htl.html`<div style="
+      color: black;
+      font-weight: 500;
+      min-height: 40px;
+      float: left;
+      padding: 3px;
+      box-sizing: border-box;
+      white-space: pre-wrap;
+      display: flex;
+      align-items: center;
+      justify-content: start;">${wrapped}</div>`;
+  };
+}
+
+function formatText(text, charLimit = 50) {
+  return (x) => {
+    const str = x.toLocaleString("en-US");
+    const wrapped = str.replace(new RegExp(`(.{${charLimit}})`, "g"), "$1\n");
+    return htl.html`<div style="
+      color: black;
+      min-height: 40px;
+      float: left;
+      padding: 3px;
+      box-sizing: border-box;
+      white-space: pre-wrap;
+      display: flex;
+      align-items: center;
+      justify-content: start;">${wrapped}</div>`;
+  };
+}
+// font: 52px/1.5 "ITC Charter Com", serif;
+
+const table_selected = await view(
+  Inputs.table(df.print(), {
+    required: false,
+    format: {
+      campaign: formatTextBold(df.print(), (d) => d.outreach),
+      category: formatText(df.print(), (d) => d.category),
+      outreach: sparkbar(d3.max(df.print(), (d) => d.outreach)),
+      behaviorChange: sparkbar(d3.max(df.print(), (d) => d.behaviorChange)),
+    },
+    align: {
+      campaign: "left",
+      category: "left",
+      version: "center",
+      outreach: "left",
+      behaviorChange: "left",
+      liftPerPerson: "left",
+      value: "left",
+      status: "left",
+    },
+    header: {
+      campaign: "Campaign",
+      category: "Category",
+      version: "Vs.",
+      outreach: "Outreach",
+      behaviorChange: "Behavior Change",
+      liftPerPerson: "Lift",
+      value: "Value",
+      status: "Status",
+    },
+    layout: "auto",
+    rows: 20,
+  })
+);
+return {sparkbar,formatTextBold,formatText,table_selected};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Behavior Change Portfolio</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Executive Summary</a></li>
+  </ol>
+  <details open>
+    <summary>Imaging</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./imaging-exec-summ">Summary</a></li>
+    <li class="observablehq-link"><a href="./imaging-value-framing-working">Value Framing</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div class="observablehq observablehq--block"><!--:87c13df6:--></div>
+<div class="observablehq observablehq--block"><!--:f58a7aee:--></div>
+<div class="observablehq observablehq--block"><!--:0d61e71c:--></div>
+<div class="page-title-header ">
+<div class="page-title ">
+Behavior Change Portfolio: MedEx
+</div>
+<div class="horizontal-line"></div>
+<p>Track, manage, and forecast campaign impact.</p>
+</div>
+<div class="observablehq observablehq--block"><!--:b83b38ae:--></div>
+<div class="full-width-section">
+  <div class="content-container">
+<div class="grid">
+  <div class="card card-yellow">
+    <div>
+      <p class="text-header">TOTAL CAMPAIGN VALUE</p>
+      <p class="horizontal-line"></p>
+      <p class="text-title">$103M</p>
+      <p class="text-subtext">50 Campaigns</p>
+    </div>
+  </div>
+  <!-- Second Card (White) -->
+  <div class="card card-white">
+    <div>
+      <p class="text-header">BOOKED VALUE</p>
+      <div class="horizontal-line"></div>
+      <p class="text-title">$60M</p>
+      <p class="text-subtext">35 Campaigns</p>
+    </div>
+  </div>
+  <!-- Third Card (Gray) -->
+  <div class="card card-white">
+    <div>
+      <p class="text-header">FORECASTED VALUE</p>
+      <div class="horizontal-line"></div>
+      <p class="text-title">$43M</p>
+      <p class="text-subtext">15 Campaigns</p>
+    </div>
+  </div>
+</div>
+<div class="observablehq observablehq--block"><!--:34324aff:--></div>
+<div class="card">
+<div class="table-header-style">
+<p>Campaigns</p>
+</div>
+<div class="observablehq observablehq--block"><!--:022c8d8f:--></div>
+</div>
+</div>
+</div></main>
+<footer id="observablehq-footer">
+<nav><a rel="next" href="./imaging-exec-summ"><span>Summary</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-06T11:46:26">Jan 6, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>

@@ -19,87 +19,87 @@ export default {
           name: "Value Framing",
           path: "/imaging-value-framing-working",
         },
-        // {
-        //   name: "Problem Definition",
-        //   path: "/problem",
-        // },
-        // {
-        //   name: "EDA & ROI",
-        //   path: "/EDA-ROI",
-        // },
-        // {
-        //   name: "Hypothesis",
-        //   path: "/hypothesis",
-        // },
-        // {
-        //   name: "Targeting Strategy",
-        //   path: "/targeting",
-        // },
-        // {
-        //   name: "Experimental Design",
-        //   path: "/exp-design",
-        // },
-        // {
-        //   name: "Personalization",
-        //   path: "/personalization",
-        // },
       ],
+      // {
+      //   name: "Problem Definition",
+      //   path: "/problem",
+      // },
+      // {
+      //   name: "EDA & ROI",
+      //   path: "/EDA-ROI",
+      // },
+      // {
+      //   name: "Hypothesis",
+      //   path: "/hypothesis",
+      // },
+      // {
+      //   name: "Targeting Strategy",
+      //   path: "/targeting",
+      // },
+      // {
+      //   name: "Experimental Design",
+      //   path: "/exp-design",
+      // },
+      // {
+      //   name: "Personalization",
+      //   path: "/personalization",
+      // },
     },
-    // {
-    //   name: "Primitive Assets",
-    //   open: true,
-    //   pages: [
-    //     {
-    //       name: "DPR Network Example",
-    //       path: "/dpr-network",
-    //     },
-    //     {
-    //       name: "BRFSS State Level Mapping",
-    //       path: "/state-level-mapping",
-    //     },
-    //     {
-    //       name: "Experimental Design Figures",
-    //       path: "/exp-design-figures",
-    //     },
-    //     {
-    //       name: "Live Table",
-    //       path: "/live-table-data",
-    //     },
-    //     {
-    //       name: "Distribution Demo",
-    //       path: "/distp-demo",
-    //     },
-    //     {
-    //       name: "Funnel Chart",
-    //       path: "/funnel-chart",
-    //     },
-    //     {
-    //       name: "Intervention Design",
-    //       path: "/intervention-design",
-    //     },
-    //     {
-    //       name: "In Browser Random Forests",
-    //       path: "/random-forest",
-    //     },
-    //     {
-    //       name: "Mass Balance Business Models",
-    //       path: "/mass-balance-business-models",
-    //     },
-    //     {
-    //       name: "Simple Experimental Design",
-    //       path: "/experimental-design",
-    //     },
-    //     {
-    //       name: "Microsite Demo",
-    //       path: "/microsite",
-    //     },
-    //     {
-    //       name: "Collapsible Cell",
-    //       path: "/collapsible-cell",
-    //     },
-    //   ],
-    // },
   ],
+  // {
+  //   name: "Primitive Assets",
+  //   open: true,
+  //   pages: [
+  //     {
+  //       name: "DPR Network Example",
+  //       path: "/dpr-network",
+  //     },
+  //     {
+  //       name: "BRFSS State Level Mapping",
+  //       path: "/state-level-mapping",
+  //     },
+  //     {
+  //       name: "Experimental Design Figures",
+  //       path: "/exp-design-figures",
+  //     },
+  //     {
+  //       name: "Live Table",
+  //       path: "/live-table-data",
+  //     },
+  //     {
+  //       name: "Distribution Demo",
+  //       path: "/distp-demo",
+  //     },
+  //     {
+  //       name: "Funnel Chart",
+  //       path: "/funnel-chart",
+  //     },
+  //     {
+  //       name: "Intervention Design",
+  //       path: "/intervention-design",
+  //     },
+  //     {
+  //       name: "In Browser Random Forests",
+  //       path: "/random-forest",
+  //     },
+  //     {
+  //       name: "Mass Balance Business Models",
+  //       path: "/mass-balance-business-models",
+  //     },
+  //     {
+  //       name: "Simple Experimental Design",
+  //       path: "/experimental-design",
+  //     },
+  //     {
+  //       name: "Microsite Demo",
+  //       path: "/microsite",
+  //     },
+  //     {
+  //       name: "Collapsible Cell",
+  //       path: "/collapsible-cell",
+  //     },
+  //   ],
+  // },
 
   // Some additional configuration options and their defaults:
   // theme: "default", // try "light", "dark", "slate", etc.
@@ -107,7 +107,7 @@ export default {
   // footer: "Built with Observable.", // what to show in the footer (HTML)
   toc: true, // whether to show the table of contents
   pager: true, // whether to show previous & next links in the footer
-  // root: "docs", // path to the source root for preview
-  // output: "dist", // path to the output root for build
+  root: "docs", // path to the source root for preview
+  output: "dist", // path to the output root for build
   search: true, // activate search
 };

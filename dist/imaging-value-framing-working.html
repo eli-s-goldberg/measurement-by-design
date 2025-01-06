@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.0">
+<title>Imaging - Value Framing | Behavior Change Portfolio</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,wide.d041fa8d.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,wide.d041fa8d.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="./_observablehq/client.1c3ee162.js">
+<link rel="modulepreload" href="./_observablehq/runtime.f168f711.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.1d18d6f6.js">
+<link rel="modulepreload" href="./_import/components/CampaignAnalyzer.f45bc31b.js">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
+<link rel="modulepreload" href="./_import/components/DataFrame.7a992023.js">
+<link rel="modulepreload" href="./_import/components/TableFormatters.ebb3c989.js">
+<link rel="modulepreload" href="./_import/components/pwcStyle.20181f60.js">
+<link rel="modulepreload" href="./_import/components/Layouts.0cf07243.js">
+<link rel="modulepreload" href="./_import/components/TwoToneBoxplot.9148e6c1.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.7b5fa90e.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/b55d4b20.js">
+<link rel="modulepreload" href="./_node/htl@0.3.1/index.692f28bb.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/3da9d5d0.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/37839b6a.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/bd0afa17.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/6495590f.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/d496a3b3.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/ef06b1ff.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/60bb70b3.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/33fb7288.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/5e427f4b.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/4143aac9.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/b6952b03.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/a4e530fb.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/be692bd9.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/3a9ac1c1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/28d1ef76.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/0c259fbf.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/da4a6ccc.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.1c3ee162.js";
+import {registerFile} from "./_observablehq/stdlib.1d18d6f6.js";
+
+registerFile("./data/Synthetic_Boxplot_Data.csv", {"name":"./data/Synthetic_Boxplot_Data.csv","mimeType":"text/csv","path":"./_file/data/Synthetic_Boxplot_Data.4ec61641.csv","lastModified":1736181264962,"size":62455});
+registerFile("./data/us-state-population-2010-2019.csv", {"name":"./data/us-state-population-2010-2019.csv","mimeType":"text/csv","path":"./_file/data/us-state-population-2010-2019.c915d8ff.csv","lastModified":1736181264973,"size":1354});
+
+define({id: "4d9afb94", inputs: ["html"], outputs: ["CampaignAnalyzer","d3","require","DataFrame","formatTwoLevel","formatStatus","sparkbar","formatTextBold","formatWrappedText","withRowHeight","pwcStyle","styleElement","createUnifiedSplitPanel","createTwoToneBoxplot"], body: async (html) => {
+const [{CampaignAnalyzer}, d3, {require}, {DataFrame}, {formatTwoLevel, formatStatus, sparkbar, formatTextBold, formatWrappedText, withRowHeight}, {pwcStyle}, {createUnifiedSplitPanel}, {createTwoToneBoxplot}] = await Promise.all([import("./_import/components/CampaignAnalyzer.f45bc31b.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.45152b81.js"), import("./_import/components/DataFrame.7a992023.js"), import("./_import/components/TableFormatters.ebb3c989.js"), import("./_import/components/pwcStyle.20181f60.js"), import("./_import/components/Layouts.0cf07243.js"), import("./_import/components/TwoToneBoxplot.9148e6c1.js")]);
+// Import the CampaignAnalyzer class try
+
+
+const styleElement = html`<style>
+  ${pwcStyle}
+</style>`;
+document.head.appendChild(styleElement);
+
+
+
+return {CampaignAnalyzer,d3,require,DataFrame,formatTwoLevel,formatStatus,sparkbar,formatTextBold,formatWrappedText,withRowHeight,pwcStyle,styleElement,createUnifiedSplitPanel,createTwoToneBoxplot};
+}});
+
+define({id: "b824cb44", outputs: ["imaging_breakdown"], body: () => {
+// data input
+const imaging_breakdown = [
+  {
+    proc_category: "X-Rays",
+    procedure: "Chest X-Ray",
+    description: "Standard chest imaging to evaluate lungs and heart",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "CT",
+    procedure: "Head/Brain CT",
+    description: "Cross-sectional imaging of head or brain",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "MRI",
+    procedure: "Brain CT",
+    description: "Detailed imaging of brain and soft tissue",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "Ultrasound",
+    procedure: "Abdominal Ultrasound",
+    description: "Non-invasive imaging for soft tissue evaluation",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "Flouroscopy",
+    procedure: "Real-Time Imaging",
+    description: "Continuous X-Ray imaging for real-time movement",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "Mammography",
+    procedure: "Breast Screening",
+    description: "Mammogram for breast cancer screening",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "Nuclear Medicine",
+    procedure: "Radiotracer Imaging",
+    description: "Imaging with radiotracers to assess organ function",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "Interventional Radiology",
+    procedure: "Guided Procedures",
+    description: "Image-guided techniques for surgical or diagnostic use",
+    cpt_code: "XXXX",
+  },
+];
+return {imaging_breakdown};
+}});
+
+define({id: "1fe0f22c", inputs: ["FileAttachment"], outputs: ["topX","statepop"], body: (FileAttachment) => {
+const topX = 10; // Change to desired number of top states
+
+const statepop = FileAttachment("./data/us-state-population-2010-2019.csv")
+  .csv({ typed: true })
+  .then((data) => {
+    const withValue = data.slice(0, topX).map((d) => ({
+      ...d,
+      value: (d[2019] - d[2010]) / d[2010],
+    }));
+    return withValue;
+  });
+return {topX,statepop};
+}});
+
+define({id: "a6d83461", inputs: ["Plot","statepop","d3"], outputs: ["plot","config"], body: (Plot,statepop,d3) => {
+const plot = Plot.plot({
+  label: null,
+  height: 400,
+
+  x: {
+    axis: "top",
+    label: "← decrease · Change in population, 2010–2019 (%) · increase →",
+    labelAnchor: "center",
+    tickFormat: "+",
+    percent: true,
+  },
+  color: {
+    scheme: "PiYG",
+    type: "ordinal",
+  },
+  marks: [
+    Plot.barX(statepop, {
+      x: "value",
+      y: "State",
+      fill: (d) => d.value > 0,
+      sort: { y: "x" },
+      limit: 10,
+    }),
+    Plot.gridX({ stroke: "white", strokeOpacity: 0.5 }),
+    d3
+      .groups(statepop, (d) => d.value > 0)
+      .map(([growth, states]) => [
+        Plot.axisY({
+          x: 0,
+          ticks: states.map((d) => d.State),
+          tickSize: 0,
+          anchor: growth ? "left" : "right",
+        }),
+        Plot.textX(states, {
+          x: "value",
+          y: "State",
+          text: (
+            (f) => (d) =>
+              f(d.value)
+          )(d3.format("+.1%")),
+          textAnchor: growth ? "start" : "end",
+          dx: growth ? 4 : -4,
+        }),
+      ]),
+    Plot.ruleX([0]),
+  ],
+});
+
+// Example usage
+const config = {
+  title: "How Do Preferred Facilities Compare?",
+  subtitle: "Discover the incidence of Non-Preferred usage.",
+  description: {
+    initialText: "",
+    highlightedText: "",
+    finalText: "",
+  },
+  gridSplit: { left: 87, right: 25 },
+  leftContent: {
+    type: "plot",
+    content: plot,
+  },
+  rightContent: {
+    type: "cards",
+    content: [
+      {
+        title: "KEY TAKEAWAY",
+        flavor: "keyTakeaway",
+        value: "4%",
+        subtitle:
+          "of Commercial Fully Insured members used Non-Preferred facilities for imaging in 2024",
+        highlight: true,
+      },
+    ],
+  },
+  theme: "light",
+  subheader: "",
+};
+return {plot,config};
+}});
+
+define({id: "05a71e2c", inputs: ["Inputs","formatStatus","formatWrappedText","withRowHeight","formatTextBold","view"], outputs: ["imaging_breakdown","table"], body: (Inputs,formatStatus,formatWrappedText,withRowHeight,formatTextBold,view) => {
+const imaging_breakdown = [
+  {
+    proc_category: "X-Rays",
+    procedure: "Chest X-Ray",
+    description: "Standard chest imaging to evaluate lungs and heart",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "CT",
+    procedure: "Head/Brain CT",
+    description: "Cross-sectional imaging of head or brain",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "MRI",
+    procedure: "Brain CT",
+    description: "Detailed imaging of brain and soft tissue",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "Ultrasound",
+    procedure: "Abdominal Ultrasound",
+    description: "Non-invasive imaging for soft tissue evaluation",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "Flouroscopy",
+    procedure: "Real-Time Imaging",
+    description: "Continuous X-Ray imaging for real-time movement",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "Mammography",
+    procedure: "Breast Screening",
+    description: "Mammogram for breast cancer screening",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "Nuclear Medicine",
+    procedure: "Radiotracer Imaging",
+    description: "Imaging with radiotracers to assess organ function",
+    cpt_code: "XXXX",
+  },
+  {
+    proc_category: "Interventional Radiology",
+    procedure: "Guided Procedures",
+    description: "Image-guided techniques for surgical or diagnostic use",
+    cpt_code: "XXXX",
+  },
+];
+
+const table = Inputs.table(imaging_breakdown, {
+  format: {
+    procedure: formatStatus,
+    description: formatWrappedText(),
+    proc_category: withRowHeight(
+      "45px",
+      "top"
+    )(formatTextBold((d) => d.proc_category)),
+  },
+  // align: {
+  //   proc_category: "left",
+  //   procedure: "left",
+  //   description: "left",
+  //   cpt_code: "left",
+  // },
+  // columns: ["version", "timeInMarket", "outreach", "status"],
+  header: {
+    proc_category: "Procedure Category",
+    procedure: "Procedure",
+    description: "Description",
+    cpt_code: "CPT",
+  },
+  width: "auto",
+  height: "auto",
+});
+view(table);
+return {imaging_breakdown,table};
+}});
+
+define({id: "af88736c", inputs: ["Inputs","Plot","statepop","d3","html"], outputs: ["composedPlot"], body: (Inputs,Plot,statepop,d3,html) => {
+const composedPlot = {
+  combine() {
+    const teams = [
+      { name: "Lakers", location: "Los Angeles, California" },
+      { name: "Warriors", location: "San Francisco, California" },
+      { name: "Celtics", location: "Boston, Massachusetts" },
+      { name: "Nets", location: "New York City, New York" },
+      { name: "Raptors", location: "Toronto, Ontario" },
+    ];
+
+    const teamSelector = Inputs.select(teams, {
+      label: "Favorite team",
+      format: (t) => t.name,
+      value: teams.find((t) => t.name === "Warriors"),
+    });
+
+    // Create the main plot
+    const mainPlot = Plot.plot({
+      label: null,
+      title: "Non-Preferred Incidence Rate by Procedure Category",
+      height: 400,
+      x: {
+        axis: "top",
+        label: "← decrease · Change in population, 2010–2019 (%) · increase →",
+        labelAnchor: "center",
+        tickFormat: "+",
+        percent: true,
+      },
+      style: {
+        background: "#fff",
+      },
+      color: {
+        scheme: "PiYG",
+        type: "ordinal",
+      },
+      marks: [
+        Plot.barX(statepop, {
+          x: "value",
+          y: "State",
+          fill: (d) => d.value > 0,
+          sort: { y: "x" },
+          limit: 10,
+        }),
+        Plot.gridX({ stroke: "white", strokeOpacity: 0.5 }),
+        ...d3
+          .groups(statepop, (d) => d.value > 0)
+          .map(([growth, states]) => [
+            Plot.axisY({
+              x: 0,
+              ticks: states.map((d) => d.State),
+              tickSize: 0,
+              anchor: growth ? "left" : "right",
+            }),
+            Plot.textX(states, {
+              x: "value",
+              y: "State",
+              text: (
+                (f) => (d) =>
+                  f(d.value)
+              )(d3.format("+.1%")),
+              textAnchor: growth ? "start" : "end",
+              dx: growth ? 4 : -4,
+            }),
+          ]),
+        Plot.ruleX([0]),
+      ],
+    });
+
+    // Create a container div
+    const container = html`<div>
+      <div style="margin-bottom: 1rem">${teamSelector}</div>
+      ${mainPlot}
+    </div>`;
+
+    return container;
+  },
+  value: null, // This will be set when combine() is called
+};
+return {composedPlot};
+}});
+
+define({id: "c4c5bf48", inputs: ["Plot","html","statepop","d3","table"], outputs: ["plot2","myTableStyles","config2"], body: (Plot,html,statepop,d3,table) => {
+const plot2 = Plot.plot({
+  label: null,
+  title: html`<div
+      style="
+    font-family: 'Helvetica Neue', sans-serif; 
+    font-weight: 700; 
+    font-size: 20px; 
+    line-height: 24.42px;
+    letter-spacing: -0.03em; 
+    margin-bottom: 1rem;"
+    >
+      Non-Preferred Incidence Rate by Procedure Category
+    </div>
+    <div style="height: 24px;"></div>`,
+  height: 400,
+  x: {
+    axis: "top",
+    label: "← decrease · Change in population, 2010–2019 (%) · increase →",
+    labelAnchor: "center",
+    tickFormat: "+",
+    percent: true,
+  },
+  style: {
+    background: "#fff",
+  },
+  color: {
+    scheme: "PiYG",
+    type: "ordinal",
+  },
+  marks: [
+    Plot.barX(statepop, {
+      x: "value",
+      y: "State",
+      fill: (d) => d.value > 0,
+      sort: { y: "x" },
+      limit: 10,
+    }),
+    Plot.gridX({ stroke: "white", strokeOpacity: 0.5 }),
+    d3
+      .groups(statepop, (d) => d.value > 0)
+      .map(([growth, states]) => [
+        Plot.axisY({
+          x: 0,
+          ticks: states.map((d) => d.State),
+          tickSize: 0,
+          anchor: growth ? "left" : "right",
+        }),
+        Plot.textX(states, {
+          x: "value",
+          y: "State",
+          text: (
+            (f) => (d) =>
+              f(d.value)
+          )(d3.format("+.1%")),
+          textAnchor: growth ? "start" : "end",
+          dx: growth ? 4 : -4,
+        }),
+      ]),
+    Plot.ruleX([0]),
+  ],
+});
+
+const myTableStyles = {
+  headerBackground: "#333333",
+  headerTextColor: "#ffffff",
+  headerHeight: "50px",
+  tableBorderRadius: "18px",
+};
+
+const config2 = {
+  title: "Where Are Members Going For Imaging?",
+  subtitle: "Discover the incidence of Non-Preferred usage.",
+  tableStyles: myTableStyles,
+  description: {
+    initialText: "",
+    highlightedText: "",
+    finalText: "",
+  },
+  gridSplit: { left: 35, right: 65 },
+
+  leftContent: {
+    type: "bodyDescription",
+    content: "",
+    bodyDescription: {
+      initialText: html`<div style="height: 84px;"></div>
+        We identified`,
+      highlightedText: "8 categories of imaging procedures ",
+      finalText: html`
+        that can be done either at preferred or non-preferred facilities.
+        <p>
+          <strong> Non-preferred </strong> facilities are classified as
+          out-of-network for CFI plans
+        </p>
+      `,
+    },
+    cardBackground: "#FFF",
+  },
+  rightContent: {
+    type: "table",
+    content: table,
+    card: false,
+  },
+  theme: "dark",
+  subheader: html``,
+};
+return {plot2,myTableStyles,config2};
+}});
+
+define({id: "34064a6a", inputs: ["html"], outputs: ["config3"], body: (html) => {
+const config3 = {
+  title: "",
+  subtitle: "The data reveals usage patterns and key trends.",
+  tableStyles: "",
+  description: {
+    initialText: "",
+    highlightedText: "",
+    finalText: "",
+  },
+  gridSplit: { left: 50, right: 50 },
+
+  leftContent: {
+    type: "bodyDescription",
+    content: "",
+    bodyDescription: {
+      initialText: html`
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut varius nisi
+        quis neque elementum, sit amet commodo nisl dignissim. Duis nec
+        efficitur massa. Maecenas pellentesque sapien et quam scelerisque, vitae
+        blandit odio vehicula. Class aptent taciti sociosqu ad litora torquent
+        per conubia nostra, per inceptos himenaeos. Vivamus at viverra sem, sed
+        tempor elit. Sed rhoncus nec nunc nec commodo. Phasellus lobortis, eros
+        ultricies feugiat hendrerit.
+      `,
+      highlightedText: "",
+      finalText: "",
+      fontStyles: {
+        fontFamily: '"Helvetica Neue", sans-serif',
+        fontSize: "18px",
+        fontWeight: "400",
+        lineHeight: "28px",
+        marginBottom: "0.5rem",
+        letterSpacing: "-.03em",
+      },
+    },
+    cardBackground: "#FFF",
+  },
+  rightContent: {
+    type: "bodyDescription",
+    content: "",
+    bodyDescription: {
+      initialText: html`
+        <ul style="margin: 0; padding-left: 1.5em;">
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+          <li>Duis nec efficitur massa.</li>
+          <li>Class aptent taciti sociosqu ad litora torquent</li>
+          <li>Sed rhoncus nec nunc nec commodo.</li>
+        </ul>
+      `,
+      highlightedText: "",
+      finalText: "",
+      fontStyles: {
+        fontFamily: '"Helvetica Neue", sans-serif',
+        fontSize: "18px",
+        fontWeight: "400",
+        lineHeight: "28px",
+        marginBottom: "0.5rem",
+        letterSpacing: "-.03em",
+      },
+    },
+    cardBackground: "#FFF",
+  },
+  theme: "light",
+};
+return {config3};
+}});
+
+define({id: "52235d10", inputs: ["plot2"], outputs: ["config4"], body: (plot2) => {
+//config 4
+const config4 = {
+  title: "The Cost of Choice.",
+  subtitle: "How much could the members save by choosing Preferred facilities?",
+  description: {
+    initialText: "",
+    highlightedText: "",
+    finalText: "",
+  },
+  gridSplit: { left: 87, right: 25 },
+  leftContent: {
+    type: "plot",
+    content: plot2,
+    cardBackground: "#FFF",
+  },
+  rightContent: {
+    type: "cards",
+    content: [
+      {
+        title: "KEY TAKEAWAY",
+        flavor: "keyTakeaway",
+        value: "4%",
+        subtitle:
+          "of Commercial Fully Insured members used Non-Preferred facilities for imaging in 2024",
+        highlight: true,
+      },
+    ],
+  },
+  theme: "dark",
+  subheader: "",
+};
+return {config4};
+}});
+
+define({id: "d659b8fb", inputs: ["FileAttachment"], outputs: ["boxdata"], body: async (FileAttachment) => {
+const boxdata = await FileAttachment("./data/Synthetic_Boxplot_Data.csv").csv({
+  typed: true,
+});
+return {boxdata};
+}});
+
+define({id: "d60f26c9", inputs: ["createTwoToneBoxplot","boxdata"], outputs: ["boxplot"], body: (createTwoToneBoxplot,boxdata) => {
+const boxplot = createTwoToneBoxplot(boxdata, {
+  // Dimensions
+  title: "title",
+  width: 800,
+  height: 500,
+  marginTop: 60,
+  marginRight: 40,
+  marginBottom: 100,
+  marginLeft: 70,
+
+  // Colors and styling
+  fill1: "#E27588", // lighter pink for lower half
+  fill2: "#D93954", // darker pink for upper half
+  stroke1: "#E27588", // border for lower half
+  stroke2: "#D93954", // border for upper half
+  backgroundColor: "#ffffff",
+
+  // Labels
+  yLabel: "Allowed Cost ($)",
+  xLabel: "Procedure Category",
+
+  // Box styling
+  boxStrokeWidth: 0,
+  boxStrokeOpacity: 1,
+  boxFillOpacity: 0.7,
+  boxPadding: 0.3,
+
+  // Median line
+  medianLineColor: "#fff",
+  medianLineWidth: 0,
+
+  // Whisker styling
+  whiskerColor: "#666",
+  whiskerWidth: 1,
+  whiskerCapWidth: 0.5,
+
+  // Outlier styling
+  showOutliers: true,
+  outlierRadius: 3,
+  outlierColor: "#FF4757",
+  outlierFill: "#fff",
+  outlierStrokeWidth: 1,
+
+  // Grid styling
+  showGrid: true,
+  gridColor: "#e0e0e0",
+  gridOpacity: 0.7,
+  gridDash: [0],
+
+  // Axis styling
+  xTickRotation: 0,
+  xTickSize: 0,
+  yTickSize: 0,
+  tickFontSize: "12px",
+  tickFontFamily: "Arial, sans-serif",
+  labelFontSize: "14px",
+  labelFontFamily: "Arial, sans-serif",
+
+  // Scales
+  yScale: {
+    type: "linear",
+    domain: [0, 9000],
+    nice: true,
+  },
+
+  // Tooltip styling
+  tooltipEnabled: true,
+  tooltipStyles: `
+    .custom-tooltip {
+      background: white;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      font-family: Arial, sans-serif;
+    }
+    .custom-tooltip-header {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .custom-tooltip-content {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 6px;
+      font-size: 12px;
+    }
+    .custom-tooltip-label {
+      color: #666;
+    }
+    .custom-tooltip-value {
+      font-weight: 500;
+      text-align: right;
+    }
+  `,
+  tooltipClassName: "custom-tooltip",
+  tooltipPosition: "auto",
+  tooltipOffset: { x: 10, y: 10 },
+  tooltipDelay: 0,
+  tooltipHideDelay: 0,
+  tooltipAnimation: false,
+  /// show advDiff
+  showAdvDiff: true,
+  advDiffBackground: {
+    show: true,
+    fill: "#f8f9fa",
+    height: 30,
+  },
+  advDiffStyles: {
+    label: {
+      fontFamily: "Arial, sans-serif",
+      fontSize: "12px",
+      fontWeight: "bold",
+      color: "000",
+    },
+    values: {
+      fontFamily: "Arial, sans-serif",
+      fontSize: "12px",
+      fontWeight: "normal",
+      color: "000",
+    },
+  },
+  advDiffData: {
+    Any: 1200,
+    "X-Ray": 300,
+    CT: 1000,
+    MRI: 2200,
+    US: 300,
+    NM: 1500,
+    Mammo: 1500,
+    Fluoro: 500,
+    IR: 1500,
+  },
+  advDiffLabel: "Adv. Diff:",
+  advDiffPrefix: "$",
+  advDiffPadding: 30,
+});
+
+// Append to document
+return {boxplot};
+}});
+
+define({id: "a8fa0b3a", inputs: ["boxplot"], outputs: ["config5"], body: (boxplot) => {
+const config5 = {
+  title: "The Cost of Choice.",
+  subtitle: "How much could the members save by choosing Preferred facilities?",
+  description: {
+    initialText: "",
+    highlightedText: "",
+    finalText: "",
+  },
+  gridSplit: { left: 87, right: 25 },
+  leftContent: {
+    type: "plot",
+    content: boxplot.svg,
+    cardBackground: "#FFF",
+  },
+  rightContent: {
+    type: "cards",
+    content: [
+      {
+        title: "KEY TAKEAWAY",
+        flavor: "keyTakeaway",
+        value: "4%",
+        subtitle:
+          "of Commercial Fully Insured members used Non-Preferred facilities for imaging in 2024",
+        highlight: true,
+      },
+    ],
+  },
+  theme: "light",
+  subheader: "",
+};
+return {config5};
+}});
+
+define({id: "fc6607c9", inputs: ["createUnifiedSplitPanel","config2","view","config","config3","config4","config5"], outputs: ["element2","element","element3","element4","element5"], body: (createUnifiedSplitPanel,config2,view,config,config3,config4,config5) => {
+const element2 = createUnifiedSplitPanel(config2);
+
+view(element2);
+
+const element = createUnifiedSplitPanel(config);
+
+view(element);
+
+const element3 = createUnifiedSplitPanel(config3);
+
+view(element3);
+
+const element4 = createUnifiedSplitPanel(config4);
+
+view(element4);
+
+const element5 = createUnifiedSplitPanel(config5);
+
+view(element5);
+return {element2,element,element3,element4,element5};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Behavior Change Portfolio</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./">Executive Summary</a></li>
+  </ol>
+  <details open class="observablehq-section-active">
+    <summary>Imaging</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./imaging-exec-summ">Summary</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./imaging-value-framing-working">Value Framing</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div class="observablehq observablehq--block"><!--:4d9afb94:--></div>
+<style>
+  body {
+    margin: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  </style>
+<div class="observablehq observablehq--block"><!--:b824cb44:--></div>
+<div class="page-title-header ">
+<div class="page-title">
+Value Framing
+</div>
+<div class="horizontal-line"></div>
+<p>Hypothesis: Employ personalized savings as the primary behavioral economic principle.</p>
+</div>
+<style>
+
+table thead tr th {
+  background-color: black !important;
+  color: white !important;
+}
+
+table {
+  border-collapse: separate; 
+  border-spacing: 0; 
+  border: 0px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden; 
+}
+
+
+</style>
+<div class="observablehq observablehq--block"><!--:1fe0f22c:--></div>
+<div class="observablehq observablehq--block"><!--:a6d83461:--></div>
+<div class="observablehq observablehq--block"><!--:05a71e2c:--></div>
+<div class="observablehq observablehq--block"><!--:af88736c:--></div>
+<div class="observablehq observablehq--block"><!--:c4c5bf48:--></div>
+<div class="observablehq observablehq--block"><!--:34064a6a:--></div>
+<div class="observablehq observablehq--block"><!--:52235d10:--></div>
+<div class="observablehq observablehq--block"><!--:d659b8fb:--></div>
+<div class="observablehq observablehq--block"><!--:d60f26c9:--></div>
+<div class="observablehq observablehq--block"><!--:a8fa0b3a:--></div>
+<div class="observablehq observablehq--block"><!--:fc6607c9:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./imaging-exec-summ"><span>Summary</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-06T11:46:26">Jan 6, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>

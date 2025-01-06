@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.0">
+<title>Imaging - Executive Summary | Behavior Change Portfolio</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,wide.d041fa8d.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,wide.d041fa8d.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="./_observablehq/client.1c3ee162.js">
+<link rel="modulepreload" href="./_observablehq/runtime.f168f711.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.1d18d6f6.js">
+<link rel="modulepreload" href="./_import/components/CampaignAnalyzer.f45bc31b.js">
+<link rel="modulepreload" href="./_node/d3-require@1.3.0/index.45152b81.js">
+<link rel="modulepreload" href="./_import/components/createSplitPanelSummaryLayout.2d0b118a.js">
+<link rel="modulepreload" href="./_import/components/DataFrame.7a992023.js">
+<link rel="modulepreload" href="./_import/components/TableFormatters.ebb3c989.js">
+<link rel="modulepreload" href="./_import/components/pwcStyle.20181f60.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.7b5fa90e.js">
+<link rel="modulepreload" href="./_node/htl@0.3.1/index.692f28bb.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.16/b55d4b20.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/3da9d5d0.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/a62ae5ce.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/37839b6a.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/bd0afa17.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/6495590f.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/84d7b8e9.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/2c0cdfa2.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/d496a3b3.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/00c41b5d.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/b5f7cdc6.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/ef06b1ff.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/407f7a1f.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/6f15f633.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/ef1ec490.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/60bb70b3.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/33fb7288.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/5e427f4b.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/f1db2593.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/034b7bcb.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/4bb53638.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/bbafde58.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/aa5b35a8.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/32c7fec2.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/4143aac9.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/b6952b03.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/a4e530fb.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/be692bd9.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/3a9ac1c1.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/28d1ef76.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/f31b5398.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/0c259fbf.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/da4a6ccc.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/1ee6c50d.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/5eed35fd.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/e67acb27.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/8ac9039b.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.1c3ee162.js";
+
+define({id: "ecc20043", outputs: ["CampaignAnalyzer","d3","require","createSplitPanelSummaryLayout"], body: async () => {
+const [{CampaignAnalyzer}, d3, {require}, {createSplitPanelSummaryLayout}] = await Promise.all([import("./_import/components/CampaignAnalyzer.f45bc31b.js"), import("https://cdn.jsdelivr.net/npm/d3@7/+esm"), import("./_node/d3-require@1.3.0/index.45152b81.js"), import("./_import/components/createSplitPanelSummaryLayout.2d0b118a.js")]);
+// Import the CampaignAnalyzer class
+
+
+return {CampaignAnalyzer,d3,require,createSplitPanelSummaryLayout};
+}});
+
+define({id: "a7396d37", inputs: ["html"], outputs: ["DataFrame","formatTwoLevel","formatStatus","sparkbar","formatTextBold","pwcStyle","styleElement"], body: async (html) => {
+const [{DataFrame}, {formatTwoLevel, formatStatus, sparkbar, formatTextBold}, {pwcStyle}] = await Promise.all([import("./_import/components/DataFrame.7a992023.js"), import("./_import/components/TableFormatters.ebb3c989.js"), import("./_import/components/pwcStyle.20181f60.js")]);
+
+const styleElement = html`<style>
+  ${pwcStyle}
+</style>`;
+document.head.appendChild(styleElement);
+return {DataFrame,formatTwoLevel,formatStatus,sparkbar,formatTextBold,pwcStyle,styleElement};
+}});
+
+define({id: "e5bdd212", inputs: ["createSplitPanelSummaryLayout","view"], outputs: ["config","element"], body: (createSplitPanelSummaryLayout,view) => {
+const config = {
+  title: "",
+  subtitle: "Current Campaign",
+  description: {
+    initialText: "This campaign targets members at ",
+    highlightedText:
+      "elevated likelihood to receive imaging procedures at Non-Preferred facilities",
+    finalText:
+      " and 'nudges' them to drive them to Preferred locations instead.",
+  },
+  tabs: [
+    {
+      name: "Tactics",
+      title: "Marketing Tactics",
+      subtitle: "Key Strategies",
+      description:
+        "Key strategies and approaches to reach target audience effectively.",
+      isActive: true,
+    },
+    {
+      name: "Channels",
+      title: "Distribution Channels",
+      subtitle: "Key Strategies",
+      description: "Multi-channel approach...",
+      isActive: false,
+    },
+    {
+      name: "Measurement",
+      title: "Measurement Approach",
+      subtitle: "Key Strategies",
+      description: "",
+      isActive: false,
+    },
+  ],
+  cards: [
+    {
+      title: "TOTAL VALUE AT STAKE",
+      value: "$72M",
+      subtitle: "Commercial Fully Insured",
+      description:
+        "40,000 members with Non-Preferred imaging $1,800 per shift to Preferred",
+    },
+    {
+      title: "RUN-RATE SAVINGS",
+      value: "$1.1M",
+      subtitle: "Current Campaign (v3)",
+    },
+  ],
+};
+
+const element = createSplitPanelSummaryLayout(config);
+view(element);
+return {config,element};
+}});
+
+define({id: "f0640754", inputs: ["DataFrame"], outputs: ["version","df_versions"], body: (DataFrame) => {
+const version = [
+  {
+    version: {
+      header: "Version 1",
+      description: "Email w/generic savings,\n no predictive model",
+    },
+    timeInMarket: {
+      header: "5 Months",
+      description: "2/1/23 to 7/1/23",
+    },
+    outreach: 15000,
+    costPerChangeBehavior: 1700,
+    behaviorChangeLift: "Not Significant",
+    value: 0,
+    status: "Deprecated",
+  },
+  {
+    version: {
+      header: "Version 2",
+      description: "Email w/generic savings, no predictive model",
+    },
+    timeInMarket: {
+      header: "5 Months",
+      description: "2/1/23 to 7/1/23",
+    },
+    outreach: 15000,
+    costPerChangeBehavior: 1700,
+    behaviorChangeLift: "Not Significant",
+    value: 0,
+    status: "Deprecated",
+  },
+];
+
+const df_versions = new DataFrame(version);
+return {version,df_versions};
+}});
+
+define({id: "6362ccde", inputs: ["Inputs","version","formatTwoLevel","sparkbar","d3","formatStatus","view"], outputs: ["table"], body: (Inputs,version,formatTwoLevel,sparkbar,d3,formatStatus,view) => {
+const table = Inputs.table(version, {
+  format: {
+    version: formatTwoLevel(),
+    timeInMarket: formatTwoLevel(),
+    outreach: sparkbar(d3.max(version, (d) => d.outreach)),
+    costPerChangeBehavior: (x) => `$${x.toLocaleString("en-US")}`,
+    status: formatStatus,
+  },
+  align: {
+    version: "left",
+    timeInMarket: "left",
+    outreach: "left",
+    costPerChangeBehavior: "left",
+    behaviorChangeLift: "left",
+    value: "left",
+    status: "left",
+  },
+  header: {
+    version: "Version",
+    timeInMarket: "Time in Market",
+    outreach: "Outreach",
+    costPerChangeBehavior: "$/Change",
+    behaviorChangeLift: "Lift",
+    value: "Value",
+    status: "Status",
+  },
+  width: "auto",
+  // width: {
+  //   version: 200,
+  //   timeInMarket: 150,
+  //   outreach: 120,
+  //   costPerChangeBehavior: 120,
+  //   behaviorChangeLift: 150,
+  //   value: 100,
+  //   status: 100,
+  // },
+});
+
+view(table);
+return {table};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Behavior Change Portfolio</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./">Executive Summary</a></li>
+  </ol>
+  <details open class="observablehq-section-active">
+    <summary>Imaging</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./imaging-exec-summ">Summary</a></li>
+    <li class="observablehq-link"><a href="./imaging-value-framing-working">Value Framing</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div class="observablehq observablehq--block"><!--:ecc20043:--></div>
+<div class="observablehq observablehq--block"><!--:a7396d37:--></div>
+<div class="page-title-header ">
+<div class="page-title">
+Shifting Imaging to Preferred Facility
+</div>
+<div class="horizontal-line"></div>
+<p>Version 3: direct mail + email + microsite for predicted savers</p>
+</div>
+<div class="observablehq observablehq--block"><!--:e5bdd212:--></div>
+<div style="height: 16px;"></div>
+<div class="observablehq observablehq--block"><!--:f0640754:--></div>
+<div class="text-subheader">
+Version History
+</div>
+<div class="observablehq observablehq--block"><!--:6362ccde:--></div>
+<!--
+```js
+// Initialize the analyzer with sample data
+const analyzer = new CampaignAnalyzer(sampleData);
+
+// Get formatted table data
+const tableData = analyzer.formatCampaignData();
+
+````
+
+```js
+// Transform data using the analyzer
+const selectedTimeSeriesData = analyzer.transformTimeSeriesData(selection);
+const selectedMetrics = analyzer.transformMetrics(selection);
+const metricTables = analyzer.createMetricTables(selectedMetrics);
+const funData = analyzer.getFunnelData(selection);
+const steps = [
+  "totalBooked",
+  "targeted",
+  "connected",
+  "enrolled",
+  "engaged",
+  "changedBehavior",
+];
+const processedData = analyzer.processFunnelData(funData, steps);
+const barData = analyzer.createBarChartData(selection);
+````
+
+<div class="card">
+
+```js
+const selection = view(
+  Inputs.table(tableData, {
+    columns: [
+      "intervention",
+      "populationDesc",
+      "version",
+      "timeInMarket",
+      "populationSize",
+      "costPerChange",
+      "totalImpact",
+      "financialImpact",
+    ],
+    header: {
+      intervention: "Intervention",
+      populationDesc: "Description",
+      version: "Vs",
+      timeInMarket: "Runtime ",
+      populationSize: "Population",
+      costPerChange: "$/BC",
+      totalImpact: "Impact @ Scale",
+      financialImpact: "Impact @ Pilot",
+    },
+    layout: "auto",
+  })
+);
+```
+
+</div>
+
+asdfdsasfd
+asdf
+
+<table class="table-card-campaign-table">
+  <thead>
+    <tr>
+      <th>Campaign</th>
+      <th>Levers</th>
+      <th>Version</th>
+      <th>Outreach</th>
+      <th>$ per Change Behavior</th>
+      <th>Behavior Change Lift</th>
+      <th>Value</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Shift Imaging to Preferred Facility</td>
+      <td>Site of Care & Provider Selection</td>
+      <td>v3 <span class="icon">📄</span></td>
+      <td>20,000</td>
+      <td>$1,800</td>
+      <td>3pp</td>
+      <td>$1.1M</td>
+      <td><span class="status-pill status-booked">Booked <span class="icon">📄</span></span></td>
+    </tr>
+    <tr>
+      <td>Increased Adherence for High Risk of CHF Readmission</td>
+      <td>Site of Care & Provider Selection</td>
+      <td>v3 <span class="icon">📄</span></td>
+      <td>20,000</td>
+      <td>$1,800</td>
+      <td>3pp</td>
+      <td>$1.1M</td>
+      <td><span class="status-pill status-booked">Booked <span class="icon">📄</span></span></td>
+    </tr>
+    <tr>
+      <td>Avoid Low Value Procedures</td>
+      <td>RX Management</td>
+      <td>v3 <span class="icon">📄</span></td>
+      <td>20,000</td>
+      <td>$1,800</td>
+      <td>3pp</td>
+      <td>$1.1M</td>
+      <td><span class="status-pill status-booked">Booked <span class="icon">📄</span></span></td>
+    </tr>
+    <tr>
+      <td>ASC for Cataracts</td>
+      <td>RX Management</td>
+      <td>v3 <span class="icon">📄</span></td>
+      <td>20,000</td>
+      <td>$1,800</td>
+      <td>3pp</td>
+      <td>$1.1M</td>
+      <td><span class="status-pill status-booked">Booked <span class="icon">📄</span></span></td>
+    </tr>
+    <tr>
+      <td>Switch to On-Formulary RX</td>
+      <td>RX Management</td>
+      <td>v3 <span class="icon">📄</span></td>
+      <td>20,000</td>
+      <td>$1,800</td>
+      <td>3pp</td>
+      <td>$1.1M</td>
+      <td><span class="status-pill status-pilot">Pilot <span class="icon">📄</span></span></td>
+    </tr>
+  </tbody>
+</table>
+
+## Funnel Analysis
+
+<div class="grid grid-cols-2">
+<div class="card">
+
+```js
+view(
+  Plot.plot({
+    height: 200,
+    grid: true,
+    x: { label: "Stage", domain: steps },
+    y: { label: "Population" },
+    color: { legend: true },
+    marks: [
+      Plot.line(
+        processedData.flatMap((d) => d.absoluteData),
+        { x: "step", y: "value", stroke: "intervention", strokeWidth: 0.5 }
+      ),
+      Plot.dot(
+        processedData.flatMap((d) => d.absoluteData),
+        {
+          x: "step",
+          y: "value",
+          fill: "intervention",
+          r: 1,
+          channels: {
+            Intervention: "intervention",
+            Step: "step",
+            Population: "value",
+          },
+          tip: {
+            format: {
+              Intervention: true,
+              Step: true,
+              Population: true,
+              x: false,
+              y: false,
+              fill: false,
+            },
+          },
+        }
+      ),
+    ],
+  })
+);
+```
+
+</div>
+<div class="card">
+
+```js
+view(
+  Plot.plot({
+    height: 200,
+    grid: true,
+    x: { label: "Stage", domain: steps },
+    y: { label: "Percentage", domain: [0, 100] },
+    color: { legend: true },
+    marks: [
+      Plot.line(
+        processedData.flatMap((d) => d.percentageData),
+        { x: "step", y: "value", stroke: "intervention", strokeWidth: 0.5 }
+      ),
+      Plot.dot(
+        processedData.flatMap((d) => d.percentageData),
+        { x: "step", y: "value", fill: "intervention", r: 1 }
+      ),
+    ],
+  })
+);
+```
+
+</div>
+</div>
+
+## Performance Metrics
+
+<div class="grid grid-cols-2">
+<div class="card">
+
+<figure>
+<figcaption>Observed Behavior Change Rate Over Time</figcaption>
+
+```js
+view(
+  Plot.plot({
+    marginRight: 60,
+    height: 200,
+    grid: true,
+    x: {
+      type: "time",
+      label: "Month",
+    },
+    y: {
+      label: "Change Rate (%)",
+      grid: true,
+    },
+    marks: [
+      Plot.line(selectedTimeSeriesData, {
+        x: "month",
+        y: "changeRate",
+        stroke: "intervention",
+        strokeWidth: 0.5,
+      }),
+      Plot.dot(selectedTimeSeriesData, {
+        x: "month",
+        y: "changeRate",
+        fill: "intervention",
+        r: 1,
+        channels: {
+          intervention: "intervention",
+          Month: (d) => d.month.toLocaleDateString(),
+          "Change Rate": (d) => `${d.changeRate.toFixed(2)}%`,
+        },
+        tip: {
+          format: {
+            x: false,
+            y: false,
+            fill: false,
+          },
+        },
+      }),
+    ],
+  })
+);
+```
+
+</figure>
+</div>
+
+<div class="card">
+
+<figure>
+<figcaption>Value per Behavior Change by Campaign</figcaption>
+
+```js
+view(
+  Plot.plot({
+    marginRight: 0,
+    marginLeft: 150,
+    grid: true,
+    inset: 10,
+    x: {
+      label: "Value per Behavior Change ($)",
+    },
+    y: {
+      label: "",
+    },
+    marks: [
+      Plot.ruleX([0]),
+      Plot.barX(barData, {
+        x: "costPerChange",
+        y: "intervention",
+        sort: { y: "x", reverse: true },
+      }),
+    ],
+  })
+);
+```
+
+</figure>
+</div>
+</div>
+
+## Engagement Stats
+
+<div class="card">
+<figcaption>Engagement Rate Stats </figcaption>
+
+```js
+const engageratetable = view(
+  Inputs.table(
+    metricTables.filter((d) => d.metricName === "Engagement Rate")[0]
+      .metricData,
+    {
+      columns: [
+        "intervention",
+        "value",
+        "lift",
+        "pValue",
+        "ci_lower",
+        "ci_upper",
+        "stdDev",
+      ],
+      header: {
+        intervention: "Intervention",
+        value: "Rate",
+        lift: "Lift",
+        pValue: "P",
+        ci_lower: "CI (l)",
+        ci_upper: "CI (u)",
+        stdDev: tex`\sigma`,
+      },
+      layout: "auto",
+    }
+  )
+);
+```
+
+</div>
+
+<div class="card">
+
+  <figcaption>Engaged Population Stats</figcaption>
+
+```js
+view(
+  Inputs.table(
+    metricTables.filter((d) => d.metricName === "Conversion Rate")[0]
+      .metricData,
+    {
+      columns: [
+        "intervention",
+        "value",
+        "lift",
+        "pValue",
+        "ci_lower",
+        "ci_upper",
+        "stdDev",
+      ],
+      header: {
+        intervention: "Intervention",
+        value: "Rate",
+        lift: "Lift",
+        pValue: "P",
+        ci_lower: "CI (l)",
+        ci_upper: "CI (u)",
+        stdDev: tex`\sigma`,
+      },
+      layout: "auto",
+    }
+  )
+);
+```
+
+</div>
+
+</div> -->
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./"><span>Behavior Change Portfolio</span></a><a rel="next" href="./imaging-value-framing-working"><span>Value Framing</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-06T11:46:26">Jan 6, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>
