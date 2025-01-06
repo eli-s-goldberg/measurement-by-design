@@ -11,6 +11,8 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import { require } from "d3-require";
 
 import { createSplitPanelSummaryLayout } from "./components/createSplitPanelSummaryLayout.js";
+
+import { createUnifiedSplitPanel } from "./components/Layouts.js";
 ```
 
 ```js
@@ -39,6 +41,11 @@ Shifting Imaging to Preferred Facility
 Version 3: direct mail + email + microsite for predicted savers
 
 </div>
+
+```js
+const element5 = createUnifiedSplitPanel(tabconfig);
+view(element5);
+```
 
 ```js
 const config = {
@@ -90,9 +97,6 @@ const config = {
     },
   ],
 };
-
-const element = createSplitPanelSummaryLayout(config);
-view(element);
 ```
 
 <div style="height: 16px;"></div>
@@ -166,385 +170,96 @@ const table = Inputs.table(version, {
     status: "Status",
   },
   width: "auto",
-  // width: {
-  //   version: 200,
-  //   timeInMarket: 150,
-  //   outreach: 120,
-  //   costPerChangeBehavior: 120,
-  //   behaviorChangeLift: 150,
-  //   value: 100,
-  //   status: 100,
-  // },
 });
 
 view(table);
 ```
 
-<!--
 ```js
-// Initialize the analyzer with sample data
-const analyzer = new CampaignAnalyzer(sampleData);
-
-// Get formatted table data
-const tableData = analyzer.formatCampaignData();
-
-````
-
-```js
-// Transform data using the analyzer
-const selectedTimeSeriesData = analyzer.transformTimeSeriesData(selection);
-const selectedMetrics = analyzer.transformMetrics(selection);
-const metricTables = analyzer.createMetricTables(selectedMetrics);
-const funData = analyzer.getFunnelData(selection);
-const steps = [
-  "totalBooked",
-  "targeted",
-  "connected",
-  "enrolled",
-  "engaged",
-  "changedBehavior",
-];
-const processedData = analyzer.processFunnelData(funData, steps);
-const barData = analyzer.createBarChartData(selection);
-````
-
-<div class="card">
-
-```js
-const selection = view(
-  Inputs.table(tableData, {
-    columns: [
-      "intervention",
-      "populationDesc",
-      "version",
-      "timeInMarket",
-      "populationSize",
-      "costPerChange",
-      "totalImpact",
-      "financialImpact",
-    ],
-    header: {
-      intervention: "Intervention",
-      populationDesc: "Description",
-      version: "Vs",
-      timeInMarket: "Runtime ",
-      populationSize: "Population",
-      costPerChange: "$/BC",
-      totalImpact: "Impact @ Scale",
-      financialImpact: "Impact @ Pilot",
-    },
-    layout: "auto",
-  })
-);
-```
-
-</div>
-
-asdfdsasfd
-asdf
-
-<table class="table-card-campaign-table">
-  <thead>
-    <tr>
-      <th>Campaign</th>
-      <th>Levers</th>
-      <th>Version</th>
-      <th>Outreach</th>
-      <th>$ per Change Behavior</th>
-      <th>Behavior Change Lift</th>
-      <th>Value</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Shift Imaging to Preferred Facility</td>
-      <td>Site of Care & Provider Selection</td>
-      <td>v3 <span class="icon">📄</span></td>
-      <td>20,000</td>
-      <td>$1,800</td>
-      <td>3pp</td>
-      <td>$1.1M</td>
-      <td><span class="status-pill status-booked">Booked <span class="icon">📄</span></span></td>
-    </tr>
-    <tr>
-      <td>Increased Adherence for High Risk of CHF Readmission</td>
-      <td>Site of Care & Provider Selection</td>
-      <td>v3 <span class="icon">📄</span></td>
-      <td>20,000</td>
-      <td>$1,800</td>
-      <td>3pp</td>
-      <td>$1.1M</td>
-      <td><span class="status-pill status-booked">Booked <span class="icon">📄</span></span></td>
-    </tr>
-    <tr>
-      <td>Avoid Low Value Procedures</td>
-      <td>RX Management</td>
-      <td>v3 <span class="icon">📄</span></td>
-      <td>20,000</td>
-      <td>$1,800</td>
-      <td>3pp</td>
-      <td>$1.1M</td>
-      <td><span class="status-pill status-booked">Booked <span class="icon">📄</span></span></td>
-    </tr>
-    <tr>
-      <td>ASC for Cataracts</td>
-      <td>RX Management</td>
-      <td>v3 <span class="icon">📄</span></td>
-      <td>20,000</td>
-      <td>$1,800</td>
-      <td>3pp</td>
-      <td>$1.1M</td>
-      <td><span class="status-pill status-booked">Booked <span class="icon">📄</span></span></td>
-    </tr>
-    <tr>
-      <td>Switch to On-Formulary RX</td>
-      <td>RX Management</td>
-      <td>v3 <span class="icon">📄</span></td>
-      <td>20,000</td>
-      <td>$1,800</td>
-      <td>3pp</td>
-      <td>$1.1M</td>
-      <td><span class="status-pill status-pilot">Pilot <span class="icon">📄</span></span></td>
-    </tr>
-  </tbody>
-</table>
-
-## Funnel Analysis
-
-<div class="grid grid-cols-2">
-<div class="card">
-
-```js
-view(
-  Plot.plot({
-    height: 200,
-    grid: true,
-    x: { label: "Stage", domain: steps },
-    y: { label: "Population" },
-    color: { legend: true },
-    marks: [
-      Plot.line(
-        processedData.flatMap((d) => d.absoluteData),
-        { x: "step", y: "value", stroke: "intervention", strokeWidth: 0.5 }
-      ),
-      Plot.dot(
-        processedData.flatMap((d) => d.absoluteData),
-        {
-          x: "step",
-          y: "value",
-          fill: "intervention",
-          r: 1,
-          channels: {
-            Intervention: "intervention",
-            Step: "step",
-            Population: "value",
-          },
-          tip: {
-            format: {
-              Intervention: true,
-              Step: true,
-              Population: true,
-              x: false,
-              y: false,
-              fill: false,
-            },
-          },
-        }
-      ),
-    ],
-  })
-);
-```
-
-</div>
-<div class="card">
-
-```js
-view(
-  Plot.plot({
-    height: 200,
-    grid: true,
-    x: { label: "Stage", domain: steps },
-    y: { label: "Percentage", domain: [0, 100] },
-    color: { legend: true },
-    marks: [
-      Plot.line(
-        processedData.flatMap((d) => d.percentageData),
-        { x: "step", y: "value", stroke: "intervention", strokeWidth: 0.5 }
-      ),
-      Plot.dot(
-        processedData.flatMap((d) => d.percentageData),
-        { x: "step", y: "value", fill: "intervention", r: 1 }
-      ),
-    ],
-  })
-);
-```
-
-</div>
-</div>
-
-## Performance Metrics
-
-<div class="grid grid-cols-2">
-<div class="card">
-
-<figure>
-<figcaption>Observed Behavior Change Rate Over Time</figcaption>
-
-```js
-view(
-  Plot.plot({
-    marginRight: 60,
-    height: 200,
-    grid: true,
-    x: {
-      type: "time",
-      label: "Month",
-    },
-    y: {
-      label: "Change Rate (%)",
-      grid: true,
-    },
-    marks: [
-      Plot.line(selectedTimeSeriesData, {
-        x: "month",
-        y: "changeRate",
-        stroke: "intervention",
-        strokeWidth: 0.5,
-      }),
-      Plot.dot(selectedTimeSeriesData, {
-        x: "month",
-        y: "changeRate",
-        fill: "intervention",
-        r: 1,
-        channels: {
-          intervention: "intervention",
-          Month: (d) => d.month.toLocaleDateString(),
-          "Change Rate": (d) => `${d.changeRate.toFixed(2)}%`,
-        },
-        tip: {
-          format: {
-            x: false,
-            y: false,
-            fill: false,
-          },
-        },
-      }),
-    ],
-  })
-);
-```
-
-</figure>
-</div>
-
-<div class="card">
-
-<figure>
-<figcaption>Value per Behavior Change by Campaign</figcaption>
-
-```js
-view(
-  Plot.plot({
-    marginRight: 0,
-    marginLeft: 150,
-    grid: true,
-    inset: 10,
-    x: {
-      label: "Value per Behavior Change ($)",
-    },
-    y: {
-      label: "",
-    },
-    marks: [
-      Plot.ruleX([0]),
-      Plot.barX(barData, {
-        x: "costPerChange",
-        y: "intervention",
-        sort: { y: "x", reverse: true },
-      }),
-    ],
-  })
-);
-```
-
-</figure>
-</div>
-</div>
-
-## Engagement Stats
-
-<div class="card">
-<figcaption>Engagement Rate Stats </figcaption>
-
-```js
-const engageratetable = view(
-  Inputs.table(
-    metricTables.filter((d) => d.metricName === "Engagement Rate")[0]
-      .metricData,
-    {
-      columns: [
-        "intervention",
-        "value",
-        "lift",
-        "pValue",
-        "ci_lower",
-        "ci_upper",
-        "stdDev",
-      ],
-      header: {
-        intervention: "Intervention",
-        value: "Rate",
-        lift: "Lift",
-        pValue: "P",
-        ci_lower: "CI (l)",
-        ci_upper: "CI (u)",
-        stdDev: tex`\sigma`,
+const tabconfig = {
+  title: "Current Campaign",
+  subtitle: "",
+  gridSplit: { left: 50, right: 25 },
+  leftContent: {
+    type: "tabs",
+    content: [
+      {
+        type: "bodyDescription", // New type to handle body description
+        initialText: "This campaign targets members who are ",
+        highlightedText:
+          "most likely to receive imaging procedures at Non-Preferred facilities ",
+        finalText:
+          "  and attempts to drive them to Preferred locations instead.",
+        position: "top",
       },
-      layout: "auto",
-    }
-  )
-);
-```
-
-</div>
-
-<div class="card">
-
-  <figcaption>Engaged Population Stats</figcaption>
-
-```js
-view(
-  Inputs.table(
-    metricTables.filter((d) => d.metricName === "Conversion Rate")[0]
-      .metricData,
-    {
-      columns: [
-        "intervention",
-        "value",
-        "lift",
-        "pValue",
-        "ci_lower",
-        "ci_upper",
-        "stdDev",
-      ],
-      header: {
-        intervention: "Intervention",
-        value: "Rate",
-        lift: "Lift",
-        pValue: "P",
-        ci_lower: "CI (l)",
-        ci_upper: "CI (u)",
-        stdDev: tex`\sigma`,
+      {
+        name: "Tactics",
+        title: "",
+        subtitle: "",
+        description: html`<div style="width: 499px;">
+          Member-specific out-of-pocket savings as hook to influence switch to
+          Preferred. Duis nec efficitur massa. Maecenas pellentesque sapien et
+          quam scelerisque, vitae blandit odio vehicula. Class aptent taciti
+          sociosqu ad litora torquent per conubia nostra, per inceptos
+          himenaeos. Vivamus at viverra sem, sed tempor elit. Sed rhoncus nec
+          nunc nec commodo. Phasellus lobortis, eros ultricies feugiat
+          hendrerit.
+        </div>`,
+        isActive: true,
       },
-      layout: "auto",
-    }
-  )
-);
+      {
+        name: "Channels",
+        title: "",
+        subtitle: "",
+        description: html`<div style="width: 499px;">
+          Channel-specific out-of-pocket savings as hook to influence switch to
+          Preferred. Duis nec efficitur massa. Maecenas pellentesque sapien et
+          quam scelerisque, vitae blandit odio vehicula. Class aptent taciti
+          sociosqu ad litora torquent per conubia nostra, per inceptos
+          himenaeos. Vivamus at viverra sem, sed tempor elit. Sed rhoncus nec
+          nunc nec commodo. Phasellus lobortis, eros ultricies feugiat
+          hendrerit.
+        </div>`,
+        isActive: false,
+      },
+      {
+        name: "Measurement",
+        title: "",
+        subtitle: "",
+        description: html`<div style="width: 499px;">
+          Measurement-specific out-of-pocket savings as hook to influence switch
+          to Preferred. Duis nec efficitur massa. Maecenas pellentesque sapien
+          et quam scelerisque, vitae blandit odio vehicula. Class aptent taciti
+          sociosqu ad litora torquent per conubia nostra, per inceptos
+          himenaeos. Vivamus at viverra sem, sed tempor elit. Sed rhoncus nec
+          nunc nec commodo. Phasellus lobortis, eros ultricies feugiat
+          hendrerit.
+        </div>`,
+        isActive: false,
+      },
+    ],
+    cardBackground: "#FFF",
+  },
+  rightContent: {
+    type: "cards",
+    content: [
+      {
+        title: "KEY TAKEAWAY",
+        flavor: "keyTakeaway",
+        value: "4%",
+        subtitle:
+          "of Commercial Fully Insured members used Non-Preferred facilities for imaging in 2024",
+        highlight: true,
+      },
+      {
+        title: "RUN-RATE SAVINGS",
+        flavor: "valueAtStake",
+        value: "$1.1M",
+        subtitle: "Current Campaign (v3)",
+        highlight: true,
+      },
+    ],
+  },
+  theme: "dark",
+};
 ```
-
-</div>
-
-</div> -->

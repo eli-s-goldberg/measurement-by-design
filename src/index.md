@@ -5,12 +5,16 @@ title: Summary
 ---
 
 ```js
-// Import the CampaignAnalyzer class
-import { CampaignAnalyzer } from "./components/CampaignAnalyzer.js";
-```
-
-```js
 import { DataFrame } from "./components/DataFrame.js";
+import { createUnifiedSplitPanel } from "./components/Layouts.js";
+import {
+  formatTwoLevel,
+  formatStatus,
+  sparkbar,
+  formatTextBold,
+  formatWrappedText,
+  withRowHeight,
+} from "./components/TableFormatters.js";
 ```
 
 ```js
@@ -53,39 +57,6 @@ const metrics = [
   },
 ];
 ```
-
-<div class="full-width-section">
-  <div class="content-container">
-<div class="grid">
-  <div class="card card-yellow">
-    <div>
-      <p class="text-header">TOTAL CAMPAIGN VALUE</p>
-      <p class="horizontal-line"></p>
-      <p class="text-title">$103M</p>
-      <p class="text-subtext">50 Campaigns</p>
-    </div>
-  </div>
-
-  <!-- Second Card (White) -->
-  <div class="card card-white">
-    <div>
-      <p class="text-header">BOOKED VALUE</p>
-      <div class="horizontal-line"></div>
-      <p class="text-title">$60M</p>
-      <p class="text-subtext">35 Campaigns</p>
-    </div>
-  </div>
-
-  <!-- Third Card (Gray) -->
-  <div class="card card-white">
-    <div>
-      <p class="text-header">FORECASTED VALUE</p>
-      <div class="horizontal-line"></div>
-      <p class="text-title">$43M</p>
-      <p class="text-subtext">15 Campaigns</p>
-    </div>
-  </div>
-</div>
 
 ```js
 const data = [
@@ -132,7 +103,7 @@ const data = [
   {
     campaign: "Switch to On-Formulary RX",
     category: "rx management",
-    version: "vs3",
+    version: "v3",
     outreach: 35000,
     behaviorChange: 1800,
     liftPerPerson: 3,
@@ -174,98 +145,198 @@ const data = [
 const df = new DataFrame(data);
 ```
 
-<div class = "card">
-<div class = "table-header-style">
+```js
+const withTooltip =
+  (tooltipContent) =>
+  (formatter = (d) => d) => {
+    return (value, row) => {
+      const formattedValue = formatter(value, row);
+      const tooltip =
+        typeof tooltipContent === "function"
+          ? tooltipContent(row)
+          : tooltipContent;
 
-Campaigns
+      return html`
+        <div class="points-wrapper">
+          <span class="points-red tooltip-left" data-tooltip="${tooltip}">
+            ${formattedValue}
+          </span>
+        </div>
+      `;
+    };
+  };
 
-</div>
+// Change tableStyles to hoverTableStyles
+const hoverTableStyles = {
+  styles: html`
+    <style>
+      .points-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .points-red {
+        background-color: #d75f44;
+        border-radius: 100%;
+        height: 19px;
+        color: #fff;
+        font-size: 13px;
+        line-height: 19px;
+        text-align: center;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+        width: 19px;
+        display: inline-block;
+      }
+
+      .tooltip-left[data-tooltip]:hover::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid #af241c;
+        margin: -8px 0 0 4px;
+      }
+
+      .tooltip-left[data-tooltip]:hover::after {
+        content: attr(data-tooltip);
+        padding: 2px 10px;
+        position: absolute;
+        background: #af241c;
+        color: #fff;
+        text-align: right;
+        text-indent: 0;
+        line-height: 25px;
+        white-space: nowrap;
+        word-wrap: normal;
+        border-radius: 2px;
+        z-index: 9999;
+        font-weight: normal;
+        margin: -36px 48px 0 0;
+        right: 0;
+      }
+    </style>
+  `,
+};
+
+// Version tooltips mapping
+const versionTooltips = {
+  v3: "Version 3: Latest production release with enhanced targeting",
+  vs3: "Version S3: Special release with experimental features",
+};
+```
 
 ```js
-function sparkbar(max) {
-  return (x) => htl.html`<div style="
-    background: lightblue;
-    color: black;
-    width: ${(100 * x) / max}%;
-    float: left;
-    padding-right: 3px;
-    padding-left: 3px;
-    box-sizing: border-box;
-    overflow: visible;
-    display: flex;
-    justify-content: start;">${x.toLocaleString("en-US")}`;
-}
-
-function formatTextBold(text, charLimit = 50) {
-  return (x) => {
-    const str = x.toLocaleString("en-US");
-    const wrapped = str.replace(new RegExp(`(.{${charLimit}})`, "g"), "$1\n");
-    return htl.html`<div style="
-      color: black;
-      font-weight: 500;
-      min-height: 40px;
-      float: left;
-      padding: 3px;
-      box-sizing: border-box;
-      white-space: pre-wrap;
-      display: flex;
-      align-items: center;
-      justify-content: start;">${wrapped}</div>`;
-  };
-}
-
-function formatText(text, charLimit = 50) {
-  return (x) => {
-    const str = x.toLocaleString("en-US");
-    const wrapped = str.replace(new RegExp(`(.{${charLimit}})`, "g"), "$1\n");
-    return htl.html`<div style="
-      color: black;
-      min-height: 40px;
-      float: left;
-      padding: 3px;
-      box-sizing: border-box;
-      white-space: pre-wrap;
-      display: flex;
-      align-items: center;
-      justify-content: start;">${wrapped}</div>`;
-  };
-}
-// font: 52px/1.5 "ITC Charter Com", serif;
-
-const table_selected = await view(
-  Inputs.table(df.print(), {
-    required: false,
-    format: {
-      campaign: formatTextBold(df.print(), (d) => d.outreach),
-      category: formatText(df.print(), (d) => d.category),
-      outreach: sparkbar(d3.max(df.print(), (d) => d.outreach)),
-      behaviorChange: sparkbar(d3.max(df.print(), (d) => d.behaviorChange)),
-    },
-    align: {
-      campaign: "left",
-      category: "left",
-      version: "center",
-      outreach: "left",
-      behaviorChange: "left",
-      liftPerPerson: "left",
-      value: "left",
-      status: "left",
-    },
-    header: {
-      campaign: "Campaign",
-      category: "Category",
-      version: "Vs.",
-      outreach: "Outreach",
-      behaviorChange: "Behavior Change",
-      liftPerPerson: "Lift",
-      value: "Value",
-      status: "Status",
-    },
-    layout: "auto",
-    rows: 20,
-  })
-);
+const table_selected = await Inputs.table(df.print(), {
+  required: false,
+  format: {
+    campaign: formatTextBold(df.print(), (d) => d.outreach),
+    value: withTooltip((row) => `Here is the hover test for ${row.value}`)(
+      (d) => d
+    ),
+    category: withRowHeight("45px", "top")(formatWrappedText()),
+    outreach: sparkbar(d3.max(df.print(), (d) => d.outreach)),
+    behaviorChange: sparkbar(d3.max(df.print(), (d) => d.behaviorChange)),
+  },
+  align: {
+    campaign: "left",
+    category: "left",
+    version: "center",
+    outreach: "left",
+    behaviorChange: "left",
+    liftPerPerson: "left",
+    value: "left",
+    status: "left",
+  },
+  style: hoverTableStyles.styles,
+  header: {
+    campaign: "Campaign",
+    category: "Lever",
+    version: "Vs.",
+    outreach: "Outreach",
+    behaviorChange: "Behavior Change",
+    liftPerPerson: "Lift",
+    value: "Value",
+    status: "Status",
+  },
+  width: "auto",
+  height: "auto",
+  rows: 20,
+});
 ```
 
 </div>
 </div>
+
+```js
+const myTableStyles = {
+  headerBackground: "#fff",
+  headerTextColor: "#000",
+  headerHeight: "40px",
+  tableBorderRadius: "18px",
+};
+
+// Example usage of createUnifiedSplitPanel for dashboard layout
+const dashboardConfig = {
+  title: "Campaign Dashboard",
+  layout: "vertical", // Specify vertical layout
+  tableStyles: myTableStyles,
+
+  // Top section with cards
+  topContent: {
+    type: "cards",
+    content: [
+      {
+        flavor: "keyTakeaway",
+        title: "TOTAL CAMPAIGN VALUE",
+        value: "$103M",
+        subtitle: "50 Campaigns",
+      },
+      {
+        flavor: "keyTakeawayWhite",
+        title: "BOOKED VALUE",
+        value: "$60M",
+        subtitle: "35 Campaigns",
+      },
+      {
+        flavor: "keyTakeawayWhite",
+        title: "FORECASTED VALUE",
+        value: "$43M",
+        subtitle: "15 Campaigns",
+      },
+    ],
+    cardHeight: "160px",
+
+    card: true, // Don't wrap the cards section in an additional card
+  },
+
+  // Bottom section with table
+  bottomContent: {
+    type: "table",
+
+    tableSubtitle: html`<div
+      style="
+      font-family: 'Helvetica Neue', sans-serif; 
+      font-weight: 700; 
+      font-size: 20px; 
+      line-height: 24.42px;
+      letter-spacing: -0.03em; 
+      margin-bottom: 1rem;
+      margin-left: 2rem;
+      margin-top: 2rem"
+    >
+      Campaigns
+    </div>`,
+    tableStyles: myTableStyles,
+    content: table_selected,
+    card: false, // Wrap the table in a card container
+  },
+
+  theme: "dark",
+};
+
+// Create the panel
+const dashboardPanel = createUnifiedSplitPanel(dashboardConfig);
+view(dashboardPanel);
+```

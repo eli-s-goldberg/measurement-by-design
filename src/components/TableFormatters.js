@@ -138,3 +138,49 @@ export function withRowHeight(height = "40px", verticalAlign = "center") {
     </div>`;
   };
 }
+
+export function formatText(text, charLimit = 50) {
+  return (x) => {
+    const str = x.toLocaleString("en-US");
+    const wrapped = str.replace(new RegExp(`(.{${charLimit}})`, "g"), "$1\n");
+    return htl.html`<div style="
+      color: black;
+      min-height: 40px;
+      float: left;
+      padding: 3px;
+      box-sizing: border-box;
+      white-space: pre-wrap;
+      display: flex;
+      align-items: center;
+      justify-content: start;">${wrapped}</div>`;
+  };
+}
+// font: 52px/1.5 "ITC Charter Com", serif;
+
+export const withTooltip =
+  (tooltipContent) =>
+  (formatter = (d) => d) => {
+    return (value, row) => {
+      const formattedValue = formatter(value, row);
+      const tooltip =
+        typeof tooltipContent === "function"
+          ? tooltipContent(row)
+          : tooltipContent;
+
+      return html`
+        <div
+          style="position: relative; display: inline-block;"
+          title="${tooltip}"
+        >
+          ${formattedValue}
+        </div>
+      `;
+    };
+  };
+
+// Example version tooltips mapping
+export const versionTooltips = {
+  v3: "Version 3: Latest production release with enhanced targeting",
+  vs3: "Version S3: Special release with experimental features",
+  // Add more version mappings as needed
+};
