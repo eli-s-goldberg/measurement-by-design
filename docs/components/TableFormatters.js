@@ -26,13 +26,11 @@ export function formatTextBold(text, charLimit = 50) {
       style="
       color: black;
       font-weight: 500;
-      min-height: 40px;
       float: left;
-      padding: 3px;
       box-sizing: border-box;
-      white-space: pre-wrap;
+      white-space: wrap;
       display: flex;
-      align-items: center;
+      align-items: top;
       justify-content: start;"
     >
       ${wrapped}
@@ -44,8 +42,8 @@ export function formatStatus(status) {
   return html`<div
     style="
     display: inline-block;
-    padding: 2px 8px;
     border-radius: 4px;
+    white-space: wrap;
     background: ${status === "Deprecated" ? "#fee2e2" : "#dcfce7"};
     color: ${status === "Deprecated" ? "#991b1b" : "#166534"};
     font-size: 0.9em;"
@@ -90,5 +88,53 @@ export function formatTwoLevel(charLimit = 25) {
       </div>`;
     }
     return String(value);
+  };
+}
+
+export function formatWrappedText(charLimit = 50) {
+  return (x) => {
+    const str = String(x);
+    const wrapped = str.replace(new RegExp(`(.{${charLimit}})`, "g"), "$1\n");
+    return html`<div
+      style="
+        color: black;
+        float: left;
+        box-sizing: border-box;
+        white-space: wrap;
+        display: flex;
+        align-items: top;
+        justify-content: start;"
+    >
+      ${wrapped}
+    </div>`;
+  };
+}
+
+export function withRowHeight(height = "40px", verticalAlign = "center") {
+  return (formatter) => (x) => {
+    // If no formatter is provided, use a basic text formatter
+    const defaultFormatter = (val) => html`<div>${String(val)}</div>`;
+    const formattedContent = (formatter || defaultFormatter)(x);
+
+    // Map alignment keywords to flex alignment values
+    const alignmentMap = {
+      top: "flex-start",
+      center: "center",
+      bottom: "flex-end",
+    };
+
+    // Get the alignment value or default to center if invalid value provided
+    const alignItems = alignmentMap[verticalAlign] || "center";
+
+    return html`<div
+      style="
+        min-height: ${height};
+        display: flex;
+        align-items: ${alignItems};
+        width: 100%;
+      "
+    >
+      ${formattedContent}
+    </div>`;
   };
 }

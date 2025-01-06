@@ -156,12 +156,12 @@ export const pwcStyle = `
   .text-subheader {
     font-family: 'Georgia', serif;
     font-weight: 400;
-    font-size: 38px;
+    font-size: 43px;
     line-height: 43.18px;
     letter-spacing: -3%;
     margin-bottom: 1em;
 }
-    .text-subheader-pullquote {
+  .text-subheader-pullquote {
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: 400;
     font-size: 24px;

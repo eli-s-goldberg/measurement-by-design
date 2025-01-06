@@ -20,6 +20,7 @@ export const pwcStyle = `
     overflow-y: auto;
   }
 
+
   #observablehq-sidebar > ol:first-child::before {
     background: #2b2b2b;
   }
@@ -65,6 +66,12 @@ export const pwcStyle = `
     color: #cccccc;
   }
 
+  .special-note {
+    background-color: #f5f5f5;
+    padding: 0px;
+    border-radius: 4px;
+}
+
   /* Search Styles */
   #observablehq-search input {
     background-color: #3d3d3d;
@@ -85,17 +92,28 @@ export const pwcStyle = `
   /* Page Title Styles */
   .page-title {
     font-family: "ITC Charter Com", serif;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 40px;
-    line-height: 52px;
+    line-height: 48px;
     letter-spacing: -0.03em;
+  }
+      .page-sub-title {
+    font-family: "ITC Charter Com", serif;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: -0.03em;
+    margin-bottom: 10px;
+    line-height: 43.18px;
+    letter-spacing: -3%;
   }
   .table-header-style {
     font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 18px;
     line-height: 24.42px;
+    margin-bottom: 10px;
   }
+    
 
   .table-body-style {
     font-family: 'Helvetica Neue', sans-serif;
@@ -128,13 +146,15 @@ export const pwcStyle = `
     background-color: #ffb600;
     color: #111827;
   }
+    
 
   .card-white {
     background-color: #ffffff;
+    padding: 0.5rem;
   }
 
   .card-gray {
-    background-color: #ffffff;
+    background-color: #F2F2F2;
   }
 
   /* Text Styles */
@@ -170,25 +190,48 @@ export const pwcStyle = `
     font-size: 38px;
     line-height: 43.18px;
     letter-spacing: -3%;
-    margin-bottom: 1em;
 }
-    .text-subheader-pullquote {
+  .text-subheader-2 {
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 35px;
+    line-height: 43.18px;
+    letter-spacing: -3%;
+}
+    .text-subheader-pullquote {
+    font-family: 'Helvetica Neue';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -10%;
+    margin-bottom: 10px;
+}
+  .text-subheader-pullquote-size-2 {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 700;;
+    font-size: 18px;
     line-height: 31px;
 }
 
 .text-subheader-pullquote-highlight {
     font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 31px;
-    background-color: #ffb600; /* Adds the background */
-    color: black; /* Ensures text color contrasts well */
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -10%;
+    background-color: #ffb600;
+    color: black; 
 }
 
   /* Grid Layout */
+  .layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: start;
+}
+
+
   .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -204,7 +247,7 @@ export const pwcStyle = `
 
 .grid-card {
     background-color: #ffb600; /* Card background color */
-    border-radius: 10px; /* Rounded corners */
+    border-radius: 16px; /* Rounded corners */
     padding: 1.5rem; /* Inner padding */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for a clean look */
     display: flex;
@@ -226,6 +269,14 @@ export const pwcStyle = `
     margin: 0.5rem 0;
 }
 
+.yellow-panel {
+  background-color: #ffb600; /* Pale yellow */
+  border-radius: 16px;       /* Rounded edges */
+  padding: 1.5rem;            /* Spacing inside */
+  display: flex;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
 
 .horizontal-line {
     width: 1cm; /* Line length */
@@ -244,14 +295,14 @@ export const pwcStyle = `
 .grid-subtitle {
     font-family: 'Helvetica Neue', serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 18px;
     margin: 0;
 }
 
 .grid-description {
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 15px;
     margin: 0px;
     margin-top: 1.5em;
     color: #333; /* Slightly darker text for readability */
@@ -317,7 +368,26 @@ export const pwcStyle = `
     /* Position relative to allow offset */
     position: relative;
     /* Offset the div to the left by 50% of the viewport width */
-    left: 50%;
+    left: 90%;
+    /* Shift the div back by 50% of its own width */
+    transform: translateX(-50%);
+    /* Light gray background */
+    background-color: #d3d3d3; /* You can also use 'lightgray' */
+    /* Padding before the text starts */
+    padding: 0px; /* Adjust as needed */
+    /* Optional: Add box-sizing for consistent sizing */
+    box-sizing: border-box;
+    /* Optional: Remove any margins */
+    margin: 10px;
+  }
+
+    .full-width-div-left {
+    /* Span the entire viewport width */
+    width: 80vw;
+    /* Position relative to allow offset */
+    position: relative;
+    /* Offset the div to the left by 50% of the viewport width */
+    left: 10%;
     /* Shift the div back by 50% of its own width */
     transform: translateX(-50%);
     /* Light gray background */
@@ -342,12 +412,12 @@ export const pwcStyle = `
 
   th {
     color: black;
-    background-color: white;
+    background-color: black;
     letter-spacing: -0.03em;
   }
 
   td {
-    color: var(--theme-foreground-alt);
+    color: black;
     vertical-align: top;
   }
 
@@ -377,17 +447,52 @@ export const pwcStyle = `
     box-sizing: border-box;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1193px) {
     .full-width-section .content-container {
-      padding: 0 1rem;
+      padding: 0 0rem;
     }
   }
 
-  .tabs {
-  display: flex;
-  gap: 32px;
-  border-bottom: 1px solid #ddd;
+  /* Full Width Section Left */
+.full-width-section-left {
+  position: relative;
+  background-color: transparent;
+  padding: 1.5rem 0;
 }
+
+.full-width-section-left::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  background-color: #F2F2F2;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+.full-width-section-left .content-container {
+  max-width: var(--observablehq-max-width);
+  margin: 0 auto;
+  padding: 0 0rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1193px) {
+  .full-width-section-left .content-container {
+    padding: 0 0rem;
+  }
+}
+
+/* Grid Layout for 20:80 ratio */
+.full-width-section-left .layout-grid {
+  display: grid;
+  grid-template-columns: 40fr 60fr;
+  gap: 20px;
+  align-items: start;
+}
+
 
 /* Tabs */
 .tabs {

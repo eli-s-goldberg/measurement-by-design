@@ -27,6 +27,7 @@ document.head.appendChild(styleElement);
 <div class="page-title ">
 Behavior Change Portfolio: MedEx
 </div>
+<div class="horizontal-line"></div>
 
 Track, manage, and forecast campaign impact.
 

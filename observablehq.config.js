@@ -12,8 +12,12 @@ export default {
       open: true,
       pages: [
         {
+          name: "Summary",
+          path: "/imaging-exec-summ",
+        },
+        {
           name: "Value Framing",
-          path: "/value-framing",
+          path: "/imaging-value-framing-working",
         },
         // {
         //   name: "Problem Definition",
