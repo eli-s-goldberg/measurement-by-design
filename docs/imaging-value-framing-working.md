@@ -5,7 +5,7 @@ title: Imaging - Value Framing
 ---
 
 ```js
-// Import the CampaignAnalyzer class
+// Import the CampaignAnalyzer class try
 import { CampaignAnalyzer } from "./components/CampaignAnalyzer.js";
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import { require } from "d3-require";
