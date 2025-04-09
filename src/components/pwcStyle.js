@@ -97,7 +97,7 @@ export const pwcStyle = `
     line-height: 48px;
     letter-spacing: -0.03em;
   }
-      .page-sub-title {
+  .page-sub-title {
     font-family: "ITC Charter Com", serif;
     font-weight: 600;
     font-size: 28px;

@@ -157,30 +157,3 @@ export function formatText(text, charLimit = 50) {
 }
 // font: 52px/1.5 "ITC Charter Com", serif;
 
-export const withTooltip =
-  (tooltipContent) =>
-  (formatter = (d) => d) => {
-    return (value, row) => {
-      const formattedValue = formatter(value, row);
-      const tooltip =
-        typeof tooltipContent === "function"
-          ? tooltipContent(row)
-          : tooltipContent;
-
-      return html`
-        <div
-          style="position: relative; display: inline-block;"
-          title="${tooltip}"
-        >
-          ${formattedValue}
-        </div>
-      `;
-    };
-  };
-
-// Example version tooltips mapping
-export const versionTooltips = {
-  v3: "Version 3: Latest production release with enhanced targeting",
-  vs3: "Version S3: Special release with experimental features",
-  // Add more version mappings as needed
-};
